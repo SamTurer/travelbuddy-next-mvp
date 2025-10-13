@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --tb-blue: #0077B6;
+  --tb-coral: #FF6B6B;
+}
+body { @apply bg-slate-50 text-slate-900; }
+.container { @apply max-w-md mx-auto px-4; }
+.btn { @apply rounded-2xl px-4 py-3 text-base font-medium shadow-sm; }
+.btn-primary { @apply bg-[var(--tb-blue)] text-white; }
+.btn-outline { @apply bg-white border border-slate-300 hover:border-slate-400; }
+.pill { @apply rounded-full border px-3 py-1 text-sm bg-white border-slate-300; }
+.pill-active { @apply border-[var(--tb-blue)] ring-2 ring-[var(--tb-blue)]; }

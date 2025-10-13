@@ -1,0 +1,3 @@
+name,category,sub_category,neighborhood,lat,lon,price_tier,energy_tags,vibe_tags,duration_min,description,location,source
+Prince Street Pizza,food,pizza,SoHo,,,2,active,foodie,20,Square slices and a quick queue,SoHo,Local Guide
+Whitney Museum of American Art,culture,museum,Meatpacking,,,3,chill,culture,90,Modern & contemporary American art,Meatpacking,Local Guide

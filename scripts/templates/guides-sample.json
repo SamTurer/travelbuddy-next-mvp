@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Jack's Wife Freda",
+    "category": "food",
+    "neighborhood": "SoHo",
+    "duration_min": 45,
+    "vibe_tags": [
+      "foodie"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Beloved all-day cafe \u2014 great for brunch.",
+    "location": "SoHo",
+    "source": "Local Guide"
+  },
+  {
+    "name": "Washington Square Park",
+    "category": "outdoors",
+    "neighborhood": "Greenwich Village",
+    "duration_min": 40,
+    "vibe_tags": [
+      "explore",
+      "outdoors"
+    ],
+    "energy_tags": [
+      "active"
+    ],
+    "description": "Iconic arch, street performers, and people-watching.",
+    "location": "Greenwich Village",
+    "source": "Local Guide"
+  }
+]
