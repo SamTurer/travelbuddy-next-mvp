@@ -108,7 +108,7 @@ const DAYPART_WINDOWS: Record<string, [number, number]> = {
 const CENTRAL_START_AREAS = [
   'West Village', 'Greenwich Village', 'SoHo', 'Lower Manhattan', 'Chelsea',
   'Flatiron', 'NoHo', 'Nolita', 'Union Square', 'Midtown',
-  'East Village', 'Lower East Side', 'Upper West Side'
+  'East Village', 'Lower East Side', 'Upper West Side', 'Upper East Side'
 ];
 
 const EARLY_START_CATEGORIES = new Set<string>([
@@ -116,33 +116,31 @@ const EARLY_START_CATEGORIES = new Set<string>([
 ]);
 
 const VIBE_START_AREA_BOOST: Record<string, Record<string, number>> = {
-  foodie: {
-    'soho': 1.6,
-    'nolita': 1.6,
-    'lower east side': 1.4,
-    'greenwich village': 0.9,
-    'west village': 0.6
+  classic: {
+    'midtown': 1.6,
+    'lower manhattan': 1.2,
+    'upper east side': 1.0,
+    'upper west side': 0.9,
+    'chelsea': 0.6
   },
-  artsy: {
-    'soho': 1.6,
-    'chelsea': 1.2,
-    'noho': 1.0,
-    'lower east side': 0.6
+  curator: {
+    'chelsea': 1.6,
+    'soho': 1.2,
+    'lower east side': 1.0,
+    'midtown': 0.8,
+    'upper east side': 0.8
   },
-  historic: {
-    'lower manhattan': 1.6,
-    'greenwich village': 0.7,
+  local: {
+    'west village': 1.4,
+    'greenwich village': 1.2,
+    'east village': 1.1,
+    'lower east side': 1.0,
+    'nolita': 0.8,
     'soho': 0.6
   },
-  nature: {
-    'chelsea': 1.0,
-    'midtown': 0.8,
-    'upper west side': 0.6,
-    'west village': 0.4
-  }
 };
 
-const NATURE_CATEGORIES = new Set<string>(['park','walk','garden','waterfront','view','market']);
+const LOCAL_FAVORITE_CATEGORIES = new Set<string>(['coffee','market','walk','park','snack','shopping','bar','drinks']);
 const START_OVERUSED_NAME_RE = /(dumbo|brooklyn bridge)/i;
 // Block lunchy items before 11:30 AM
 const LUNCH_START_MIN = 11 * 60 + 30; // 11:30
@@ -161,13 +159,45 @@ const MAX_AREA_VISITS = 3;
 const MAX_AREA_RUN = 2;
 const AREA_BOUNCE_PENALTY = 28;
 const TRAVEL_WEIGHT = 0.9;
+const MAX_NON_ANCHOR_TRAVEL_MIN = 60;
 
 
 const VIBE_CATEGORY_WEIGHTS: Record<string, Partial<Record<string, number>>> = {
-  nature:   { park: -2.0, walk: -1.2, view: -0.8, market: -0.5, museum: +0.4, gallery: +0.4, lunch: +0.6, dinner: +0.6, snack: +0.3 },
-  historic: { landmark: -1.5, museum: -1.0, walk: -0.6, gallery: -0.2, dinner: +0.4, lunch: +0.3 },
-  artsy:    { gallery: -1.4, museum: -1.0, walk: -0.3, coffee: -0.2 },
-  foodie:   { breakfast: -1.0, market: -0.6, lunch: -1.0, snack: -0.6, dinner: -1.2, coffee: -0.2, museum: +0.6, gallery: +0.6, park: +0.4, walk: +0.4 },
+  classic: {
+    landmark: -1.5,
+    museum: -1.2,
+    view: -0.9,
+    park: -0.6,
+    walk: -0.5,
+    show: -0.5,
+    market: -0.2,
+    dinner: +0.3,
+    bar: +0.4
+  },
+  curator: {
+    museum: -1.4,
+    gallery: -1.3,
+    show: -0.7,
+    shopping: -0.4,
+    coffee: -0.3,
+    landmark: -0.2,
+    dinner: +0.2,
+    lunch: +0.2
+  },
+  local: {
+    coffee: -1.0,
+    breakfast: -0.9,
+    market: -0.8,
+    lunch: -0.8,
+    dinner: -0.6,
+    snack: -0.6,
+    walk: -0.6,
+    park: -0.4,
+    shopping: -0.4,
+    bar: -0.5,
+    landmark: +0.5,
+    museum: +0.4
+  },
 };
 
 const CUISINE_KEYS: Array<{key: string; re: RegExp}> = [
@@ -387,6 +417,11 @@ function recommendedTravelMode(minutes: number): 'walk' | 'transit' {
   if (!isFinite(minutes) || minutes <= 0) return 'walk';
   return minutes <= 17 ? 'walk' : 'transit';
 }
+function travelWithinLimit(minutes: number, destinationIsAnchor: boolean): boolean {
+  if (!isFinite(minutes) || minutes <= 0) return true;
+  if (destinationIsAnchor) return true;
+  return minutes <= MAX_NON_ANCHOR_TRAVEL_MIN;
+}
 function ensureGoogleMapsUrl(url: string | undefined, location: string, title: string): string | undefined {
   if (url && /google\.(com|\w{2,})\/maps/i.test(url)) return url;
   const query = encodeURIComponent(`${title} ${location}`.trim());
@@ -448,8 +483,8 @@ function wouldExceedCategoryCountsFactory(scheduled: Scheduled[]) {
       const catCount = scheduled.filter(s => (s.category || '').toLowerCase() === key).length;
       if (catCount >= catCap) return true;
     }
-    const isFoodie = !!vibes?.some(v => /foodie/i.test(v));
-    if (!isFoodie && isFoodCategory(key)) {
+    const isFoodForward = !!vibes?.some(v => /(local|classic)/i.test(v));
+    if (!isFoodForward && isFoodCategory(key)) {
       if (dayFoodCount(scheduled) >= DAILY_FOOD_CAP) return true;
     }
     return false;
@@ -458,20 +493,41 @@ function wouldExceedCategoryCountsFactory(scheduled: Scheduled[]) {
 
 /** Light non-food filler if we want to avoid increasing food count */
 function makeNonFoodFillerStop(loc: string, vibes: string[] | undefined, pace: Pace): CandidateStop {
-  const wantsNature = !!vibes?.some(v => /nature/i.test(v));
-  if (wantsNature) {
+  const wantsCurator = !!vibes?.some(v => /curator/i.test(v));
+  const wantsClassic = !!vibes?.some(v => /classic/i.test(v));
+  const wantsLocal = !!vibes?.some(v => /local/i.test(v));
+
+  if (wantsCurator) {
     return {
-      title: 'Stroll a nearby park',
+      title: 'Pop into a nearby gallery',
       location: loc,
-      description: 'Enjoy some green space.',
-      category: 'park',
+      description: 'Take in a design-forward space between stops.',
+      category: 'gallery',
+      duration: pace === 'max' ? 45 : 60,
+    };
+  }
+  if (wantsClassic) {
+    return {
+      title: 'Visit a nearby landmark',
+      location: loc,
+      description: 'Hit an iconic sight while you are close.',
+      category: 'landmark',
+      duration: pace === 'max' ? 45 : 60,
+    };
+  }
+  if (wantsLocal) {
+    return {
+      title: 'Explore the neighborhood',
+      location: loc,
+      description: 'Wander the side streets and soak up the local energy.',
+      category: 'walk',
       duration: pace === 'max' ? 45 : 60,
     };
   }
   return {
-    title: 'Explore the neighborhood',
+    title: 'Take a breather',
     location: loc,
-    description: 'Window shop and take in the vibe.',
+    description: 'Slow down for a moment before the next activity.',
     category: 'walk',
     duration: pace === 'max' ? 45 : 60,
   };
@@ -586,10 +642,10 @@ function startAreaPenalty(
   }
   return penalty;
 }
-function natureVibeBoost(vibes: string[] | undefined, category?: string): number {
+function localVibeBoost(vibes: string[] | undefined, category?: string): number {
   if (!vibes || !category) return 0;
-  if (!vibes.some(v => /nature/i.test(v))) return 0;
-  return NATURE_CATEGORIES.has(category.toLowerCase()) ? -1.0 : 0;
+  if (!vibes.some(v => /local/i.test(v))) return 0;
+  return LOCAL_FAVORITE_CATEGORIES.has(category.toLowerCase()) ? -0.6 : 0;
 }
 function vibeCategoryBias(vibes: string[] | undefined, category?: string): number {
   if (!vibes || !category) return 0;
@@ -612,10 +668,10 @@ function cuisineRepeatPenalty(p: Place, cuisineCounts: Map<string, number>, vibe
   const ck = cuisineKeyFromPlace(p);
   if (!ck) return 0;
   const count = cuisineCounts.get(ck) || 0;
-  const isFoodie = !!vibes?.some(v => /foodie/i.test(v));
+  const isFoodForward = !!vibes?.some(v => /(local|classic)/i.test(v));
   if (count === 0) return 0;
-  if (count === 1) return isFoodie ? 0.2 : 0.8;
-  return isFoodie ? 0.6 : 1.6;
+  if (count === 1) return isFoodForward ? 0.2 : 0.8;
+  return isFoodForward ? 0.6 : 1.6;
 }
 function dumboStartPenalty(place: Place, scheduledCount: number, vibes: string[] | undefined): number {
   if (scheduledCount > 0) return 0;
@@ -632,8 +688,8 @@ function dayFoodCount(scheduled: Scheduled[]): number {
 }
 function datasetFoodBiasPenalty(candidates: Place[], vibes?: string[], cat?: string): number {
   if (!cat || isFoodCategory(cat) === false) return 0;
-  const isFoodie = !!vibes?.some(v => /foodie/i.test(v));
-  if (isFoodie) return 0;
+  const isFoodForward = !!vibes?.some(v => /(local|classic)/i.test(v));
+  if (isFoodForward) return 0;
   const total = Math.max(1, candidates.length);
   const foodItems = candidates.filter(p => isFoodCategory(p.category)).length;
   const share = foodItems / total;
@@ -656,13 +712,40 @@ function repetitionPenalty(place: { name: string; category?: string }, categoryC
    NEW: Hours/branch enrichment
 ============================ */
 
+function isGenericArea(text?: string | null): boolean {
+  if (!text) return true;
+  const cleaned = text.trim().toLowerCase();
+  if (!cleaned) return true;
+  if (
+    cleaned === 'multiple' ||
+    cleaned === 'multiple location' ||
+    cleaned === 'multiple locations' ||
+    cleaned === 'one location'
+  ) {
+    return true;
+  }
+  return /\b(multiple|various|several)\s+locations?\b/.test(cleaned);
+}
+
+function sanitizeAreaText(text?: string | null): string | undefined {
+  if (!text) return undefined;
+  const cleaned = text.trim();
+  if (!cleaned) return undefined;
+  if (isGenericArea(cleaned)) return undefined;
+  return cleaned;
+}
+
 function stripMultipleLocations(text?: string): string | undefined {
   if (!text) return text;
-  return text
-    .replace(/\bmultiple locations?\b/gi, 'one location')
-    .replace(/\bvarious locations?\b/gi, 'one location')
-    .replace(/\bseveral locations?\b/gi, 'one location')
-    .trim();
+  return text.replace(/\s+/g, ' ').trim();
+}
+
+function resolveDisplayLocation(location: string | undefined, fallback: string, alternate?: string): string {
+  const primary = sanitizeAreaText(location);
+  if (primary) return primary;
+  const secondary = sanitizeAreaText(alternate);
+  if (secondary) return secondary;
+  return fallback;
 }
 
 async function enrichMissingHoursFor(
@@ -677,6 +760,9 @@ async function enrichMissingHoursFor(
 
   await Promise.all(
     candidates.map(async (p) => {
+      if (p.neighborhood !== undefined) p.neighborhood = sanitizeAreaText(p.neighborhood);
+      if (p.location !== undefined) p.location = sanitizeAreaText(p.location);
+
       const hasHours = !!(p.hours?.weekdayText?.length || p.hours?.periods?.length);
       const hasArea  = !!(p.neighborhood || p.location);
 
@@ -685,8 +771,10 @@ async function enrichMissingHoursFor(
         try {
           const best = await resolveBestBranchForChain(p.name, city, areaHint);
           if (best) {
-            p.location = p.location || best.address || best.neighborhood;
-            p.neighborhood = p.neighborhood || best.neighborhood;
+            if (!p.neighborhood && best.neighborhood) p.neighborhood = best.neighborhood;
+            if (!p.location && (best.address || best.neighborhood)) {
+              p.location = best.address || best.neighborhood;
+            }
           }
         } catch {}
       }
@@ -706,7 +794,9 @@ async function enrichMissingHoursFor(
           if (website && !p.url) p.url = website;
           if (bestBranch) {
             if (!p.neighborhood && bestBranch.neighborhood) p.neighborhood = bestBranch.neighborhood;
-            if (!p.location && bestBranch.address) p.location = bestBranch.address;
+            if ((!p.location || isGenericArea(p.location)) && (bestBranch.address || bestBranch.neighborhood)) {
+              p.location = bestBranch.address || bestBranch.neighborhood;
+            }
           }
         } catch {
           // ignore
@@ -715,6 +805,9 @@ async function enrichMissingHoursFor(
 
       // Clean up “multiple locations”
       p.description = stripMultipleLocations(p.description);
+      if (!p.location && p.neighborhood) {
+        p.location = p.neighborhood;
+      }
     })
   );
 }
@@ -834,6 +927,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
         score += 1.5;
       }
       const travel = minutesTravel(baseLoc, place.location || place.neighborhood || city);
+      if (!travelWithinLimit(travel, false)) continue;
       score += travel / 6;
       if (area && scheduled.length >= 2) {
         const visits = scheduledAreaCounts.get(area) || 0;
@@ -883,6 +977,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
         score += 2.5;
       }
       const travel = minutesTravel(baseLoc, place.location || place.neighborhood || city);
+      if (!travelWithinLimit(travel, false)) continue;
       score += travel / 4;
       if (area && scheduled.length >= 2) {
         const visits = scheduledAreaCounts.get(area) || 0;
@@ -901,7 +996,11 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       }
     }
     if (!best) {
-      best = lunchPlaces.find(p => !usedNameKeys.has(normName(p.name))) || lunchPlaces[0] || null;
+      best = lunchPlaces.find(p => {
+        if (usedNameKeys.has(normName(p.name))) return false;
+        const travel = minutesTravel(baseLoc, p.location || p.neighborhood || city);
+        return travelWithinLimit(travel, false);
+      }) || null;
     }
     return best || null;
   }
@@ -925,6 +1024,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
         score += 2.0;
       }
       const travel = minutesTravel(baseLoc, place.location || place.neighborhood || city);
+      if (!travelWithinLimit(travel, false)) continue;
       score += travel / 4;
       if (area && scheduled.length >= 3) {
         const visits = scheduledAreaCounts.get(area) || 0;
@@ -943,7 +1043,11 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       }
     }
     if (!best) {
-      best = dinnerPlaces.find(p => !usedNameKeys.has(normName(p.name))) || dinnerPlaces[0] || null;
+      best = dinnerPlaces.find(p => {
+        if (usedNameKeys.has(normName(p.name))) return false;
+        const travel = minutesTravel(baseLoc, p.location || p.neighborhood || city);
+        return travelWithinLimit(travel, false);
+      }) || null;
     }
     return best || null;
   }
@@ -953,11 +1057,10 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       const coffee = pickCoffeeCandidate(baseLoc);
       if (coffee) return coffee;
     }
-    if (avoidFoodNow) {
+    const wantsNonFood = avoidFoodNow || !!vibes?.some(v => /(classic|curator|local)/i.test(v));
+    if (wantsNonFood) {
       return makeNonFoodFillerStop(baseLoc, vibes, pace);
     }
-    const wantsNature = !!vibes?.some(v => /nature/i.test(v));
-    if (wantsNature) return makeNonFoodFillerStop(baseLoc, vibes, pace);
     return {
       title: 'Explore the neighborhood',
       location: baseLoc,
@@ -1011,10 +1114,21 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
     const head: string[] = [];
     const tail = new Set(candidateCategories);
 
-    if (vset.has('nature'))   { ['park','walk','view','market','coffee'].forEach(c => { if (tail.delete(c)) head.push(c); }); }
-    if (vset.has('historic')) { ['landmark','museum','walk','gallery','view'].forEach(c => { if (tail.delete(c)) head.push(c); }); }
-    if (vset.has('artsy'))    { ['gallery','museum','coffee','walk'].forEach(c => { if (tail.delete(c)) head.push(c); }); }
-    if (vset.has('foodie'))   { ['breakfast','market','lunch','snack','dinner','coffee'].forEach(c => { if (tail.delete(c)) head.push(c); }); }
+    if (vset.has('classic')) {
+      ['landmark','museum','view','walk','park','show'].forEach(c => {
+        if (tail.delete(c)) head.push(c);
+      });
+    }
+    if (vset.has('curator')) {
+      ['museum','gallery','show','coffee','shopping'].forEach(c => {
+        if (tail.delete(c)) head.push(c);
+      });
+    }
+    if (vset.has('local')) {
+      ['coffee','market','walk','park','shopping','snack','lunch','bar','dinner'].forEach(c => {
+        if (tail.delete(c)) head.push(c);
+      });
+    }
 
     candidateCategories = [...head, ...Array.from(tail)];
   }
@@ -1261,6 +1375,7 @@ type Gap = {
 
       const location = place.location || place.neighborhood || city;
       const travelIn = travelFromTo(departLocation, location);
+      if (!travelWithinLimit(travelIn, false)) continue;
       const earliestStart = Math.max(gap.slotStart, departTime + travelIn);
       const maxAllowed = gap.slotEnd - earliestStart;
       if (maxAllowed < MIN_LUNCH_DURATION) continue;
@@ -1274,6 +1389,7 @@ type Gap = {
       const end = earliestStart + duration;
       if (next) {
         const travelOut = travelFromTo(location, nextLocation);
+        if (!travelWithinLimit(travelOut, !!next.isAnchor)) continue;
         if (end + travelOut > next.startMin) continue;
       }
 
@@ -1320,6 +1436,7 @@ type Gap = {
     const baseLoc = prev?.location || next?.location || preferredArea || city;
     const fromLocation = prev?.location || city;
     const travelFromPrev = travelFromTo(fromLocation || city, baseLoc || city);
+    if (!travelWithinLimit(travelFromPrev, false)) return null;
     const start = Math.max(gap.slotStart, baseDepartTime + travelFromPrev);
     const maxAllowed = gap.slotEnd - start;
     if (maxAllowed < MIN_LUNCH_DURATION) return null;
@@ -1329,6 +1446,7 @@ type Gap = {
 
     if (next) {
       const travelOut = travelFromTo(baseLoc, next.location || city);
+      if (!travelWithinLimit(travelOut, !!next.isAnchor)) return null;
       if (start + duration + travelOut > next.startMin) return null;
     }
 
@@ -1546,6 +1664,7 @@ type Gap = {
     if (!dinnerPlace) return;
     const dinnerLoc = dinnerPlace.location || dinnerPlace.neighborhood || baseLoc;
     const travelFromPrev = last ? travelFromTo(last.location || city, dinnerLoc) : 0;
+    if (!travelWithinLimit(travelFromPrev, false)) return;
     const earliestDinner = 18 * 60;
     let startMin = Math.max(earliestDinner, last ? last.endMin + travelFromPrev : earliestDinner);
     if (startMin >= DAY_END_MIN - minBlock) return;
@@ -1614,7 +1733,7 @@ type Gap = {
           });
           sc += repetitionPenalty(p, categoryCounts, usedNameKeys);
           sc += dumboStartPenalty(p, scheduled.length, vibes);
-          sc += natureVibeBoost(vibes, cat);
+          sc += localVibeBoost(vibes, cat);
           sc += vibeCategoryBias(vibes, cat);
           sc += cuisineRepeatPenalty(p, cuisineCounts, vibes);
           sc += datasetFoodBiasPenalty(suggestionStream, vibes, cat);
@@ -1914,12 +2033,13 @@ type Gap = {
 
     const start = new Date(minutesOf(date, p.startMin));
     const end = new Date(minutesOf(date, p.endMin));
-    const url = ensureGoogleMapsUrl(p.url, p.location || city, p.title);
+    const locationLabel = resolveDisplayLocation(p.location, city);
+    const url = ensureGoogleMapsUrl(p.url, locationLabel, p.title);
 
     finalStops.push({
       time: `${fmtTime(start)} – ${fmtTime(end)}`,
       title: p.title,
-      location: p.location || city,
+      location: locationLabel,
       description: p.description ?? '',
       url,
     });
@@ -2031,6 +2151,7 @@ function pickNextSuggestion(
       }
 
       const travel = opts.travelFromTo(opts.currentLocation || city, p.location || p.neighborhood || city);
+      if (!travelWithinLimit(travel, false)) continue;
       const start  = opts.currentMin + travel;
       const end    = start + dur;
 

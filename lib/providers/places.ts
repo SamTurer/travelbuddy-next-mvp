@@ -42,25 +42,42 @@ const DEFAULT_DURATIONS: Record<string, number> = {
 };
 
 const STATIC_PLACES_NYC: ProviderPlace[] = [
-  { name: 'Central Park Ramble', category: 'park', neighborhood: 'Central Park', duration_min: 60, description: 'Wooded paths and birding in the Ramble.', url: 'https://www.centralparknyc.org/' , vibe_tags: ['nature','chill'] },
-  { name: 'The High Line', category: 'walk', neighborhood: 'Chelsea', duration_min: 60, description: 'Elevated park with art and views.', url: 'https://www.thehighline.org/', vibe_tags: ['nature','artsy'] },
-  { name: 'Brooklyn Heights Promenade', category: 'walk', neighborhood: 'Brooklyn Heights', duration_min: 45, description: 'Classic skyline views over Lower Manhattan.', vibe_tags: ['nature','view'] },
-  { name: 'Washington Square Park', category: 'park', neighborhood: 'Greenwich Village', duration_min: 45, description: 'Arch, buskers, chess tables.', vibe_tags: ['nature','historic'] },
-  { name: 'Bryant Park', category: 'park', neighborhood: 'Midtown', duration_min: 45, description: 'Green lawn, reading room, seasonal events.', vibe_tags: ['nature'] },
-  { name: 'Riverside Park (Upper West)', category: 'walk', neighborhood: 'Upper West Side', duration_min: 60, description: 'Hudson River path and gardens.', vibe_tags: ['nature'] },
-  { name: 'The Met (Metropolitan Museum of Art)', category: 'museum', neighborhood: 'Upper East Side', duration_min: 90, description: 'World-class art collection.', url: 'https://www.metmuseum.org/', vibe_tags: ['historic','artsy'] },
-  { name: 'MoMA', category: 'museum', neighborhood: 'Midtown', duration_min: 90, description: 'Modern and contemporary art highlights.', url: 'https://www.moma.org/', vibe_tags: ['artsy'] },
-  { name: 'The Cloisters', category: 'museum', neighborhood: 'Fort Tryon', duration_min: 90, description: 'Medieval art in a tranquil setting.', url: 'https://www.metmuseum.org/visit/plan-your-visit/met-cloisters', vibe_tags: ['historic','nature'] },
-  { name: 'Staten Island Ferry (Free Ride)', category: 'view', neighborhood: 'Financial District', duration_min: 60, description: 'Harbor views & Statue of Liberty (free).', url: 'https://www.siferry.com/', vibe_tags: ['view','nature'] },
-  { name: 'Grand Central Terminal', category: 'landmark', neighborhood: 'Midtown', duration_min: 40, description: 'Historic landmark with celestial ceiling.', vibe_tags: ['historic'] },
-  { name: 'New York Public Library – Main Branch', category: 'landmark', neighborhood: 'Midtown', duration_min: 40, description: 'Beaux-Arts icon (Rose Main Reading Room).', vibe_tags: ['historic'] },
-  { name: 'Tenement Museum (Exterior/Neighborhood Walk)', category: 'walk', neighborhood: 'Lower East Side', duration_min: 60, description: 'Historic LES streets; museum tours by ticket.', url: 'https://www.tenement.org/', vibe_tags: ['historic'] },
-  { name: 'Domino Park', category: 'park', neighborhood: 'Williamsburg', duration_min: 60, description: 'Waterfront park with skyline views.', vibe_tags: ['nature','view'] },
-  { name: 'Brooklyn Bridge Park – Piers 1–3', category: 'park', neighborhood: 'DUMBO', duration_min: 60, description: 'Green space + waterfront views.', vibe_tags: ['nature','view'] },
+  { name: 'Central Park Ramble', category: 'park', neighborhood: 'Central Park', duration_min: 60, description: 'Wooded paths and birding in the Ramble.', url: 'https://www.centralparknyc.org/' , vibe_tags: ['classic','local','nature','chill'] },
+  { name: 'The High Line', category: 'walk', neighborhood: 'Chelsea', duration_min: 60, description: 'Elevated park with art and views.', url: 'https://www.thehighline.org/', vibe_tags: ['classic','curator','local','nature','artsy'] },
+  { name: 'Brooklyn Heights Promenade', category: 'walk', neighborhood: 'Brooklyn Heights', duration_min: 45, description: 'Classic skyline views over Lower Manhattan.', vibe_tags: ['classic','local','nature','view'] },
+  { name: 'Washington Square Park', category: 'park', neighborhood: 'Greenwich Village', duration_min: 45, description: 'Arch, buskers, chess tables.', vibe_tags: ['classic','local','nature','historic'] },
+  { name: 'Bryant Park', category: 'park', neighborhood: 'Midtown', duration_min: 45, description: 'Green lawn, reading room, seasonal events.', vibe_tags: ['classic','local','nature'] },
+  { name: 'Riverside Park (Upper West)', category: 'walk', neighborhood: 'Upper West Side', duration_min: 60, description: 'Hudson River path and gardens.', vibe_tags: ['classic','local','nature'] },
+  { name: 'The Met (Metropolitan Museum of Art)', category: 'museum', neighborhood: 'Upper East Side', duration_min: 90, description: 'World-class art collection.', url: 'https://www.metmuseum.org/', vibe_tags: ['classic','curator','historic'] },
+  { name: 'MoMA', category: 'museum', neighborhood: 'Midtown', duration_min: 90, description: 'Modern and contemporary art highlights.', url: 'https://www.moma.org/', vibe_tags: ['classic','curator'] },
+  { name: 'The Cloisters', category: 'museum', neighborhood: 'Fort Tryon', duration_min: 90, description: 'Medieval art in a tranquil setting.', url: 'https://www.metmuseum.org/visit/plan-your-visit/met-cloisters', vibe_tags: ['classic','curator','local','historic','nature'] },
+  { name: 'Staten Island Ferry (Free Ride)', category: 'view', neighborhood: 'Financial District', duration_min: 60, description: 'Harbor views & Statue of Liberty (free).', url: 'https://www.siferry.com/', vibe_tags: ['classic','local','view','nature'] },
+  { name: 'Grand Central Terminal', category: 'landmark', neighborhood: 'Midtown', duration_min: 40, description: 'Historic landmark with celestial ceiling.', vibe_tags: ['classic','curator','historic'] },
+  { name: 'New York Public Library – Main Branch', category: 'landmark', neighborhood: 'Midtown', duration_min: 40, description: 'Beaux-Arts icon (Rose Main Reading Room).', vibe_tags: ['classic','curator','historic'] },
+  { name: 'Tenement Museum (Exterior/Neighborhood Walk)', category: 'walk', neighborhood: 'Lower East Side', duration_min: 60, description: 'Historic LES streets; museum tours by ticket.', url: 'https://www.tenement.org/', vibe_tags: ['classic','curator','local','historic'] },
+  { name: 'Domino Park', category: 'park', neighborhood: 'Williamsburg', duration_min: 60, description: 'Waterfront park with skyline views.', vibe_tags: ['classic','local','nature','view'] },
+  { name: 'Brooklyn Bridge Park – Piers 1–3', category: 'park', neighborhood: 'DUMBO', duration_min: 60, description: 'Green space + waterfront views.', vibe_tags: ['classic','local','nature','view'] },
 ];
 
 function normName(s: string): string {
   return (s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function sanitizeAreaText(value?: string | null): string | undefined {
+  if (!value) return undefined;
+  const trimmed = value.trim();
+  if (!trimmed) return undefined;
+  const lower = trimmed.toLowerCase();
+  if (
+    lower === 'multiple' ||
+    lower === 'multiple location' ||
+    lower === 'multiple locations' ||
+    lower === 'one location'
+  ) {
+    return undefined;
+  }
+  if (/\b(multiple|various|several)\s+locations?\b/.test(lower)) return undefined;
+  return trimmed;
 }
 
 function filterByParams(list: ProviderPlace[], p: FetchExtraPlacesParams): ProviderPlace[] {
@@ -141,7 +158,7 @@ You are a travel POI suggester that outputs STRICT JSON (no prose).
 Only include real places in ${params.city}.
 NEVER say "multiple locations" — pick ONE best branch near "${params.neighborhoodsHint || "a central NYC area"}".
 If a place is a chain, return a single branch (with neighborhood) that best matches the area hint.
-Prefer non-restaurant activities unless the vibe includes "foodie".
+Prefer non-restaurant activities unless the vibe includes "local" or "classic".
 Categories MUST be one of: ${ALLOWED_CATEGORIES.join(", ")}.
 Keep neighborhoods short (e.g., "West Village"). Provide a concise description (<= 200 chars).
 If unsure about a URL, omit it. Return <= ${params.limit ?? 20} items.
@@ -173,12 +190,15 @@ JSON schema:
     const cat = coerceCategory(p?.category);
     const dur = coerceDuration(cat, p?.duration_min);
     const url = typeof p?.url === "string" && /^https?:\/\//i.test(p.url) ? p.url : undefined;
+    const neighborhood = sanitizeAreaText(p?.neighborhood) ?? sanitizeAreaText(p?.location);
+    let location = sanitizeAreaText(p?.location) ?? sanitizeAreaText(p?.neighborhood);
+    if (!location && neighborhood) location = neighborhood;
 
     const place: ProviderPlace = {
       name: String(p?.name || "").slice(0, 140),
       category: cat,
-      neighborhood: p?.neighborhood || p?.location || undefined,
-      location: p?.location || p?.neighborhood || undefined,
+      neighborhood,
+      location,
       duration_min: dur,
       description: p?.description ? String(p.description).slice(0, 240) : undefined,
       url,

@@ -107,7 +107,7 @@ export default function MustDosPage() {
             </button>
           </div>
           <p className="mt-1 text-xs text-neutral-500">
-            You can include time and neighborhood, e.g., "Lilia Williamsburg 8:30pm" or "The Met afternoon".
+            You can include time and neighborhood, e.g., &ldquo;Lilia Williamsburg 8:30pm&rdquo; or &ldquo;The Met afternoon&rdquo;.
           </p>
         </div>
 

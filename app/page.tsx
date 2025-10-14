@@ -19,6 +19,24 @@ export default function Home() {
     );
   };
 
+  const vibeOptions = [
+    {
+      id: 'classic',
+      title: 'Classic',
+      blurb: 'Iconic spots with a local twist.',
+    },
+    {
+      id: 'curator',
+      title: 'Curator',
+      blurb: "Art, design, and the city's bold ideas.",
+    },
+    {
+      id: 'local',
+      title: 'Local',
+      blurb: 'Off the beaten path and full of character.',
+    },
+  ];
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -70,23 +88,25 @@ export default function Home() {
         {/* Vibes */}
         <div>
           <label className="block text-lg font-semibold mb-4">✨ Vibes</label>
-          <div className="flex flex-wrap gap-3">
-            {['🎨 Artsy', '🍝 Foodie', '🏛️ Historic', '🌳 Nature', '💫 Romantic', '🌃 Nightlife'].map(
-              (vibe) => (
+          <div className="grid gap-3">
+            {vibeOptions.map((option) => {
+              const active = vibes.includes(option.id);
+              return (
                 <button
                   type="button"
-                  key={vibe}
-                  onClick={() => toggleVibe(vibe)}
-                  className={`px-4 py-2 rounded-full border text-lg transition ${
-                    vibes.includes(vibe)
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'border-slate-400 text-slate-700 bg-white hover:bg-slate-100'
+                  key={option.id}
+                  onClick={() => toggleVibe(option.id)}
+                  className={`w-full rounded-2xl border px-4 py-4 text-left transition ${
+                    active
+                      ? 'border-blue-600 bg-blue-50 shadow-sm'
+                      : 'border-slate-300 hover:border-slate-400 bg-white'
                   }`}
                 >
-                  {vibe}
+                  <div className="text-xl font-semibold">{option.title}</div>
+                  <p className="mt-1 text-base text-slate-600">{option.blurb}</p>
                 </button>
-              )
-            )}
+              );
+            })}
           </div>
         </div>
 

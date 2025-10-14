@@ -4,8 +4,15 @@
     "category": "breakfast",
     "neighborhood": "Lower East Side",
     "duration_min": 40,
-    "vibe_tags": ["foodie","bagels","classic"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "bagels"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Classic bagels & lox to kick off your day.",
     "location": "Lower East Side"
   },
@@ -14,8 +21,15 @@
     "category": "museum",
     "neighborhood": "Upper West Side",
     "duration_min": 120,
-    "vibe_tags": ["family","science","classic"],
-    "energy_tags": ["balanced"],
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "family",
+      "science"
+    ],
+    "energy_tags": [
+      "balanced"
+    ],
     "description": "Planetarium, dinosaurs, and world-class exhibits.",
     "location": "Upper West Side",
     "url": "https://maps.app.goo.gl/9GySUTmPZ2gcSRkQA"
@@ -25,8 +39,17 @@
     "category": "walk",
     "neighborhood": "Chelsea / Hudson Yards",
     "duration_min": 60,
-    "vibe_tags": ["views","architecture","walk"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "views",
+      "architecture",
+      "walk"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Elevated park with skyline views and gardens.",
     "location": "Chelsea / Hudson Yards"
   },
@@ -35,8 +58,13 @@
     "category": "coffee",
     "neighborhood": "Chelsea",
     "duration_min": 20,
-    "vibe_tags": ["chill"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "local",
+      "chill"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Refuel with a smooth pour-over.",
     "location": "Chelsea"
   },
@@ -45,8 +73,15 @@
     "category": "museum",
     "neighborhood": "Upper East Side",
     "duration_min": 120,
-    "vibe_tags": ["culture","art","classic"],
-    "energy_tags": ["balanced"],
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "culture",
+      "art"
+    ],
+    "energy_tags": [
+      "balanced"
+    ],
     "description": "Vast art museum spanning 5,000 years of culture.",
     "location": "Upper East Side"
   },
@@ -55,8 +90,16 @@
     "category": "museum",
     "neighborhood": "Midtown",
     "duration_min": 90,
-    "vibe_tags": ["culture","art","modern"],
-    "energy_tags": ["balanced"],
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "culture",
+      "art",
+      "modern"
+    ],
+    "energy_tags": [
+      "balanced"
+    ],
     "description": "Modern art highlights in a compact, world-class museum.",
     "location": "Midtown"
   },
@@ -65,8 +108,15 @@
     "category": "bar",
     "neighborhood": "Greenwich Village",
     "duration_min": 60,
-    "vibe_tags": ["nightlife","foodie","cocktails"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "local",
+      "nightlife",
+      "foodie",
+      "cocktails"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "World-class cocktails before your show.",
     "location": "Greenwich Village"
   },
@@ -75,8 +125,15 @@
     "category": "snack",
     "neighborhood": "Greenwich Village",
     "duration_min": 20,
-    "vibe_tags": ["foodie","pizza","classic"],
-    "energy_tags": ["active"],
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "pizza"
+    ],
+    "energy_tags": [
+      "active"
+    ],
     "description": "Iconic NYC slice to cap the night.",
     "location": "Greenwich Village"
   },
@@ -85,8 +142,16 @@
     "category": "shopping",
     "neighborhood": "SoHo",
     "duration_min": 75,
-    "vibe_tags": ["shopping","architecture"],
-    "energy_tags": ["active"],
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "shopping",
+      "architecture"
+    ],
+    "energy_tags": [
+      "active"
+    ],
     "description": "Explore indie shops and classic brands in SoHo.",
     "location": "SoHo"
   },
@@ -95,8 +160,14 @@
     "category": "snack",
     "neighborhood": "Upper West Side",
     "duration_min": 15,
-    "vibe_tags": ["foodie","dessert"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "dessert"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Famous for giant cookies — quick sweet stop.",
     "location": "Upper West Side"
   },
@@ -105,8 +176,15 @@
     "category": "park",
     "neighborhood": "Central Park",
     "duration_min": 60,
-    "vibe_tags": ["outdoors","classic","views"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "classic",
+      "local",
+      "outdoors",
+      "views"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Picnic, relax, and skyline views on the lawn.",
     "location": "Central Park"
   },
@@ -115,8 +193,13 @@
     "category": "coffee",
     "neighborhood": "Chelsea",
     "duration_min": 20,
-    "vibe_tags": ["chill"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "local",
+      "chill"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Neighborhood cafe with indoor seating.",
     "location": "Chelsea"
   },
@@ -125,8 +208,14 @@
     "category": "lunch",
     "neighborhood": "Lower East Side",
     "duration_min": 60,
-    "vibe_tags": ["foodie","classic"],
-    "energy_tags": ["balanced"],
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie"
+    ],
+    "energy_tags": [
+      "balanced"
+    ],
     "description": "Pastrami on rye — NYC institution.",
     "location": "Lower East Side",
     "url": "https://maps.app.goo.gl/BGBynGRnPEwbLFYRA"
@@ -136,8 +225,16 @@
     "category": "museum",
     "neighborhood": "Meatpacking",
     "duration_min": 90,
-    "vibe_tags": ["culture","art","modern"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "culture",
+      "art",
+      "modern"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Modern & contemporary American art near the High Line.",
     "location": "Meatpacking"
   },
@@ -146,8 +243,16 @@
     "category": "walk",
     "neighborhood": "DUMBO / City Hall",
     "duration_min": 60,
-    "vibe_tags": ["explore","views","photo"],
-    "energy_tags": ["active"],
+    "vibe_tags": [
+      "classic",
+      "local",
+      "explore",
+      "views",
+      "photo"
+    ],
+    "energy_tags": [
+      "active"
+    ],
     "description": "Iconic walk with skyline + river views.",
     "location": "Lower Manhattan / Brooklyn"
   },
@@ -156,8 +261,14 @@
     "category": "market",
     "neighborhood": "DUMBO",
     "duration_min": 60,
-    "vibe_tags": ["foodie","variety"],
-    "energy_tags": ["active"],
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "variety"
+    ],
+    "energy_tags": [
+      "active"
+    ],
     "description": "Many local vendors under one roof — great variety.",
     "location": "DUMBO"
   },
@@ -166,8 +277,15 @@
     "category": "landmark",
     "neighborhood": "Hudson Yards",
     "duration_min": 30,
-    "vibe_tags": ["explore","architecture"],
-    "energy_tags": ["active"],
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "explore",
+      "architecture"
+    ],
+    "energy_tags": [
+      "active"
+    ],
     "description": "Futuristic landmark; photo stop (access may vary).",
     "location": "Hudson Yards"
   },
@@ -176,8 +294,14 @@
     "category": "market",
     "neighborhood": "Chelsea",
     "duration_min": 60,
-    "vibe_tags": ["shopping","foodie"],
-    "energy_tags": ["active"],
+    "vibe_tags": [
+      "local",
+      "shopping",
+      "foodie"
+    ],
+    "energy_tags": [
+      "active"
+    ],
     "description": "Indoor market with shops and eats — great in bad weather.",
     "location": "Chelsea"
   },
@@ -186,8 +310,15 @@
     "category": "landmark",
     "neighborhood": "Midtown",
     "duration_min": 30,
-    "vibe_tags": ["explore","architecture"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "explore",
+      "architecture"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Historic station — architecture, whispering gallery.",
     "location": "Midtown"
   },
@@ -196,8 +327,13 @@
     "category": "coffee",
     "neighborhood": "Greenwich Village",
     "duration_min": 15,
-    "vibe_tags": ["chill"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "local",
+      "chill"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Quick specialty coffee near Washington Sq.",
     "location": "Greenwich Village"
   },
@@ -206,8 +342,14 @@
     "category": "market",
     "neighborhood": "Flatiron",
     "duration_min": 60,
-    "vibe_tags": ["foodie","shopping"],
-    "energy_tags": ["active"],
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "shopping"
+    ],
+    "energy_tags": [
+      "active"
+    ],
     "description": "Italian marketplace for snacks or a casual meal.",
     "location": "Flatiron"
   },
@@ -216,8 +358,14 @@
     "category": "park",
     "neighborhood": "Midtown",
     "duration_min": 45,
-    "vibe_tags": ["outdoors","classic"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "classic",
+      "local",
+      "outdoors"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Green square with chairs and seasonal events.",
     "location": "Midtown"
   },
@@ -226,8 +374,15 @@
     "category": "landmark",
     "neighborhood": "Financial District",
     "duration_min": 60,
-    "vibe_tags": ["culture","explore"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "culture",
+      "explore"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Reflective pools honoring the World Trade Center site.",
     "location": "Financial District"
   },
@@ -236,8 +391,15 @@
     "category": "walk",
     "neighborhood": "Washington Heights",
     "duration_min": 60,
-    "vibe_tags": ["outdoors","explore"],
-    "energy_tags": ["active"],
+    "vibe_tags": [
+      "classic",
+      "local",
+      "outdoors",
+      "explore"
+    ],
+    "energy_tags": [
+      "active"
+    ],
     "description": "Pedestrian bridge with views over the Harlem River.",
     "location": "Washington Heights"
   },
@@ -246,8 +408,14 @@
     "category": "market",
     "neighborhood": "Williamsburg",
     "duration_min": 90,
-    "vibe_tags": ["foodie","outdoors"],
-    "energy_tags": ["active"],
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "outdoors"
+    ],
+    "energy_tags": [
+      "active"
+    ],
     "description": "Outdoor food market with rotating vendors (seasonal).",
     "location": "Williamsburg"
   },
@@ -256,8 +424,14 @@
     "category": "snack",
     "neighborhood": "SoHo",
     "duration_min": 20,
-    "vibe_tags": ["foodie","dessert"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "dessert"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Inventor of the Cronut — creative pastries.",
     "location": "SoHo"
   },
@@ -266,8 +440,14 @@
     "category": "shopping",
     "neighborhood": "Chinatown",
     "duration_min": 60,
-    "vibe_tags": ["shopping","explore"],
-    "energy_tags": ["active"],
+    "vibe_tags": [
+      "local",
+      "shopping",
+      "explore"
+    ],
+    "energy_tags": [
+      "active"
+    ],
     "description": "Browse local shops and markets along Canal St.",
     "location": "Chinatown"
   },
@@ -276,8 +456,15 @@
     "category": "landmark",
     "neighborhood": "Midtown",
     "duration_min": 40,
-    "vibe_tags": ["culture","architecture"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "culture",
+      "architecture"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Beautiful Beaux-Arts landmark with the famous lions.",
     "location": "Midtown"
   },
@@ -287,42 +474,69 @@
     "neighborhood": "Midwood",
     "location": "Midwood",
     "duration_min": 60,
-    "vibe_tags": ["foodie","pizza","classic"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "pizza"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Old-school pizzeria; many consider it NYC’s best.",
     "url": "https://maps.app.goo.gl/TYQhxs3VhULDoUGK8"
   },
   {
     "name": "Artichoke Basille's Pizza",
     "category": "lunch",
-    "neighborhood": "Multiple",
-    "location": "Multiple locations",
+    "neighborhood": "East Village",
+    "location": "328 E 14th St, East Village",
     "duration_min": 45,
-    "vibe_tags": ["foodie","pizza"],
-    "energy_tags": ["chill"],
-    "description": "Touristy but unique, heavy slices; many locations.",
+    "vibe_tags": [
+      "curator",
+      "local",
+      "foodie",
+      "pizza"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Touristy but unique, heavy slices; go for the original East Village shop.",
     "url": "https://maps.app.goo.gl/Bi63GYqSEgwzobWx8"
   },
   {
     "name": "Joe's Pizza",
     "category": "lunch",
-    "neighborhood": "Multiple",
-    "location": "Multiple locations",
+    "neighborhood": "Greenwich Village",
+    "location": "7 Carmine St, Greenwich Village",
     "duration_min": 30,
-    "vibe_tags": ["foodie","pizza","classic"],
-    "energy_tags": ["chill"],
-    "description": "Classic NYC slice shop — iconic.",
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "pizza"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Classic NYC slice shop — hit the Carmine Street original.",
     "url": "https://maps.app.goo.gl/vxdeCFB3DvL5S1mn6"
   },
   {
     "name": "Two Boots Pizza",
     "category": "lunch",
-    "neighborhood": "Multiple",
-    "location": "Multiple locations",
+    "neighborhood": "East Village",
+    "location": "42 Avenue A, East Village",
     "duration_min": 45,
-    "vibe_tags": ["foodie","pizza"],
-    "energy_tags": ["chill"],
-    "description": "Quirky, unique slices; reopened after closure.",
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "pizza"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Quirky, unique slices at the eclectic Avenue A flagship.",
     "url": "https://maps.app.goo.gl/oLihtUSVdYqZKTBN8"
   },
   {
@@ -331,42 +545,67 @@
     "neighborhood": "Upper West Side",
     "location": "Upper West Side",
     "duration_min": 45,
-    "vibe_tags": ["foodie","pizza"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "pizza"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Detroit-style squares; excellent but often a line.",
     "url": "https://maps.app.goo.gl/9kf6BRUZgYqpq3Lt7"
   },
   {
     "name": "Tal Bagels",
     "category": "breakfast",
-    "neighborhood": "Multiple",
-    "location": "Multiple locations",
+    "neighborhood": "Upper East Side",
+    "location": "333 E 86th St, Upper East Side",
     "duration_min": 30,
-    "vibe_tags": ["foodie","bagels"],
-    "energy_tags": ["chill"],
-    "description": "Old-school bagel chain; solid across locations.",
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "bagels"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Old-school bagel counter on 86th Street; solid smoked fish spreads.",
     "url": "https://maps.app.goo.gl/jYNnEoycSe4hSpcn7"
   },
   {
     "name": "Pick A Bagel",
     "category": "breakfast",
-    "neighborhood": "Multiple",
-    "location": "Multiple locations",
+    "neighborhood": "Upper East Side",
+    "location": "1101 Lexington Ave, Upper East Side",
     "duration_min": 30,
-    "vibe_tags": ["foodie","bagels"],
-    "energy_tags": ["chill"],
-    "description": "Great bagels, including a flat bagel option.",
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "bagels"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Great bagels, including a flat bagel option, at their Lexington Ave shop.",
     "url": "https://maps.app.goo.gl/LwaCfPBq4Q7jSvTEA"
   },
   {
     "name": "Popup Bagels",
     "category": "breakfast",
-    "neighborhood": "Multiple",
-    "location": "Multiple locations",
+    "neighborhood": "Greenwich Village",
+    "location": "177 Thompson St, Greenwich Village",
     "duration_min": 25,
-    "vibe_tags": ["foodie","bagels","trendy"],
-    "energy_tags": ["chill"],
-    "description": "TikTok-famous; lines at many locations.",
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "bagels",
+      "trendy"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "TikTok-famous bagels with specialty schmears from their Thompson Street shop.",
     "url": "https://maps.app.goo.gl/aEVfycUtS3oaogoUA"
   },
   {
@@ -375,188 +614,2956 @@
     "neighborhood": "Upper West Side",
     "location": "Upper West Side",
     "duration_min": 60,
-    "vibe_tags": ["foodie","classic","jewish-deli"],
-    "energy_tags": ["chill"],
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "jewish-deli"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
     "description": "Legendary appetizing shop — smoked fish & old New York vibes.",
     "url": "https://maps.app.goo.gl/8SFF6kdL5mJc6SE2A"
   },
-  { "name": "Jacob’s Pickles", "category": "brunch", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 75, "vibe_tags": ["foodie","brunch"], "energy_tags": ["social"], "description": "Buzzing Southern comfort brunch; big portions." },
-  { "name": "Celeste", "category": "dinner", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 90, "vibe_tags": ["foodie","italian"], "energy_tags": ["social"], "description": "Tiny, lively Italian; cash only; consistently good pastas." },
-  { "name": "Elea", "category": "dinner", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 90, "vibe_tags": ["foodie","greek"], "energy_tags": ["social"], "description": "Modern Greek; lively upstairs room; great small plates." },
-  { "name": "Milano Market (UWS)", "category": "lunch", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 30, "vibe_tags": ["foodie","sandwiches"], "energy_tags": ["chill"], "description": "Beloved sandwich shop; excellent wraps & hot heroes." },
-  { "name": "Gray’s Papaya", "category": "snack", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 15, "vibe_tags": ["foodie","classic"], "energy_tags": ["chill"], "description": "No-frills hot dogs with papaya drink (‘Recession Special’)." },
-  { "name": "Viand", "category": "lunch", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 45, "vibe_tags": ["foodie","diner"], "energy_tags": ["chill"], "description": "Classic NYC diner fare; counter seats & quick service." },
-  { "name": "William Poll", "category": "snack", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 20, "vibe_tags": ["foodie","gourmet"], "energy_tags": ["chill"], "description": "Gourmet prepared foods & sandwiches from a storied UES shop." },
-  { "name": "Madison Fare", "category": "lunch", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 30, "vibe_tags": ["foodie","sandwiches"], "energy_tags": ["chill"], "description": "Neighborhood spot for quick salads & sandwiches." },
-  { "name": "New Cottage", "category": "dinner", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 75, "vibe_tags": ["foodie","chinese"], "energy_tags": ["social"], "description": "Cozy neighborhood Chinese comfort classics." },
-  { "name": "Breads Bakery (UWS)", "category": "snack", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 20, "vibe_tags": ["foodie","bakery"], "energy_tags": ["chill"], "description": "Renowned babka and sweet bakes." },
-  { "name": "Café Luxembourg", "category": "dinner", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 90, "vibe_tags": ["foodie","french","classic"], "energy_tags": ["social"], "description": "Quintessential bistro vibe; great for pre- or post-Lincoln Center." },
-  { "name": "Smoke Jazz & Supper Club", "category": "show", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 120, "vibe_tags": ["music","nightlife"], "energy_tags": ["chill"], "description": "Intimate jazz club with dinner service." },
-  { "name": "Daily Provisions (UWS)", "category": "breakfast", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 30, "vibe_tags": ["foodie","breakfast"], "energy_tags": ["chill"], "description": "Breakfast sandwiches, crullers, and coffee." },
-  { "name": "The Hungarian Pastry Shop", "category": "coffee", "neighborhood": "Morningside Heights", "location": "Morningside Heights", "duration_min": 40, "vibe_tags": ["chill","study"], "energy_tags": ["chill"], "description": "Classic student haunt for cakes, coffee, and writing." },
-  { "name": "Maman (UWS)", "category": "coffee", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 30, "vibe_tags": ["chill","bakery"], "energy_tags": ["chill"], "description": "Cozy coffee shop with baked goods." },
-  { "name": "Blank Street (UWS)", "category": "coffee", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 15, "vibe_tags": ["quick","chill"], "energy_tags": ["chill"], "description": "Grab-and-go coffee chain; quick caffeine stop." },
-  { "name": "Zitomer Pharmacy & Department Store", "category": "shopping", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 30, "vibe_tags": ["shopping","quirky"], "energy_tags": ["chill"], "description": "Old-school UES department-store-meets-pharmacy." },
-  { "name": "Scully & Scully", "category": "shopping", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 30, "vibe_tags": ["shopping","gifts"], "energy_tags": ["chill"], "description": "Fine gifts, tableware, and home items on Park Ave." },
-  { "name": "Visit Columbia University", "category": "walk", "neighborhood": "Morningside Heights", "location": "Morningside Heights", "duration_min": 45, "vibe_tags": ["campus","architecture"], "energy_tags": ["chill"], "description": "Leafy campus walk around Low Library & College Walk." },
-  { "name": "Riverside Park (You’ve Got Mail Corner)", "category": "park", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 45, "vibe_tags": ["outdoors","film"], "energy_tags": ["chill"], "description": "Hudson-side paths and film-famous benches." },
-  { "name": "Memorials along West Side Highway", "category": "walk", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 45, "vibe_tags": ["outdoors","memorials"], "energy_tags": ["chill"], "description": "Waterfront walk past piers and memorials." },
-  { "name": "Bike up to the Cloisters", "category": "walk", "neighborhood": "Upper Manhattan", "location": "Upper Manhattan", "duration_min": 120, "vibe_tags": ["outdoors","active"], "energy_tags": ["active"], "description": "Riverside ride north to medieval museum & Fort Tryon Park." },
-  { "name": "Lincoln Center", "category": "landmark", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 40, "vibe_tags": ["culture","architecture"], "energy_tags": ["chill"], "description": "Opera, ballet, symphony campus; fountains & plaza." },
-  { "name": "Red Rooster", "category": "dinner", "neighborhood": "Harlem", "location": "Harlem", "duration_min": 90, "vibe_tags": ["foodie","soul-food","scene"], "energy_tags": ["social"], "description": "Celebrated Harlem dining with live energy." },
-  { "name": "Clay", "category": "dinner", "neighborhood": "Harlem", "location": "Harlem", "duration_min": 90, "vibe_tags": ["foodie","seasonal"], "energy_tags": ["social"], "description": "Farm-to-table spot with a neighborhood feel." },
-  { "name": "Dinosaur Bar-B-Que", "category": "dinner", "neighborhood": "Harlem", "location": "Harlem", "duration_min": 75, "vibe_tags": ["foodie","bbq"], "energy_tags": ["social"], "description": "Lively BBQ joint near the river." },
-  { "name": "Lucille’s Coffee & Cocktails", "category": "coffee", "neighborhood": "Harlem", "location": "Harlem", "duration_min": 40, "vibe_tags": ["chill","music"], "energy_tags": ["chill"], "description": "Cafe-by-day, music/cocktails by night." },
-  { "name": "Apollo Theater (Tour/Show)", "category": "show", "neighborhood": "Harlem", "location": "Harlem", "duration_min": 120, "vibe_tags": ["music","history"], "energy_tags": ["chill"], "description": "Legendary stage; check tours or Amateur Night." },
-  { "name": "JG Melon", "category": "lunch", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 60, "vibe_tags": ["foodie","burger","classic"], "energy_tags": ["chill"], "description": "Old-school burger joint; quintessential UES vibes." },
-  { "name": "Antonucci Cafe", "category": "dinner", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 90, "vibe_tags": ["foodie","italian"], "energy_tags": ["social"], "description": "Beloved neighborhood Italian staple." },
-  { "name": "Earl’s Beer & Cheese", "category": "snack", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 45, "vibe_tags": ["foodie","beer"], "energy_tags": ["chill"], "description": "Craft beers and creative grilled cheeses." },
-  { "name": "Dorrian’s", "category": "bar", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 90, "vibe_tags": ["nightlife","classic"], "energy_tags": ["social"], "description": "Classic UES tavern scene." },
-  { "name": "Café Sabarsky", "category": "lunch", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 60, "vibe_tags": ["foodie","viennese"], "energy_tags": ["chill"], "description": "Viennese cafe inside the Neue Galerie." },
-  { "name": "Lobel’s Meat Market", "category": "shopping", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 20, "vibe_tags": ["gourmet","butcher"], "energy_tags": ["chill"], "description": "Famed butcher shop for premium cuts." },
-  { "name": "Bemelmans Bar", "category": "bar", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 90, "vibe_tags": ["cocktails","classic","live-music"], "energy_tags": ["social"], "description": "Elegant hotel bar with murals and live music." },
-  { "name": "Ralph’s Coffee (UES)", "category": "coffee", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 30, "vibe_tags": ["chill","fashion"], "energy_tags": ["chill"], "description": "Stylish coffee inside Ralph Lauren." },
-  { "name": "Isle of Us", "category": "coffee", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 30, "vibe_tags": ["health","cafe"], "energy_tags": ["chill"], "description": "Cafe-market with a wellness tilt." },
-  { "name": "Ralph Lauren (Madison Ave)", "category": "shopping", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 40, "vibe_tags": ["shopping","fashion"], "energy_tags": ["chill"], "description": "Flagship fashion browsing on Madison." },
-  { "name": "Ludivine", "category": "shopping", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 30, "vibe_tags": ["shopping","boutique"], "energy_tags": ["chill"], "description": "Chic boutique with French flair." },
-  { "name": "Belgian Shoes", "category": "shopping", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 25, "vibe_tags": ["shopping","classic"], "energy_tags": ["chill"], "description": "Cult-favorite handmade slippers." },
-  { "name": "Doyle Auction House", "category": "shopping", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 45, "vibe_tags": ["art","design"], "energy_tags": ["chill"], "description": "Preview sales; browse art and objects." },
-  { "name": "Cooper Hewitt Museum Shop", "category": "shopping", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 25, "vibe_tags": ["design","museum-shop"], "energy_tags": ["chill"], "description": "Smart design gifts & books." },
-  { "name": "The Met Store (Fifth Ave)", "category": "shopping", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 30, "vibe_tags": ["museum-shop","gifts"], "energy_tags": ["chill"], "description": "Art-inspired gifts from The Met." },
-  { "name": "Neue Galerie", "category": "museum", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 60, "vibe_tags": ["art","viennese"], "energy_tags": ["chill"], "description": "Austrian & German art in a jewel-box mansion." },
-  { "name": "Jewish Museum", "category": "museum", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 75, "vibe_tags": ["art","culture"], "energy_tags": ["chill"], "description": "Wide-ranging exhibitions on Jewish culture and art." },
-  { "name": "Cooper Hewitt Smithsonian Design Museum", "category": "museum", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 75, "vibe_tags": ["design","interactive"], "energy_tags": ["chill"], "description": "Historic mansion with interactive design exhibits." },
-  { "name": "Frick Collection (Frick Madison)", "category": "museum", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 75, "vibe_tags": ["art","classic"], "energy_tags": ["chill"], "description": "Masterworks in an elegant setting." },
-  { "name": "Great Lawn", "category": "park", "neighborhood": "Central Park", "location": "Central Park", "duration_min": 45, "vibe_tags": ["outdoors","relax"], "energy_tags": ["chill"], "description": "Expansive lawn for lounging and picnics." },
-  { "name": "The Ramble", "category": "park", "neighborhood": "Central Park", "location": "Central Park", "duration_min": 45, "vibe_tags": ["outdoors","birding"], "energy_tags": ["chill"], "description": "Wooded paths and a touch of wilderness." },
-  { "name": "Bethesda Fountain", "category": "landmark", "neighborhood": "Central Park", "location": "Central Park", "duration_min": 20, "vibe_tags": ["classic","photo"], "energy_tags": ["chill"], "description": "Grand fountain and terrace by the lake." },
-  { "name": "Bow Bridge", "category": "view", "neighborhood": "Central Park", "location": "Central Park", "duration_min": 20, "vibe_tags": ["views","photo"], "energy_tags": ["chill"], "description": "Romantic cast-iron bridge over the lake." },
-  { "name": "Conservatory Garden", "category": "park", "neighborhood": "Central Park (NE)", "location": "Central Park", "duration_min": 40, "vibe_tags": ["garden","quiet"], "energy_tags": ["chill"], "description": "Formal gardens and seasonal blooms." },
-  { "name": "North Woods", "category": "park", "neighborhood": "Central Park (North)", "location": "Central Park", "duration_min": 45, "vibe_tags": ["outdoors","walk"], "energy_tags": ["chill"], "description": "Wooded trails & rustic bridges." },
-  { "name": "Carousel (Central Park)", "category": "landmark", "neighborhood": "Central Park", "location": "Central Park", "duration_min": 20, "vibe_tags": ["family","nostalgia"], "energy_tags": ["chill"], "description": "Historic carousel near the Mall." },
-  { "name": "Children’s Zoo Entrance", "category": "landmark", "neighborhood": "Central Park (South)", "location": "Central Park", "duration_min": 20, "vibe_tags": ["family","kids"], "energy_tags": ["chill"], "description": "Entry to the kid-friendly zoo area." },
-  { "name": "Sheep Meadow", "category": "park", "neighborhood": "Central Park (Southwest)", "location": "Central Park", "duration_min": 60, "vibe_tags": ["outdoors","views"], "energy_tags": ["chill"], "description": "Popular lawn with skyline views." },
-  { "name": "Reservoir Loop", "category": "walk", "neighborhood": "Central Park (North/East)", "location": "Central Park", "duration_min": 45, "vibe_tags": ["run","views"], "energy_tags": ["active"], "description": "Track around Jacqueline Kennedy Onassis Reservoir." },
-  { "name": "Loeb Boathouse & Pond", "category": "landmark", "neighborhood": "Central Park", "location": "Central Park", "duration_min": 45, "vibe_tags": ["boats","views"], "energy_tags": ["chill"], "description": "Rowboats and lakeside cafe (seasonal operations vary)." },
-  { "name": "Literary Walk / The Mall", "category": "walk", "neighborhood": "Central Park (South)", "location": "Central Park", "duration_min": 30, "vibe_tags": ["classic","trees"], "energy_tags": ["chill"], "description": "Statues and a tree-lined promenade." },
-  { "name": "Bike the Central Park Loop", "category": "walk", "neighborhood": "Central Park", "location": "Central Park", "duration_min": 90, "vibe_tags": ["active","loop"], "energy_tags": ["active"], "description": "Cycle the full park loop for exercise and views." },
-  { "name": "Guggenheim Walk (Fifth Ave)", "category": "walk", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 30, "vibe_tags": ["architecture","museum-row"], "energy_tags": ["chill"], "description": "Stroll along Fifth Ave past the Guggenheim." },
-  { "name": "The Lambs Club", "category": "dinner", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 90, "vibe_tags": ["foodie","pre-theatre"], "energy_tags": ["social"], "description": "Classic pre-theater dining with style." },
-  { "name": "The Fifth Avenue Hotel Restaurant", "category": "dinner", "neighborhood": "Flatiron/NoMad", "location": "NoMad", "duration_min": 90, "vibe_tags": ["foodie","scene"], "energy_tags": ["social"], "description": "Design-forward dining in a new landmark hotel." },
-  { "name": "Dollar Slice Pizza", "category": "snack", "neighborhood": "Multiple", "location": "Multiple locations", "duration_min": 15, "vibe_tags": ["foodie","budget","classic"], "energy_tags": ["chill"], "description": "Quick, no-frills NYC slice fix." },
-  { "name": "Hillstone (Midtown)", "category": "dinner", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 90, "vibe_tags": ["foodie","american"], "energy_tags": ["social"], "description": "Reliable, comfortable, upscale American fare." },
-  { "name": "Via Quadronno (57th St)", "category": "lunch", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 60, "vibe_tags": ["foodie","italian"], "energy_tags": ["chill"], "description": "Panini and espresso bar with Milanese feel." },
-  { "name": "PJ Carney’s", "category": "bar", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 75, "vibe_tags": ["pub","classic"], "energy_tags": ["social"], "description": "Old-school Irish pub near the park." },
-  { "name": "Breads Bakery (Bryant Park)", "category": "snack", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 20, "vibe_tags": ["bakery","dessert"], "energy_tags": ["chill"], "description": "Excellent babka & pastries by the park." },
-  { "name": "Majorelle (UES border)", "category": "dinner", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 120, "vibe_tags": ["fine-dining","french"], "energy_tags": ["social"], "description": "Elegant French dining just off Madison Ave." },
-  { "name": "L’Avenue at Saks (Rooftop)", "category": "drinks", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 75, "vibe_tags": ["view","scene"], "energy_tags": ["social"], "description": "Chic rooftop for a drink with views." },
-  { "name": "Sable’s (UES border)", "category": "lunch", "neighborhood": "Upper East Side", "location": "Upper East Side", "duration_min": 45, "vibe_tags": ["jewish-deli","seafood"], "energy_tags": ["chill"], "description": "Beloved smoked fish and appetizing counter." },
-  { "name": "Kinokuniya Bookstore Café", "category": "coffee", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 40, "vibe_tags": ["bookstore","chill"], "energy_tags": ["chill"], "description": "Cafe above a Japanese bookstore facing Bryant Park." },
-  { "name": "Maman (Midtown)", "category": "coffee", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 30, "vibe_tags": ["chill","bakery"], "energy_tags": ["chill"], "description": "Cookies, quiche, and cozy vibes." },
-  { "name": "MoMA Design Store", "category": "shopping", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 30, "vibe_tags": ["design","gifts"], "energy_tags": ["chill"], "description": "Smart design gifts and home items." },
-  { "name": "Rockefeller Center Shops", "category": "shopping", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 45, "vibe_tags": ["shopping","iconic"], "energy_tags": ["chill"], "description": "Iconic complex with shops and concourse." },
-  { "name": "KULE at Rock Center", "category": "shopping", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 20, "vibe_tags": ["fashion","stripes"], "energy_tags": ["chill"], "description": "Playful striped basics and pop-color accessories." },
-  { "name": "MUJI / UNIQLO (Fifth Ave)", "category": "shopping", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 45, "vibe_tags": ["shopping","basics"], "energy_tags": ["chill"], "description": "Minimalist Japanese basics and home goods nearby." },
-  { "name": "Tiffany & Co. (Fifth Ave)", "category": "shopping", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 30, "vibe_tags": ["shopping","luxury"], "energy_tags": ["chill"], "description": "Blue-box icon; newly refreshed flagship." },
-  { "name": "FAO Schwarz (Rock Center)", "category": "shopping", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 30, "vibe_tags": ["toys","family"], "energy_tags": ["chill"], "description": "Classic toy wonderland for kids & nostalgia." },
-  { "name": "Bergdorf Goodman", "category": "shopping", "neighborhood": "Midtown/UES", "location": "Fifth Ave & 58th", "duration_min": 45, "vibe_tags": ["shopping","luxury"], "energy_tags": ["chill"], "description": "High-end fashion, beauty, and home." },
-  { "name": "Saks Fifth Avenue", "category": "shopping", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 45, "vibe_tags": ["shopping","luxury"], "energy_tags": ["chill"], "description": "NYC flagship department store." },
-  { "name": "Morgan Library & Museum", "category": "museum", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 75, "vibe_tags": ["rare-books","art"], "energy_tags": ["chill"], "description": "Magnificent library rooms & exhibitions." },
-  { "name": "Rockefeller Center Skating Rink (seasonal)", "category": "landmark", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 60, "vibe_tags": ["seasonal","iconic"], "energy_tags": ["active"], "description": "Seasonal rink beneath the plaza." },
-  { "name": "NBC Studios Tour", "category": "landmark", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 60, "vibe_tags": ["tv","tour"], "energy_tags": ["chill"], "description": "Behind-the-scenes look at late-night sets." },
-  { "name": "Ice Skating at Bryant Park (seasonal)", "category": "landmark", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 75, "vibe_tags": ["seasonal","family"], "energy_tags": ["active"], "description": "Holiday rink with market stalls nearby." },
-  { "name": "Bonnie’s", "category": "dinner", "neighborhood": "Williamsburg", "location": "Williamsburg", "duration_min": 90, "vibe_tags": ["foodie","chinese-american"], "energy_tags": ["social"], "description": "Creative Cantonese-American menu; buzzy." },
-  { "name": "Bernie’s", "category": "dinner", "neighborhood": "Greenpoint", "location": "Greenpoint", "duration_min": 90, "vibe_tags": ["foodie","american"], "energy_tags": ["social"], "description": "Old-school red-checkered comfort food done right." },
-  { "name": "Red Hook Tavern", "category": "dinner", "neighborhood": "Red Hook", "location": "Red Hook", "duration_min": 90, "vibe_tags": ["foodie","burger"], "energy_tags": ["social"], "description": "Destination burger in a cozy tavern setting." },
-  { "name": "Defonte’s (Brooklyn)", "category": "lunch", "neighborhood": "Red Hook", "location": "Red Hook", "duration_min": 45, "vibe_tags": ["foodie","sandwiches"], "energy_tags": ["chill"], "description": "Classic Italian sandwiches; cash preferred." },
-  { "name": "Win Son Bakery", "category": "breakfast", "neighborhood": "East Williamsburg", "location": "East Williamsburg", "duration_min": 40, "vibe_tags": ["foodie","taiwanese"], "energy_tags": ["chill"], "description": "Creative Taiwanese bakes & breakfast plates." },
-  { "name": "Misi", "category": "dinner", "neighborhood": "Williamsburg", "location": "Williamsburg", "duration_min": 120, "vibe_tags": ["foodie","italian"], "energy_tags": ["social"], "description": "Handmade pastas and vegetable-focused plates." },
-  { "name": "Oxomoco", "category": "dinner", "neighborhood": "Greenpoint", "location": "Greenpoint", "duration_min": 90, "vibe_tags": ["foodie","mexican"], "energy_tags": ["social"], "description": "Wood-fired tacos & mezcal in a chic space." },
-  { "name": "Llama Inn", "category": "dinner", "neighborhood": "Williamsburg", "location": "Williamsburg", "duration_min": 90, "vibe_tags": ["foodie","peruvian"], "energy_tags": ["social"], "description": "Modern Peruvian plates with rooftop vibes." },
-  { "name": "12 Chairs (Williamsburg)", "category": "lunch", "neighborhood": "Williamsburg", "location": "Williamsburg", "duration_min": 60, "vibe_tags": ["foodie","mediterranean"], "energy_tags": ["chill"], "description": "Casual Israeli comfort classics." },
-  { "name": "Butler Bakery & Coffee Bar", "category": "coffee", "neighborhood": "Williamsburg", "location": "Williamsburg", "duration_min": 30, "vibe_tags": ["chill","bakery"], "energy_tags": ["chill"], "description": "Stylish coffee & pastry break." },
-  { "name": "Two Hands (BK)", "category": "coffee", "neighborhood": "Williamsburg", "location": "Williamsburg", "duration_min": 35, "vibe_tags": ["brunchy","aussie"], "energy_tags": ["chill"], "description": "Australian-style cafe fare & espresso." },
-  { "name": "Radio Bakery", "category": "snack", "neighborhood": "Greenpoint", "location": "Greenpoint", "duration_min": 20, "vibe_tags": ["bakery","trendy"], "energy_tags": ["chill"], "description": "Small-batch pastries; often a line." },
-  { "name": "A.MANO Brooklyn", "category": "shopping", "neighborhood": "Greenpoint", "location": "Greenpoint", "duration_min": 30, "vibe_tags": ["home","ceramics"], "energy_tags": ["chill"], "description": "Thoughtful tableware and gifts." },
-  { "name": "Outline Brooklyn", "category": "shopping", "neighborhood": "Williamsburg", "location": "Williamsburg", "duration_min": 25, "vibe_tags": ["fashion","local"], "energy_tags": ["chill"], "description": "Independent boutique with minimalist vibe." },
-  { "name": "Front General Store", "category": "shopping", "neighborhood": "DUMBO", "location": "DUMBO", "duration_min": 25, "vibe_tags": ["vintage","workwear"], "energy_tags": ["chill"], "description": "General store + vintage finds." },
-  { "name": "Big Night Specialty Foods", "category": "shopping", "neighborhood": "Greenpoint", "location": "Greenpoint", "duration_min": 25, "vibe_tags": ["gourmet","gifts"], "energy_tags": ["chill"], "description": "Hostess gifts, tinned fish, and chic pantry goods." },
-  { "name": "Boisson (NA Spirits)", "category": "shopping", "neighborhood": "Williamsburg", "location": "Williamsburg", "duration_min": 25, "vibe_tags": ["na-cocktails","gifts"], "energy_tags": ["chill"], "description": "Non-alcoholic spirits and mixers." },
-  { "name": "Brooklyn Botanic Garden", "category": "park", "neighborhood": "Prospect Park / Crown Heights", "location": "Crown Heights", "duration_min": 90, "vibe_tags": ["garden","seasonal"], "energy_tags": ["chill"], "description": "Cherry blossoms, bonsai, and themed gardens." },
-  { "name": "Brooklyn Museum", "category": "museum", "neighborhood": "Prospect Heights", "location": "Prospect Heights", "duration_min": 90, "vibe_tags": ["art","culture"], "energy_tags": ["chill"], "description": "Major museum next to the Botanic Garden." },
-  { "name": "Brooklyn Bridge Park & Waterfront", "category": "view", "neighborhood": "DUMBO/Brooklyn Heights", "location": "DUMBO", "duration_min": 60, "vibe_tags": ["views","waterfront"], "energy_tags": ["chill"], "description": "Sweeping skyline vistas and piers." },
-  { "name": "Dimes Grocer", "category": "snack", "neighborhood": "Lower East Side", "location": "Lower East Side", "duration_min": 20, "vibe_tags": ["health","trendy"], "energy_tags": ["chill"], "description": "Tiny grocer with healthy bites." },
-  { "name": "Despana (SoHo outpost)", "category": "market", "neighborhood": "SoHo/Chinatown border", "location": "SoHo", "duration_min": 25, "vibe_tags": ["spanish","gourmet"], "energy_tags": ["chill"], "description": "Spanish market: meats, cheeses, pan con tomate." },
-  { "name": "Xi’an Famous Foods (Chinatown)", "category": "lunch", "neighborhood": "Chinatown", "location": "Chinatown", "duration_min": 30, "vibe_tags": ["foodie","chinese"], "energy_tags": ["chill"], "description": "Hand-pulled noodles & spicy cumin lamb." },
-  { "name": "Street Markets (Chinatown)", "category": "shopping", "neighborhood": "Chinatown", "location": "Chinatown", "duration_min": 45, "vibe_tags": ["produce","local"], "energy_tags": ["active"], "description": "Vendors with produce, seafood, and snacks." },
-  { "name": "BonBon Candy Store", "category": "shopping", "neighborhood": "Chinatown", "location": "Chinatown", "duration_min": 20, "vibe_tags": ["sweets","gifts"], "energy_tags": ["chill"], "description": "Cute candy shop with international treats." },
-  { "name": "Chinatown Crawl", "category": "walk", "neighborhood": "Chinatown", "location": "Chinatown", "duration_min": 60, "vibe_tags": ["walk","markets"], "energy_tags": ["active"], "description": "Wander through fruit stands, bakeries, and grocers." },
-  { "name": "Clinton Street Baking Co.", "category": "brunch", "neighborhood": "Lower East Side", "location": "Lower East Side", "duration_min": 60, "vibe_tags": ["foodie","brunch"], "energy_tags": ["social"], "description": "Pancake pilgrimage; lines expected." },
-  { "name": "Fiaschetteria Pistoia (LES)", "category": "dinner", "neighborhood": "Lower East Side", "location": "Lower East Side", "duration_min": 90, "vibe_tags": ["foodie","italian"], "energy_tags": ["social"], "description": "Cozy Tuscan trattoria; intimate vibe." },
-  { "name": "Le Dive", "category": "drinks", "neighborhood": "Lower East Side", "location": "Lower East Side", "duration_min": 75, "vibe_tags": ["natural-wine","scene"], "energy_tags": ["social"], "description": "Natural wine bar with sidewalk tables." },
-  { "name": "Parcelle", "category": "drinks", "neighborhood": "Lower East Side", "location": "Lower East Side", "duration_min": 75, "vibe_tags": ["wine","chic"], "energy_tags": ["social"], "description": "Cute wine bar with great selections." },
-  { "name": "The Nines", "category": "drinks", "neighborhood": "NoHo/LES", "location": "NoHo", "duration_min": 90, "vibe_tags": ["piano-bar","scene"], "energy_tags": ["social"], "description": "Stylish piano bar for martinis and music." },
-  { "name": "The 86", "category": "drinks", "neighborhood": "Lower East Side", "location": "Lower East Side", "duration_min": 75, "vibe_tags": ["cocktails","speakeasy"], "energy_tags": ["social"], "description": "Speakeasy-style cocktails; reservations helpful." },
-  { "name": "Theodora", "category": "dinner", "neighborhood": "Lower East Side", "location": "Lower East Side", "duration_min": 90, "vibe_tags": ["foodie","greek"], "energy_tags": ["social"], "description": "Stylish Greek spot; seafood and spreads." },
-  { "name": "Maman (LES)", "category": "coffee", "neighborhood": "Lower East Side", "location": "Lower East Side", "duration_min": 30, "vibe_tags": ["chill","bakery"], "energy_tags": ["chill"], "description": "Cookies & coffee with country-French charm." },
-  { "name": "Coming Soon (LES)", "category": "shopping", "neighborhood": "Lower East Side", "location": "Lower East Side", "duration_min": 25, "vibe_tags": ["home","design"], "energy_tags": ["chill"], "description": "Designy home goods and gifts." },
-  { "name": "The Primary Essentials (LES)", "category": "shopping", "neighborhood": "Lower East Side", "location": "Lower East Side", "duration_min": 25, "vibe_tags": ["home","design"], "energy_tags": ["chill"], "description": "Curated homeware & decor objects." },
-  { "name": "Tenement Museum", "category": "museum", "neighborhood": "Lower East Side", "location": "Lower East Side", "duration_min": 75, "vibe_tags": ["history","immigration"], "energy_tags": ["chill"], "description": "Guided tours through restored tenement apartments." },
-  { "name": "LES Galleries Walk", "category": "walk", "neighborhood": "Lower East Side", "location": "Lower East Side", "duration_min": 60, "vibe_tags": ["art","galleries"], "energy_tags": ["chill"], "description": "Check out emerging galleries along the LES." },
-  { "name": "Thursday Kitchen", "category": "dinner", "neighborhood": "East Village", "location": "East Village", "duration_min": 75, "vibe_tags": ["foodie","korean-fusion"], "energy_tags": ["social"], "description": "Playful Korean-fusion small plates." },
-  { "name": "Bobwhite Counter", "category": "lunch", "neighborhood": "East Village", "location": "East Village", "duration_min": 45, "vibe_tags": ["foodie","fried-chicken"], "energy_tags": ["chill"], "description": "Quick fried chicken plates and biscuits." },
-  { "name": "Soothr", "category": "dinner", "neighborhood": "East Village", "location": "East Village", "duration_min": 75, "vibe_tags": ["foodie","thai"], "energy_tags": ["social"], "description": "Stylish Thai with cocktails and spice." },
-  { "name": "Kisa", "category": "dinner", "neighborhood": "East Village", "location": "East Village", "duration_min": 75, "vibe_tags": ["foodie","korean"], "energy_tags": ["social"], "description": "Korean spot with a cozy vibe." },
-  { "name": "Veselka", "category": "lunch", "neighborhood": "East Village", "location": "East Village", "duration_min": 60, "vibe_tags": ["foodie","ukrainian","classic"], "energy_tags": ["chill"], "description": "24/7 diner vibes; pierogi & borscht staples." },
-  { "name": "Café Reggio", "category": "coffee", "neighborhood": "Greenwich Village", "location": "Greenwich Village", "duration_min": 40, "vibe_tags": ["classic","espresso"], "energy_tags": ["chill"], "description": "Historic espresso bar with bohemian decor." },
-  { "name": "John Derian Company", "category": "shopping", "neighborhood": "East Village", "location": "East Village", "duration_min": 30, "vibe_tags": ["home","design"], "energy_tags": ["chill"], "description": "Whimsical decoupage and unique homewares." },
-  { "name": "A.P.C. (NoHo)", "category": "shopping", "neighborhood": "NoHo", "location": "NoHo", "duration_min": 25, "vibe_tags": ["fashion","minimal"], "energy_tags": ["chill"], "description": "Minimalist French wardrobe staples." },
-  { "name": "Vintage Shop Walk (EV)", "category": "walk", "neighborhood": "East Village", "location": "East Village", "duration_min": 60, "vibe_tags": ["vintage","thrift"], "energy_tags": ["active"], "description": "Hit clustered vintage spots along 9th–11th Sts." },
-  { "name": "Buvette", "category": "dinner", "neighborhood": "West Village", "location": "West Village", "duration_min": 75, "vibe_tags": ["foodie","french"], "energy_tags": ["social"], "description": "Tiny, cozy French plates and wine." },
-  { "name": "Bar Pisellino", "category": "drinks", "neighborhood": "West Village", "location": "West Village", "duration_min": 60, "vibe_tags": ["aperitivo","italian"], "energy_tags": ["social"], "description": "Italian aperitivo corner for spritz and snacks." },
-  { "name": "Corner Bistro", "category": "lunch", "neighborhood": "West Village", "location": "West Village", "duration_min": 60, "vibe_tags": ["foodie","burger","classic"], "energy_tags": ["chill"], "description": "Classic local burger joint with character." },
-  { "name": "Employees Only", "category": "bar", "neighborhood": "West Village", "location": "West Village", "duration_min": 90, "vibe_tags": ["cocktails","speakeasy"], "energy_tags": ["social"], "description": "Famed speakeasy-style cocktail bar." },
-  { "name": "Café Cluny", "category": "lunch", "neighborhood": "West Village", "location": "West Village", "duration_min": 60, "vibe_tags": ["foodie","bistro"], "energy_tags": ["chill"], "description": "Chic bistro for salads, omelets, and fries." },
-  { "name": "La Bonbonniere", "category": "breakfast", "neighborhood": "West Village", "location": "West Village", "duration_min": 45, "vibe_tags": ["diner","classic"], "energy_tags": ["chill"], "description": "Old-school diner; cash only; great pancakes." },
-  { "name": "Commerce Inn", "category": "dinner", "neighborhood": "West Village", "location": "West Village", "duration_min": 90, "vibe_tags": ["foodie","shaker"], "energy_tags": ["social"], "description": "Shaker-inspired fare and serene interior." },
-  { "name": "Hudson Clearwater", "category": "dinner", "neighborhood": "West Village", "location": "West Village", "duration_min": 90, "vibe_tags": ["foodie","date-night"], "energy_tags": ["social"], "description": "Hidden-garden vibe and New American plates." },
-  { "name": "Miss Lily’s (GV)", "category": "dinner", "neighborhood": "Greenwich Village", "location": "Greenwich Village", "duration_min": 90, "vibe_tags": ["foodie","caribbean","scene"], "energy_tags": ["social"], "description": "Lively Jamaican spot; great music & drinks." },
-  { "name": "The Dutch (SoHo border)", "category": "dinner", "neighborhood": "SoHo/West Village", "location": "SoHo", "duration_min": 90, "vibe_tags": ["foodie","american"], "energy_tags": ["social"], "description": "Upscale American with oysters & pies." },
-  { "name": "Emmett’s on Grove", "category": "dinner", "neighborhood": "West Village", "location": "West Village", "duration_min": 75, "vibe_tags": ["foodie","pizza"], "energy_tags": ["social"], "description": "Chicago tavern-style pizza in the Village." },
-  { "name": "Washington Square Park", "category": "park", "neighborhood": "Greenwich Village", "location": "Greenwich Village", "duration_min": 45, "vibe_tags": ["walk","people-watching","classic"], "energy_tags": ["chill"], "description": "NYU’s unofficial center; iconic arch; street life." },
-  { "name": "Sex & the City House (66 Perry St)", "category": "landmark", "neighborhood": "West Village", "location": "West Village", "duration_min": 15, "vibe_tags": ["tv","photo"], "energy_tags": ["chill"], "description": "Fan-favorite stoop photo stop." },
-  { "name": "Friends Apartment (Bedford & Grove)", "category": "landmark", "neighborhood": "West Village", "location": "West Village", "duration_min": 15, "vibe_tags": ["tv","photo"], "energy_tags": ["chill"], "description": "Exterior from the sitcom; quick pic spot." },
-  { "name": "Blue Note", "category": "show", "neighborhood": "Greenwich Village", "location": "Greenwich Village", "duration_min": 120, "vibe_tags": ["jazz","nightlife"], "energy_tags": ["chill"], "description": "Legendary jazz club; ticketed sets nightly." },
-  { "name": "Birdland (Midtown)", "category": "show", "neighborhood": "Midtown", "location": "Midtown", "duration_min": 120, "vibe_tags": ["jazz","nightlife"], "energy_tags": ["chill"], "description": "Historic jazz venue near the Theater District." },
-  { "name": "Jazz at Lincoln Center", "category": "show", "neighborhood": "Upper West Side", "location": "Upper West Side", "duration_min": 120, "vibe_tags": ["jazz","nightlife"], "energy_tags": ["chill"], "description": "Concerts overlooking Columbus Circle." },
-  { "name": "Bar Goto (LES)", "category": "bar", "neighborhood": "Lower East Side", "location": "Lower East Side", "duration_min": 90, "vibe_tags": ["cocktails","japanese"], "energy_tags": ["social"], "description": "Elegant Japanese-inspired cocktail bar." },
-  { "name": "Comedy Club Night (Village)", "category": "show", "neighborhood": "Greenwich Village", "location": "Greenwich Village", "duration_min": 120, "vibe_tags": ["comedy","nightlife"], "energy_tags": ["chill"], "description": "Pick a set at Comedy Cellar or nearby clubs." },
-  { "name": "Balthazar", "category": "dinner", "neighborhood": "SoHo", "location": "SoHo", "duration_min": 90, "vibe_tags": ["foodie","french","classic"], "energy_tags": ["social"], "description": "Grand brasserie; steak frites and seafood towers." },
-  { "name": "Raoul’s", "category": "dinner", "neighborhood": "SoHo", "location": "SoHo", "duration_min": 90, "vibe_tags": ["foodie","french","scene"], "energy_tags": ["social"], "description": "Old-school bistro; pepper steak favorite." },
-  { "name": "Shmone", "category": "dinner", "neighborhood": "Greenwich Village/NoHo", "location": "NoHo", "duration_min": 90, "vibe_tags": ["foodie","israeli"], "energy_tags": ["social"], "description": "Inventive Israeli plates & great wine." },
-  { "name": "Lure Fishbar", "category": "dinner", "neighborhood": "SoHo", "location": "SoHo", "duration_min": 90, "vibe_tags": ["foodie","seafood"], "energy_tags": ["social"], "description": "Yacht-like dining room; sushi & raw bar." },
-  { "name": "Locanda Verde (drink at Greenwich Hotel)", "category": "drinks", "neighborhood": "Tribeca", "location": "Tribeca", "duration_min": 75, "vibe_tags": ["hotel-bar","italian"], "energy_tags": ["social"], "description": "Have a cocktail in the Greenwich Hotel’s scene." },
-  { "name": "Blue Ribbon Brasserie (SoHo)", "category": "dinner", "neighborhood": "SoHo", "location": "SoHo", "duration_min": 90, "vibe_tags": ["foodie","late-night"], "energy_tags": ["social"], "description": "Late-night classic with oysters and steak." },
-  { "name": "Penny", "category": "dinner", "neighborhood": "Chelsea/SoHo border", "location": "Chelsea", "duration_min": 90, "vibe_tags": ["foodie","vegetable-forward"], "energy_tags": ["social"], "description": "Vegetable-forward plates from the Folks behind D&&D." },
-  { "name": "Corima", "category": "dinner", "neighborhood": "Chinatown/SoHo border", "location": "Chinatown", "duration_min": 90, "vibe_tags": ["foodie","mexican"], "energy_tags": ["social"], "description": "Creative, regional Mexican tasting plates." },
-  { "name": "Maman (SoHo)", "category": "coffee", "neighborhood": "SoHo", "location": "SoHo", "duration_min": 30, "vibe_tags": ["chill","bakery"], "energy_tags": ["chill"], "description": "Cookies & coffee with cottage-core charm." },
-  { "name": "Two Hands (SoHo)", "category": "coffee", "neighborhood": "SoHo", "location": "SoHo", "duration_min": 35, "vibe_tags": ["brunchy","aussie"], "energy_tags": ["chill"], "description": "Aussie cafe plates & espresso." },
-  { "name": "Librae Bakery (SoHo)", "category": "snack", "neighborhood": "SoHo", "location": "SoHo", "duration_min": 20, "vibe_tags": ["bakery","trendy"], "energy_tags": ["chill"], "description": "Arabian-inspired pastries; weekend lines." },
-  { "name": "La Cabra (SoHo)", "category": "coffee", "neighborhood": "SoHo", "location": "SoHo", "duration_min": 25, "vibe_tags": ["coffee","bakery"], "energy_tags": ["chill"], "description": "Nordic coffee roaster with great pastries." },
-  { "name": "Oroboro", "category": "shopping", "neighborhood": "Nolita", "location": "Nolita", "duration_min": 25, "vibe_tags": ["fashion","home"], "energy_tags": ["chill"], "description": "Indie boutique with clothing & objects." },
-  { "name": "Love Adorned (Nolita)", "category": "shopping", "neighborhood": "Nolita", "location": "Nolita", "duration_min": 25, "vibe_tags": ["jewelry","home"], "energy_tags": ["chill"], "description": "Jewelry and homewares with a bohemian feel." },
-  { "name": "Dover Street Market (Murray Hill)", "category": "shopping", "neighborhood": "Murray Hill", "location": "Murray Hill", "duration_min": 45, "vibe_tags": ["fashion","avant-garde"], "energy_tags": ["chill"], "description": "Multi-floor high-fashion concept store." },
-  { "name": "Kirna Zabete", "category": "shopping", "neighborhood": "SoHo", "location": "SoHo", "duration_min": 30, "vibe_tags": ["fashion","luxury"], "energy_tags": ["chill"], "description": "Designer boutique with statement pieces." },
-  { "name": "Housing Works Bookstore", "category": "shopping", "neighborhood": "SoHo", "location": "SoHo", "duration_min": 30, "vibe_tags": ["bookstore","charity"], "energy_tags": ["chill"], "description": "Cozy used bookstore & cafe for a cause." },
-  { "name": "Donald Judd Foundation (Judd House)", "category": "museum", "neighborhood": "SoHo", "location": "SoHo", "duration_min": 60, "vibe_tags": ["art","minimalism"], "energy_tags": ["chill"], "description": "Artist’s home & studio; advance tickets needed." },
-  { "name": "The Whitney Museum (Meatpacking)", "category": "museum", "neighborhood": "Meatpacking", "location": "Meatpacking", "duration_min": 90, "vibe_tags": ["art","american"], "energy_tags": ["chill"], "description": "Modern/contemporary American art by the High Line." },
-  { "name": "Delmonico’s", "category": "dinner", "neighborhood": "Financial District", "location": "Financial District", "duration_min": 120, "vibe_tags": ["foodie","steakhouse","classic"], "energy_tags": ["social"], "description": "Historic steakhouse with old New York swagger." },
-  { "name": "The Dead Rabbit", "category": "bar", "neighborhood": "Financial District", "location": "Financial District", "duration_min": 90, "vibe_tags": ["cocktails","irish"], "energy_tags": ["social"], "description": "World-class cocktails in a multi-level pub." },
-  { "name": "NY Stock Exchange (exterior)", "category": "landmark", "neighborhood": "Financial District", "location": "Financial District", "duration_min": 20, "vibe_tags": ["finance","photo"], "energy_tags": ["chill"], "description": "Quick photo stop by Wall Street." },
-  { "name": "Charging Bull", "category": "landmark", "neighborhood": "Financial District", "location": "Financial District", "duration_min": 15, "vibe_tags": ["iconic","photo"], "energy_tags": ["chill"], "description": "Tourist-favorite sculpture near Bowling Green." },
-  { "name": "9/11 Memorial & Museum", "category": "museum", "neighborhood": "Financial District", "location": "Financial District", "duration_min": 120, "vibe_tags": ["history","memorial"], "energy_tags": ["chill"], "description": "Powerful exhibits; plan for timed entry." },
-  { "name": "Oculus / Westfield World Trade Center", "category": "landmark", "neighborhood": "Financial District", "location": "Financial District", "duration_min": 30, "vibe_tags": ["architecture","shopping"], "energy_tags": ["chill"], "description": "Santiago Calatrava transit hub & shopping." },
-  { "name": "Staten Island Ferry (RT)", "category": "view", "neighborhood": "Battery Park", "location": "Battery Park", "duration_min": 60, "vibe_tags": ["views","free"], "energy_tags": ["chill"], "description": "Free harbor ride for skyline & Statue views." },
-  { "name": "Pier 57 Market & Rooftop Views", "category": "view", "neighborhood": "Chelsea / Hudson River", "location": "Chelsea", "duration_min": 45, "vibe_tags": ["views","market"], "energy_tags": ["chill"], "description": "Food hall downstairs; park-like rooftop with views." },
-  { "name": "Hudson River Greenway Walk", "category": "walk", "neighborhood": "West Side Highway", "location": "West Side", "duration_min": 60, "vibe_tags": ["outdoors","waterfront"], "energy_tags": ["active"], "description": "Scenic path along the Hudson with piers & art." }
+  {
+    "name": "Jacob’s Pickles",
+    "category": "brunch",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 75,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "brunch"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Buzzing Southern comfort brunch; big portions."
+  },
+  {
+    "name": "Celeste",
+    "category": "dinner",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "italian"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Tiny, lively Italian; cash only; consistently good pastas."
+  },
+  {
+    "name": "Elea",
+    "category": "dinner",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "greek"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Modern Greek; lively upstairs room; great small plates."
+  },
+  {
+    "name": "Milano Market (UWS)",
+    "category": "lunch",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "sandwiches"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Beloved sandwich shop; excellent wraps & hot heroes."
+  },
+  {
+    "name": "Gray’s Papaya",
+    "category": "snack",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 15,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "No-frills hot dogs with papaya drink (‘Recession Special’)."
+  },
+  {
+    "name": "Viand",
+    "category": "lunch",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 45,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "diner"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Classic NYC diner fare; counter seats & quick service."
+  },
+  {
+    "name": "William Poll",
+    "category": "snack",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 20,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "gourmet"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Gourmet prepared foods & sandwiches from a storied UES shop."
+  },
+  {
+    "name": "Madison Fare",
+    "category": "lunch",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "sandwiches"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Neighborhood spot for quick salads & sandwiches."
+  },
+  {
+    "name": "New Cottage",
+    "category": "dinner",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 75,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "chinese"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Cozy neighborhood Chinese comfort classics."
+  },
+  {
+    "name": "Breads Bakery (UWS)",
+    "category": "snack",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 20,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "bakery"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Renowned babka and sweet bakes."
+  },
+  {
+    "name": "Café Luxembourg",
+    "category": "dinner",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 90,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "french"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Quintessential bistro vibe; great for pre- or post-Lincoln Center."
+  },
+  {
+    "name": "Smoke Jazz & Supper Club",
+    "category": "show",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 120,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "music",
+      "nightlife"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Intimate jazz club with dinner service."
+  },
+  {
+    "name": "Daily Provisions (UWS)",
+    "category": "breakfast",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "breakfast"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Breakfast sandwiches, crullers, and coffee."
+  },
+  {
+    "name": "The Hungarian Pastry Shop",
+    "category": "coffee",
+    "neighborhood": "Morningside Heights",
+    "location": "Morningside Heights",
+    "duration_min": 40,
+    "vibe_tags": [
+      "local",
+      "chill",
+      "study"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Classic student haunt for cakes, coffee, and writing."
+  },
+  {
+    "name": "Maman (UWS)",
+    "category": "coffee",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "chill",
+      "bakery"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Cozy coffee shop with baked goods."
+  },
+  {
+    "name": "Blank Street (UWS)",
+    "category": "coffee",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 15,
+    "vibe_tags": [
+      "local",
+      "quick",
+      "chill"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Grab-and-go coffee chain; quick caffeine stop."
+  },
+  {
+    "name": "Zitomer Pharmacy & Department Store",
+    "category": "shopping",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 30,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "shopping",
+      "quirky"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Old-school UES department-store-meets-pharmacy."
+  },
+  {
+    "name": "Scully & Scully",
+    "category": "shopping",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "shopping",
+      "gifts"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Fine gifts, tableware, and home items on Park Ave."
+  },
+  {
+    "name": "Visit Columbia University",
+    "category": "walk",
+    "neighborhood": "Morningside Heights",
+    "location": "Morningside Heights",
+    "duration_min": 45,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "campus",
+      "architecture"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Leafy campus walk around Low Library & College Walk."
+  },
+  {
+    "name": "Riverside Park (You’ve Got Mail Corner)",
+    "category": "park",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 45,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "outdoors",
+      "film"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Hudson-side paths and film-famous benches."
+  },
+  {
+    "name": "Memorials along West Side Highway",
+    "category": "walk",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 45,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "outdoors",
+      "memorials"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Waterfront walk past piers and memorials."
+  },
+  {
+    "name": "Bike up to the Cloisters",
+    "category": "walk",
+    "neighborhood": "Upper Manhattan",
+    "location": "Upper Manhattan",
+    "duration_min": 120,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "outdoors",
+      "active"
+    ],
+    "energy_tags": [
+      "active"
+    ],
+    "description": "Riverside ride north to medieval museum & Fort Tryon Park."
+  },
+  {
+    "name": "Lincoln Center",
+    "category": "landmark",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 40,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "culture",
+      "architecture"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Opera, ballet, symphony campus; fountains & plaza."
+  },
+  {
+    "name": "Red Rooster",
+    "category": "dinner",
+    "neighborhood": "Harlem",
+    "location": "Harlem",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "soul-food",
+      "scene"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Celebrated Harlem dining with live energy."
+  },
+  {
+    "name": "Clay",
+    "category": "dinner",
+    "neighborhood": "Harlem",
+    "location": "Harlem",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "seasonal"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Farm-to-table spot with a neighborhood feel."
+  },
+  {
+    "name": "Dinosaur Bar-B-Que",
+    "category": "dinner",
+    "neighborhood": "Harlem",
+    "location": "Harlem",
+    "duration_min": 75,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "bbq"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Lively BBQ joint near the river."
+  },
+  {
+    "name": "Lucille’s Coffee & Cocktails",
+    "category": "coffee",
+    "neighborhood": "Harlem",
+    "location": "Harlem",
+    "duration_min": 40,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "chill",
+      "music"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Cafe-by-day, music/cocktails by night."
+  },
+  {
+    "name": "Apollo Theater (Tour/Show)",
+    "category": "show",
+    "neighborhood": "Harlem",
+    "location": "Harlem",
+    "duration_min": 120,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "music",
+      "history"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Legendary stage; check tours or Amateur Night."
+  },
+  {
+    "name": "JG Melon",
+    "category": "lunch",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 60,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "burger"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Old-school burger joint; quintessential UES vibes."
+  },
+  {
+    "name": "Antonucci Cafe",
+    "category": "dinner",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "italian"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Beloved neighborhood Italian staple."
+  },
+  {
+    "name": "Earl’s Beer & Cheese",
+    "category": "snack",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 45,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "beer"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Craft beers and creative grilled cheeses."
+  },
+  {
+    "name": "Dorrian’s",
+    "category": "bar",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 90,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "nightlife"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Classic UES tavern scene."
+  },
+  {
+    "name": "Café Sabarsky",
+    "category": "lunch",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 60,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "viennese"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Viennese cafe inside the Neue Galerie."
+  },
+  {
+    "name": "Lobel’s Meat Market",
+    "category": "shopping",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 20,
+    "vibe_tags": [
+      "local",
+      "gourmet",
+      "butcher"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Famed butcher shop for premium cuts."
+  },
+  {
+    "name": "Bemelmans Bar",
+    "category": "bar",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 90,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "cocktails",
+      "live-music"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Elegant hotel bar with murals and live music."
+  },
+  {
+    "name": "Ralph’s Coffee (UES)",
+    "category": "coffee",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 30,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "chill",
+      "fashion"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Stylish coffee inside Ralph Lauren."
+  },
+  {
+    "name": "Isle of Us",
+    "category": "coffee",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "health",
+      "cafe"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Cafe-market with a wellness tilt."
+  },
+  {
+    "name": "Ralph Lauren (Madison Ave)",
+    "category": "shopping",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 40,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "shopping",
+      "fashion"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Flagship fashion browsing on Madison."
+  },
+  {
+    "name": "Ludivine",
+    "category": "shopping",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "shopping",
+      "boutique"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Chic boutique with French flair."
+  },
+  {
+    "name": "Belgian Shoes",
+    "category": "shopping",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 25,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "shopping"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Cult-favorite handmade slippers."
+  },
+  {
+    "name": "Doyle Auction House",
+    "category": "shopping",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 45,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "art",
+      "design"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Preview sales; browse art and objects."
+  },
+  {
+    "name": "Cooper Hewitt Museum Shop",
+    "category": "shopping",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 25,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "design",
+      "museum-shop"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Smart design gifts & books."
+  },
+  {
+    "name": "The Met Store (Fifth Ave)",
+    "category": "shopping",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 30,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "museum-shop",
+      "gifts"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Art-inspired gifts from The Met."
+  },
+  {
+    "name": "Neue Galerie",
+    "category": "museum",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 60,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "art",
+      "viennese"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Austrian & German art in a jewel-box mansion."
+  },
+  {
+    "name": "Jewish Museum",
+    "category": "museum",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 75,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "art",
+      "culture"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Wide-ranging exhibitions on Jewish culture and art."
+  },
+  {
+    "name": "Cooper Hewitt Smithsonian Design Museum",
+    "category": "museum",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 75,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "design",
+      "interactive"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Historic mansion with interactive design exhibits."
+  },
+  {
+    "name": "Frick Collection (Frick Madison)",
+    "category": "museum",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 75,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "art"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Masterworks in an elegant setting."
+  },
+  {
+    "name": "Great Lawn",
+    "category": "park",
+    "neighborhood": "Central Park",
+    "location": "Central Park",
+    "duration_min": 45,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "outdoors",
+      "relax"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Expansive lawn for lounging and picnics."
+  },
+  {
+    "name": "The Ramble",
+    "category": "park",
+    "neighborhood": "Central Park",
+    "location": "Central Park",
+    "duration_min": 45,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "outdoors",
+      "birding"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Wooded paths and a touch of wilderness."
+  },
+  {
+    "name": "Bethesda Fountain",
+    "category": "landmark",
+    "neighborhood": "Central Park",
+    "location": "Central Park",
+    "duration_min": 20,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "photo"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Grand fountain and terrace by the lake."
+  },
+  {
+    "name": "Bow Bridge",
+    "category": "view",
+    "neighborhood": "Central Park",
+    "location": "Central Park",
+    "duration_min": 20,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "views",
+      "photo"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Romantic cast-iron bridge over the lake."
+  },
+  {
+    "name": "Conservatory Garden",
+    "category": "park",
+    "neighborhood": "Central Park (NE)",
+    "location": "Central Park",
+    "duration_min": 40,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "garden",
+      "quiet"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Formal gardens and seasonal blooms."
+  },
+  {
+    "name": "North Woods",
+    "category": "park",
+    "neighborhood": "Central Park (North)",
+    "location": "Central Park",
+    "duration_min": 45,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "outdoors",
+      "walk"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Wooded trails & rustic bridges."
+  },
+  {
+    "name": "Carousel (Central Park)",
+    "category": "landmark",
+    "neighborhood": "Central Park",
+    "location": "Central Park",
+    "duration_min": 20,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "family",
+      "nostalgia"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Historic carousel near the Mall."
+  },
+  {
+    "name": "Central Park Zoo",
+    "category": "landmark",
+    "neighborhood": "Central Park (South)",
+    "location": "Central Park",
+    "duration_min": 20,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "family",
+      "kids"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "A feature of many movies, check out the sea lions in the center."
+  },
+  {
+    "name": "Sheep Meadow",
+    "category": "park",
+    "neighborhood": "Central Park (Southwest)",
+    "location": "Central Park",
+    "duration_min": 60,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "outdoors",
+      "views"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Popular lawn with skyline views."
+  },
+  {
+    "name": "Reservoir Loop",
+    "category": "walk",
+    "neighborhood": "Central Park (North/East)",
+    "location": "Central Park",
+    "duration_min": 45,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "run",
+      "views"
+    ],
+    "energy_tags": [
+      "active"
+    ],
+    "description": "Track around Jacqueline Kennedy Onassis Reservoir."
+  },
+  {
+    "name": "Loeb Boathouse & Pond",
+    "category": "landmark",
+    "neighborhood": "Central Park",
+    "location": "Central Park",
+    "duration_min": 45,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "boats",
+      "views"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Rowboats and lakeside cafe (seasonal operations vary)."
+  },
+  {
+    "name": "Literary Walk / The Mall",
+    "category": "walk",
+    "neighborhood": "Central Park (South)",
+    "location": "Central Park",
+    "duration_min": 30,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "trees"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Statues and a tree-lined promenade."
+  },
+  {
+    "name": "Bike the Central Park Loop",
+    "category": "walk",
+    "neighborhood": "Central Park",
+    "location": "Central Park",
+    "duration_min": 90,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "active",
+      "loop"
+    ],
+    "energy_tags": [
+      "active"
+    ],
+    "description": "Cycle the full park loop for exercise and views."
+  },
+  {
+    "name": "Guggenheim Walk (Fifth Ave)",
+    "category": "walk",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 30,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "architecture",
+      "museum-row"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Stroll along Fifth Ave past the Guggenheim."
+  },
+  {
+    "name": "The Lambs Club",
+    "category": "dinner",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "pre-theatre"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Classic pre-theater dining with style."
+  },
+  {
+    "name": "The Fifth Avenue Hotel Restaurant",
+    "category": "dinner",
+    "neighborhood": "Flatiron/NoMad",
+    "location": "NoMad",
+    "duration_min": 90,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "foodie",
+      "scene"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Design-forward dining in a new landmark hotel."
+  },
+  {
+    "name": "Dollar Slice Pizza",
+    "category": "snack",
+    "neighborhood": "Midtown",
+    "location": "691 8th Ave, Midtown West",
+    "duration_min": 15,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "budget"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Quick, no-frills NYC slice fix near Times Square."
+  },
+  {
+    "name": "Hillstone (Midtown)",
+    "category": "dinner",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "american"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Reliable, comfortable, upscale American fare."
+  },
+  {
+    "name": "Via Quadronno (57th St)",
+    "category": "lunch",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 60,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "italian"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Panini and espresso bar with Milanese feel."
+  },
+  {
+    "name": "PJ Carney’s",
+    "category": "bar",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 75,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "pub"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Old-school Irish pub near the park."
+  },
+  {
+    "name": "Breads Bakery (Bryant Park)",
+    "category": "snack",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 20,
+    "vibe_tags": [
+      "local",
+      "bakery",
+      "dessert"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Excellent babka & pastries by the park."
+  },
+  {
+    "name": "Majorelle (UES border)",
+    "category": "dinner",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 120,
+    "vibe_tags": [
+      "local",
+      "fine-dining",
+      "french"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Elegant French dining just off Madison Ave."
+  },
+  {
+    "name": "L’Avenue at Saks (Rooftop)",
+    "category": "drinks",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 75,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "view",
+      "scene"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Chic rooftop for a drink with views."
+  },
+  {
+    "name": "Sable’s (UES border)",
+    "category": "lunch",
+    "neighborhood": "Upper East Side",
+    "location": "Upper East Side",
+    "duration_min": 45,
+    "vibe_tags": [
+      "local",
+      "jewish-deli",
+      "seafood"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Beloved smoked fish and appetizing counter."
+  },
+  {
+    "name": "Kinokuniya Bookstore Café",
+    "category": "coffee",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 40,
+    "vibe_tags": [
+      "local",
+      "bookstore",
+      "chill"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Cafe above a Japanese bookstore facing Bryant Park."
+  },
+  {
+    "name": "Maman (Midtown)",
+    "category": "coffee",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "chill",
+      "bakery"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Cookies, quiche, and cozy vibes."
+  },
+  {
+    "name": "MoMA Design Store",
+    "category": "shopping",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 30,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "design",
+      "gifts"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Smart design gifts and home items."
+  },
+  {
+    "name": "Rockefeller Center Shops",
+    "category": "shopping",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 45,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "shopping",
+      "iconic"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Iconic complex with shops and concourse."
+  },
+  {
+    "name": "KULE at Rock Center",
+    "category": "shopping",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 20,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "fashion",
+      "stripes"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Playful striped basics and pop-color accessories."
+  },
+  {
+    "name": "MUJI / UNIQLO (Fifth Ave)",
+    "category": "shopping",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 45,
+    "vibe_tags": [
+      "local",
+      "shopping",
+      "basics"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Minimalist Japanese basics and home goods nearby."
+  },
+  {
+    "name": "Tiffany & Co. (Fifth Ave)",
+    "category": "shopping",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "shopping",
+      "luxury"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Blue-box icon; newly refreshed flagship."
+  },
+  {
+    "name": "FAO Schwarz (Rock Center)",
+    "category": "shopping",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "toys",
+      "family"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Classic toy wonderland for kids & nostalgia."
+  },
+  {
+    "name": "Bergdorf Goodman",
+    "category": "shopping",
+    "neighborhood": "Midtown/UES",
+    "location": "Fifth Ave & 58th",
+    "duration_min": 45,
+    "vibe_tags": [
+      "local",
+      "shopping",
+      "luxury"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "High-end fashion, beauty, and home."
+  },
+  {
+    "name": "Saks Fifth Avenue",
+    "category": "shopping",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 45,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "shopping",
+      "luxury"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "NYC flagship department store."
+  },
+  {
+    "name": "Morgan Library & Museum",
+    "category": "museum",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 75,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "rare-books",
+      "art"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Magnificent library rooms & exhibitions."
+  },
+  {
+    "name": "NBC Studios Tour",
+    "category": "landmark",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 60,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "tv",
+      "tour"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Behind-the-scenes look at late-night sets."
+  },
+  {
+    "name": "Ice Skating at Bryant Park (seasonal)",
+    "category": "landmark",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 75,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "seasonal",
+      "family"
+    ],
+    "energy_tags": [
+      "active"
+    ],
+    "description": "Holiday rink with market stalls nearby."
+  },
+  {
+    "name": "Bonnie’s",
+    "category": "dinner",
+    "neighborhood": "Williamsburg",
+    "location": "Williamsburg",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "chinese-american"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Creative Cantonese-American menu; buzzy."
+  },
+  {
+    "name": "Bernie’s",
+    "category": "dinner",
+    "neighborhood": "Greenpoint",
+    "location": "Greenpoint",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "american"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Old-school red-checkered comfort food done right."
+  },
+  {
+    "name": "Red Hook Tavern",
+    "category": "dinner",
+    "neighborhood": "Red Hook",
+    "location": "Red Hook",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "burger"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Destination burger in a cozy tavern setting."
+  },
+  {
+    "name": "Defonte’s (Brooklyn)",
+    "category": "lunch",
+    "neighborhood": "Red Hook",
+    "location": "Red Hook",
+    "duration_min": 45,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "sandwiches"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Classic Italian sandwiches; cash preferred."
+  },
+  {
+    "name": "Win Son Bakery",
+    "category": "breakfast",
+    "neighborhood": "East Williamsburg",
+    "location": "East Williamsburg",
+    "duration_min": 40,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "taiwanese"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Creative Taiwanese bakes & breakfast plates."
+  },
+  {
+    "name": "Misi",
+    "category": "dinner",
+    "neighborhood": "Williamsburg",
+    "location": "Williamsburg",
+    "duration_min": 120,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "italian"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Handmade pastas and vegetable-focused plates."
+  },
+  {
+    "name": "Oxomoco",
+    "category": "dinner",
+    "neighborhood": "Greenpoint",
+    "location": "Greenpoint",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "mexican"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Wood-fired tacos & mezcal in a chic space."
+  },
+  {
+    "name": "Llama Inn",
+    "category": "dinner",
+    "neighborhood": "Williamsburg",
+    "location": "Williamsburg",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "peruvian"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Modern Peruvian plates with rooftop vibes."
+  },
+  {
+    "name": "12 Chairs (Williamsburg)",
+    "category": "lunch",
+    "neighborhood": "Williamsburg",
+    "location": "Williamsburg",
+    "duration_min": 60,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "mediterranean"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Casual Israeli comfort classics."
+  },
+  {
+    "name": "Butler Bakery & Coffee Bar",
+    "category": "coffee",
+    "neighborhood": "Williamsburg",
+    "location": "Williamsburg",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "chill",
+      "bakery"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Stylish coffee & pastry break."
+  },
+  {
+    "name": "Two Hands (BK)",
+    "category": "coffee",
+    "neighborhood": "Williamsburg",
+    "location": "Williamsburg",
+    "duration_min": 35,
+    "vibe_tags": [
+      "local",
+      "brunchy",
+      "aussie"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Australian-style cafe fare & espresso."
+  },
+  {
+    "name": "Radio Bakery",
+    "category": "snack",
+    "neighborhood": "Greenpoint",
+    "location": "Greenpoint",
+    "duration_min": 20,
+    "vibe_tags": [
+      "local",
+      "bakery",
+      "trendy"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Small-batch pastries; often a line."
+  },
+  {
+    "name": "A.MANO Brooklyn",
+    "category": "shopping",
+    "neighborhood": "Greenpoint",
+    "location": "Greenpoint",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "home",
+      "ceramics"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Thoughtful tableware and gifts."
+  },
+  {
+    "name": "Outline Brooklyn",
+    "category": "shopping",
+    "neighborhood": "Williamsburg",
+    "location": "Williamsburg",
+    "duration_min": 25,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "fashion"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Independent boutique with minimalist vibe."
+  },
+  {
+    "name": "Front General Store",
+    "category": "shopping",
+    "neighborhood": "DUMBO",
+    "location": "DUMBO",
+    "duration_min": 25,
+    "vibe_tags": [
+      "local",
+      "vintage",
+      "workwear"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "General store + vintage finds."
+  },
+  {
+    "name": "Big Night Specialty Foods",
+    "category": "shopping",
+    "neighborhood": "Greenpoint",
+    "location": "Greenpoint",
+    "duration_min": 25,
+    "vibe_tags": [
+      "local",
+      "gourmet",
+      "gifts"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Hostess gifts, tinned fish, and chic pantry goods."
+  },
+  {
+    "name": "Boisson (NA Spirits)",
+    "category": "shopping",
+    "neighborhood": "Williamsburg",
+    "location": "Williamsburg",
+    "duration_min": 25,
+    "vibe_tags": [
+      "local",
+      "na-cocktails",
+      "gifts"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Non-alcoholic spirits and mixers."
+  },
+  {
+    "name": "Brooklyn Botanic Garden",
+    "category": "park",
+    "neighborhood": "Prospect Park / Crown Heights",
+    "location": "Crown Heights",
+    "duration_min": 90,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "garden",
+      "seasonal"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Cherry blossoms, bonsai, and themed gardens."
+  },
+  {
+    "name": "Brooklyn Museum",
+    "category": "museum",
+    "neighborhood": "Prospect Heights",
+    "location": "Prospect Heights",
+    "duration_min": 90,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "art",
+      "culture"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Major museum next to the Botanic Garden."
+  },
+  {
+    "name": "Brooklyn Bridge Park & Waterfront",
+    "category": "view",
+    "neighborhood": "DUMBO/Brooklyn Heights",
+    "location": "DUMBO",
+    "duration_min": 60,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "views",
+      "waterfront"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Sweeping skyline vistas and piers."
+  },
+  {
+    "name": "Dimes Grocer",
+    "category": "snack",
+    "neighborhood": "Lower East Side",
+    "location": "Lower East Side",
+    "duration_min": 20,
+    "vibe_tags": [
+      "local",
+      "health",
+      "trendy"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Tiny grocer with healthy bites."
+  },
+  {
+    "name": "Despana (SoHo outpost)",
+    "category": "market",
+    "neighborhood": "SoHo/Chinatown border",
+    "location": "SoHo",
+    "duration_min": 25,
+    "vibe_tags": [
+      "local",
+      "spanish",
+      "gourmet"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Spanish market: meats, cheeses, pan con tomate."
+  },
+  {
+    "name": "Xi’an Famous Foods (Chinatown)",
+    "category": "lunch",
+    "neighborhood": "Chinatown",
+    "location": "Chinatown",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "chinese"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Hand-pulled noodles & spicy cumin lamb."
+  },
+  {
+    "name": "Street Markets (Chinatown)",
+    "category": "shopping",
+    "neighborhood": "Chinatown",
+    "location": "Chinatown",
+    "duration_min": 45,
+    "vibe_tags": [
+      "local",
+      "produce"
+    ],
+    "energy_tags": [
+      "active"
+    ],
+    "description": "Vendors with produce, seafood, and snacks."
+  },
+  {
+    "name": "BonBon Candy Store",
+    "category": "shopping",
+    "neighborhood": "Chinatown",
+    "location": "Chinatown",
+    "duration_min": 20,
+    "vibe_tags": [
+      "local",
+      "sweets",
+      "gifts"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Cute candy shop with international treats."
+  },
+  {
+    "name": "Chinatown Crawl",
+    "category": "walk",
+    "neighborhood": "Chinatown",
+    "location": "Chinatown",
+    "duration_min": 60,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "walk",
+      "markets"
+    ],
+    "energy_tags": [
+      "active"
+    ],
+    "description": "Wander through fruit stands, bakeries, and grocers."
+  },
+  {
+    "name": "Clinton Street Baking Co.",
+    "category": "brunch",
+    "neighborhood": "Lower East Side",
+    "location": "Lower East Side",
+    "duration_min": 60,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "brunch"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Pancake pilgrimage; lines expected."
+  },
+  {
+    "name": "Fiaschetteria Pistoia (LES)",
+    "category": "dinner",
+    "neighborhood": "Lower East Side",
+    "location": "Lower East Side",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "italian"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Cozy Tuscan trattoria; intimate vibe."
+  },
+  {
+    "name": "Le Dive",
+    "category": "drinks",
+    "neighborhood": "Lower East Side",
+    "location": "Lower East Side",
+    "duration_min": 75,
+    "vibe_tags": [
+      "local",
+      "natural-wine",
+      "scene"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Natural wine bar with sidewalk tables."
+  },
+  {
+    "name": "Parcelle",
+    "category": "drinks",
+    "neighborhood": "Lower East Side",
+    "location": "Lower East Side",
+    "duration_min": 75,
+    "vibe_tags": [
+      "local",
+      "wine",
+      "chic"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Cute wine bar with great selections."
+  },
+  {
+    "name": "The Nines",
+    "category": "drinks",
+    "neighborhood": "NoHo/LES",
+    "location": "NoHo",
+    "duration_min": 90,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "piano-bar",
+      "scene"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Stylish piano bar for martinis and music."
+  },
+  {
+    "name": "The 86",
+    "category": "drinks",
+    "neighborhood": "Lower East Side",
+    "location": "Lower East Side",
+    "duration_min": 75,
+    "vibe_tags": [
+      "local",
+      "cocktails",
+      "speakeasy"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Speakeasy-style cocktails; reservations helpful."
+  },
+  {
+    "name": "Theodora",
+    "category": "dinner",
+    "neighborhood": "Lower East Side",
+    "location": "Lower East Side",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "greek"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Stylish Greek spot; seafood and spreads."
+  },
+  {
+    "name": "Maman (LES)",
+    "category": "coffee",
+    "neighborhood": "Lower East Side",
+    "location": "Lower East Side",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "chill",
+      "bakery"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Cookies & coffee with country-French charm."
+  },
+  {
+    "name": "Coming Soon (LES)",
+    "category": "shopping",
+    "neighborhood": "Lower East Side",
+    "location": "Lower East Side",
+    "duration_min": 25,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "home",
+      "design"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Designy home goods and gifts."
+  },
+  {
+    "name": "The Primary Essentials (LES)",
+    "category": "shopping",
+    "neighborhood": "Lower East Side",
+    "location": "Lower East Side",
+    "duration_min": 25,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "home",
+      "design"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Curated homeware & decor objects."
+  },
+  {
+    "name": "Tenement Museum",
+    "category": "museum",
+    "neighborhood": "Lower East Side",
+    "location": "Lower East Side",
+    "duration_min": 75,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "history",
+      "immigration"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Guided tours through restored tenement apartments."
+  },
+  {
+    "name": "LES Galleries Walk",
+    "category": "walk",
+    "neighborhood": "Lower East Side",
+    "location": "Lower East Side",
+    "duration_min": 60,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "art",
+      "galleries"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Check out emerging galleries along the LES."
+  },
+  {
+    "name": "Thursday Kitchen",
+    "category": "dinner",
+    "neighborhood": "East Village",
+    "location": "East Village",
+    "duration_min": 75,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "korean-fusion"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Playful Korean-fusion small plates."
+  },
+  {
+    "name": "Bobwhite Counter",
+    "category": "lunch",
+    "neighborhood": "East Village",
+    "location": "East Village",
+    "duration_min": 45,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "fried-chicken"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Quick fried chicken plates and biscuits."
+  },
+  {
+    "name": "Soothr",
+    "category": "dinner",
+    "neighborhood": "East Village",
+    "location": "East Village",
+    "duration_min": 75,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "thai"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Stylish Thai with cocktails and spice."
+  },
+  {
+    "name": "Kisa",
+    "category": "dinner",
+    "neighborhood": "East Village",
+    "location": "East Village",
+    "duration_min": 75,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "korean"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Korean spot with a cozy vibe."
+  },
+  {
+    "name": "Veselka",
+    "category": "lunch",
+    "neighborhood": "East Village",
+    "location": "East Village",
+    "duration_min": 60,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "ukrainian"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "24/7 diner vibes; pierogi & borscht staples."
+  },
+  {
+    "name": "Café Reggio",
+    "category": "coffee",
+    "neighborhood": "Greenwich Village",
+    "location": "Greenwich Village",
+    "duration_min": 40,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "espresso"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Historic espresso bar with bohemian decor."
+  },
+  {
+    "name": "John Derian Company",
+    "category": "shopping",
+    "neighborhood": "East Village",
+    "location": "East Village",
+    "duration_min": 30,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "home",
+      "design"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Whimsical decoupage and unique homewares."
+  },
+  {
+    "name": "A.P.C. (NoHo)",
+    "category": "shopping",
+    "neighborhood": "NoHo",
+    "location": "NoHo",
+    "duration_min": 25,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "fashion",
+      "minimal"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Minimalist French wardrobe staples."
+  },
+  {
+    "name": "Vintage Shop Walk (EV)",
+    "category": "walk",
+    "neighborhood": "East Village",
+    "location": "East Village",
+    "duration_min": 60,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "vintage",
+      "thrift"
+    ],
+    "energy_tags": [
+      "active"
+    ],
+    "description": "Hit clustered vintage spots along 9th–11th Sts."
+  },
+  {
+    "name": "Buvette",
+    "category": "dinner",
+    "neighborhood": "West Village",
+    "location": "West Village",
+    "duration_min": 75,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "french"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Tiny, cozy French plates and wine."
+  },
+  {
+    "name": "Bar Pisellino",
+    "category": "drinks",
+    "neighborhood": "West Village",
+    "location": "West Village",
+    "duration_min": 60,
+    "vibe_tags": [
+      "local",
+      "aperitivo",
+      "italian"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Italian aperitivo corner for spritz and snacks."
+  },
+  {
+    "name": "Corner Bistro",
+    "category": "lunch",
+    "neighborhood": "West Village",
+    "location": "West Village",
+    "duration_min": 60,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "burger"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Classic local burger joint with character."
+  },
+  {
+    "name": "Employees Only",
+    "category": "bar",
+    "neighborhood": "West Village",
+    "location": "West Village",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "cocktails",
+      "speakeasy"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Famed speakeasy-style cocktail bar."
+  },
+  {
+    "name": "Café Cluny",
+    "category": "lunch",
+    "neighborhood": "West Village",
+    "location": "West Village",
+    "duration_min": 60,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "bistro"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Chic bistro for salads, omelets, and fries."
+  },
+  {
+    "name": "La Bonbonniere",
+    "category": "breakfast",
+    "neighborhood": "West Village",
+    "location": "West Village",
+    "duration_min": 45,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "diner"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Old-school diner; cash only; great pancakes."
+  },
+  {
+    "name": "Commerce Inn",
+    "category": "dinner",
+    "neighborhood": "West Village",
+    "location": "West Village",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "shaker"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Shaker-inspired fare and serene interior."
+  },
+  {
+    "name": "Hudson Clearwater",
+    "category": "dinner",
+    "neighborhood": "West Village",
+    "location": "West Village",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "date-night"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Hidden-garden vibe and New American plates."
+  },
+  {
+    "name": "Miss Lily’s (GV)",
+    "category": "dinner",
+    "neighborhood": "Greenwich Village",
+    "location": "Greenwich Village",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "caribbean",
+      "scene"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Lively Jamaican spot; great music & drinks."
+  },
+  {
+    "name": "The Dutch (SoHo border)",
+    "category": "dinner",
+    "neighborhood": "SoHo/West Village",
+    "location": "SoHo",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "american"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Upscale American with oysters & pies."
+  },
+  {
+    "name": "Emmett’s on Grove",
+    "category": "dinner",
+    "neighborhood": "West Village",
+    "location": "West Village",
+    "duration_min": 75,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "pizza"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Chicago tavern-style pizza in the Village."
+  },
+  {
+    "name": "Washington Square Park",
+    "category": "park",
+    "neighborhood": "Greenwich Village",
+    "location": "Greenwich Village",
+    "duration_min": 45,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "walk",
+      "people-watching"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "NYU’s unofficial center; iconic arch; street life."
+  },
+  {
+    "name": "Sex & the City House (66 Perry St)",
+    "category": "landmark",
+    "neighborhood": "West Village",
+    "location": "West Village",
+    "duration_min": 15,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "tv",
+      "photo"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Fan-favorite stoop photo stop."
+  },
+  {
+    "name": "Friends Apartment (Bedford & Grove)",
+    "category": "landmark",
+    "neighborhood": "West Village",
+    "location": "West Village",
+    "duration_min": 15,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "tv",
+      "photo"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Exterior from the sitcom; quick pic spot."
+  },
+  {
+    "name": "Blue Note",
+    "category": "show",
+    "neighborhood": "Greenwich Village",
+    "location": "Greenwich Village",
+    "duration_min": 120,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "jazz",
+      "nightlife"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Legendary jazz club; ticketed sets nightly."
+  },
+  {
+    "name": "Birdland (Midtown)",
+    "category": "show",
+    "neighborhood": "Midtown",
+    "location": "Midtown",
+    "duration_min": 120,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "jazz",
+      "nightlife"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Historic jazz venue near the Theater District."
+  },
+  {
+    "name": "Jazz at Lincoln Center",
+    "category": "show",
+    "neighborhood": "Upper West Side",
+    "location": "Upper West Side",
+    "duration_min": 120,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "jazz",
+      "nightlife"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Concerts overlooking Columbus Circle."
+  },
+  {
+    "name": "Bar Goto (LES)",
+    "category": "bar",
+    "neighborhood": "Lower East Side",
+    "location": "Lower East Side",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "cocktails",
+      "japanese"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Elegant Japanese-inspired cocktail bar."
+  },
+  {
+    "name": "Comedy Club Night (Village)",
+    "category": "show",
+    "neighborhood": "Greenwich Village",
+    "location": "Greenwich Village",
+    "duration_min": 120,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "comedy",
+      "nightlife"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Pick a set at Comedy Cellar or nearby clubs."
+  },
+  {
+    "name": "Balthazar",
+    "category": "dinner",
+    "neighborhood": "SoHo",
+    "location": "SoHo",
+    "duration_min": 90,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "french"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Grand brasserie; steak frites and seafood towers."
+  },
+  {
+    "name": "Raoul’s",
+    "category": "dinner",
+    "neighborhood": "SoHo",
+    "location": "SoHo",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "french",
+      "scene"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Old-school bistro; pepper steak favorite."
+  },
+  {
+    "name": "Shmone",
+    "category": "dinner",
+    "neighborhood": "Greenwich Village/NoHo",
+    "location": "NoHo",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "israeli"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Inventive Israeli plates & great wine."
+  },
+  {
+    "name": "Lure Fishbar",
+    "category": "dinner",
+    "neighborhood": "SoHo",
+    "location": "SoHo",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "seafood"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Yacht-like dining room; sushi & raw bar."
+  },
+  {
+    "name": "Locanda Verde (drink at Greenwich Hotel)",
+    "category": "drinks",
+    "neighborhood": "Tribeca",
+    "location": "Tribeca",
+    "duration_min": 75,
+    "vibe_tags": [
+      "local",
+      "hotel-bar",
+      "italian"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Have a cocktail in the Greenwich Hotel’s scene."
+  },
+  {
+    "name": "Blue Ribbon Brasserie (SoHo)",
+    "category": "dinner",
+    "neighborhood": "SoHo",
+    "location": "SoHo",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "late-night"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Late-night classic with oysters and steak."
+  },
+  {
+    "name": "Penny",
+    "category": "dinner",
+    "neighborhood": "Chelsea/SoHo border",
+    "location": "Chelsea",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "vegetable-forward"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Vegetable-forward plates from the Folks behind D&&D."
+  },
+  {
+    "name": "Corima",
+    "category": "dinner",
+    "neighborhood": "Chinatown/SoHo border",
+    "location": "Chinatown",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "foodie",
+      "mexican"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Creative, regional Mexican tasting plates."
+  },
+  {
+    "name": "Maman (SoHo)",
+    "category": "coffee",
+    "neighborhood": "SoHo",
+    "location": "SoHo",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "chill",
+      "bakery"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Cookies & coffee with cottage-core charm."
+  },
+  {
+    "name": "Two Hands (SoHo)",
+    "category": "coffee",
+    "neighborhood": "SoHo",
+    "location": "SoHo",
+    "duration_min": 35,
+    "vibe_tags": [
+      "local",
+      "brunchy",
+      "aussie"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Aussie cafe plates & espresso."
+  },
+  {
+    "name": "Librae Bakery (SoHo)",
+    "category": "snack",
+    "neighborhood": "SoHo",
+    "location": "SoHo",
+    "duration_min": 20,
+    "vibe_tags": [
+      "local",
+      "bakery",
+      "trendy"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Arabian-inspired pastries; weekend lines."
+  },
+  {
+    "name": "La Cabra (SoHo)",
+    "category": "coffee",
+    "neighborhood": "SoHo",
+    "location": "SoHo",
+    "duration_min": 25,
+    "vibe_tags": [
+      "local",
+      "coffee",
+      "bakery"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Nordic coffee roaster with great pastries."
+  },
+  {
+    "name": "Oroboro",
+    "category": "shopping",
+    "neighborhood": "Nolita",
+    "location": "Nolita",
+    "duration_min": 25,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "fashion",
+      "home"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Indie boutique with clothing & objects."
+  },
+  {
+    "name": "Love Adorned (Nolita)",
+    "category": "shopping",
+    "neighborhood": "Nolita",
+    "location": "Nolita",
+    "duration_min": 25,
+    "vibe_tags": [
+      "local",
+      "jewelry",
+      "home"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Jewelry and homewares with a bohemian feel."
+  },
+  {
+    "name": "Dover Street Market (Murray Hill)",
+    "category": "shopping",
+    "neighborhood": "Murray Hill",
+    "location": "Murray Hill",
+    "duration_min": 45,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "fashion",
+      "avant-garde"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Multi-floor high-fashion concept store."
+  },
+  {
+    "name": "Kirna Zabete",
+    "category": "shopping",
+    "neighborhood": "SoHo",
+    "location": "SoHo",
+    "duration_min": 30,
+    "vibe_tags": [
+      "curator",
+      "local",
+      "fashion",
+      "luxury"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Designer boutique with statement pieces."
+  },
+  {
+    "name": "Housing Works Bookstore",
+    "category": "shopping",
+    "neighborhood": "SoHo",
+    "location": "SoHo",
+    "duration_min": 30,
+    "vibe_tags": [
+      "local",
+      "bookstore",
+      "charity"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Cozy used bookstore & cafe for a cause."
+  },
+  {
+    "name": "Donald Judd Foundation (Judd House)",
+    "category": "museum",
+    "neighborhood": "SoHo",
+    "location": "SoHo",
+    "duration_min": 60,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "art",
+      "minimalism"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Artist’s home & studio; advance tickets needed."
+  },
+  {
+    "name": "The Whitney Museum (Meatpacking)",
+    "category": "museum",
+    "neighborhood": "Meatpacking",
+    "location": "Meatpacking",
+    "duration_min": 90,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "art",
+      "american"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Modern/contemporary American art by the High Line."
+  },
+  {
+    "name": "Delmonico’s",
+    "category": "dinner",
+    "neighborhood": "Financial District",
+    "location": "Financial District",
+    "duration_min": 120,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "foodie",
+      "steakhouse"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "Historic steakhouse with old New York swagger."
+  },
+  {
+    "name": "The Dead Rabbit",
+    "category": "bar",
+    "neighborhood": "Financial District",
+    "location": "Financial District",
+    "duration_min": 90,
+    "vibe_tags": [
+      "local",
+      "cocktails",
+      "irish"
+    ],
+    "energy_tags": [
+      "social"
+    ],
+    "description": "World-class cocktails in a multi-level pub."
+  },
+  {
+    "name": "NY Stock Exchange (exterior)",
+    "category": "landmark",
+    "neighborhood": "Financial District",
+    "location": "Financial District",
+    "duration_min": 20,
+    "vibe_tags": [
+      "classic",
+      "finance",
+      "photo"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Quick photo stop by Wall Street."
+  },
+  {
+    "name": "Charging Bull",
+    "category": "landmark",
+    "neighborhood": "Financial District",
+    "location": "Financial District",
+    "duration_min": 15,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "iconic",
+      "photo"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Tourist-favorite sculpture near Bowling Green."
+  },
+  {
+    "name": "9/11 Memorial & Museum",
+    "category": "museum",
+    "neighborhood": "Financial District",
+    "location": "Financial District",
+    "duration_min": 120,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "history",
+      "memorial"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Powerful exhibits; plan for timed entry."
+  },
+  {
+    "name": "Oculus / Westfield World Trade Center",
+    "category": "landmark",
+    "neighborhood": "Financial District",
+    "location": "Financial District",
+    "duration_min": 30,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "architecture",
+      "shopping"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Santiago Calatrava transit hub & shopping."
+  },
+  {
+    "name": "Staten Island Ferry (RT)",
+    "category": "view",
+    "neighborhood": "Battery Park",
+    "location": "Battery Park",
+    "duration_min": 60,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "views",
+      "free"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Free harbor ride for skyline & Statue views."
+  },
+  {
+    "name": "Pier 57 Market & Rooftop Views",
+    "category": "view",
+    "neighborhood": "Chelsea / Hudson River",
+    "location": "Chelsea",
+    "duration_min": 45,
+    "vibe_tags": [
+      "classic",
+      "local",
+      "views",
+      "market"
+    ],
+    "energy_tags": [
+      "chill"
+    ],
+    "description": "Food hall downstairs; park-like rooftop with views."
+  },
+  {
+    "name": "Hudson River Greenway Walk",
+    "category": "walk",
+    "neighborhood": "West Side Highway",
+    "location": "West Side",
+    "duration_min": 60,
+    "vibe_tags": [
+      "classic",
+      "curator",
+      "local",
+      "outdoors",
+      "waterfront"
+    ],
+    "energy_tags": [
+      "active"
+    ],
+    "description": "Scenic path along the Hudson with piers & art."
+  }
 ]

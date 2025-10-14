@@ -17,13 +17,9 @@ export default function Setup() {
   }, []);
 
   const options = [
-    { id:'foodie', label:'Food & Drink', emoji:'🍽️' },
-    { id:'culture', label:'Culture / Museums', emoji:'🖼️' },
-    { id:'outdoors', label:'Outdoors', emoji:'🌿' },
-    { id:'shopping', label:'Shopping', emoji:'🛍️' },
-    { id:'nightlife', label:'Nightlife', emoji:'🎉' },
-    { id:'explore', label:'Explore', emoji:'🗺️' },
-    { id:'chill', label:'Chill', emoji:'🧘' },
+    { id: 'classic', label: 'Classic', emoji: '🏛️' },
+    { id: 'curator', label: 'Curator', emoji: '🖼️' },
+    { id: 'local', label: 'Local', emoji: '🛵' },
   ];
 
   const toggle = (id: string) =>

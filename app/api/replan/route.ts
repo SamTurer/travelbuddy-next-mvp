@@ -10,11 +10,14 @@ const BodySchema = z.object({
   nowTime: z.string().optional(),
   nowLoc: z.object({ lat: z.number(), lon: z.number() }).optional(),
   mood: z.string(), // e.g., "I'm Hungry", "Weather Changed", "Less Walking"
+  pace: z.enum(['chill', 'balanced', 'max']).optional(),
+  vibes: z.array(z.string()).optional(),
+  replaceIndex: z.number().int().nonnegative().optional(),
   currentStops: z.array(z.object({
     time: z.string(),       // may be "HH:MM" or "HH:MM – HH:MM"
     title: z.string(),
     location: z.string(),
-    description: z.string()
+    description: z.string().optional()
   }))
 });
 
@@ -28,6 +31,8 @@ type Place = {
   description?: string;
   location: string;
 };
+
+const MAX_NON_ANCHOR_TRAVEL_MIN = 60;
 
 // ---------- Duration Heuristics (match generate-itinerary) ----------
 const MIN_BY_CATEGORY: Record<string, number> = {
@@ -69,49 +74,124 @@ export async function POST(req: NextRequest) {
   const parsed = BodySchema.safeParse(json);
   if (!parsed.success) return NextResponse.json({ error: 'Invalid body' }, { status: 400 });
 
-  const { city, date, mood, currentStops } = parsed.data;
+  const {
+    city,
+    date,
+    mood,
+    currentStops,
+    pace = 'balanced',
+    vibes = [],
+    replaceIndex,
+  } = parsed.data;
+
+  if (currentStops.length === 0) {
+    return NextResponse.json({ error: 'No stops to adjust' }, { status: 400 });
+  }
 
   const all = places as Place[];
+  const vibeSet = new Set(vibes.map(v => v.toLowerCase()));
 
   // 1) Enrich current stops with seed matches (to recover categories/durations)
   const enriched = currentStops.map(s => {
     const match = all.find(p => p.name.toLowerCase() === s.title.toLowerCase());
     return {
       ...s,
+      description: s.description ?? '',
       _category: match?.category,
       _seedDur: typeof match?.duration_min === 'number' ? match?.duration_min : undefined,
       _seedLoc: match?.location || match?.neighborhood || city
     };
   });
 
-  // 2) Choose which stop to replace (keep it simple: the *next* stop, index 0)
-  const replaceIdx = 0;
+  // 2) Choose which stop to replace (default to first if not supplied)
+  const replaceIdx = Math.min(
+    Math.max(replaceIndex ?? 0, 0),
+    Math.max(enriched.length - 1, 0)
+  );
 
   // 3) Build mood-filtered candidate pool
   const m = mood.toLowerCase();
   let pool = all.slice();
 
+  if (vibes.length && !m.includes('different vibe')) {
+    const aligned = pool.filter(p =>
+      (p.vibe_tags || []).some(tag => vibeSet.has(tag.toLowerCase()))
+    );
+    if (aligned.length) pool = aligned;
+  }
+  if (m.includes('different vibe') && vibes.length) {
+    const alt = pool.filter(p =>
+      !(p.vibe_tags || []).some(tag => vibeSet.has(tag.toLowerCase()))
+    );
+    if (alt.length) pool = alt;
+  }
+
   if (m.includes('hungry')) {
+    const foodCats = new Set([
+      'food', 'restaurant', 'coffee', 'cafe', 'lunch', 'dinner', 'breakfast', 'snack', 'market'
+    ]);
     pool = pool.filter(p => {
       const c = (p.category || '').toLowerCase();
-      return c === 'food' || c === 'restaurant' || c === 'coffee' || c === 'cafe';
+      return foodCats.has(c);
     });
   }
   if (m.includes('weather')) {
     // prefer indoors: exclude obvious outdoors
-    pool = pool.filter(p => (p.category || '').toLowerCase() !== 'outdoors' && (p.category || '').toLowerCase() !== 'park');
+    const outdoorCats = new Set(['outdoors', 'park', 'walk', 'view']);
+    pool = pool.filter(p => !outdoorCats.has((p.category || '').toLowerCase()));
   }
-  if (m.includes('less walking') || m.includes('tired')) {
-    // bias toward closer locations later when we compute schedule (we still keep pool broad)
-    // (Heuristic is applied by travelMinutesBetween between consecutive stops)
+  if (m.includes('tired')) {
+    const restful = pool.filter(p => {
+      const c = (p.category || '').toLowerCase();
+      return ['coffee', 'cafe', 'snack', 'museum', 'gallery', 'bar'].includes(c);
+    });
+    if (restful.length) pool = restful;
   }
 
   // Avoid suggesting the exact same as the one we’re replacing
   const currentTitle = enriched[replaceIdx]?.title;
   pool = pool.filter(p => p.name !== currentTitle);
 
+  if (pool.length === 0) {
+    pool = all.slice();
+  }
+
+  const locationFor = (stop: typeof enriched[number] | null): string | null => {
+    if (!stop) return null;
+    const seed = (stop as any)._seedLoc;
+    if (typeof seed === 'string' && seed.trim()) return seed;
+    if (stop.location && stop.location.trim()) return stop.location;
+    return null;
+  };
+
+  const prevStop = replaceIdx > 0 ? enriched[replaceIdx - 1] : null;
+  const nextStop = replaceIdx + 1 < enriched.length ? enriched[replaceIdx + 1] : null;
+  const prevLoc = locationFor(prevStop);
+  const nextLoc = locationFor(nextStop);
+
+  const travelSafePool = pool.filter(candidate => {
+    const candidateLoc = candidate.location || candidate.neighborhood || city;
+    if (prevLoc) {
+      const travelPrev = travelMinutesBetween(prevLoc, candidateLoc);
+      if (travelPrev > MAX_NON_ANCHOR_TRAVEL_MIN) return false;
+    }
+    if (nextLoc) {
+      const travelNext = travelMinutesBetween(candidateLoc, nextLoc);
+      if (travelNext > MAX_NON_ANCHOR_TRAVEL_MIN) return false;
+    }
+    return true;
+  });
+
+  if (travelSafePool.length === 0) {
+    return NextResponse.json({
+      stops: currentStops,
+      note: `Kept your original stop — nothing nearby fit “${mood}”.`,
+    });
+  }
+
   // Pick a replacement
-  const replacement = pool[Math.floor(Math.random() * pool.length)] || all[0];
+  const replacement = travelSafePool[Math.floor(Math.random() * travelSafePool.length)];
+  const replacementLocation = replacement.location || replacement.neighborhood || city;
 
   // 4) Splice replacement into the list
   const nextList = enriched.map((x, i) =>
@@ -119,11 +199,11 @@ export async function POST(req: NextRequest) {
       ? {
           time: x.time,
           title: replacement.name,
-          location: replacement.location,
-          description: replacement.description || 'Adjusted for your mood',
+          location: replacementLocation,
+          description: replacement.description || `Adjusted for ${mood}`,
           _category: replacement.category,
           _seedDur: typeof replacement.duration_min === 'number' ? replacement.duration_min : undefined,
-          _seedLoc: replacement.location || replacement.neighborhood || city
+          _seedLoc: replacementLocation
         }
       : x
   );
@@ -133,7 +213,7 @@ export async function POST(req: NextRequest) {
   const recomputed = nextList.map((p, idx) => {
     const seedDur = typeof (p as any)._seedDur === 'number' ? (p as any)._seedDur : undefined;
     const cat = (p as any)._category as string | undefined;
-    const dur = Math.max(seedDur ?? 0, minFor(cat, 'balanced')); // replan default to 'balanced' pace
+    const dur = Math.max(seedDur ?? 0, minFor(cat, pace));
     const start = new Date(current.getTime());
     const end   = new Date(start.getTime() + dur * 60_000);
 
@@ -150,11 +230,11 @@ export async function POST(req: NextRequest) {
     return {
       time: `${fmtTime(start)} – ${fmtTime(end)}`,
       title: p.title,
-      location: p.location,
+      location: p.location || city,
       description: p.description
     };
   });
 
-  const polished = await formatTimelineWithLLM(recomputed, { city, vibes: [], pace: 'balanced' });
+  const polished = await formatTimelineWithLLM(recomputed, { city, vibes, pace });
   return NextResponse.json({ stops: polished, note: `Adjusted for mood: ${mood}` });
 }
