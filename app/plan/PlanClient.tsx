@@ -91,6 +91,23 @@ export default function PlanClient() {
     return { city, date, vibes, pace: normalizedPace, locks };
   }, [searchParams, draft, draftReady]);
 
+  const mustDoSummaries = useMemo(() => {
+    if (!payload) return [];
+    return (payload.locks ?? []).map((lock) => {
+      if (typeof lock === 'string') {
+        return lock;
+      }
+      if (lock && typeof lock === 'object') {
+        const title = typeof (lock as any).title === 'string' ? (lock as any).title : null;
+        const time = typeof (lock as any).time === 'string' ? (lock as any).time : null;
+        const location = typeof (lock as any).location === 'string' ? (lock as any).location : null;
+        const parts = [title, time, location].filter(Boolean);
+        return (parts.length ? parts.join(' • ') : title) || 'Must-do';
+      }
+      return 'Must-do';
+    }).filter(Boolean) as string[];
+  }, [payload]);
+
   const buildMapsUrl = (stop: PlanStop) => {
     if (stop.url && /google\.(com|[a-z]{2,})\/maps/i.test(stop.url)) return stop.url;
     const querySource = `${stop.title} ${stop.location ?? ''}`.trim();
@@ -216,33 +233,68 @@ export default function PlanClient() {
 
   return (
     <div className="mx-auto max-w-2xl px-6 pb-12 pt-8 space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="text-sm text-slate-500">
-          <span className="font-semibold text-slate-700">
-            {payload?.city ?? 'Your itinerary'}
-          </span>
-          {payload?.vibes?.length ? (
-            <span className="ml-2">
-              {payload.vibes.join(', ')}
-            </span>
-          ) : null}
-          {payload?.pace ? (
-            <span className="ml-2 capitalize">Pace: {payload.pace}</span>
-          ) : null}
+      {payload && (
+        <div className="flex flex-wrap items-start justify-between gap-3 rounded-xl border border-slate-200 bg-white/80 p-4 shadow-sm">
+          <details className="w-full max-w-md text-sm text-slate-600">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg border border-transparent px-2 py-1 text-xs font-semibold uppercase tracking-wide text-slate-500 transition hover:border-slate-200 hover:bg-slate-50">
+              <span>Plan inputs</span>
+              <span className="text-[11px] font-medium text-slate-400">
+                {payload.city} • {payload.date}
+              </span>
+            </summary>
+            <div className="mt-3 space-y-3 rounded-lg border border-slate-100 bg-white px-3 py-3">
+              {payload.vibes.length > 0 && (
+                <div>
+                  <div className="text-[11px] uppercase tracking-wide text-slate-500">Vibes</div>
+                  <div className="mt-1 flex flex-wrap gap-2">
+                    {payload.vibes.map((vibe) => (
+                      <span
+                        key={vibe}
+                        className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700"
+                      >
+                        {vibe.charAt(0).toUpperCase() + vibe.slice(1)}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <div>
+                <div className="text-[11px] uppercase tracking-wide text-slate-500">Pace</div>
+                <div className="mt-1 text-sm font-medium capitalize text-slate-700">
+                  {payload.pace}
+                </div>
+              </div>
+              <div>
+                <div className="text-[11px] uppercase tracking-wide text-slate-500">Must-dos</div>
+                {mustDoSummaries.length > 0 ? (
+                  <ul className="mt-1 space-y-1 text-sm">
+                    {mustDoSummaries.map((item, idx) => (
+                      <li key={`${item}-${idx}`} className="flex items-start gap-2 text-slate-600">
+                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-slate-300" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-1 text-sm text-slate-500">None added yet.</p>
+                )}
+              </div>
+            </div>
+          </details>
+          <button
+            type="button"
+            onClick={handleReplanDay}
+            disabled={isDayButtonDisabled}
+            className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
+              isDayButtonDisabled
+                ? 'cursor-not-allowed border border-slate-200 bg-slate-100 text-slate-400'
+                : 'border border-slate-800 text-slate-800 hover:bg-slate-900 hover:text-white'
+            }`}
+          >
+            {replanButtonLabel}
+          </button>
         </div>
-        <button
-          type="button"
-          onClick={handleReplanDay}
-          disabled={isDayButtonDisabled}
-          className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
-            isDayButtonDisabled
-              ? 'cursor-not-allowed border border-slate-200 bg-slate-100 text-slate-400'
-              : 'border border-slate-800 text-slate-800 hover:bg-slate-900 hover:text-white'
-          }`}
-        >
-          {replanButtonLabel}
-        </button>
-      </div>
+      )}
 
       {infoMessage && (
         <div className="rounded-lg border border-blue-100 bg-blue-50/80 px-4 py-2 text-sm text-blue-700 shadow-sm">

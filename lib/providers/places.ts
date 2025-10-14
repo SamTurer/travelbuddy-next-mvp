@@ -42,21 +42,21 @@ const DEFAULT_DURATIONS: Record<string, number> = {
 };
 
 const STATIC_PLACES_NYC: ProviderPlace[] = [
-  { name: 'Central Park Ramble', category: 'park', neighborhood: 'Central Park', duration_min: 60, description: 'Wooded paths and birding in the Ramble.', url: 'https://www.centralparknyc.org/' , vibe_tags: ['classic','local','nature','chill'] },
-  { name: 'The High Line', category: 'walk', neighborhood: 'Chelsea', duration_min: 60, description: 'Elevated park with art and views.', url: 'https://www.thehighline.org/', vibe_tags: ['classic','curator','local','nature','artsy'] },
-  { name: 'Brooklyn Heights Promenade', category: 'walk', neighborhood: 'Brooklyn Heights', duration_min: 45, description: 'Classic skyline views over Lower Manhattan.', vibe_tags: ['classic','local','nature','view'] },
-  { name: 'Washington Square Park', category: 'park', neighborhood: 'Greenwich Village', duration_min: 45, description: 'Arch, buskers, chess tables.', vibe_tags: ['classic','local','nature','historic'] },
-  { name: 'Bryant Park', category: 'park', neighborhood: 'Midtown', duration_min: 45, description: 'Green lawn, reading room, seasonal events.', vibe_tags: ['classic','local','nature'] },
-  { name: 'Riverside Park (Upper West)', category: 'walk', neighborhood: 'Upper West Side', duration_min: 60, description: 'Hudson River path and gardens.', vibe_tags: ['classic','local','nature'] },
-  { name: 'The Met (Metropolitan Museum of Art)', category: 'museum', neighborhood: 'Upper East Side', duration_min: 90, description: 'World-class art collection.', url: 'https://www.metmuseum.org/', vibe_tags: ['classic','curator','historic'] },
+  { name: 'Central Park Ramble', category: 'park', neighborhood: 'Central Park', duration_min: 60, description: 'Wooded paths and birding in the Ramble.', url: 'https://www.centralparknyc.org/' , vibe_tags: ['classic','local'] },
+  { name: 'The High Line', category: 'walk', neighborhood: 'Chelsea', duration_min: 60, description: 'Elevated park with art and views.', url: 'https://www.thehighline.org/', vibe_tags: ['classic','curator','local'] },
+  { name: 'Brooklyn Heights Promenade', category: 'walk', neighborhood: 'Brooklyn Heights', duration_min: 45, description: 'Classic skyline views over Lower Manhattan.', vibe_tags: ['classic','local'] },
+  { name: 'Washington Square Park', category: 'park', neighborhood: 'Greenwich Village', duration_min: 45, description: 'Arch, buskers, chess tables.', vibe_tags: ['classic','local'] },
+  { name: 'Bryant Park', category: 'park', neighborhood: 'Midtown', duration_min: 45, description: 'Green lawn, reading room, seasonal events.', vibe_tags: ['classic','local'] },
+  { name: 'Riverside Park (Upper West)', category: 'walk', neighborhood: 'Upper West Side', duration_min: 60, description: 'Hudson River path and gardens.', vibe_tags: ['classic','local'] },
+  { name: 'The Met (Metropolitan Museum of Art)', category: 'museum', neighborhood: 'Upper East Side', duration_min: 90, description: 'World-class art collection.', url: 'https://www.metmuseum.org/', vibe_tags: ['classic','curator'] },
   { name: 'MoMA', category: 'museum', neighborhood: 'Midtown', duration_min: 90, description: 'Modern and contemporary art highlights.', url: 'https://www.moma.org/', vibe_tags: ['classic','curator'] },
-  { name: 'The Cloisters', category: 'museum', neighborhood: 'Fort Tryon', duration_min: 90, description: 'Medieval art in a tranquil setting.', url: 'https://www.metmuseum.org/visit/plan-your-visit/met-cloisters', vibe_tags: ['classic','curator','local','historic','nature'] },
-  { name: 'Staten Island Ferry (Free Ride)', category: 'view', neighborhood: 'Financial District', duration_min: 60, description: 'Harbor views & Statue of Liberty (free).', url: 'https://www.siferry.com/', vibe_tags: ['classic','local','view','nature'] },
-  { name: 'Grand Central Terminal', category: 'landmark', neighborhood: 'Midtown', duration_min: 40, description: 'Historic landmark with celestial ceiling.', vibe_tags: ['classic','curator','historic'] },
-  { name: 'New York Public Library – Main Branch', category: 'landmark', neighborhood: 'Midtown', duration_min: 40, description: 'Beaux-Arts icon (Rose Main Reading Room).', vibe_tags: ['classic','curator','historic'] },
-  { name: 'Tenement Museum (Exterior/Neighborhood Walk)', category: 'walk', neighborhood: 'Lower East Side', duration_min: 60, description: 'Historic LES streets; museum tours by ticket.', url: 'https://www.tenement.org/', vibe_tags: ['classic','curator','local','historic'] },
-  { name: 'Domino Park', category: 'park', neighborhood: 'Williamsburg', duration_min: 60, description: 'Waterfront park with skyline views.', vibe_tags: ['classic','local','nature','view'] },
-  { name: 'Brooklyn Bridge Park – Piers 1–3', category: 'park', neighborhood: 'DUMBO', duration_min: 60, description: 'Green space + waterfront views.', vibe_tags: ['classic','local','nature','view'] },
+  { name: 'The Cloisters', category: 'museum', neighborhood: 'Fort Tryon', duration_min: 90, description: 'Medieval art in a tranquil setting.', url: 'https://www.metmuseum.org/visit/plan-your-visit/met-cloisters', vibe_tags: ['classic','curator','local'] },
+  { name: 'Staten Island Ferry (Free Ride)', category: 'view', neighborhood: 'Financial District', duration_min: 60, description: 'Harbor views & Statue of Liberty (free).', url: 'https://www.siferry.com/', vibe_tags: ['classic','local'] },
+  { name: 'Grand Central Terminal', category: 'landmark', neighborhood: 'Midtown', duration_min: 40, description: 'Historic landmark with celestial ceiling.', vibe_tags: ['classic','curator'] },
+  { name: 'New York Public Library – Main Branch', category: 'landmark', neighborhood: 'Midtown', duration_min: 40, description: 'Beaux-Arts icon (Rose Main Reading Room).', vibe_tags: ['classic','curator'] },
+  { name: 'Tenement Museum (Exterior/Neighborhood Walk)', category: 'walk', neighborhood: 'Lower East Side', duration_min: 60, description: 'Historic LES streets; museum tours by ticket.', url: 'https://www.tenement.org/', vibe_tags: ['classic','curator','local'] },
+  { name: 'Domino Park', category: 'park', neighborhood: 'Williamsburg', duration_min: 60, description: 'Waterfront park with skyline views.', vibe_tags: ['classic','local'] },
+  { name: 'Brooklyn Bridge Park – Piers 1–3', category: 'park', neighborhood: 'DUMBO', duration_min: 60, description: 'Green space + waterfront views.', vibe_tags: ['classic','local'] },
 ];
 
 function normName(s: string): string {

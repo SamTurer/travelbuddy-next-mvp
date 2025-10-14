@@ -152,14 +152,16 @@ const MINUTES_IN_DAY = 24 * 60;
 const MINUTES_IN_WEEK = MINUTES_IN_DAY * 7;
 const PACE_ACTIVITY_RANGE: Record<Pace, { min: number; max?: number }> = {
   chill: { min: 3, max: 5 },
-  balanced: { min: 5, max: 7 },
-  max: { min: 7 }
+  balanced: { min: 5, max: 8 },
+  max: { min: 8 }
 };
 const MAX_AREA_VISITS = 3;
 const MAX_AREA_RUN = 2;
 const AREA_BOUNCE_PENALTY = 28;
 const TRAVEL_WEIGHT = 0.9;
 const MAX_NON_ANCHOR_TRAVEL_MIN = 60;
+const MAX_ANCHOR_TRAVEL_MIN = 120;
+const MIN_FLEX_BLOCK_MIN = 30;
 
 
 const VIBE_CATEGORY_WEIGHTS: Record<string, Partial<Record<string, number>>> = {
@@ -393,6 +395,43 @@ function normalizeLocks(raw?: Array<string | LockObj>): LockObj[] {
 }
 function normName(s: string): string {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+function dedupePlaces(list: Place[]): Place[] {
+  const seen = new Set<string>();
+  const out: Place[] = [];
+  for (const item of list) {
+    const key = normName(item.name || '');
+    if (!key) continue;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+  }
+  return out;
+}
+function providerToPlace(p: {
+  name: string;
+  category?: string;
+  neighborhood?: string;
+  location?: string;
+  duration_min?: number;
+  description?: string;
+  url?: string;
+  vibe_tags?: string[];
+  energy_tags?: string[];
+  hours?: PlaceHours;
+}): Place {
+  return {
+    name: p.name,
+    category: p.category || 'walk',
+    neighborhood: p.neighborhood || p.location,
+    location: p.location || p.neighborhood,
+    duration_min: typeof p.duration_min === 'number' ? p.duration_min : undefined,
+    description: p.description,
+    url: p.url,
+    vibe_tags: p.vibe_tags,
+    energy_tags: p.energy_tags,
+    hours: p.hours,
+  };
 }
 function areaKeyFromString(raw?: string | null): string | null {
   if (!raw) return null;
@@ -817,13 +856,16 @@ async function enrichMissingHoursFor(
 ============================ */
 
 export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]> {
+  const paceRange = PACE_ACTIVITY_RANGE[inputs.pace];
+  const maxStops = paceRange.max ?? Number.POSITIVE_INFINITY;
+
   const { city, date, vibes, pace } = inputs;
   const locks = normalizeLocks(inputs.locks);
   const skipLunch = shouldSkipLunch(locks);
   const cityAreaKey = areaKeyFromString(city);
   const anchorAreaKeys = new Set<string>();
 
-  // Candidate pool by vibes (fallback to all)
+  // Candidate pool by vibes (deduped; fallback to all)
   let candidates = dataset;
   if (vibes?.length) {
     candidates = dataset.filter(
@@ -833,6 +875,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
     );
     if (candidates.length === 0) candidates = dataset;
   }
+  candidates = dedupePlaces(candidates);
 
   // Build anchors from locks
   const anchors: Scheduled[] = locks.map((l) => {
@@ -1068,6 +1111,185 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       category: 'walk',
       duration: pace === 'max' ? 45 : 60,
     };
+  }
+
+  function removeFromSuggestionStream(place: Place) {
+    const key = normName(place.name);
+    suggestionStream = suggestionStream.filter(p => normName(p.name) !== key);
+  }
+
+  async function ensureExtraCandidates(areaHint?: string) {
+    try {
+      const extra = await fetchExtraPlaces({
+        city,
+        vibes,
+        neighborhoodsHint: areaHint || preferredArea,
+        excludeNames: Array.from(anchorNameKeys),
+        wantCategories: ['park','walk','view','landmark','museum','gallery','market','coffee','shopping'],
+        limit: 8,
+      });
+      if (Array.isArray(extra) && extra.length) {
+        const converted = extra.map(providerToPlace);
+        suggestionStream = dedupePlaces([...suggestionStream, ...converted]);
+      }
+    } catch {
+      // ignore fetch failures
+    }
+  }
+
+  function tryGapPool(
+    pool: Place[],
+    prev: Scheduled,
+    next: Scheduled | null,
+    gapMinutes: number
+  ): { scheduled: Scheduled; place: Place; score: number } | null {
+    let best: { scheduled: Scheduled; place: Place; score: number } | null = null;
+    for (const place of pool) {
+      const placeLoc = place.location || place.neighborhood || city;
+      const travelIn = minutesTravel(prev.location || city, placeLoc);
+      if (!travelWithinLimit(travelIn, !!prev.isAnchor)) continue;
+      const travelOut = next ? minutesTravel(placeLoc, next.location || city) : 0;
+      if (!travelWithinLimit(travelOut, !!next?.isAnchor)) continue;
+
+      const available = gapMinutes - travelIn - travelOut;
+      if (available < MIN_FLEX_BLOCK_MIN) continue;
+
+      const baseDur = Math.max(
+        minFor(place.category, pace),
+        typeof place.duration_min === 'number' ? place.duration_min : MIN_FLEX_BLOCK_MIN
+      );
+      let duration = Math.min(baseDur, available);
+      if (duration < MIN_FLEX_BLOCK_MIN) continue;
+
+      const startMin = prev.endMin + travelIn;
+      const endMin = startMin + duration;
+      if (next && endMin + travelOut > next.startMin) continue;
+      if (!next && endMin > DAY_END_MIN) continue;
+
+      const leftover = gapMinutes - (travelIn + duration + travelOut);
+      if (leftover < 0) continue;
+
+      const scheduled: Scheduled = {
+        title: place.name,
+        location: placeLoc,
+        description: place.description ?? 'Worth a stop nearby.',
+        category: place.category || 'walk',
+        startMin,
+        endMin,
+        url: place.url,
+        travelMinFromPrev: travelIn,
+        travelModeFromPrev: recommendedTravelMode(travelIn),
+      };
+
+      const score = travelIn * 1.4 + travelOut * 1.2 + leftover * 0.8;
+      if (!best || score < best.score) {
+        best = { scheduled, place, score };
+      }
+    }
+    return best;
+  }
+
+  async function chooseGapActivity(
+    prev: Scheduled,
+    next: Scheduled | null,
+    gapMinutes: number
+  ): Promise<Scheduled | null> {
+    const attempt = (): { scheduled: Scheduled; place: Place } | null => {
+      const pick = tryGapPool(suggestionStream, prev, next, gapMinutes);
+      return pick ? { scheduled: pick.scheduled, place: pick.place } : null;
+    };
+
+    let selection = attempt();
+    if (!selection) {
+      const hint = prev.location || next?.location || preferredArea || city;
+      await ensureExtraCandidates(hint);
+      selection = attempt();
+    }
+    if (!selection) return null;
+
+    const key = normName(selection.place.name);
+    usedNameKeys.add(key);
+    removeFromSuggestionStream(selection.place);
+
+    const catKey = (selection.scheduled.category || 'misc').toLowerCase();
+    categoryCounts.set(catKey, 1 + (categoryCounts.get(catKey) || 0));
+    const cuisineKey = cuisineKeyFromPlace(selection.place);
+    if (cuisineKey) cuisineCounts.set(cuisineKey, 1 + (cuisineCounts.get(cuisineKey) || 0));
+
+    return selection.scheduled;
+  }
+
+  async function fillGapsWithActivities(): Promise<void> {
+    if (!scheduled.length) return;
+
+    const considerStartGap = async () => {
+      if (scheduled.length >= maxStops) return;
+      const first = scheduled[0];
+      if (!first) return;
+      const gap = first.startMin - DAY_START_MIN;
+      if (gap < MIN_FLEX_BLOCK_MIN) return;
+      const virtualPrev: Scheduled = {
+        title: 'START_OF_DAY',
+        location: first.location || preferredArea || city,
+        description: 'Day start',
+        category: 'start',
+        startMin: DAY_START_MIN,
+        endMin: DAY_START_MIN,
+        url: undefined,
+        travelMinFromPrev: 0,
+        travelModeFromPrev: 'walk',
+      };
+      const filler = await chooseGapActivity(virtualPrev, first, gap);
+      if (filler) {
+        scheduled.unshift(filler);
+      }
+    };
+
+    const considerEndGap = async () => {
+      const last = scheduled[scheduled.length - 1];
+      if (!last) return;
+      const gap = DAY_END_MIN - last.endMin;
+      if (gap < MIN_FLEX_BLOCK_MIN) return;
+      if (scheduled.length >= maxStops) return;
+      const virtualNext: Scheduled = {
+        title: 'END_OF_DAY',
+        location: last.location || city,
+        description: 'Day wrap',
+        category: 'wrap',
+        startMin: DAY_END_MIN,
+        endMin: DAY_END_MIN,
+        url: undefined,
+        travelMinFromPrev: 0,
+        travelModeFromPrev: 'walk',
+      };
+      const filler = await chooseGapActivity(last, virtualNext, gap);
+      if (filler) {
+        scheduled.push(filler);
+      }
+    };
+
+    await considerStartGap();
+
+    let iterations = 0;
+    let updated = true;
+    while (updated && iterations < 6) {
+      updated = false;
+      iterations += 1;
+      for (let i = 0; i < scheduled.length - 1; i++) {
+        if (scheduled.length >= maxStops) break;
+
+        const current = scheduled[i];
+        const next = scheduled[i + 1];
+        const gap = next.startMin - current.endMin;
+        if (gap < MIN_FLEX_BLOCK_MIN) continue;
+        const filler = await chooseGapActivity(current, next, gap);
+        if (!filler) continue;
+        scheduled.splice(i + 1, 0, filler);
+        updated = true;
+      }
+    }
+
+    await considerEndGap();
   }
 
   // Bring in extra places from provider (LLM/static/web)
@@ -1496,6 +1718,7 @@ type Gap = {
   }
 
   function insertFillerStop(gap: Gap): boolean {
+    if (scheduled.length >= maxStops) return false;
     const window = gap.endMin - gap.startMin;
     if (window < minBlock) return false;
     const baseLoc = gap.location || city;
@@ -1527,8 +1750,9 @@ type Gap = {
 
   function ensureMinimumStops() {
     const minStops = Math.max(PACE_ACTIVITY_RANGE[pace].min, anchors.length);
+    if (scheduled.length >= maxStops) return;
     let guard = 12;
-    while (scheduled.length < minStops && guard-- > 0) {
+    while (scheduled.length < minStops && scheduled.length < maxStops && guard-- > 0) {
       const gap = findLargestGap(DAY_START_MIN, DAY_END_MIN);
       if (!gap) break;
       if (!insertFillerStop(gap)) break;
@@ -1539,6 +1763,7 @@ type Gap = {
     scheduled.sort((a, b) => a.startMin - b.startMin);
     if (!scheduled.length) return;
     if (scheduled[0].startMin > DAY_START_MIN) {
+      if (scheduled.length >= maxStops) return;
       const gap: Gap = {
         index: 0,
         startMin: DAY_START_MIN,
@@ -1551,6 +1776,7 @@ type Gap = {
     scheduled.sort((a, b) => a.startMin - b.startMin);
     const last = scheduled[scheduled.length - 1];
     if (last && last.endMin < FIVE_PM_MIN) {
+      if (scheduled.length >= maxStops) return;
       const endMin = Math.min(DAY_END_MIN, Math.max(FIVE_PM_MIN, last.endMin + minBlock));
       if (endMin - last.endMin >= minBlock) {
         const gap: Gap = {
@@ -2012,28 +2238,39 @@ type Gap = {
   rebuildTrackingState();
   ensureLunchStop();
   scheduled.sort((a, b) => a.startMin - b.startMin);
+  await fillGapsWithActivities();
+  scheduled.sort((a, b) => a.startMin - b.startMin);
+  rebuildTrackingState();
   recomputeTravelMetadata(scheduled, city);
 
   const finalStops: PlanStop[] = [];
   let previous: Scheduled | null = null;
   for (const p of scheduled) {
     if (previous) {
-      const travelMin = p.travelMinFromPrev ?? minutesTravel(previous.location || city, p.location || city);
-      if (travelMin > 0) {
-        const travelMode = recommendedTravelMode(travelMin);
+      const rawGap = Math.max(0, p.startMin - previous.endMin);
+      let travelMin = p.travelMinFromPrev ?? minutesTravel(previous.location || city, p.location || city);
+      const travelLimit = (previous.isAnchor || p.isAnchor) ? MAX_ANCHOR_TRAVEL_MIN : MAX_NON_ANCHOR_TRAVEL_MIN;
+      travelMin = Math.min(Math.max(0, travelMin), travelLimit);
+      const actualTravel = Math.min(travelMin, rawGap || travelMin);
+      const slack = Math.max(0, rawGap - actualTravel);
+
+      if (actualTravel > 0) {
+        const travelMode = recommendedTravelMode(actualTravel);
         const travelEmoji = travelMode === 'walk' ? '🚶‍♂️' : '🚇';
         finalStops.push({
           time: '',
           title: 'TRANSIT_NOTE',
           location: '',
-          description: `${travelEmoji} ${Math.max(1, Math.round(travelMin))} min ${travelMode === 'walk' ? 'walk' : 'transit'} to next stop`,
+          description: `${travelEmoji} ${Math.max(1, Math.round(actualTravel))} min ${travelMode === 'walk' ? 'walk' : 'transit'} to next stop`,
         });
       }
+
+      // Any remaining slack should already be filled earlier in the pipeline.
     }
 
     const start = new Date(minutesOf(date, p.startMin));
     const end = new Date(minutesOf(date, p.endMin));
-    const locationLabel = resolveDisplayLocation(p.location, city);
+    const locationLabel = resolveDisplayLocation(p.location, city, previous?.location);
     const url = ensureGoogleMapsUrl(p.url, locationLabel, p.title);
 
     finalStops.push({
@@ -2165,7 +2402,7 @@ function pickNextSuggestion(
       if (desiredCat === 'dinner' && start < 17 * 60) {
         continue;
       }
-      if (desiredCat === 'bar' && start < 16 * 60) {
+      if ((desiredCat === 'bar' || desiredCat === 'drinks') && start < 16 * 60) {
         continue;
       }
 
