@@ -423,10 +423,10 @@
     "url": "https://www.google.com/maps?q=American+Museum+of+Natural+History+upper+west+side+NYC"
   },
   {
-    "name": "Bike up to The Cloisters",
+    "name": "The Cloisters",
     "category": "scenic ride",
     "neighborhood": "Upper West Side",
-    "duration_min": 60,
+    "duration_min": 180,
     "vibe_tags": [
       "scenic-ride",
       "culture",
@@ -437,7 +437,7 @@
       "relaxed",
       "cultural"
     ],
-    "description": "Riverside path ending at a medieval fortress of the Met; Hudson winds, quiet paths, and peace.",
+    "description": "Riverside path ending at a medieval fortress of the Met; Hudson winds, quiet paths, and peace. Try biking there.",
     "location": "Upper West Side",
     "url": "https://www.google.com/maps?q=Bike+up+to+The+Cloisters+upper+west+side+NYC"
   },
@@ -445,7 +445,7 @@
     "name": "Bronx Zoo",
     "category": "family",
     "neighborhood": "Upper West Side",
-    "duration_min": 60,
+    "duration_min": 180,
     "vibe_tags": [
       "family",
       "animals",
@@ -494,7 +494,7 @@
       "peaceful",
       "contemplative"
     ],
-    "description": "A scenic stretch that blends New York's layers of history, culture, and renewal—all against the Hudson River backdrop.",
+    "description": "A scenic stretch that blends New York's layers of history, culture, and renewal—all against the Hudson River backdrop. Start or stop around 72nd up to the Joan of Arc statue. Pop by the You've Got Mail corner on 90th and Riverside.",
     "location": "Upper West Side",
     "url": "https://www.google.com/maps?q=Memorials+along+West+Side+Highway+upper+west+side+NYC"
   },
@@ -502,7 +502,7 @@
     "name": "Riverside Park - \"You've Got Mail\" corner",
     "category": "park",
     "neighborhood": "Upper West Side",
-    "duration_min": 60,
+    "duration_min": 30,
     "vibe_tags": [
       "park",
       "movie-spot",
