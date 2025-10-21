@@ -19,7 +19,7 @@
 //   - lib/providers/hours.ts (Google Places lookups; optional but recommended)
 
 import { formatTimelineWithLLM } from '@/lib/llm';
-import { travelMinutesBetween } from '@/lib/geo';
+import { travelMinutesBetween, accurateTravelMinutesBetween } from '@/lib/geo';
 import type { Stop as PlanStop } from '@/lib/types';
 import { fetchExtraPlaces } from '@/lib/providers/places';
 import { verifyPlaceHoursByName, resolveBestBranchForChain } from '@/lib/providers/hours';
@@ -36,11 +36,14 @@ export type Place = {
   category?: string;
   neighborhood?: string;
   duration_min?: number;
+  duration_max?: number;
   vibe_tags?: string[];
   energy_tags?: string[];
   description?: string;
   location?: string;
   url?: string;
+  lat?: number;
+  lng?: number;
   // Optional verified hours (from provider or enrichment)
   hours?: PlaceHours;
 };
@@ -75,6 +78,8 @@ type Scheduled = {
   url?: string;
   travelMinFromPrev?: number;
   travelModeFromPrev?: 'walk' | 'transit';
+  lat?: number;
+  lng?: number;
 };
 
 type CandidateStop = {
@@ -85,18 +90,20 @@ type CandidateStop = {
   duration: number;
   url?: string;
   sourcePlaceName?: string;
+  lat?: number;
+  lng?: number;
 };
 
 /* ============================
    Day/time constants
 ============================ */
 
-const BREAKFAST_EARLIEST_MIN = 7 * 60;
+const BREAKFAST_EARLIEST_MIN = 9 * 60;
 const BREAKFAST_LATEST_MIN   = 10 * 60;
 const BRUNCH_START_MIN       = 11 * 60;
 const BRUNCH_END_MIN         = 13 * 60;
-const LUNCH_START_MIN        = 11 * 60;
-const LUNCH_WINDOW_END       = 13 * 60;
+const LUNCH_START_MIN        = 11 * 60 + 30;
+const LUNCH_WINDOW_END       = 14 * 60;
 const DINNER_START_MIN       = 18 * 60;
 const AFTERNOON_START_MIN    = 13 * 60;
 const AFTERNOON_END_MIN      = 17 * 60;
@@ -171,8 +178,8 @@ const TRAVEL_WEIGHT = 0.9;
 const MAX_NON_ANCHOR_TRAVEL_MIN = 60;
 const MAX_ANCHOR_TRAVEL_MIN = 120;
 const MIN_FLEX_BLOCK_MIN = 20;
-const NEIGHBORHOOD_LOCK_RUN = 5;
 const LARGE_GAP_MIN = 75;
+const NEIGHBORHOOD_LOCK_RUN = 5;
 
 const BAR_CATEGORIES = new Set<string>(['bar','drinks','cocktails','wine bar','speakeasy','tavern','rooftop']);
 const MEAL_CATEGORY_BASE = new Set<string>([
@@ -474,6 +481,8 @@ function providerToPlace(p: {
   vibe_tags?: string[];
   energy_tags?: string[];
   hours?: PlaceHours;
+  lat?: number;
+  lng?: number;
 }): Place {
   return {
     name: p.name,
@@ -486,6 +495,8 @@ function providerToPlace(p: {
     vibe_tags: p.vibe_tags,
     energy_tags: p.energy_tags,
     hours: p.hours,
+    lat: typeof p.lat === 'number' ? p.lat : undefined,
+    lng: typeof p.lng === 'number' ? p.lng : undefined,
   };
 }
 function areaKeyFromString(raw?: string | null): string | null {
@@ -560,6 +571,7 @@ function plannedDurationMinutes(place: Place, category: string, pace: Pace): num
   const desired = (category || place.category || '').toLowerCase();
   const dataset = typeof place.duration_min === 'number' ? place.duration_min : undefined;
   const override = CATEGORY_DURATION_OVERRIDE[desired] ?? CATEGORY_DURATION_OVERRIDE[(place.category || '').toLowerCase()] ?? null;
+  const datasetMax = typeof place.duration_max === 'number' ? place.duration_max : null;
   const baseDur = (() => {
     if (dataset != null) return dataset;
     if (override != null) return override;
@@ -568,6 +580,8 @@ function plannedDurationMinutes(place: Place, category: string, pace: Pace): num
   const multiplier = durationMultiplierFor(pace, desired);
   let target = Math.round(baseDur * multiplier);
   const minimum = minFor(desired || place.category, pace);
+  if (datasetMax != null) target = Math.min(target, datasetMax);
+  if (override != null) target = Math.min(target, override);
   target = Math.max(target, minimum, MIN_FLEX_BLOCK_MIN);
   return target;
 }
@@ -935,6 +949,10 @@ async function enrichMissingHoursFor(
             if (!p.location && (best.address || best.neighborhood)) {
               p.location = best.address || best.neighborhood;
             }
+            if (best.lat != null && best.lng != null) {
+              p.lat = best.lat;
+              p.lng = best.lng;
+            }
           }
         } catch {}
       }
@@ -956,6 +974,10 @@ async function enrichMissingHoursFor(
             if (!p.neighborhood && bestBranch.neighborhood) p.neighborhood = bestBranch.neighborhood;
             if ((!p.location || isGenericArea(p.location)) && (bestBranch.address || bestBranch.neighborhood)) {
               p.location = bestBranch.address || bestBranch.neighborhood;
+            }
+            if (bestBranch.lat != null && bestBranch.lng != null) {
+              p.lat = bestBranch.lat;
+              p.lng = bestBranch.lng;
             }
           }
         } catch {
@@ -999,6 +1021,17 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
 
   function registerStop(stop: Scheduled, sourcePlace?: Place) {
     markMealScheduled(stop.category);
+    if (sourcePlace) {
+      if (stop.lat == null && typeof sourcePlace.lat === 'number') stop.lat = sourcePlace.lat;
+      if (stop.lng == null && typeof sourcePlace.lng === 'number') stop.lng = sourcePlace.lng;
+    }
+    if ((stop.lat == null || stop.lng == null)) {
+      const datasetSource = placeByName.get(normName(stop.title));
+      if (datasetSource) {
+        if (stop.lat == null && typeof datasetSource.lat === 'number') stop.lat = datasetSource.lat;
+        if (stop.lng == null && typeof datasetSource.lng === 'number') stop.lng = datasetSource.lng;
+      }
+    }
     registerAreaForStop(stop);
     const areaKey = areaKeyFromStop(stop);
     if (areaKey) {
@@ -1072,6 +1105,8 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       endMin: startMin + duration,
       isAnchor: true,
       url,
+      lat: match?.lat,
+      lng: match?.lng,
     };
   });
 
@@ -1082,6 +1117,9 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
   anchors.sort((a, b) => a.startMin - b.startMin);
 
   const hasDinnerAnchor = anchors.some(a => (a.category || '').toLowerCase() === 'dinner');
+
+  const earliestAnchorStart = anchors.length ? Math.min(...anchors.map(a => a.startMin)) : Number.POSITIVE_INFINITY;
+  const dayStartMin = earliestAnchorStart < DAY_START_MIN ? earliestAnchorStart : DAY_START_MIN;
 
   // Fuzzy names to avoid dupes with anchors
   const anchorNameKeys = new Set<string>();
@@ -1104,8 +1142,25 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
 
   const preferredArea = preferredStartArea(city, anchors, candidates, { date, vibes });
 
+  const anchorPlacesForEnrichment = anchors
+    .map(anchor => placeByName.get(normName(anchor.title)))
+    .filter((p): p is Place => !!p);
+
   // 🔧 NEW: enrich base dataset with hours/branch so hard-skip can work
-  await enrichMissingHoursFor(suggestionStream, city, preferredArea);
+  await enrichMissingHoursFor(
+    dedupePlaces([...suggestionStream, ...anchorPlacesForEnrichment]),
+    city,
+    preferredArea,
+    Math.max(120, suggestionStream.length + anchorPlacesForEnrichment.length)
+  );
+
+  for (const anchor of anchors) {
+    const source = placeByName.get(normName(anchor.title));
+    if (!source) continue;
+    if (anchor.lat == null && typeof source.lat === 'number') anchor.lat = source.lat;
+    if (anchor.lng == null && typeof source.lng === 'number') anchor.lng = source.lng;
+    if (!anchor.url && source.url) anchor.url = source.url;
+  }
 
   const coffeePlaces = dataset.filter(p => (p.category || '').toLowerCase() === 'coffee');
   const lunchPlaces = dataset.filter(p => (p.category || '').toLowerCase() === 'lunch');
@@ -1149,16 +1204,18 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
     }
     if (!best) return null;
     const duration = Math.max(25, best.duration_min ?? 30);
-    const location = best.location || best.neighborhood || baseLoc;
-    return {
-      title: best.name,
-      location,
-      description: best.description ?? 'Grab a great cup of coffee nearby.',
-      category: best.category || 'coffee',
-      duration,
-      url: ensureGoogleMapsUrl(best.url, location, best.name),
-    };
-  }
+   const location = best.location || best.neighborhood || baseLoc;
+   return {
+     title: best.name,
+     location,
+     description: best.description ?? 'Grab a great cup of coffee nearby.',
+     category: best.category || 'coffee',
+     duration,
+     url: ensureGoogleMapsUrl(best.url, location, best.name),
+      lat: best.lat,
+      lng: best.lng,
+   };
+ }
 
   function pickLunchCandidate(baseLoc: string): Place | null {
     const baseArea = areaKeyFromString(baseLoc);
@@ -1268,14 +1325,18 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       const place = takeNearbyNonFoodPlace(baseLoc);
       if (place) {
         const baseDurationGuess = place.duration_min ?? baseDuration(place.category);
+        const maxDurationGuess = place.duration_max ?? baseDurationGuess;
+        const durationGuess = Math.min(baseDurationGuess, maxDurationGuess);
         return {
           title: place.name,
           location: place.location || place.neighborhood || baseLoc,
           description: place.description ?? 'Worth a stop nearby.',
           category: place.category || 'walk',
-          duration: baseDurationGuess,
+          duration: durationGuess,
           url: place.url,
           sourcePlaceName: place.name,
+          lat: place.lat,
+          lng: place.lng,
         };
       }
       return makeNonFoodFillerStop(baseLoc, vibes, pace);
@@ -1351,6 +1412,8 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       url: ensureGoogleMapsUrl(place.url, targetLoc, place.name),
       travelMinFromPrev: travelIn,
       travelModeFromPrev: recommendedTravelMode(travelIn),
+      lat: place.lat,
+      lng: place.lng,
     };
     return stop;
   }
@@ -1491,15 +1554,15 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       if (scheduled.length >= maxStops) return;
       const first = scheduled[0];
       if (!first) return;
-      const gap = first.startMin - DAY_START_MIN;
+      const gap = first.startMin - dayStartMin;
       if (gap < MIN_FLEX_BLOCK_MIN) return;
       const virtualPrev: Scheduled = {
         title: 'START_OF_DAY',
         location: first.location || preferredArea || city,
         description: 'Day start',
         category: 'start',
-        startMin: DAY_START_MIN,
-        endMin: DAY_START_MIN,
+        startMin: dayStartMin,
+        endMin: dayStartMin,
         url: undefined,
         travelMinFromPrev: 0,
         travelModeFromPrev: 'walk',
@@ -1515,6 +1578,32 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
           if (built) {
             filler = built;
             fillerSource = fallbackPlace;
+          }
+        }
+      }
+      if (!filler && scheduled.length < maxStops) {
+        const candidate = makeNonFoodFillerStop(first.location || preferredArea || city, vibes, pace);
+        const loc = candidate.location || first.location || preferredArea || city;
+        const travelIn = minutesTravel(virtualPrev.location || city, loc);
+        if (travelWithinLimit(travelIn, false)) {
+          const startMin = virtualPrev.endMin + travelIn;
+          const travelOut = minutesTravel(loc, first.location || city);
+          if (travelWithinLimit(travelOut, !!first.isAnchor)) {
+            const available = first.startMin - travelOut - startMin;
+            const duration = Math.min(candidate.duration, available);
+            if (duration >= MIN_FLEX_BLOCK_MIN) {
+              filler = {
+                title: candidate.title,
+                location: loc,
+                description: candidate.description ?? 'Ease into the day with a light breakfast and stroll.',
+                category: candidate.category,
+                startMin,
+                endMin: startMin + duration,
+                url: candidate.url,
+                travelMinFromPrev: travelIn,
+                travelModeFromPrev: recommendedTravelMode(travelIn),
+              };
+            }
           }
         }
       }
@@ -1558,6 +1647,32 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
           if (built) {
             filler = built;
             fillerSource = fallbackPlace;
+          }
+        }
+      }
+      if (!filler && scheduled.length < maxStops) {
+        const candidate = makeNonFoodFillerStop(last.location || city, vibes, pace);
+        const loc = candidate.location || last.location || city;
+        const travelIn = minutesTravel(last.location || city, loc);
+        if (travelWithinLimit(travelIn, !!last.isAnchor)) {
+          const startMin = last.endMin + travelIn;
+          const travelOut = minutesTravel(loc, virtualNext.location || city);
+          if (travelWithinLimit(travelOut, false)) {
+            const available = virtualNext.startMin - travelOut - startMin;
+            const duration = Math.min(candidate.duration, available);
+            if (duration >= MIN_FLEX_BLOCK_MIN) {
+              filler = {
+                title: candidate.title,
+                location: loc,
+                description: candidate.description ?? 'Round out the afternoon with a nearby stop.',
+                category: candidate.category,
+                startMin,
+                endMin: startMin + duration,
+                url: candidate.url,
+                travelMinFromPrev: travelIn,
+                travelModeFromPrev: recommendedTravelMode(travelIn),
+              };
+            }
           }
         }
       }
@@ -1643,6 +1758,8 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
             vibe_tags: p.vibe_tags,
             energy_tags: p.energy_tags,
             hours: p.hours, // some already enriched
+            lat: p.lat,
+            lng: p.lng,
           });
           have.add(key);
         }
@@ -1683,7 +1800,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
   // Scheduling state
   const scheduled: Scheduled[] = [];
   const target = targetCount(pace, anchors.length);
-  let currentMin = DAY_START_MIN;
+  let currentMin = dayStartMin;
   let currentLocation: string = anchors.length ? (anchors[0].location || city) : city;
 
   const refreshTravelMetadata = () => {
@@ -1746,6 +1863,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
 
   const scheduledAreaCounts = new Map<string, number>();
   const areaPartnerNeeds = new Map<string, number>();
+  const fallbackFetchAttempts = new Set<string>();
 
   function registerAreaForStop(stop: Scheduled, opts?: { isAnchor?: boolean }) {
     const areaKey = areaKeyFromStop(stop);
@@ -1784,6 +1902,110 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
     return Array.from(areaPartnerNeeds.entries())
       .filter(([, need]) => need > 0)
       .map(([area]) => area);
+  }
+
+  function titleizeAreaKey(areaKey: string): string {
+    return areaKey
+      .split(' ')
+      .filter(Boolean)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+
+  function areaLabelFromKey(areaKey: string | null): string | undefined {
+    if (!areaKey) return undefined;
+    for (const place of dataset) {
+      const key = areaKeyFromPlace(place);
+      if (key && key === areaKey) {
+        return place.neighborhood || place.location || undefined;
+      }
+    }
+    return titleizeAreaKey(areaKey);
+  }
+
+  function gatherExcludeNames(): string[] {
+    const names = new Set<string>();
+    for (const place of suggestionStream) names.add(place.name);
+    for (const stop of scheduled) names.add(stop.title);
+    for (const anchor of anchors) names.add(anchor.title);
+    for (const lock of locks) {
+      if (lock.title) names.add(lock.title);
+    }
+    return Array.from(names);
+  }
+
+  async function ensureFallbackCandidatesFor(
+    categories: string[],
+    opts: { areaKey?: string | null; locationHint?: string }
+  ): Promise<boolean> {
+    const normalized = Array.from(
+      new Set(
+        categories
+          .map((c) => (c || '').toLowerCase())
+          .filter((c) => !!c)
+      )
+    );
+    if (!normalized.length) return false;
+
+    const areaHintLabel = areaLabelFromKey(opts.areaKey ?? null);
+    const locationHint = opts.locationHint?.trim() || '';
+    const neighborhoodsHint =
+      areaHintLabel ||
+      (locationHint ? locationHint : '') ||
+      preferredArea ||
+      city;
+
+    const attemptKey = `${normalized.slice().sort().join('|')}|${neighborhoodsHint.toLowerCase()}`;
+    if (fallbackFetchAttempts.has(attemptKey)) return false;
+    fallbackFetchAttempts.add(attemptKey);
+
+    let extra: Awaited<ReturnType<typeof fetchExtraPlaces>> = [];
+    try {
+      extra = await fetchExtraPlaces({
+        city,
+        vibes,
+        neighborhoodsHint,
+        wantCategories: normalized,
+        excludeNames: gatherExcludeNames(),
+        limit: Math.max(4, normalized.length * 2),
+      });
+    } catch {
+      extra = [];
+    }
+    if (!Array.isArray(extra) || !extra.length) return false;
+
+    const newPlaces: Place[] = [];
+    const existingKeys = new Set(suggestionStream.map((p) => normName(p.name)));
+    for (const raw of extra) {
+      const key = normName(raw.name);
+      if (existingKeys.has(key)) continue;
+      const converted = providerToPlace(raw);
+      suggestionStream.push(converted);
+      existingKeys.add(key);
+      newPlaces.push(converted);
+    }
+    if (!newPlaces.length) return false;
+
+    const enrichHint = areaHintLabel || preferredArea;
+    await enrichMissingHoursFor(newPlaces, city, enrichHint);
+    suggestionStream = dedupePlaces(suggestionStream);
+
+    for (const place of newPlaces) {
+      const areaKey = areaKeyFromPlace(place);
+      if (areaKey && areaKey !== cityAreaKey) {
+        areaAvailability.set(areaKey, 1 + (areaAvailability.get(areaKey) || 0));
+      }
+      if (preferredArea) {
+        const prefLower = preferredArea.toLowerCase();
+        const loc = (place.neighborhood || place.location || '').toLowerCase();
+        if (loc.includes(prefLower)) {
+          const catKey = (place.category || 'misc').toLowerCase();
+          startAreaCategoryCounts.set(catKey, 1 + (startAreaCategoryCounts.get(catKey) || 0));
+        }
+      }
+    }
+
+    return true;
   }
 
   type LunchGap = {
@@ -1893,7 +2115,7 @@ type Gap = {
     let prev: Scheduled | null = null;
     for (let i = 0; i <= scheduled.length; i++) {
       const next = i < scheduled.length ? scheduled[i] : null;
-      const gapStart = prev ? prev.endMin : DAY_START_MIN;
+      const gapStart = prev ? prev.endMin : dayStartMin;
       const gapEnd = next ? next.startMin : DAY_END_MIN;
       const slotStart = Math.max(gapStart, LUNCH_START_MIN);
       const slotEnd = Math.min(gapEnd, LUNCH_WINDOW_END);
@@ -1943,7 +2165,7 @@ type Gap = {
     const prev = gap.prev;
     const next = gap.next;
     const departLocation = prev?.location || city;
-    const departTime = prev ? prev.endMin : Math.max(DAY_START_MIN, LUNCH_START_MIN);
+    const departTime = prev ? prev.endMin : Math.max(dayStartMin, LUNCH_START_MIN);
     const nextLocation = next?.location || city;
 
     let bestScore = Infinity;
@@ -2004,6 +2226,8 @@ type Gap = {
       startMin: best.start,
       endMin: best.start + best.duration,
       url: best.place.url,
+      lat: best.place.lat,
+      lng: best.place.lng,
     };
     entry.travelMinFromPrev = best.travel;
     entry.travelModeFromPrev = recommendedTravelMode(best.travel);
@@ -2014,7 +2238,7 @@ type Gap = {
     if (isWeekend && brunchChosen) return null;
     const prev = gap.prev;
     const next = gap.next;
-    const baseDepartTime = prev ? prev.endMin : Math.max(DAY_START_MIN, LUNCH_START_MIN);
+    const baseDepartTime = prev ? prev.endMin : Math.max(dayStartMin, LUNCH_START_MIN);
     let duration = Math.max(minFor('lunch', pace), MIN_LUNCH_DURATION);
     const baseLoc = prev?.location || next?.location || preferredArea || city;
     const fromLocation = prev?.location || city;
@@ -2045,6 +2269,8 @@ type Gap = {
       startMin: start,
       endMin: start + duration,
       url: ensureGoogleMapsUrl(lunchPlace.url, lunchLoc, lunchPlace.name),
+      lat: lunchPlace.lat,
+      lng: lunchPlace.lng,
     };
     entry.travelMinFromPrev = travelFromPrev;
     entry.travelModeFromPrev = recommendedTravelMode(travelFromPrev);
@@ -2102,6 +2328,8 @@ type Gap = {
       url: ensureGoogleMapsUrl(filler.url, loc || city, filler.title),
       travelMinFromPrev: 0,
       travelModeFromPrev: 'walk',
+      lat: filler.lat,
+      lng: filler.lng,
     };
     scheduled.splice(gap.index, 0, stop);
     registerStop(stop);
@@ -2114,7 +2342,7 @@ type Gap = {
     if (scheduled.length >= maxStops) return;
     let guard = 12;
     while (scheduled.length < minStops && scheduled.length < maxStops && guard-- > 0) {
-      const gap = findLargestGap(DAY_START_MIN, DAY_END_MIN);
+    const gap = findLargestGap(dayStartMin, DAY_END_MIN);
       if (!gap) break;
       if (!insertFillerStop(gap)) break;
     }
@@ -2123,14 +2351,14 @@ type Gap = {
   function ensureNineToFiveCoverage() {
     scheduled.sort((a, b) => a.startMin - b.startMin);
     if (!scheduled.length) return;
-    if (scheduled[0].startMin > DAY_START_MIN) {
+    if (scheduled[0].startMin > dayStartMin) {
       if (scheduled.length >= maxStops) return;
       const gap: Gap = {
         index: 0,
-        startMin: DAY_START_MIN,
+        startMin: dayStartMin,
         endMin: scheduled[0].startMin,
         location: city,
-        size: scheduled[0].startMin - DAY_START_MIN,
+        size: scheduled[0].startMin - dayStartMin,
       };
       insertFillerStop(gap);
     }
@@ -2199,6 +2427,71 @@ type Gap = {
     return null;
   }
 
+  function extractQueryFromUrl(url?: string): string | null {
+    if (!url) return null;
+    try {
+      const parsed = new URL(url);
+      const query = parsed.searchParams.get('query') || parsed.searchParams.get('destination');
+      if (query) return query;
+      if (parsed.hostname.endsWith('google.com') && parsed.pathname.includes('/maps/place/')) {
+        const segments = parsed.pathname.split('/').filter(Boolean);
+        if (segments.length >= 2) {
+          return decodeURIComponent(segments[2] || segments[1]);
+        }
+      }
+    } catch {
+      return null;
+    }
+    return null;
+  }
+
+  function locationQueryForStop(stop: Scheduled): string {
+    if (typeof stop.lat !== 'number' || typeof stop.lng !== 'number') {
+      const datasetPlace = placeByName.get(normName(stop.title));
+      if (datasetPlace) {
+        if (stop.lat == null && typeof datasetPlace.lat === 'number') stop.lat = datasetPlace.lat;
+        if (stop.lng == null && typeof datasetPlace.lng === 'number') stop.lng = datasetPlace.lng;
+      }
+    }
+    if (typeof stop.lat === 'number' && typeof stop.lng === 'number') {
+      return `${stop.lat},${stop.lng}`;
+    }
+    const urlQuery = extractQueryFromUrl(stop.url);
+    if (urlQuery) return `${urlQuery}, New York, NY`;
+    const parts: string[] = [];
+    if (stop.title) parts.push(stop.title);
+    if (stop.location) {
+      const titleLower = (stop.title || '').toLowerCase();
+      const locLower = stop.location.toLowerCase();
+      if (!locLower.includes(titleLower)) {
+        parts.push(stop.location);
+      }
+    }
+    parts.push(city);
+    return parts.filter(Boolean).join(', ');
+  }
+
+  async function applyAccurateTravelTimes(list: Scheduled[]) {
+    if (list.length < 2) return;
+    for (let i = 1; i < list.length; i++) {
+      const prev = list[i - 1];
+      const curr = list[i];
+      const origin = locationQueryForStop(prev);
+      const destination = locationQueryForStop(curr);
+      const accurate = await accurateTravelMinutesBetween(origin, destination, { date });
+      if (!accurate) continue;
+      const gap = Math.max(0, curr.startMin - prev.endMin);
+      if (accurate.minutes > gap) {
+        const shift = accurate.minutes - gap;
+        curr.startMin += shift;
+        curr.endMin += shift;
+      }
+      curr.travelMinFromPrev = accurate.minutes;
+      curr.travelModeFromPrev = accurate.mode;
+    }
+    list.sort((a, b) => a.startMin - b.startMin);
+  }
+
   function ensureMorningKickoff() {
     scheduled.sort((a, b) => a.startMin - b.startMin);
     const first = scheduled[0];
@@ -2209,39 +2502,41 @@ type Gap = {
     };
 
     if (first && isBreakfastCategory(first.category)) {
-      if (first.startMin > DAY_START_MIN) {
+      if (first.startMin > dayStartMin) {
         const duration = Math.max(first.endMin - first.startMin, CATEGORY_DURATION_OVERRIDE[first.category!.toLowerCase()] ?? 45);
-        first.startMin = DAY_START_MIN;
-        first.endMin = DAY_START_MIN + duration;
+        first.startMin = dayStartMin;
+        first.endMin = dayStartMin + duration;
         first.travelMinFromPrev = 0;
         first.travelModeFromPrev = 'walk';
       }
       return;
     }
 
-    if (!first || first.startMin > DAY_START_MIN || !isBreakfastCategory(first?.category)) {
+    if (!first || first.startMin > dayStartMin || !isBreakfastCategory(first?.category)) {
       const baseLoc = first?.location || preferredArea || city;
       const coffee = pickCoffeeCandidate(baseLoc);
       const duration = coffee?.duration ?? 60;
-      const endMin = first ? Math.min(first.startMin, DAY_START_MIN + duration) : DAY_START_MIN + duration;
+      const endMin = first ? Math.min(first.startMin, dayStartMin + duration) : dayStartMin + duration;
       const stop: Scheduled = coffee
         ? {
             title: coffee.title,
             location: coffee.location ?? baseLoc,
             description: coffee.description ?? 'Ease into the day with a light breakfast near your start point.',
             category: coffee.category,
-            startMin: DAY_START_MIN,
+            startMin: dayStartMin,
             endMin,
             url: ensureGoogleMapsUrl(coffee.url, coffee.location ?? baseLoc, coffee.title),
             travelMinFromPrev: 0,
             travelModeFromPrev: 'walk',
+            lat: coffee.lat,
+            lng: coffee.lng,
           }
         : {
             title: 'Morning coffee & pastry',
             location: baseLoc,
             description: 'Ease into the day with a light breakfast near your start point.',
             category: 'breakfast',
-            startMin: DAY_START_MIN,
+            startMin: dayStartMin,
             endMin,
             url: ensureGoogleMapsUrl(undefined, baseLoc, 'coffee shop'),
             travelMinFromPrev: 0,
@@ -2292,14 +2587,57 @@ type Gap = {
       url: ensureGoogleMapsUrl(dinnerPlace.url, dinnerLoc, dinnerPlace.name),
       travelMinFromPrev: travelFromPrev,
       travelModeFromPrev: recommendedTravelMode(travelFromPrev),
+      lat: dinnerPlace.lat,
+      lng: dinnerPlace.lng,
     };
     scheduled.push(entry);
     registerStop(entry, dinnerPlace);
     refreshTravelMetadata();
   }
 
+  function ensureMealExpectations() {
+    scheduled.sort((a, b) => a.startMin - b.startMin);
+    const categories = scheduled.map(s => (s.category || '').toLowerCase());
+    const hasBreakfast = categories.some(c => c === 'breakfast' || c === 'coffee');
+    const hasLunch = categories.includes('lunch');
+    const hasDinner = categories.includes('dinner');
+    const hasBrunch = categories.includes('brunch');
+
+    if (isWeekend) {
+      if (hasBrunch) {
+        if (!hasDinner) {
+          ensureDinnerStop();
+        }
+      } else {
+        if (!hasBreakfast) {
+          ensureMorningKickoff();
+        }
+        scheduled.sort((a, b) => a.startMin - b.startMin);
+        if (!hasLunch) {
+          ensureLunchStop();
+        }
+        scheduled.sort((a, b) => a.startMin - b.startMin);
+        if (!hasDinner) {
+          ensureDinnerStop();
+        }
+      }
+    } else {
+      if (!hasBreakfast) {
+        ensureMorningKickoff();
+      }
+      scheduled.sort((a, b) => a.startMin - b.startMin);
+      if (!hasLunch) {
+        ensureLunchStop();
+      }
+      scheduled.sort((a, b) => a.startMin - b.startMin);
+      if (!hasDinner) {
+        ensureDinnerStop();
+      }
+    }
+  }
+
   // Fill up to a limit (hard-skip closed)
-  function fillUntil(limitMin: number) {
+  async function fillUntil(limitMin: number) {
     while (scheduled.length < target && currentMin + minBlock <= Math.min(limitMin, DAY_END_MIN)) {
       const timeLeft = Math.min(limitMin, DAY_END_MIN) - currentMin;
       if (timeLeft < minBlock) break;
@@ -2342,110 +2680,111 @@ type Gap = {
         }
       }
 
-      const chosen = pickNextSuggestion(
-        filteredCategories,
-        suggestionStream,
-        city,
-        pace,
-        wouldExceedCategoryMinutes,
-        (p, cat) => {
-          let sc = scorePlace(p, cat);
-          sc += startAreaPenalty(p, preferredArea, currentLocation, scheduled.length, {
-            category: cat,
-            startAreaAvailability: startAreaCategoryCounts,
-          });
-          sc += repetitionPenalty(p, categoryCounts, usedNameKeys);
-          sc += dumboStartPenalty(p, scheduled.length, vibes);
-          sc += localVibeBoost(vibes, cat);
-          sc += vibeCategoryBias(vibes, cat);
-          sc += cuisineRepeatPenalty(p, cuisineCounts, vibes);
-          sc += datasetFoodBiasPenalty(suggestionStream, vibes, cat);
-          const desiredLower = (cat || '').toLowerCase();
-          const lastStop = scheduled[scheduled.length - 1] || null;
-          const lastWasFood = lastStop ? isFoodCategory(lastStop.category) : false;
-          if (desiredLower === 'coffee') {
-            const priorCoffee = categoryCounts.get('coffee') || 0;
-            const priorBreakfast = categoryCounts.get('breakfast') || 0;
-            if (priorCoffee + priorBreakfast >= 1) sc += 4.0;
-          }
-          if (lastWasFood && !isFoodCategory(desiredLower)) {
-            sc -= 1.2;
-          } else if (!lastWasFood && isFoodCategory(desiredLower) && currentMin >= AFTERNOON_START_MIN && currentMin < DINNER_START_MIN) {
-            sc += 0.8;
-          }
-          const travelMin = travelFromTo(currentLocation || city, p.location || p.neighborhood || city);
-          let travelWeight = TRAVEL_WEIGHT;
-          if (currentMin < AFTERNOON_START_MIN) travelWeight *= 1.8;
-          else if (currentMin < DINNER_START_MIN) travelWeight *= 1.3;
-          sc += travelMin * travelWeight;
-          const areaKey = areaKeyFromPlace(p);
-          const lastArea = lastStop ? areaKeyFromStop(lastStop) : null;
-          if (areaKey && lastArea && areaKey !== lastArea) {
-            sc += currentMin < DINNER_START_MIN ? 1.8 : 0.6;
-          }
-          if (areaKey && currentAreaKey && areaKey !== currentAreaKey) {
-            sc += currentMin < AFTERNOON_END_MIN ? 2.0 : 0.75;
-          }
-          if (areaKey && (scheduledAreaCounts.get(areaKey) || 0) === 0 && !anchorAreaKeys.has(areaKey)) {
-            const supply = areaAvailability.get(areaKey) || 0;
-            sc += supply <= 1 ? 5.0 : 1.4;
-          }
-          if (areaKey) {
-            const recentAreas: string[] = [];
-            for (let i = scheduled.length - 1; i >= 0 && recentAreas.length < 3; i--) {
-              const area = areaKeyFromStop(scheduled[i]);
-              if (area && !recentAreas.includes(area)) recentAreas.push(area);
+      const pickCandidate = () =>
+        pickNextSuggestion(
+          filteredCategories,
+          suggestionStream,
+          city,
+          pace,
+          wouldExceedCategoryMinutes,
+          (p, cat) => {
+            let sc = scorePlace(p, cat);
+            sc += startAreaPenalty(p, preferredArea, currentLocation, scheduled.length, {
+              category: cat,
+              startAreaAvailability: startAreaCategoryCounts,
+            });
+            sc += repetitionPenalty(p, categoryCounts, usedNameKeys);
+            sc += dumboStartPenalty(p, scheduled.length, vibes);
+            sc += localVibeBoost(vibes, cat);
+            sc += vibeCategoryBias(vibes, cat);
+            sc += cuisineRepeatPenalty(p, cuisineCounts, vibes);
+            sc += datasetFoodBiasPenalty(suggestionStream, vibes, cat);
+            const desiredLower = (cat || '').toLowerCase();
+            const lastStop = scheduled.length ? scheduled[scheduled.length - 1] : null;
+            const lastWasFood = lastStop ? isFoodCategory(lastStop.category) : false;
+            if (desiredLower === 'coffee') {
+              const priorCoffee = categoryCounts.get('coffee') || 0;
+              const priorBreakfast = categoryCounts.get('breakfast') || 0;
+              if (priorCoffee + priorBreakfast >= 1) sc += 4.0;
             }
-            if (recentAreas.length && !recentAreas.includes(areaKey)) {
-              sc += currentMin < DINNER_START_MIN ? 2.4 : 0.8;
-            } else if (recentAreas.includes(areaKey)) {
-              sc -= 0.5;
+            if (lastWasFood && !isFoodCategory(desiredLower)) {
+              sc -= 1.2;
+            } else if (!lastWasFood && isFoodCategory(desiredLower) && currentMin >= AFTERNOON_START_MIN && currentMin < DINNER_START_MIN) {
+              sc += 0.8;
             }
-            const prevDistinct = previousDistinctArea(currentAreaKey);
-            if (prevDistinct && prevDistinct === areaKey) {
-              sc += AREA_BOUNCE_PENALTY;
+            const travelMin = travelFromTo(currentLocation || city, p.location || p.neighborhood || city);
+            let travelWeight = TRAVEL_WEIGHT;
+            if (currentMin < AFTERNOON_START_MIN) travelWeight *= 1.8;
+            else if (currentMin < DINNER_START_MIN) travelWeight *= 1.3;
+            sc += travelMin * travelWeight;
+            const areaKey = areaKeyFromPlace(p);
+            const lastArea = lastStop ? areaKeyFromStop(lastStop) : null;
+            if (areaKey && lastArea && areaKey !== lastArea) {
+              sc += currentMin < DINNER_START_MIN ? 1.8 : 0.6;
             }
-          }
-          if (areaKey && scheduled.length >= 2) {
-        const visits = scheduledAreaCounts.get(areaKey) || 0;
-        if (visits >= 3) {
-          sc += (visits - 2) * 1.8;
-        } else if (visits >= 2) {
-          sc += 0.9;
-        }
-        const run = recentAreaRunLength(areaKey);
-        if (run >= 2) {
-          sc += 2.8 * run;
-        }
-        let maxVisits = 0;
-        for (const value of scheduledAreaCounts.values()) {
-          if (value > maxVisits) maxVisits = value;
-        }
-        if (maxVisits >= 2 && visits >= maxVisits) {
-          sc += visits * 2.1;
-        }
-        if (!anchorAreaKeys.has(areaKey) && visits >= MAX_AREA_VISITS) {
-          sc += 40;
-        }
-        sc += areaVisitPenalty(areaKey);
-      }
-          if (outstandingAreasNow.length) {
-            if (areaKey && outstandingAreasNow.includes(areaKey)) {
-              sc -= 1.9;
-            } else {
-              const lunchRelaxed = (!skipLunch && cat.toLowerCase() === 'lunch');
-              sc += lunchRelaxed ? 1.7 : 4.4;
-              sc += outstandingAreasNow.length * 0.25;
+            if (areaKey && currentAreaKey && areaKey !== currentAreaKey) {
+              sc += currentMin < AFTERNOON_END_MIN ? 2.0 : 0.75;
             }
-          }
-          if (!skipLunch && cat.toLowerCase() === 'lunch') {
-            sc -= prioritizeLunchNow ? 3.2 : 0.6;
-          } else if (prioritizeLunchNow) {
-            sc += 1.1;
-          }
-          if (wouldExceedCategoryCounts(cat, vibes)) sc += 99; // safety
-          return sc;
-        },
+            if (areaKey && (scheduledAreaCounts.get(areaKey) || 0) === 0 && !anchorAreaKeys.has(areaKey)) {
+              const supply = areaAvailability.get(areaKey) || 0;
+              sc += supply <= 1 ? 5.0 : 1.4;
+            }
+            if (areaKey) {
+              const recentAreas: string[] = [];
+              for (let i = scheduled.length - 1; i >= 0 && recentAreas.length < 3; i--) {
+                const area = areaKeyFromStop(scheduled[i]);
+                if (area && !recentAreas.includes(area)) recentAreas.push(area);
+              }
+              if (recentAreas.length && !recentAreas.includes(areaKey)) {
+                sc += currentMin < DINNER_START_MIN ? 2.4 : 0.8;
+              } else if (recentAreas.includes(areaKey)) {
+                sc -= 0.5;
+              }
+              const prevDistinct = previousDistinctArea(currentAreaKey);
+              if (prevDistinct && prevDistinct === areaKey) {
+                sc += AREA_BOUNCE_PENALTY;
+              }
+            }
+            if (areaKey && scheduled.length >= 2) {
+              const visits = scheduledAreaCounts.get(areaKey) || 0;
+              if (visits >= 3) {
+                sc += (visits - 2) * 1.8;
+              } else if (visits >= 2) {
+                sc += 0.9;
+              }
+              const run = recentAreaRunLength(areaKey);
+              if (run >= 2) {
+                sc += 2.8 * run;
+              }
+              let maxVisits = 0;
+              for (const value of scheduledAreaCounts.values()) {
+                if (value > maxVisits) maxVisits = value;
+              }
+              if (maxVisits >= 2 && visits >= maxVisits) {
+                sc += visits * 2.1;
+              }
+              if (!anchorAreaKeys.has(areaKey) && visits >= MAX_AREA_VISITS) {
+                sc += 40;
+              }
+              sc += areaVisitPenalty(areaKey);
+            }
+            if (outstandingAreasNow.length) {
+              if (areaKey && outstandingAreasNow.includes(areaKey)) {
+                sc -= 1.9;
+              } else {
+                const lunchRelaxed = (!skipLunch && cat.toLowerCase() === 'lunch');
+                sc += lunchRelaxed ? 1.7 : 4.4;
+                sc += outstandingAreasNow.length * 0.25;
+              }
+            }
+            if (!skipLunch && cat.toLowerCase() === 'lunch') {
+              sc -= prioritizeLunchNow ? 3.2 : 0.6;
+            } else if (prioritizeLunchNow) {
+              sc += 1.1;
+            }
+            if (wouldExceedCategoryCounts(cat, vibes)) sc += 99; // safety
+            return sc;
+          },
         {
           currentMin,
           currentLocation,
@@ -2458,9 +2797,22 @@ type Gap = {
           isWeekend,
           brunchChosen,
           lunchChosen,
-          areaLock: areaLockState || undefined
+          areaLock: areaLockState || undefined,
+          scheduled
         }
       );
+
+      let chosen = pickCandidate();
+
+      if (!chosen) {
+        const fallbackFetched = await ensureFallbackCandidatesFor(filteredCategories, {
+          areaKey: areaLockState?.area ?? areaKeyFromString(currentLocation),
+          locationHint: (prevStop?.location || currentLocation || preferredArea || city),
+        });
+        if (fallbackFetched) {
+          chosen = pickCandidate();
+        }
+      }
 
       // If nothing suitable, try a filler (non-food if cap hit)
       if (!chosen) {
@@ -2484,6 +2836,8 @@ type Gap = {
               startMin: currentMin,
               endMin: currentMin + fdur,
               url: ensureGoogleMapsUrl(filler.url, loc || city, filler.title),
+              lat: filler.lat,
+              lng: filler.lng,
             };
             s.travelMinFromPrev = 0;
             s.travelModeFromPrev = 'walk';
@@ -2525,6 +2879,8 @@ type Gap = {
               startMin: currentMin,
               endMin: currentMin + fdur,
               url: ensureGoogleMapsUrl(filler.url, loc || city, filler.title),
+              lat: filler.lat,
+              lng: filler.lng,
             };
             sFill.travelMinFromPrev = 0;
             sFill.travelModeFromPrev = 'walk';
@@ -2556,6 +2912,8 @@ type Gap = {
               startMin: currentMin,
               endMin: currentMin + fdur,
               url: ensureGoogleMapsUrl(filler.url, loc || city, filler.title),
+              lat: filler.lat,
+              lng: filler.lng,
             };
             s.travelMinFromPrev = 0;
             s.travelModeFromPrev = 'walk';
@@ -2579,6 +2937,8 @@ type Gap = {
         startMin: start,
         endMin: end,
         url: place.url || undefined,
+        lat: place.lat,
+        lng: place.lng,
       };
       s.travelMinFromPrev = travel;
       s.travelModeFromPrev = recommendedTravelMode(travel);
@@ -2597,7 +2957,7 @@ type Gap = {
 
   if (anchors.length > 0) {
     const first = anchors[0];
-    fillUntil(first.startMin);
+    await fillUntil(first.startMin);
 
     const travelToFirst = travelFromTo(currentLocation, first.location || city);
     const firstStart = Math.max(first.startMin, currentMin + travelToFirst);
@@ -2622,7 +2982,7 @@ type Gap = {
 
     for (let i = 1; i < anchors.length; i++) {
       const next = anchors[i];
-      fillUntil(next.startMin);
+      await fillUntil(next.startMin);
 
       const travelToNext = travelFromTo(currentLocation, next.location || city);
       const nextStart = Math.max(next.startMin, currentMin + travelToNext);
@@ -2647,7 +3007,7 @@ type Gap = {
     }
   }
 
-  fillUntil(DAY_END_MIN);
+  await fillUntil(DAY_END_MIN);
 
   scheduledAreaCounts.clear();
   areaPartnerNeeds.clear();
@@ -2660,6 +3020,7 @@ type Gap = {
   ensureNineToFiveCoverage();
   scheduled.sort((a, b) => a.startMin - b.startMin);
   ensureDinnerStop();
+  ensureMealExpectations();
   scheduled.sort((a, b) => a.startMin - b.startMin);
   rebuildTrackingState();
   ensureLunchStop();
@@ -2682,6 +3043,7 @@ type Gap = {
   scheduled.sort((a, b) => a.startMin - b.startMin);
   rebuildTrackingState();
   recomputeTravelMetadata(scheduled, city);
+  await applyAccurateTravelTimes(scheduled);
 
   const finalStops: PlanStop[] = [];
   let previous: Scheduled | null = null;
@@ -2747,40 +3109,57 @@ function minutesTravel(from: string, to: string): number {
   const F = from.toLowerCase();
   const T = to.toLowerCase();
   const crossRiver = (F.includes('brooklyn') && !T.includes('brooklyn')) || (!F.includes('brooklyn') && T.includes('brooklyn'));
-  if (crossRiver) return 35;
+  if (crossRiver) return 30;
   if (F && T && (F.includes('village') && T.includes('village'))) return 10;
   return 20;
 }
 
 function recomputeTravelMetadata(list: Scheduled[], city: string) {
+  const normalizeLocation = (value?: string) =>
+    (value || '')
+      .toLowerCase()
+      .replace(/\s+/g, ' ')
+      .trim();
+
   let prev: Scheduled | null = null;
   for (const stop of list) {
     if (!prev) {
       const initialGap = Math.max(0, stop.startMin - DAY_START_MIN);
-      const estimate = minutesTravel(city, stop.location || city);
-      let travel = initialGap > 0 ? initialGap : estimate;
-      if (travel <= 0) {
-        const nextArea = areaKeyFromString(stop.location || city);
-        travel = Math.max(8, estimate || (nextArea ? 8 : 5));
-      }
-      stop.travelMinFromPrev = travel;
-      stop.travelModeFromPrev = recommendedTravelMode(travel);
+      stop.travelMinFromPrev = initialGap;
+      stop.travelModeFromPrev = recommendedTravelMode(initialGap);
     } else {
       const gap = Math.max(0, stop.startMin - prev.endMin);
       const estimate = minutesTravel(prev.location || city, stop.location || city);
-      let travel = gap > 0 ? gap : estimate;
+      const prevLoc = normalizeLocation(prev.location);
+      const nextLoc = normalizeLocation(stop.location);
+      const sameLocation = prevLoc && nextLoc && prevLoc === nextLoc;
+      const sameTitle = prev.title === stop.title;
+      const baseMin = sameTitle ? 0 : (sameLocation ? 10 : 12);
+
+      let travel = Math.max(gap, estimate);
+      if (!isFinite(travel) || travel < baseMin) {
+        travel = baseMin;
+      }
       if (travel <= 0) {
         const prevArea = areaKeyFromString(prev.location || '');
         const nextArea = areaKeyFromString(stop.location || '');
-        const locationsDiffer = (prev.location || '').toLowerCase() !== (stop.location || '').toLowerCase();
+        const locationsDiffer = prevLoc !== nextLoc;
         if (locationsDiffer || (prevArea && nextArea && prevArea !== nextArea)) {
-          travel = Math.max(8, estimate || 12);
+          travel = Math.max(baseMin, estimate || 12);
         } else {
-          travel = gap > 0 ? gap : Math.max(5, estimate);
+          travel = Math.max(baseMin, gap, estimate);
         }
       }
-      stop.travelMinFromPrev = travel;
-      stop.travelModeFromPrev = recommendedTravelMode(travel);
+
+      const requiredStart = prev.endMin + travel;
+      if (stop.startMin < requiredStart) {
+        const shift = requiredStart - stop.startMin;
+        stop.startMin += shift;
+        stop.endMin += shift;
+      }
+      const actualGap = Math.max(0, stop.startMin - prev.endMin);
+      stop.travelMinFromPrev = actualGap;
+      stop.travelModeFromPrev = recommendedTravelMode(actualGap);
     }
     prev = stop;
   }
@@ -2809,6 +3188,7 @@ function pickNextSuggestion(
     previousIsMeal?: boolean;
     previousIsMorningMeal?: boolean;
     previousStop?: Scheduled | null;
+    scheduled: Scheduled[];
     isWeekend: boolean;
     brunchChosen: boolean;
     lunchChosen: boolean;
@@ -2853,7 +3233,7 @@ function pickNextSuggestion(
         continue;
       }
 
-      const lastStop = opts.previousStop ?? null;
+      const lastStop = opts.previousStop ?? (opts.scheduled.length ? opts.scheduled[opts.scheduled.length - 1] : null);
 
       const travel = opts.travelFromTo(opts.currentLocation || city, p.location || p.neighborhood || city);
       if (!travelWithinLimit(travel, false)) continue;

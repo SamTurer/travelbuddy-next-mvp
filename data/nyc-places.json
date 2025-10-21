@@ -15,7 +15,8 @@
     ],
     "description": "Salty, silky lox and schmear that's been perfected for a century. Get the sturgeon if you want to taste old-school New York in its purest form.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Barney+Greengrass+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Barney+Greengrass+upper+west+side+NYC",
+    "duration_max": 68
   },
   {
     "name": "Breads Bakery (for chocolate babka / Thanksgiving treats)",
@@ -34,7 +35,8 @@
     ],
     "description": "The chocolate babka is glossy, layered, and legendary. Go early or right before closing for warm slices straight from the oven.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Breads+Bakery+%28for+chocolate+babka+%2F+Thanksgiving+treats%29+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Breads+Bakery+%28for+chocolate+babka+%2F+Thanksgiving+treats%29+upper+west+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Café Luxembourg",
@@ -53,7 +55,8 @@
     ],
     "description": "Polished comfort; perfect for a martini and watching the pre-Lincoln Center crowd roll in.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Caf%C3%A9+Luxembourg+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Caf%C3%A9+Luxembourg+upper+west+side+NYC",
+    "duration_max": 135
   },
   {
     "name": "Celeste",
@@ -73,7 +76,8 @@
     ],
     "description": "No-nonsense Italian where the pasta is homemade and the owner might shout at you with affection. Cash-only, no reservations, always right.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Celeste+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Celeste+upper+west+side+NYC",
+    "duration_max": 135
   },
   {
     "name": "Daily Provisions (multiple locations)",
@@ -93,7 +97,8 @@
     ],
     "description": "Danny Meyer's all-day spot for runny-yolk sandwiches and that addictive wake-up sauce. Grab a cookie for later.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Daily+Provisions+%28multiple+locations%29+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Daily+Provisions+%28multiple+locations%29+upper+west+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Elea",
@@ -112,7 +117,8 @@
     ],
     "description": "A sleek Mediterranean spot where the seafood's fresh, the lighting's flattering, and the crowd's ready for cocktails. Get the branzino and the mezzo platter.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Elea+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Elea+upper+west+side+NYC",
+    "duration_max": 135
   },
   {
     "name": "Gray's Papaya",
@@ -131,7 +137,8 @@
     ],
     "description": "Hot dogs, papaya drinks, and late-night salvation. A $5 classic that's pure New York chaos in the best way.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Gray%27s+Papaya+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Gray%27s+Papaya+upper+west+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Jacob's Pickles",
@@ -149,7 +156,8 @@
     ],
     "description": "Brunch plates as big as your head, biscuits that could double as pillows, and cocktails that start your day with a bang.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Jacob%27s+Pickles+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Jacob%27s+Pickles+upper+west+side+NYC",
+    "duration_max": 113
   },
   {
     "name": "Jin Ramen",
@@ -168,7 +176,8 @@
     ],
     "description": "Tucked away and always packed, this is where you warm up over a rich bowl of tonkotsu while watching the noodles fly.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Jin+Ramen+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Jin+Ramen+upper+west+side+NYC",
+    "duration_max": 90
   },
   {
     "name": "Joe's Steam Rice Roll",
@@ -187,7 +196,8 @@
     ],
     "description": "Silky rice rolls steamed to order and drizzled with savory sauce—simple, fast, and deeply satisfying.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Joe%27s+Steam+Rice+Roll+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Joe%27s+Steam+Rice+Roll+upper+west+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Levain Bakery",
@@ -206,7 +216,8 @@
     ],
     "description": "Cookies so thick they could have their own ZIP code. Crunchy edges, gooey centers, and lines that are totally worth it.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Levain+Bakery+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Levain+Bakery+upper+west+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Mama's TOO",
@@ -226,7 +237,8 @@
     ],
     "description": "Crispy-edged, cheesy slices with serious cult status. New York pizza, but better.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Mama%27s+TOO+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Mama%27s+TOO+upper+west+side+NYC",
+    "duration_max": 45
   },
   {
     "name": "Milano Market",
@@ -247,13 +259,14 @@
     ],
     "description": "Where Columbia kids and locals stock up on Italian sandwiches and pantry goods. Get the chicken Caesar salad wrap—it's a neighborhood staple.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Milano+Market+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Milano+Market+upper+west+side+NYC",
+    "duration_max": 45
   },
   {
     "name": "New Cottage",
     "category": "dinner",
     "neighborhood": "Upper West Side",
-    "duration_min": 20,
+    "duration_min": 60,
     "vibe_tags": [
       "takeout",
       "dinner",
@@ -266,13 +279,14 @@
     ],
     "description": "Old-school Chinese takeout that's comfortingly unchanged in decades. Lo mein, dumplings, and fortune cookies that taste like nostalgia.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=New+Cottage+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=New+Cottage+upper+west+side+NYC",
+    "duration_max": 120
   },
   {
     "name": "Pop-Up Bagels",
     "category": "breakfast",
     "neighborhood": "Upper West Side",
-    "duration_min": 45,
+    "duration_min": 30,
     "vibe_tags": [
       "breakfast",
       "bagels",
@@ -285,14 +299,15 @@
     ],
     "description": "Small-batch bagels that sell out fast—crispy outside, chewy inside, with schmear that hits just right.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Pop-Up+Bagels+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Pop-Up+Bagels+upper+west+side+NYC",
+    "duration_max": 60
   },
   {
     "name": "Tal Bagels",
     "category": "breakfast",
     "neighborhood": "Upper West Side",
-    "duration_min": 45,
-    "vibe_tags": [
+    "duration_min": 30
+    ,"vibe_tags": [
       "breakfast",
       "bagels",
       "classic"
@@ -303,13 +318,14 @@
     ],
     "description": "Everything about this place screams \"New York morning.\" The bagels are oversized and glossy, the schmear generous, and the counter banter perfectly brisk.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Tal+Bagels+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Tal+Bagels+upper+west+side+NYC",
+    "duration_max": 60
   },
   {
     "name": "Viand",
     "category": "breakfast",
     "neighborhood": "Upper West Side",
-    "duration_min": 20,
+    "duration_min": 30,
     "vibe_tags": [
       "diner",
       "breakfast",
@@ -322,13 +338,14 @@
     ],
     "description": "Classic diner counter near Zabar's; turkey club, Greek omelet, endless coffee.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Viand+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Viand+upper+west+side+NYC",
+    "duration_max": 60
   },
   {
     "name": "Zabar's",
     "category": "shopping",
     "neighborhood": "Upper West Side",
-    "duration_min": 60,
+    "duration_min": 30,
     "vibe_tags": [
       "market",
       "deli",
@@ -342,7 +359,8 @@
     ],
     "description": "Smoked-fish and chaos in equal measure. The scent of bagels, lox, and history hits you the second you walk in.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Zabar%27s+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Zabar%27s+upper+west+side+NYC",
+    "duration_max": 60
   },
   {
     "name": "Blank Street Coffee",
@@ -361,7 +379,8 @@
     ],
     "description": "Minimalist caffeine fix for people who mean business. Fast, consistent, and all over town.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Blank+Street+Coffee+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Blank+Street+Coffee+upper+west+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Maman",
@@ -381,7 +400,8 @@
     ],
     "description": "Rustic-French café with mismatched mugs, blue-and-white charm, and the city's most famous nutty chocolate-chip cookie.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Maman+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Maman+upper+west+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "The Hungarian Pastry Shop",
@@ -400,7 +420,8 @@
     ],
     "description": "Intellectual caffeine cave across from Columbia; marble tables stacked with books and strudel crumbs.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=The+Hungarian+Pastry+Shop+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=The+Hungarian+Pastry+Shop+upper+west+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "American Museum of Natural History",
@@ -420,51 +441,14 @@
     ],
     "description": "A Beaux-Arts giant from 1877; generations of New Yorkers grew up under the blue whale here. Still magical, still massive.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=American+Museum+of+Natural+History+upper+west+side+NYC"
-  },
-  {
-    "name": "The Cloisters",
-    "category": "scenic ride",
-    "neighborhood": "Upper West Side",
-    "duration_min": 180,
-    "vibe_tags": [
-      "scenic-ride",
-      "culture",
-      "architecture",
-      "local"
-    ],
-    "energy_tags": [
-      "relaxed",
-      "cultural"
-    ],
-    "description": "Riverside path ending at a medieval fortress of the Met; Hudson winds, quiet paths, and peace. Try biking there.",
-    "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Bike+up+to+The+Cloisters+upper+west+side+NYC"
-  },
-  {
-    "name": "Bronx Zoo",
-    "category": "family",
-    "neighborhood": "Upper West Side",
-    "duration_min": 180,
-    "vibe_tags": [
-      "family",
-      "animals",
-      "outdoors",
-      "local"
-    ],
-    "energy_tags": [
-      "playful",
-      "active"
-    ],
-    "description": "Giant, nostalgic, and surprisingly wild for the city. Great for families—or anyone who still loves penguins.",
-    "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Bronx+Zoo+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=American+Museum+of+Natural+History+upper+west+side+NYC",
+    "duration_max": 180
   },
   {
     "name": "Lincoln Center",
     "category": "theater",
     "neighborhood": "Upper West Side",
-    "duration_min": 120,
+    "duration_min": 60,
     "vibe_tags": [
       "performing-arts",
       "theater",
@@ -477,7 +461,8 @@
     ],
     "description": "Modernist marble and fountains; home to the Met Opera, NY Philharmonic, and the people-watching of dreams.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Lincoln+Center+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Lincoln+Center+upper+west+side+NYC",
+    "duration_max": 90
   },
   {
     "name": "Memorials along West Side Highway",
@@ -496,13 +481,14 @@
     ],
     "description": "A scenic stretch that blends New York's layers of history, culture, and renewal—all against the Hudson River backdrop. Start or stop around 72nd up to the Joan of Arc statue. Pop by the You've Got Mail corner on 90th and Riverside.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Memorials+along+West+Side+Highway+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Memorials+along+West+Side+Highway+upper+west+side+NYC",
+    "duration_max": 90
   },
   {
     "name": "Riverside Park - \"You've Got Mail\" corner",
     "category": "park",
     "neighborhood": "Upper West Side",
-    "duration_min": 30,
+    "duration_min": 10,
     "vibe_tags": [
       "park",
       "movie-spot",
@@ -515,7 +501,8 @@
     ],
     "description": "A rom-com landmark tucked into one of the city's most underrated parks. Bring a coffee and pretend you're Meg Ryan.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Riverside+Park+-+%22You%27ve+Got+Mail%22+corner+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Riverside+Park+-+%22You%27ve+Got+Mail%22+corner+upper+west+side+NYC",
+    "duration_max": 25
   },
   {
     "name": "Visit Columbia University",
@@ -534,7 +521,8 @@
     ],
     "description": "Neoclassical quads by McKim, Mead & White; campus serenity in the city chaos.",
     "location": "Upper West Side",
-    "url": "https://www.google.com/maps?q=Visit+Columbia+University+upper+west+side+NYC"
+    "url": "https://www.google.com/maps?q=Visit+Columbia+University+upper+west+side+NYC",
+    "duration_max": 90
   },
   {
     "name": "Clay",
@@ -554,7 +542,8 @@
     ],
     "description": "A neighborhood favorite that feels both refined and unfussy. Seasonal New American plates, great cocktails, and a low-lit vibe that's more date-night than dive.",
     "location": "Harlem",
-    "url": "https://www.google.com/maps?q=Clay+harlem+NYC"
+    "url": "https://www.google.com/maps?q=Clay+harlem+NYC",
+    "duration_max": 135
   },
   {
     "name": "Dinosaur BBQ",
@@ -573,7 +562,8 @@
     ],
     "description": "Ribs, brisket, cornbread, and cold beer under the arches near the Hudson. A Syracuse import that somehow feels like it's been Harlem forever.",
     "location": "Harlem",
-    "url": "https://www.google.com/maps?q=Dinosaur+BBQ+harlem+NYC"
+    "url": "https://www.google.com/maps?q=Dinosaur+BBQ+harlem+NYC",
+    "duration_max": 90
   },
   {
     "name": "Red Rooster",
@@ -595,7 +585,8 @@
     ],
     "description": "Marcus Samuelsson's iconic Harlem spot — part juke joint, part neighborhood kitchen. Fried chicken, live music, and the kind of energy that makes brunch feel like Saturday night.",
     "location": "Harlem",
-    "url": "https://www.google.com/maps?q=Red+Rooster+harlem+NYC"
+    "url": "https://www.google.com/maps?q=Red+Rooster+harlem+NYC",
+    "duration_max": 113
   },
   {
     "name": "Lucille's Coffee",
@@ -613,7 +604,8 @@
     ],
     "description": "A community anchor with jazz, sunlight, and seriously good espresso. Grab a seat by the window, stay longer than you planned.",
     "location": "Harlem",
-    "url": "https://www.google.com/maps?q=Lucille%27s+Coffee+harlem+NYC"
+    "url": "https://www.google.com/maps?q=Lucille%27s+Coffee+harlem+NYC",
+    "duration_max": 30
   },
   {
     "name": "Apollo Theater",
@@ -632,13 +624,14 @@
     ],
     "description": "Historic stage where legends — from Ella Fitzgerald to Lauryn Hill — made their mark. Amateur Night is still electric; it's Harlem's beating heart.",
     "location": "Harlem",
-    "url": "https://www.google.com/maps?q=Apollo+Theater+harlem+NYC"
+    "url": "https://www.google.com/maps?q=Apollo+Theater+harlem+NYC",
+    "duration_max": 90
   },
   {
     "name": "Strivers Row",
     "category": "walk",
     "neighborhood": "Harlem",
-    "duration_min": 60,
+    "duration_min": 30,
     "vibe_tags": [
       "architecture",
       "history",
@@ -652,27 +645,8 @@
     ],
     "description": "Perfectly preserved Renaissance Revival brownstones from the early 1900s; a quiet architectural pilgrimage for design lovers.",
     "location": "Harlem",
-    "url": "https://www.google.com/maps?q=Strivers+Row+harlem+NYC"
-  },
-  {
-    "name": "Yankee Stadium",
-    "category": "sports",
-    "neighborhood": "Harlem",
-    "duration_min": 60,
-    "vibe_tags": [
-      "sports",
-      "iconic",
-      "local-experience",
-      "local",
-      "classic"
-    ],
-    "energy_tags": [
-      "energetic",
-      "nostalgic"
-    ],
-    "description": "Technically across the river in the Bronx, but a quick hop away. For locals, the ritual's the same: a hot dog, a beer, and the sound of 50,000 New Yorkers shouting at once.",
-    "location": "Harlem",
-    "url": "https://www.google.com/maps?q=Yankee+Stadium+harlem+NYC"
+    "url": "https://www.google.com/maps?q=Strivers+Row+harlem+NYC",
+    "duration_max": 60
   },
   {
     "name": "Smoke & Jazz Supper Club",
@@ -691,7 +665,8 @@
     ],
     "description": "Intimate tables, brass in the air, and the smell of bourbon and barbecue. A true Harlem nightcap — classy but unpretentious.",
     "location": "Harlem",
-    "url": "https://www.google.com/maps?q=Smoke+%26+Jazz+Supper+Club+harlem+NYC"
+    "url": "https://www.google.com/maps?q=Smoke+%26+Jazz+Supper+Club+harlem+NYC",
+    "duration_max": 113
   },
   {
     "name": "Antonucci Cafe",
@@ -712,7 +687,8 @@
     ],
     "description": "A hidden gem for old-school Italian — white tablecloths, regulars at every booth, and the kind of staff who know your order after two visits.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Antonucci+Cafe+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Antonucci+Cafe+upper+east+side+NYC",
+    "duration_max": 135
   },
   {
     "name": "Bemelmans Bar",
@@ -731,13 +707,14 @@
     ],
     "description": "Inside the Carlyle  its jewel bar. Walls hand-painted by Ludwig Bemelmans of Madeline fame. A piano, a martini, and maybe a celebrity sighting if you're lucky.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Bemelmans+Bar+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Bemelmans+Bar+upper+east+side+NYC",
+    "duration_max": 113
   },
   {
     "name": "Café Sabarsky",
     "category": "coffee",
     "neighborhood": "Upper East Side",
-    "duration_min": 20,
+    "duration_min": 45,
     "vibe_tags": [
       "coffee",
       "pastries",
@@ -750,7 +727,8 @@
     ],
     "description": "At the Neue Galerie; Viennese coffeehouse elegance, marble tables, and Sachertorte under Klimt portraits.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Caf%C3%A9+Sabarsky+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Caf%C3%A9+Sabarsky+upper+east+side+NYC",
+    "duration_max": 90
   },
   {
     "name": "Dorrian's Red Hand",
@@ -769,7 +747,8 @@
     ],
     "description": "Family-run since the '60s; burgers, beers, and the city's most enduring Upper East gossip mill.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Dorrian%27s+Red+Hand+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Dorrian%27s+Red+Hand+upper+east+side+NYC",
+    "duration_max": 113
   },
   {
     "name": "Earl's Beer & Cheese",
@@ -788,7 +767,8 @@
     ],
     "description": "Tiny, chalkboard menu; beer-cheddar grilled cheese and a rotating IPA list. Small, loud, and beloved.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Earl%27s+Beer+%26+Cheese+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Earl%27s+Beer+%26+Cheese+upper+east+side+NYC",
+    "duration_max": 90
   },
   {
     "name": "EJ's Luncheonette",
@@ -807,16 +787,17 @@
     ],
     "description": "Chrome stools, malt milkshakes, and a menu that never left the '90s. Family brunch central.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=EJ%27s+Luncheonette+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=EJ%27s+Luncheonette+upper+east+side+NYC",
+    "duration_max": 113
   },
   {
     "name": "JG Melon",
-    "category": "lunch",
+    "category": "dinner",
     "neighborhood": "Upper East Side",
     "duration_min": 60,
     "vibe_tags": [
       "burger",
-      "lunch",
+      "dinner",
       "classic"
     ],
     "energy_tags": [
@@ -825,13 +806,14 @@
     ],
     "description": "Cash-only burger shrine since 1972; gingham tablecloths, pickle spears, and the perfect griddle crust. Wear a blazer and order a martini for extra posh feel at this classic dive bar.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=JG+Melon+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=JG+Melon+upper+east+side+NYC",
+    "duration_max": 90
   },
   {
     "name": "Lobel's Meat Market",
     "category": "butcher",
     "neighborhood": "Upper East Side",
-    "duration_min": 60,
+    "duration_min": 20,
     "vibe_tags": [
       "butcher",
       "meat",
@@ -843,7 +825,8 @@
     ],
     "description": "Legendary butcher since 1840. The kind of counter where you chat about marbling like it's art.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Lobel%27s+Meat+Market+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Lobel%27s+Meat+Market+upper+east+side+NYC",
+    "duration_max": 45
   },
   {
     "name": "Majorelle",
@@ -862,7 +845,8 @@
     ],
     "description": "White orchids, teal banquettes, and French-Moroccan cuisine served like a ritual. Jackets suggested, martinis mandatory.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Majorelle+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Majorelle+upper+east+side+NYC",
+    "duration_max": 135
   },
   {
     "name": "Paola's Osteria",
@@ -882,7 +866,8 @@
     ],
     "description": "Old New York Italian with handwritten menus and regulars who greet the host by name.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Paola%27s+Osteria+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Paola%27s+Osteria+upper+east+side+NYC",
+    "duration_max": 135
   },
   {
     "name": "PJ Carney's",
@@ -901,7 +886,8 @@
     ],
     "description": "The neighborhood Irish pub that still feels local. Guinness, wings, and a proper pour.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=PJ+Carney%27s+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=PJ+Carney%27s+upper+east+side+NYC",
+    "duration_max": 113
   },
   {
     "name": "Sable's Smoked Fish",
@@ -920,7 +906,8 @@
     ],
     "description": "Counter-only, lox heaven. Everything tastes like it's straight from Zabar's but with East Side polish.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Sable%27s+Smoked+Fish+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Sable%27s+Smoked+Fish+upper+east+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Sant Ambroeus",
@@ -939,7 +926,8 @@
     ],
     "description": "Milanese café-meets-social club. Espresso by day, spritzes by night, and everyone's dressed like they're going somewhere after.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Sant+Ambroeus+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Sant+Ambroeus+upper+east+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Setté Mezzo",
@@ -960,7 +948,8 @@
     ],
     "description": "Tiny, tuxedoed, and timeless. Old-school Italian where the regulars have standing reservations and the veal Milanese is flawless.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Sett%C3%A9+Mezzo+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Sett%C3%A9+Mezzo+upper+east+side+NYC",
+    "duration_max": 135
   },
   {
     "name": "Via Quadronno",
@@ -979,7 +968,8 @@
     ],
     "description": "The city's most famous panini spot; prosciutto, Parmigiano, and espresso under one tiny awning.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Via+Quadronno+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Via+Quadronno+upper+east+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "William Poll",
@@ -997,7 +987,8 @@
     ],
     "description": "Gourmet to-go; note the chicken salad. The Upper East's quiet standby for elegant sandwiches and perfect party platters.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=William+Poll+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=William+Poll+upper+east+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Isle of Us",
@@ -1016,7 +1007,8 @@
     ],
     "description": "Health-forward café with matcha, grain bowls, and a crowd that looks straight out of Pilates.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Isle+of+Us+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Isle+of+Us+upper+east+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Ralph's Coffee",
@@ -1035,7 +1027,8 @@
     ],
     "description": "Forest-green branding, perfect microfoam, Fifth Avenue polish. Impossibly photogenic.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Ralph%27s+Coffee+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Ralph%27s+Coffee+upper+east+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Belgian Shoes",
@@ -1054,7 +1047,8 @@
     ],
     "description": "Custom loafers that only New Yorkers in the know wear. Handmade, heritage, hush-hush.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Belgian+Shoes+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Belgian+Shoes+upper+east+side+NYC",
+    "duration_max": 53
   },
   {
     "name": "Bloomingdale's",
@@ -1072,7 +1066,8 @@
     ],
     "description": "The original \"Bloomie's,\" where chaos and couture meet. Still a city rite of passage.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Bloomingdale%27s+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Bloomingdale%27s+upper+east+side+NYC",
+    "duration_max": 53
   },
   {
     "name": "Cooper Hewitt Museum Store",
@@ -1091,7 +1086,8 @@
     ],
     "description": "Design-forward gifts, gadgets, and art prints that feel more MoMA than museum shop.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Cooper+Hewitt+Museum+Store+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Cooper+Hewitt+Museum+Store+upper+east+side+NYC",
+    "duration_max": 53
   },
   {
     "name": "Doyle Auction House",
@@ -1111,7 +1107,8 @@
     ],
     "description": "Vintage jewelry, fine art, and estate sales where locals quietly bid on treasures.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Doyle+Auction+House+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Doyle+Auction+House+upper+east+side+NYC",
+    "duration_max": 53
   },
   {
     "name": "Ludivine",
@@ -1130,7 +1127,8 @@
     ],
     "description": "Parisian boutique of minimalist dreams — think striped knits, quiet luxury, and perfect denim.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Ludivine+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Ludivine+upper+east+side+NYC",
+    "duration_max": 53
   },
   {
     "name": "Ralph Lauren (Madison Ave)",
@@ -1150,7 +1148,8 @@
     ],
     "description": "The flagship mansion of American prep. Velvet couches, mahogany, and a touch of Gatsby.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Ralph+Lauren+%28Madison+Ave%29+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Ralph+Lauren+%28Madison+Ave%29+upper+east+side+NYC",
+    "duration_max": 53
   },
   {
     "name": "Scully & Scully",
@@ -1169,7 +1168,8 @@
     ],
     "description": "Crystal, silver, and fine china. If the Queen had a registry in Manhattan, it'd be here.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Scully+%26+Scully+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Scully+%26+Scully+upper+east+side+NYC",
+    "duration_max": 53
   },
   {
     "name": "The Met Store",
@@ -1189,7 +1189,8 @@
     ],
     "description": "Museum-quality art objects and silk scarves that feel like souvenirs from another century.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=The+Met+Store+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=The+Met+Store+upper+east+side+NYC",
+    "duration_max": 53
   },
   {
     "name": "Zitomer Pharmacy",
@@ -1208,7 +1209,8 @@
     ],
     "description": "The fanciest \"pharmacy\" in the city; vitamins meet Versace.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Zitomer+Pharmacy+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Zitomer+Pharmacy+upper+east+side+NYC",
+    "duration_max": 53
   },
   {
     "name": "Cooper Hewitt Smithsonian Design Museum",
@@ -1227,7 +1229,8 @@
     ],
     "description": "Housed in the Carnegie Mansion; touch-screen exhibits and the design nerd's paradise.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Cooper+Hewitt+Smithsonian+Design+Museum+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Cooper+Hewitt+Smithsonian+Design+Museum+upper+east+side+NYC",
+    "duration_max": 180
   },
   {
     "name": "Guggenheim Museum",
@@ -1246,7 +1249,8 @@
     ],
     "description": "Frank Lloyd Wright's spiral masterpiece. Come for the building, stay for the Kandinsky.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Guggenheim+Museum+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Guggenheim+Museum+upper+east+side+NYC",
+    "duration_max": 180
   },
   {
     "name": "Jewish Museum",
@@ -1265,7 +1269,8 @@
     ],
     "description": "Grounded, thoughtful, and beautifully curated. Rotating exhibits that go deep into art, identity, and culture.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Jewish+Museum+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Jewish+Museum+upper+east+side+NYC",
+    "duration_max": 180
   },
   {
     "name": "Neue Galerie",
@@ -1284,7 +1289,8 @@
     ],
     "description": "Klimt, espresso, and a whiff of old Vienna. Compact but gorgeous.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=Neue+Galerie+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Neue+Galerie+upper+east+side+NYC",
+    "duration_max": 90
   },
   {
     "name": "The Frick Collection",
@@ -1302,7 +1308,8 @@
     ],
     "description": "Gilded-age mansion newly restored — brighter, more inviting, and still filled with Vermeers and Rembrandts.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=The+Frick+Collection+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=The+Frick+Collection+upper+east+side+NYC",
+    "duration_max": 90
   },
   {
     "name": "The Met (Metropolitan Museum of Art)",
@@ -1322,7 +1329,8 @@
     ],
     "description": "Neo-Classical grandeur from 1880; spend an afternoon, end on the rooftop bar. From mummies to Monet, it's the city's crown jewel.",
     "location": "Upper East Side",
-    "url": "https://www.google.com/maps?q=The+Met+%28Metropolitan+Museum+of+Art%29+upper+east+side+NYC"
+    "url": "https://www.google.com/maps?q=The+Met+%28Metropolitan+Museum+of+Art%29+upper+east+side+NYC",
+    "duration_max": 180
   },
   {
     "name": "Bethesda Fountain",
@@ -1340,7 +1348,8 @@
     ],
     "description": "The park's heart. Angel of the Waters rising above the lake, street musicians playing \"Imagine,\" and couples in rowboats drifting past.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=Bethesda+Fountain+central+park+NYC"
+    "url": "https://www.google.com/maps?q=Bethesda+Fountain+central+park+NYC",
+    "duration_max": 45
   },
   {
     "name": "Bike All the Way Around Central Park",
@@ -1359,7 +1368,8 @@
     ],
     "description": "6.1 miles of rolling greens, skyline glimpses, and runners to dodge. Early morning or just before dusk for that movie-scene glow.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=Bike+All+the+Way+Around+Central+Park+central+park+NYC"
+    "url": "https://www.google.com/maps?q=Bike+All+the+Way+Around+Central+Park+central+park+NYC",
+    "duration_max": 90
   },
   {
     "name": "Boathouse & Pond",
@@ -1378,7 +1388,8 @@
     ],
     "description": "Rent a rowboat or sip wine by the water. Recently reopened, with fresh polish but the same sense of old New York charm.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=Boathouse+%26+Pond+central+park+NYC"
+    "url": "https://www.google.com/maps?q=Boathouse+%26+Pond+central+park+NYC",
+    "duration_max": 90
   },
   {
     "name": "Bow Bridge",
@@ -1397,7 +1408,8 @@
     ],
     "description": "Cast-iron perfection arcing over the lake. Come for the view, stay for the proposal happening next to you.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=Bow+Bridge+central+park+NYC"
+    "url": "https://www.google.com/maps?q=Bow+Bridge+central+park+NYC",
+    "duration_max": 45
   },
   {
     "name": "Carousel",
@@ -1415,7 +1427,8 @@
     ],
     "description": "Whirling since 1871, tucked near the Dairy. Old-world music, hand-carved horses, and pure kid joy.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=Carousel+central+park+NYC"
+    "url": "https://www.google.com/maps?q=Carousel+central+park+NYC",
+    "duration_max": 90
   },
   {
     "name": "Central Park Zoo (Children's Zoo)",
@@ -1434,7 +1447,8 @@
     ],
     "description": "Small, manageable, and surprisingly lush. Sea lions, penguins, and petting-zoo goats for the little ones.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=Central+Park+Zoo+%28Children%27s+Zoo%29+central+park+NYC"
+    "url": "https://www.google.com/maps?q=Central+Park+Zoo+%28Children%27s+Zoo%29+central+park+NYC",
+    "duration_max": 90
   },
   {
     "name": "Conservatory Garden",
@@ -1453,7 +1467,8 @@
     ],
     "description": "Uptown's secret garden; three formal gardens in one, and the quietest place in Manhattan.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=Conservatory+Garden+central+park+NYC"
+    "url": "https://www.google.com/maps?q=Conservatory+Garden+central+park+NYC",
+    "duration_max": 90
   },
   {
     "name": "Great Lawn",
@@ -1472,7 +1487,8 @@
     ],
     "description": "The city's backyard. Softball games, Philharmonic concerts, sunbathers, and the occasional Shakespeare troupe.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=Great+Lawn+central+park+NYC"
+    "url": "https://www.google.com/maps?q=Great+Lawn+central+park+NYC",
+    "duration_max": 45
   },
   {
     "name": "John Lennon Memorial (Strawberry Fields)",
@@ -1491,7 +1507,8 @@
     ],
     "description": "Mosaics, flowers, and quiet reflection just across from the Dakota. Beatles fans still linger daily.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=John+Lennon+Memorial+%28Strawberry+Fields%29+central+park+NYC"
+    "url": "https://www.google.com/maps?q=John+Lennon+Memorial+%28Strawberry+Fields%29+central+park+NYC",
+    "duration_max": 45
   },
   {
     "name": "Mall and Literary Walk",
@@ -1510,7 +1527,8 @@
     ],
     "description": "A canopy of elms leading to statues of Shakespeare, Burns, and Fitz-Greene Halleck. Street artists and portrait painters still holding court.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=Mall+and+Literary+Walk+central+park+NYC"
+    "url": "https://www.google.com/maps?q=Mall+and+Literary+Walk+central+park+NYC",
+    "duration_max": 90
   },
   {
     "name": "Reservoir Loop",
@@ -1529,7 +1547,8 @@
     ],
     "description": "A 1.6-mile circuit with skyline views in every direction. Jackie O's favorite run, and still one of the city's best meditative escapes.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=Reservoir+Loop+central+park+NYC"
+    "url": "https://www.google.com/maps?q=Reservoir+Loop+central+park+NYC",
+    "duration_max": 90
   },
   {
     "name": "Shakespeare in the Park",
@@ -1548,7 +1567,8 @@
     ],
     "description": "Free summer theater at the Delacorte. Lines start early, applause echoes off the trees, and everyone pretends it's not humid.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=Shakespeare+in+the+Park+central+park+NYC"
+    "url": "https://www.google.com/maps?q=Shakespeare+in+the+Park+central+park+NYC",
+    "duration_max": 180
   },
   {
     "name": "Sheep Meadow",
@@ -1567,7 +1587,8 @@
     ],
     "description": "The picnic spot. Blankets, frisbees, skyline views, and the hum of the city softened by distance.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=Sheep+Meadow+central+park+NYC"
+    "url": "https://www.google.com/maps?q=Sheep+Meadow+central+park+NYC",
+    "duration_max": 90
   },
   {
     "name": "The Ramble",
@@ -1586,7 +1607,8 @@
     ],
     "description": "36 acres of winding paths, hidden benches, and birdwatchers. Feels wild — intentionally. Designed to get you lost.",
     "location": "Central Park",
-    "url": "https://www.google.com/maps?q=The+Ramble+central+park+NYC"
+    "url": "https://www.google.com/maps?q=The+Ramble+central+park+NYC",
+    "duration_max": 90
   },
   {
     "name": "Angelo's Coal Oven Pizzeria",
@@ -1605,7 +1627,8 @@
     ],
     "description": "Crispy-edged, coal-fired pies right off 57th; family-run, unfussy, and one of the few Midtown slices that's actually worth sitting down for.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Angelo%27s+Coal+Oven+Pizzeria+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Angelo%27s+Coal+Oven+Pizzeria+midtown+corridor+NYC",
+    "duration_max": 90
   },
   {
     "name": "Burger Joint (hidden in Parker Hotel)",
@@ -1624,7 +1647,8 @@
     ],
     "description": "Behind a velvet curtain in a luxury hotel lobby: neon lights, graffiti walls, and one of the city's great under-$15 burgers. Go early or late to skip the lunch rush.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Burger+Joint+%28hidden+in+Parker+Hotel%29+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Burger+Joint+%28hidden+in+Parker+Hotel%29+midtown+corridor+NYC",
+    "duration_max": 90
   },
   {
     "name": "Gabriel's",
@@ -1643,7 +1667,8 @@
     ],
     "description": "Italian stalwart by Columbus Circle; linen tablecloths, steady service, and clientele who've been coming since the Clinton years.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Gabriel%27s+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Gabriel%27s+midtown+corridor+NYC",
+    "duration_max": 135
   },
   {
     "name": "Le Relais de Venise",
@@ -1663,7 +1688,8 @@
     ],
     "description": "No menu, just steak-frites done right. A Paris import where the sauce is a state secret and seconds are mandatory. Get there early — lines start before doors open.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Le+Relais+de+Venise+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Le+Relais+de+Venise+midtown+corridor+NYC",
+    "duration_max": 135
   },
   {
     "name": "Tavern on the Green",
@@ -1683,7 +1709,8 @@
     ],
     "description": "Fairy lights under the elms, Central Park just beyond the windows. Touristy? Sure. Magical? Also yes.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Tavern+on+the+Green+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Tavern+on+the+Green+midtown+corridor+NYC",
+    "duration_max": 135
   },
   {
     "name": "The Plaza (L'Avenue Rooftop)",
@@ -1702,7 +1729,8 @@
     ],
     "description": "Designer heels, caviar bumps, skyline views — the kind of place where champagne is an accessory. Inside the Plaza, you can also have tea under the Palm Court's stained glass, grab lobster rolls at the Plaza Food Hall, or sneak up to the Champagne Bar for bubbles with Central Park views.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=The+Plaza+%28L%27Avenue+Rooftop%29+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=The+Plaza+%28L%27Avenue+Rooftop%29+midtown+corridor+NYC",
+    "duration_max": 113
   },
   {
     "name": "Cote (Korean BBQ)",
@@ -1721,7 +1749,8 @@
     ],
     "description": "Michelin-starred smoke and precision grilling; the dry-aged ribeye set is a rite of passage.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Cote+%28Korean+BBQ%29+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Cote+%28Korean+BBQ%29+midtown+corridor+NYC",
+    "duration_max": 135
   },
   {
     "name": "Gramercy Tavern",
@@ -1740,7 +1769,8 @@
     ],
     "description": "One of Danny Meyer's temples of hospitality. Seasonal perfection, impeccable service, and that warm hum only New York institutions have.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Gramercy+Tavern+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Gramercy+Tavern+midtown+corridor+NYC",
+    "duration_max": 135
   },
   {
     "name": "Gallagher's Steakhouse",
@@ -1760,7 +1790,8 @@
     ],
     "description": "1927 chophouse lined with dry-aging beef behind glass; masculine, meaty, and iconic.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Gallagher%27s+Steakhouse+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Gallagher%27s+Steakhouse+midtown+corridor+NYC",
+    "duration_max": 135
   },
   {
     "name": "The Polo Bar",
@@ -1779,7 +1810,8 @@
     ],
     "description": "Ralph Lauren's clubby den of tartan and martinis. Impossible to get in without a reservation — or a personal connection.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=The+Polo+Bar+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=The+Polo+Bar+midtown+corridor+NYC",
+    "duration_max": 135
   },
   {
     "name": "5th Ave Hotel Restaurant",
@@ -1798,7 +1830,8 @@
     ],
     "description": "A newcomer with Gilded Age flair; marble floors, art deco lighting, and a menu as polished as the chandeliers.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=5th+Ave+Hotel+Restaurant+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=5th+Ave+Hotel+Restaurant+midtown+corridor+NYC",
+    "duration_max": 135
   },
   {
     "name": "Breads Bakery (Bryant Park)",
@@ -1817,7 +1850,8 @@
     ],
     "description": "Home of the chocolate babka, now in Midtown. Stop for coffee and something warm from the oven.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Breads+Bakery+%28Bryant+Park%29+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Breads+Bakery+%28Bryant+Park%29+midtown+corridor+NYC",
+    "duration_max": 30
   },
   {
     "name": "Dollar Slice Pizza",
@@ -1836,7 +1870,8 @@
     ],
     "description": "Because not every meal in Midtown needs to cost $50. Greasy, fast, and still New York's best inflation protest.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Dollar+Slice+Pizza+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Dollar+Slice+Pizza+midtown+corridor+NYC",
+    "duration_max": 30
   },
   {
     "name": "Grand Central Oyster Bar",
@@ -1855,7 +1890,8 @@
     ],
     "description": "Oyster counters under vaulted Guastavino tiles since 1913. Order a martini and a dozen, and watch the commuters rush by.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Grand+Central+Oyster+Bar+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Grand+Central+Oyster+Bar+midtown+corridor+NYC",
+    "duration_max": 90
   },
   {
     "name": "Keens Steakhouse",
@@ -1875,7 +1911,8 @@
     ],
     "description": "Clay pipes on the ceiling, mutton chop on the table, and a century of smoke in the air. A Manhattan essential.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Keens+Steakhouse+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Keens+Steakhouse+midtown+corridor+NYC",
+    "duration_max": 135
   },
   {
     "name": "L'Avenue at Saks (Rooftop)",
@@ -1894,7 +1931,8 @@
     ],
     "description": "Sleek, French, fashion-adjacent dining with Fifth Avenue views. The crowd is as curated as the menu.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=L%27Avenue+at+Saks+%28Rooftop%29+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=L%27Avenue+at+Saks+%28Rooftop%29+midtown+corridor+NYC",
+    "duration_max": 90
   },
   {
     "name": "Penn Station (casual eats)",
@@ -1913,7 +1951,8 @@
     ],
     "description": "Grab-and-go chaos: bagels, pretzels, dumplings. Not a destination, but useful between trains.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Penn+Station+%28casual+eats%29+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Penn+Station+%28casual+eats%29+midtown+corridor+NYC",
+    "duration_max": 30
   },
   {
     "name": "Blank Street",
@@ -1932,7 +1971,8 @@
     ],
     "description": "Efficient caffeine chain, minimalist and reliable. Ideal pit stop between meetings.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Blank+Street+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Blank+Street+midtown+corridor+NYC",
+    "duration_max": 30
   },
   {
     "name": "Blue Bottle Coffee (Chelsea)",
@@ -1951,7 +1991,8 @@
     ],
     "description": "Precision pour-overs and pastry minimalism; coffee as ritual, not routine.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Blue+Bottle+Coffee+%28Chelsea%29+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Blue+Bottle+Coffee+%28Chelsea%29+midtown+corridor+NYC",
+    "duration_max": 30
   },
   {
     "name": "Joe Coffee Company (Chelsea)",
@@ -1969,7 +2010,8 @@
     ],
     "description": "Beloved local chain, friendly staff, strong espresso. Still feels neighborhood despite the zip code.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Joe+Coffee+Company+%28Chelsea%29+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Joe+Coffee+Company+%28Chelsea%29+midtown+corridor+NYC",
+    "duration_max": 30
   },
   {
     "name": "Kinokuniya Bookstore Café",
@@ -1988,7 +2030,8 @@
     ],
     "description": "Japanese books, stationery, and matcha lattes with Midtown views. Secretly one of the best places to hide.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Kinokuniya+Bookstore+Caf%C3%A9+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Kinokuniya+Bookstore+Caf%C3%A9+midtown+corridor+NYC",
+    "duration_max": 90
   },
   {
     "name": "Lodi",
@@ -2007,7 +2050,8 @@
     ],
     "description": "Elegant Italian bakery at Rockefeller Center; sfogliatella and espresso done Milan-style.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Lodi+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Lodi+midtown+corridor+NYC",
+    "duration_max": 30
   },
   {
     "name": "Maman",
@@ -2026,7 +2070,8 @@
     ],
     "description": "Rustic-French café with blue-and-white branding and the city's most famous nutty chocolate-chip cookie.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Maman+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Maman+midtown+corridor+NYC",
+    "duration_max": 30
   },
   {
     "name": "Bergdorf Goodman",
@@ -2045,7 +2090,8 @@
     ],
     "description": "Fifth Avenue glamour distilled; perfume, couture, and the occasional celebrity in the shoe salon.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Bergdorf+Goodman+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Bergdorf+Goodman+midtown+corridor+NYC",
+    "duration_max": 53
   },
   {
     "name": "Bloomingdale's (59th & Lex)",
@@ -2063,7 +2109,8 @@
     ],
     "description": "Midtown's retail marathon. Loud, crowded, and full of energy.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Bloomingdale%27s+%2859th+%26+Lex%29+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Bloomingdale%27s+%2859th+%26+Lex%29+midtown+corridor+NYC",
+    "duration_max": 53
   },
   {
     "name": "FAO Schwarz",
@@ -2082,7 +2129,8 @@
     ],
     "description": "Toy wonderland reborn at Rockefeller Center. Nostalgia wrapped in piano keys and plush.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=FAO+Schwarz+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=FAO+Schwarz+midtown+corridor+NYC",
+    "duration_max": 53
   },
   {
     "name": "Kule at Rock Center",
@@ -2101,7 +2149,8 @@
     ],
     "description": "Stripes, smiles, and effortless prep. The quintessential New York boutique brand.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Kule+at+Rock+Center+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Kule+at+Rock+Center+midtown+corridor+NYC",
+    "duration_max": 53
   },
   {
     "name": "MoMA Design Store",
@@ -2120,7 +2169,8 @@
     ],
     "description": "Sleek gadgets, design books, and artful gifts that feel like the museum next door.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=MoMA+Design+Store+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=MoMA+Design+Store+midtown+corridor+NYC",
+    "duration_max": 53
   },
   {
     "name": "MUJI",
@@ -2139,7 +2189,8 @@
     ],
     "description": "Japanese minimalism for home and travel; everything you didn't know you needed in neutral tones.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=MUJI+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=MUJI+midtown+corridor+NYC",
+    "duration_max": 53
   },
   {
     "name": "Saks Fifth Avenue",
@@ -2158,7 +2209,8 @@
     ],
     "description": "Cathedral of retail; floors of fashion, perfume, and fantasy.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Saks+Fifth+Avenue+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Saks+Fifth+Avenue+midtown+corridor+NYC",
+    "duration_max": 53
   },
   {
     "name": "Tiffany & Co.",
@@ -2177,7 +2229,8 @@
     ],
     "description": "The new flagship gleams from top to bottom: seven floors of history and sparkle.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Tiffany+%26+Co.+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Tiffany+%26+Co.+midtown+corridor+NYC",
+    "duration_max": 53
   },
   {
     "name": "UNIQLO",
@@ -2196,26 +2249,8 @@
     ],
     "description": "Streamlined basics done right. Midtown's answer to minimalist efficiency.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=UNIQLO+midtown+corridor+NYC"
-  },
-  {
-    "name": "Broadway Show",
-    "category": "theater",
-    "neighborhood": "Midtown Corridor",
-    "duration_min": 120,
-    "vibe_tags": [
-      "theater",
-      "performance",
-      "nyc-classic",
-      "local"
-    ],
-    "energy_tags": [
-      "electric",
-      "emotional"
-    ],
-    "description": "The ultimate Midtown anchor. Every night, the lights go up and dreams get sung into reality.",
-    "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Broadway+Show+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=UNIQLO+midtown+corridor+NYC",
+    "duration_max": 53
   },
   {
     "name": "Bryant Park",
@@ -2234,7 +2269,8 @@
     ],
     "description": "Midtown's pocket oasis: lawn chairs, food kiosks, and free movie nights in summer. Grab a book, sit under the trees, and people-watch the afternoon away.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Bryant+Park+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Bryant+Park+midtown+corridor+NYC",
+    "duration_max": 45
   },
   {
     "name": "Grand Central Terminal",
@@ -2254,7 +2290,8 @@
     ],
     "description": "Beaux-Arts beauty from 1913. Stand on the Whispering Gallery to hear your voice echo across the arches; visit the Campbell Bar for an Old Fashioned under frescoed ceilings; and look for the secret tennis courts above Track 104.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Grand+Central+Terminal+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Grand+Central+Terminal+midtown+corridor+NYC",
+    "duration_max": 45
   },
   {
     "name": "MoMA",
@@ -2273,7 +2310,8 @@
     ],
     "description": "Picasso to Pollock, film screenings, and one of the best museum gardens in the city.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=MoMA+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=MoMA+midtown+corridor+NYC",
+    "duration_max": 180
   },
   {
     "name": "NY Public Library (Main)",
@@ -2292,7 +2330,8 @@
     ],
     "description": "Lions, marble halls, and hushed grandeur. Step inside, and the city fades away.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=NY+Public+Library+%28Main%29+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=NY+Public+Library+%28Main%29+midtown+corridor+NYC",
+    "duration_max": 45
   },
   {
     "name": "Plaza Hotel",
@@ -2310,7 +2349,8 @@
     ],
     "description": "Gilded glamour, from afternoon tea to champagne at the Palm Court, and food-hall lobster rolls below. It's where New York still dresses up.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Plaza+Hotel+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Plaza+Hotel+midtown+corridor+NYC",
+    "duration_max": 45
   },
   {
     "name": "Radio City Music Hall",
@@ -2328,7 +2368,8 @@
     ],
     "description": "Rockettes, art deco, and flashing marquees. The spirit of 1930s New York still shining.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Radio+City+Music+Hall+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Radio+City+Music+Hall+midtown+corridor+NYC",
+    "duration_max": 180
   },
   {
     "name": "Rockefeller Center",
@@ -2348,7 +2389,8 @@
     ],
     "description": "The city's holiday heart: the tree, the stores, and the hum of tourists and locals crossing paths.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=Rockefeller+Center+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=Rockefeller+Center+midtown+corridor+NYC",
+    "duration_max": 45
   },
   {
     "name": "St. Patrick's Cathedral",
@@ -2367,7 +2409,8 @@
     ],
     "description": "Neo-Gothic spires rising between skyscrapers. Step inside for stained-glass serenity, candlelight, and a sense of calm that feels centuries deep.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=St.+Patrick%27s+Cathedral+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=St.+Patrick%27s+Cathedral+midtown+corridor+NYC",
+    "duration_max": 45
   },
   {
     "name": "The Morgan Library & Museum",
@@ -2386,7 +2429,8 @@
     ],
     "description": "J.P. Morgan's former study, now filled with illuminated manuscripts and quiet majesty.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=The+Morgan+Library+%26+Museum+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=The+Morgan+Library+%26+Museum+midtown+corridor+NYC",
+    "duration_max": 180
   },
   {
     "name": "The Vessel (Hudson Yards)",
@@ -2405,7 +2449,8 @@
     ],
     "description": "Futuristic spiral with skyline views — more sculpture than building, and pure New York ambition.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=The+Vessel+%28Hudson+Yards%29+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=The+Vessel+%28Hudson+Yards%29+midtown+corridor+NYC",
+    "duration_max": 45
   },
   {
     "name": "The Waldorf Astoria",
@@ -2424,7 +2469,8 @@
     ],
     "description": "Just reopened after a massive restoration. Art Deco glamour reborn — peek into Peacock Alley for cocktails or stay for the lobby's historic murals.",
     "location": "Midtown Corridor",
-    "url": "https://www.google.com/maps?q=The+Waldorf+Astoria+midtown+corridor+NYC"
+    "url": "https://www.google.com/maps?q=The+Waldorf+Astoria+midtown+corridor+NYC",
+    "duration_max": 45
   },
   {
     "name": "Pastis",
@@ -2444,7 +2490,8 @@
     ],
     "description": "Keith McNally's reborn French brasserie, with tile floors, red banquettes, and the city's most photogenic steak frites. Breakfast crowd in Céline, late-night crowd in vintage denim.",
     "location": "Flatiron Chelsea",
-    "url": "https://www.google.com/maps?q=Pastis+flatiron+chelsea+NYC"
+    "url": "https://www.google.com/maps?q=Pastis+flatiron+chelsea+NYC",
+    "duration_max": 90
   },
   {
     "name": "Temple Bar",
@@ -2464,7 +2511,8 @@
     ],
     "description": "A Flatiron transplant of the NoHo classic; deep green velvet, martinis so cold they bite back, and the hush of a 1990s power cocktail bar.",
     "location": "Flatiron Chelsea",
-    "url": "https://www.google.com/maps?q=Temple+Bar+flatiron+chelsea+NYC"
+    "url": "https://www.google.com/maps?q=Temple+Bar+flatiron+chelsea+NYC",
+    "duration_max": 113
   },
   {
     "name": "Wayan",
@@ -2483,7 +2531,8 @@
     ],
     "description": "Indonesian-French fusion from Cédric Vongerichten. Lush interiors, sambal heat, and jungle energy in the middle of Nolita-meets-Flatiron.",
     "location": "Flatiron Chelsea",
-    "url": "https://www.google.com/maps?q=Wayan+flatiron+chelsea+NYC"
+    "url": "https://www.google.com/maps?q=Wayan+flatiron+chelsea+NYC",
+    "duration_max": 135
   },
   {
     "name": "Blue Hill",
@@ -2502,7 +2551,8 @@
     ],
     "description": "Dan Barber's flagship for the farm-to-table movement, tucked near Washington Square Park. Seasonal tasting menus built around regenerative agriculture; nearly every ingredient has a story. His sister restaurant, Blue Hill at Stone Barns upstate, expands that philosophy into a working farm.",
     "location": "Flatiron Chelsea",
-    "url": "https://www.google.com/maps?q=Blue+Hill+flatiron+chelsea+NYC"
+    "url": "https://www.google.com/maps?q=Blue+Hill+flatiron+chelsea+NYC",
+    "duration_max": 135
   },
   {
     "name": "Eataly Flatiron",
@@ -2521,7 +2571,8 @@
     ],
     "description": "Italian food emporium: espresso, pasta, and gelato under one roof. The rooftop restaurant (Serra) transforms seasonally — flowers in summer, alpine chalet in winter.",
     "location": "Flatiron Chelsea",
-    "url": "https://www.google.com/maps?q=Eataly+Flatiron+flatiron+chelsea+NYC"
+    "url": "https://www.google.com/maps?q=Eataly+Flatiron+flatiron+chelsea+NYC",
+    "duration_max": 90
   },
   {
     "name": "Lure Fishbar",
@@ -2540,7 +2591,8 @@
     ],
     "description": "A yacht of a restaurant docked below street level. Sushi, oysters, and a cocktail list that reads like a vacation.",
     "location": "Flatiron Chelsea",
-    "url": "https://www.google.com/maps?q=Lure+Fishbar+flatiron+chelsea+NYC"
+    "url": "https://www.google.com/maps?q=Lure+Fishbar+flatiron+chelsea+NYC",
+    "duration_max": 135
   },
   {
     "name": "Maman",
@@ -2559,7 +2611,8 @@
     ],
     "description": "The signature blue-and-white café with nutty chocolate-chip cookies, floral cups, and buttery quiche. A Flatiron pause that still feels like Provence.",
     "location": "Flatiron Chelsea",
-    "url": "https://www.google.com/maps?q=Maman+flatiron+chelsea+NYC"
+    "url": "https://www.google.com/maps?q=Maman+flatiron+chelsea+NYC",
+    "duration_max": 30
   },
   {
     "name": "Two Hands",
@@ -2578,7 +2631,8 @@
     ],
     "description": "Bright, airy Aussie café for matcha, avocado toast, and the best banana bread in the city.",
     "location": "Flatiron Chelsea",
-    "url": "https://www.google.com/maps?q=Two+Hands+flatiron+chelsea+NYC"
+    "url": "https://www.google.com/maps?q=Two+Hands+flatiron+chelsea+NYC",
+    "duration_max": 30
   },
   {
     "name": "Chelsea Market",
@@ -2597,7 +2651,8 @@
     ],
     "description": "The anchor of west-side grazing: tacos, doughnuts, oysters, art, and vintage stalls. Walk with coffee and see where the afternoon takes you.",
     "location": "Flatiron Chelsea",
-    "url": "https://www.google.com/maps?q=Chelsea+Market+flatiron+chelsea+NYC"
+    "url": "https://www.google.com/maps?q=Chelsea+Market+flatiron+chelsea+NYC",
+    "duration_max": 53
   },
   {
     "name": "Gallow Green (McKittrick Hotel)",
@@ -2616,7 +2671,8 @@
     ],
     "description": "Rooftop garden bar above Sleep No More. Fairy lights, overgrown ivy, and cocktails that taste like summer evenings.",
     "location": "Flatiron Chelsea",
-    "url": "https://www.google.com/maps?q=Gallow+Green+%28McKittrick+Hotel%29+flatiron+chelsea+NYC"
+    "url": "https://www.google.com/maps?q=Gallow+Green+%28McKittrick+Hotel%29+flatiron+chelsea+NYC",
+    "duration_max": 113
   },
   {
     "name": "Pier 57 Market (rooftop views)",
@@ -2634,7 +2690,8 @@
     ],
     "description": "New food hall on the Hudson with sweeping skyline views. Grab a drink upstairs at sunset.",
     "location": "Flatiron Chelsea",
-    "url": "https://www.google.com/maps?q=Pier+57+Market+%28rooftop+views%29+flatiron+chelsea+NYC"
+    "url": "https://www.google.com/maps?q=Pier+57+Market+%28rooftop+views%29+flatiron+chelsea+NYC",
+    "duration_max": 90
   },
   {
     "name": "The High Line",
@@ -2653,7 +2710,8 @@
     ],
     "description": "Elevated park built on old railway tracks. Wildflowers, street art, and river views — best walked from Chelsea to Hudson Yards.",
     "location": "Flatiron Chelsea",
-    "url": "https://www.google.com/maps?q=The+High+Line+flatiron+chelsea+NYC"
+    "url": "https://www.google.com/maps?q=The+High+Line+flatiron+chelsea+NYC",
+    "duration_max": 90
   },
   {
     "name": "The Whitney Museum",
@@ -2672,7 +2730,8 @@
     ],
     "description": "Modern American art in a Renzo Piano building overlooking the river. Hopper, Warhol, and one of the best museum terraces in the city.",
     "location": "Flatiron Chelsea",
-    "url": "https://www.google.com/maps?q=The+Whitney+Museum+flatiron+chelsea+NYC"
+    "url": "https://www.google.com/maps?q=The+Whitney+Museum+flatiron+chelsea+NYC",
+    "duration_max": 180
   },
   {
     "name": "Altro Paradiso",
@@ -2691,7 +2750,8 @@
     ],
     "description": "From Ignacio Mattos (of Estela fame), this corner space is all marble, natural light, and impeccable Italian simplicity. Try the malfatti and a glass of Barbera — lunch here feels like Milan dropped into Manhattan.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Altro+Paradiso+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Altro+Paradiso+soho+nolita+NYC",
+    "duration_max": 90
   },
   {
     "name": "Balthazar",
@@ -2711,7 +2771,8 @@
     ],
     "description": "Keith McNally's quintessential brasserie: pressed white aprons, raw bar towers, and the hum of people who've been \"doing lunch\" since the '90s. Breakfast here is equally iconic — the bread basket alone is a statement.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Balthazar+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Balthazar+soho+nolita+NYC",
+    "duration_max": 90
   },
   {
     "name": "Blue Ribbon Brasserie",
@@ -2730,7 +2791,8 @@
     ],
     "description": "Open late and loved by chefs, it's where you go post-service or post-show for oysters, steak, and champagne at midnight.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Blue+Ribbon+Brasserie+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Blue+Ribbon+Brasserie+soho+nolita+NYC",
+    "duration_max": 135
   },
   {
     "name": "Corima",
@@ -2749,7 +2811,8 @@
     ],
     "description": "Modern Mexican tasting menu in a pared-down space. Seasonal, cerebral, and one of SoHo's most exciting new openings.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Corima+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Corima+soho+nolita+NYC",
+    "duration_max": 135
   },
   {
     "name": "Estela",
@@ -2768,7 +2831,8 @@
     ],
     "description": "Tucked above Houston on a quiet block. One of New York's most acclaimed small-plate spots — Mattos again — where every dish feels both effortless and exacting.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Estela+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Estela+soho+nolita+NYC",
+    "duration_max": 135
   },
   {
     "name": "La Mercerie",
@@ -2787,7 +2851,8 @@
     ],
     "description": "Café and design showroom in one — everything on your table (and around it) is for sale. The buckwheat crêpe with egg and Gruyère is the move.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=La+Mercerie+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=La+Mercerie+soho+nolita+NYC",
+    "duration_max": 90
   },
   {
     "name": "Penny",
@@ -2806,7 +2871,8 @@
     ],
     "description": "The cool younger sibling of Claud, upstairs from a natural wine bar. Small plates, quiet lighting, and an unhurried pace.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Penny+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Penny+soho+nolita+NYC",
+    "duration_max": 135
   },
   {
     "name": "Raoul's",
@@ -2826,7 +2892,8 @@
     ],
     "description": "Steak au poivre, a tiny upstairs bar, and the kind of charm you can't fake. A SoHo institution where artists once traded canvases for tabs.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Raoul%27s+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Raoul%27s+soho+nolita+NYC",
+    "duration_max": 135
   },
   {
     "name": "Shmone Wine Bar",
@@ -2845,33 +2912,8 @@
     ],
     "description": "Intimate Israeli wine spot with natural pours and small plates to match. Best enjoyed at the counter.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Shmone+Wine+Bar+soho+nolita+NYC"
-  },
-  {
-    "name": "Temple Bar (cross-list - primary Flatiron)",
-    "category": "",
-    "neighborhood": "Soho Nolita",
-    "duration_min": 45,
-    "vibe_tags": [
-      "curator"
-    ],
-    "energy_tags": [],
-    "description": "See Flatiron entry.",
-    "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Temple+Bar+%28cross-list+-+primary+Flatiron%29+soho+nolita+NYC"
-  },
-  {
-    "name": "Wayan (cross-list - primary Flatiron)",
-    "category": "",
-    "neighborhood": "Soho Nolita",
-    "duration_min": 45,
-    "vibe_tags": [
-      "curator"
-    ],
-    "energy_tags": [],
-    "description": "See Flatiron entry.",
-    "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Wayan+%28cross-list+-+primary+Flatiron%29+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Shmone+Wine+Bar+soho+nolita+NYC",
+    "duration_max": 113
   },
   {
     "name": "Birdies",
@@ -2889,7 +2931,8 @@
     ],
     "description": "Espresso and minimalism meet fashion aesthetic; a favorite of locals who'd never wait in line at Cha Cha Matcha.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Birdies+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Birdies+soho+nolita+NYC",
+    "duration_max": 30
   },
   {
     "name": "Hani's",
@@ -2908,7 +2951,8 @@
     ],
     "description": "A tucked-away Mediterranean-inspired café known for its tahini brownies and lemony pastries.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Hani%27s+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Hani%27s+soho+nolita+NYC",
+    "duration_max": 30
   },
   {
     "name": "La Cabra",
@@ -2927,7 +2971,8 @@
     ],
     "description": "Danish import, all white oak and precision pour-overs. Their cardamom bun might be the best in the city.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=La+Cabra+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=La+Cabra+soho+nolita+NYC",
+    "duration_max": 30
   },
   {
     "name": "Librae Bakery",
@@ -2946,7 +2991,8 @@
     ],
     "description": "Bahraini-born, NYC-based; sourdough meets dates and pistachio. Everything here feels personal and poetic.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Librae+Bakery+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Librae+Bakery+soho+nolita+NYC",
+    "duration_max": 30
   },
   {
     "name": "Maman",
@@ -2965,7 +3011,8 @@
     ],
     "description": "Blue-and-white branding, nutty cookies, and Provençal charm that makes even a Tuesday feel romantic.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Maman+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Maman+soho+nolita+NYC",
+    "duration_max": 30
   },
   {
     "name": "Red Gate",
@@ -2985,7 +3032,8 @@
     ],
     "description": "A newer café beloved by SoHo regulars for its sleek design and top-tier flat whites.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Red+Gate+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Red+Gate+soho+nolita+NYC",
+    "duration_max": 30
   },
   {
     "name": "Tall Poppy",
@@ -3004,20 +3052,8 @@
     ],
     "description": "Cheerful Australian café with bright light, strong espresso, and hearty breakfast wraps.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Tall+Poppy+soho+nolita+NYC"
-  },
-  {
-    "name": "Two Hands (cross-list - Flatiron)",
-    "category": "",
-    "neighborhood": "Soho Nolita",
-    "duration_min": 45,
-    "vibe_tags": [
-      "curator"
-    ],
-    "energy_tags": [],
-    "description": "See Flatiron entry.",
-    "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Two+Hands+%28cross-list+-+Flatiron%29+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Tall+Poppy+soho+nolita+NYC",
+    "duration_max": 30
   },
   {
     "name": "180 The Store",
@@ -3036,7 +3072,8 @@
     ],
     "description": "Gallery-like retail blending fashion, ceramics, and fragrance. Quiet luxury for people who don't need logos.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=180+The+Store+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=180+The+Store+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "BDDW / Tyler Hays Studio",
@@ -3055,7 +3092,8 @@
     ],
     "description": "Furniture as sculpture, handmade in Philadelphia. A pilgrimage for anyone who loves craft.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=BDDW+%2F+Tyler+Hays+Studio+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=BDDW+%2F+Tyler+Hays+Studio+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "Comme des Garçons",
@@ -3074,7 +3112,8 @@
     ],
     "description": "Avant-garde fashion playground; part retail, part installation.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Comme+des+Gar%C3%A7ons+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Comme+des+Gar%C3%A7ons+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "Demisch Danant",
@@ -3093,7 +3132,8 @@
     ],
     "description": "Mid-century French design gallery with museum-grade curation.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Demisch+Danant+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Demisch+Danant+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "Dienst & Dotter",
@@ -3112,7 +3152,8 @@
     ],
     "description": "Northern European antiques with an art-world following.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Dienst+%26+Dotter+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Dienst+%26+Dotter+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "Dover Street Market",
@@ -3130,7 +3171,8 @@
     ],
     "description": "Rei Kawakubo's multi-floor fashion cathedral. Clothes, installations, chaos — in the best way.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Dover+Street+Market+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Dover+Street+Market+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "Form Atelier",
@@ -3149,7 +3191,8 @@
     ],
     "description": "Minimalist interiors, emerging designers, and a subtle fragrance of cedar.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Form+Atelier+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Form+Atelier+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "Housing Works Bookstore",
@@ -3168,7 +3211,8 @@
     ],
     "description": "Books, coffee, and vintage finds in a nonprofit gem that funds HIV/AIDS programs.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Housing+Works+Bookstore+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Housing+Works+Bookstore+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "Il Buco Vita",
@@ -3187,7 +3231,8 @@
     ],
     "description": "Mediterranean home goods with rustic elegance; olive oil candles, ceramics, and that perfectly imperfect aesthetic.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Il+Buco+Vita+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Il+Buco+Vita+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "INA Vintage",
@@ -3207,7 +3252,8 @@
     ],
     "description": "Curated designer consignment with rotating finds from The Row to Prada.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=INA+Vintage+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=INA+Vintage+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "Kirna Zabete",
@@ -3226,7 +3272,8 @@
     ],
     "description": "High-end fashion boutique mixing Chloe, Khaite, and color. Retail therapy with a wink.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Kirna+Zabete+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Kirna+Zabete+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "La Garçonne",
@@ -3245,7 +3292,8 @@
     ],
     "description": "For minimalist fashion devotees — crisp shirts, quiet palettes, perfect tailoring.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=La+Gar%C3%A7onne+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=La+Gar%C3%A7onne+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "Love Adorned",
@@ -3264,7 +3312,8 @@
     ],
     "description": "Jewelry, scent, and handmade treasures in a space that feels half gallery, half apothecary.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Love+Adorned+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Love+Adorned+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "Michele Varian",
@@ -3283,7 +3332,8 @@
     ],
     "description": "Design magpie heaven — lighting, décor, and ceramics by indie makers.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Michele+Varian+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Michele+Varian+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "Oroboro",
@@ -3303,7 +3353,8 @@
     ],
     "description": "Quietly powerful boutique of timeless pieces and small-label design.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Oroboro+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Oroboro+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "The Future Perfect",
@@ -3322,7 +3373,8 @@
     ],
     "description": "Gallery-level furniture and art objects. If you have to ask the price, it's not for you.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=The+Future+Perfect+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=The+Future+Perfect+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "WH Guild",
@@ -3341,7 +3393,8 @@
     ],
     "description": "Roman and Williams' design mecca: furniture, books, and a restaurant tucked inside.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=WH+Guild+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=WH+Guild+soho+nolita+NYC",
+    "duration_max": 53
   },
   {
     "name": "Donald Judd Foundation",
@@ -3360,7 +3413,8 @@
     ],
     "description": "Preserved SoHo loft of the minimalist master; art and architecture in conversation.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Donald+Judd+Foundation+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Donald+Judd+Foundation+soho+nolita+NYC",
+    "duration_max": 90
   },
   {
     "name": "Soho-Williamsburg Walk",
@@ -3379,7 +3433,8 @@
     ],
     "description": "A perfect urban day: coffee in SoHo, cross the bridge, end with drinks by the East River.",
     "location": "Soho Nolita",
-    "url": "https://www.google.com/maps?q=Soho-Williamsburg+Walk+soho+nolita+NYC"
+    "url": "https://www.google.com/maps?q=Soho-Williamsburg+Walk+soho+nolita+NYC",
+    "duration_max": 90
   },
   {
     "name": "Locanda Verde",
@@ -3399,20 +3454,8 @@
     ],
     "description": "Andrew Carmellini's Italian tavern inside the Greenwich Hotel. Cozy leather banquettes, ricotta with truffle honey, and a hum that says \"Robert De Niro owns the building.\" Brunch here might be the neighborhood's best.",
     "location": "Tribeca",
-    "url": "https://www.google.com/maps?q=Locanda+Verde+tribeca+NYC"
-  },
-  {
-    "name": "Lure Fishbar (cross-list - also relevant Flatiron / SoHo)",
-    "category": "",
-    "neighborhood": "Tribeca",
-    "duration_min": 45,
-    "vibe_tags": [
-      "curator"
-    ],
-    "energy_tags": [],
-    "description": "See Flatiron entry.",
-    "location": "Tribeca",
-    "url": "https://www.google.com/maps?q=Lure+Fishbar+%28cross-list+-+also+relevant+Flatiron+%2F+SoHo%29+tribeca+NYC"
+    "url": "https://www.google.com/maps?q=Locanda+Verde+tribeca+NYC",
+    "duration_max": 90
   },
   {
     "name": "Two Hands (Warren St)",
@@ -3431,7 +3474,8 @@
     ],
     "description": "The Tribeca outpost of the Aussie café. Sunlight, smoothies, and banana bread — the kind of place where everyone looks like they just came from Pilates.",
     "location": "Tribeca",
-    "url": "https://www.google.com/maps?q=Two+Hands+%28Warren+St%29+tribeca+NYC"
+    "url": "https://www.google.com/maps?q=Two+Hands+%28Warren+St%29+tribeca+NYC",
+    "duration_max": 30
   },
   {
     "name": "Tribeca Walking Tour",
@@ -3450,7 +3494,8 @@
     ],
     "description": "A slow meander through cobblestone streets and cast-iron facades. See the ghost signs of old industry, the filming spots from Ghostbusters and Breakfast at Tiffany's, and the quiet courtyards behind lofts that cost more than most suburbs.",
     "location": "Tribeca",
-    "url": "https://www.google.com/maps?q=Tribeca+Walking+Tour+tribeca+NYC"
+    "url": "https://www.google.com/maps?q=Tribeca+Walking+Tour+tribeca+NYC",
+    "duration_max": 90
   },
   {
     "name": "4 Charles Prime Rib",
@@ -3469,7 +3514,8 @@
     ],
     "description": "Dimly lit, wood-paneled steakhouse hidden on a quiet street. The burger is famous, but the namesake prime rib with creamed spinach is perfection. Tough reservation, worth every reminder on Resy.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=4+Charles+Prime+Rib+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=4+Charles+Prime+Rib+west+village+greenwich+village+NYC",
+    "duration_max": 135
   },
   {
     "name": "Buvette",
@@ -3489,7 +3535,8 @@
     ],
     "description": "Tiny Parisian café with pressed-tin ceilings, espresso in demitasse cups, and a Croque Madame so perfect it might make you cry. No reservations — arrive early and linger.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Buvette+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Buvette+west+village+greenwich+village+NYC",
+    "duration_max": 113
   },
   {
     "name": "Don Angie",
@@ -3508,7 +3555,8 @@
     ],
     "description": "Italian-American with a modern twist — lasagna for two, pinwheel-style, and garlic bread that's become Instagram-famous. One of the hardest tables in the city.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Don+Angie+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Don+Angie+west+village+greenwich+village+NYC",
+    "duration_max": 135
   },
   {
     "name": "I Sodi",
@@ -3527,7 +3575,8 @@
     ],
     "description": "Tuscan minimalism, from the cacio e pepe to the martini served with care. The new, larger location still feels like a secret.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=I+Sodi+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=I+Sodi+west+village+greenwich+village+NYC",
+    "duration_max": 135
   },
   {
     "name": "Minetta Tavern",
@@ -3547,7 +3596,8 @@
     ],
     "description": "Red banquettes, black-and-white photos, and a Black Label Burger that defines New York indulgence. Keith McNally's downtown institution.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Minetta+Tavern+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Minetta+Tavern+west+village+greenwich+village+NYC",
+    "duration_max": 135
   },
   {
     "name": "Via Carota",
@@ -3566,7 +3616,8 @@
     ],
     "description": "Charming, rustic trattoria with wooden tables, bitter salads, and handmade pastas. Expect a wait — it's worth it.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Via+Carota+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Via+Carota+west+village+greenwich+village+NYC",
+    "duration_max": 135
   },
   {
     "name": "Bar Pisellino",
@@ -3585,7 +3636,8 @@
     ],
     "description": "From the Via Carota and I Sodi team, this tiny Italian aperitivo bar glows like amber at dusk. Espresso in the morning, spritzes at golden hour, negronis at night — all sipped standing at the marble counter or out on the sidewalk. Effortless, glamorous, and deeply New York.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Bar+Pisellino+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Bar+Pisellino+west+village+greenwich+village+NYC",
+    "duration_max": 113
   },
   {
     "name": "Commerce Inn",
@@ -3605,7 +3657,8 @@
     ],
     "description": "From the I Sodi team, a Shaker-inspired tavern. Simple decor, Dutch pancakes, and a quiet elegance that feels historic but fresh.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Commerce+Inn+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Commerce+Inn+west+village+greenwich+village+NYC",
+    "duration_max": 90
   },
   {
     "name": "Corner Bistro",
@@ -3623,7 +3676,8 @@
     ],
     "description": "Burger, beer, cash-only. No pretense, just a perfectly greasy classic.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Corner+Bistro+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Corner+Bistro+west+village+greenwich+village+NYC",
+    "duration_max": 113
   },
   {
     "name": "Dante",
@@ -3642,7 +3696,8 @@
     ],
     "description": "Aperitivo heaven since 1915. Negronis on tap, spritzes that sparkle, and the best people-watching in Manhattan.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Dante+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Dante+west+village+greenwich+village+NYC",
+    "duration_max": 113
   },
   {
     "name": "Emmett's on Grove",
@@ -3661,7 +3716,8 @@
     ],
     "description": "Chicago deep dish in the Village, served with charm. Come hungry.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Emmett%27s+on+Grove+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Emmett%27s+on+Grove+west+village+greenwich+village+NYC",
+    "duration_max": 135
   },
   {
     "name": "Hudson Clearwater",
@@ -3680,10 +3736,11 @@
     ],
     "description": "Candlelit, slightly hidden, and always romantic. Brunch or dinner both shine here.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Hudson+Clearwater+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Hudson+Clearwater+west+village+greenwich+village+NYC",
+    "duration_max": 90
   },
   {
-    "name": "Joe's Pizza (primary listing - cross-list in Chains)",
+    "name": "Joe's Pizza",
     "category": "pizza",
     "neighborhood": "West Village Greenwich Village",
     "duration_min": 20,
@@ -3699,7 +3756,8 @@
     ],
     "description": "Foldable slice perfection since 1975. Grab, fold, eat, repeat.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Joe%27s+Pizza+%28primary+listing+-+cross-list+in+Chains%29+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Joe%27s+Pizza+%28primary+listing+-+cross-list+in+Chains%29+west+village+greenwich+village+NYC",
+    "duration_max": 30
   },
   {
     "name": "Lions Bar & Grill",
@@ -3718,7 +3776,8 @@
     ],
     "description": "Pub comfort, Villager regulars, and a stiff drink when you need one.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Lions+Bar+%26+Grill+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Lions+Bar+%26+Grill+west+village+greenwich+village+NYC",
+    "duration_max": 113
   },
   {
     "name": "Miss Lily's",
@@ -3737,7 +3796,8 @@
     ],
     "description": "Jamaican sunshine on Hudson Street. Rum punch, jerk chicken, reggae soundtrack.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Miss+Lily%27s+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Miss+Lily%27s+west+village+greenwich+village+NYC",
+    "duration_max": 135
   },
   {
     "name": "The Dutch",
@@ -3756,7 +3816,8 @@
     ],
     "description": "Andrew Carmellini's lively corner spot for oysters, fried chicken, and Sunday brunch. Always a solid call.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=The+Dutch+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=The+Dutch+west+village+greenwich+village+NYC",
+    "duration_max": 90
   },
   {
     "name": "Waverly Inn",
@@ -3775,7 +3836,8 @@
     ],
     "description": "Hidden, candlelit, and steeped in literary lore. Feels like dinner in an Edith Wharton novel.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Waverly+Inn+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Waverly+Inn+west+village+greenwich+village+NYC",
+    "duration_max": 135
   },
   {
     "name": "Blank Street",
@@ -3793,7 +3855,8 @@
     ],
     "description": "Local mini-chain; efficient caffeine and a reliable flat white.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Blank+Street+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Blank+Street+west+village+greenwich+village+NYC",
+    "duration_max": 30
   },
   {
     "name": "Madman Espresso",
@@ -3810,7 +3873,8 @@
     ],
     "description": "Understated espresso bar with vinyl spinning and regulars on first-name basis.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Madman+Espresso+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Madman+Espresso+west+village+greenwich+village+NYC",
+    "duration_max": 30
   },
   {
     "name": "Maman",
@@ -3829,7 +3893,8 @@
     ],
     "description": "Blue-and-white charm, Provençal pastries, and that famous nutty cookie. A gentle break from the buzz.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Maman+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Maman+west+village+greenwich+village+NYC",
+    "duration_max": 30
   },
   {
     "name": "Stumptown Coffee Roasters (Village)",
@@ -3848,7 +3913,8 @@
     ],
     "description": "A pioneer in NYC's coffee scene. Always bustling, always smooth.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Stumptown+Coffee+Roasters+%28Village%29+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Stumptown+Coffee+Roasters+%28Village%29+west+village+greenwich+village+NYC",
+    "duration_max": 30
   },
   {
     "name": "Barbara Shaum",
@@ -3867,7 +3933,8 @@
     ],
     "description": "Handcrafted leather sandals, unchanged for decades. A relic of Village craft culture.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Barbara+Shaum+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Barbara+Shaum+west+village+greenwich+village+NYC",
+    "duration_max": 53
   },
   {
     "name": "Bigelow Chemists",
@@ -3886,13 +3953,14 @@
     ],
     "description": "America's oldest apothecary, still family-run. Old-school soaps, perfumes, and remedies in glass bottles.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Bigelow+Chemists+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Bigelow+Chemists+west+village+greenwich+village+NYC",
+    "duration_max": 53
   },
   {
     "name": "Casa Magazines",
     "category": "design",
     "neighborhood": "West Village Greenwich Village",
-    "duration_min": 35,
+    "duration_min": 15,
     "vibe_tags": [
       "print",
       "design",
@@ -3906,13 +3974,14 @@
     ],
     "description": "The most curated magazine shop in the world. Fashion editors, artists, and locals browse like it's church.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Casa+Magazines+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Casa+Magazines+west+village+greenwich+village+NYC",
+    "duration_max": 35
   },
   {
     "name": "Dauphinette",
     "category": "boutique",
     "neighborhood": "West Village Greenwich Village",
-    "duration_min": 35,
+    "duration_min": 15,
     "vibe_tags": [
       "fashion",
       "boutique",
@@ -3925,13 +3994,14 @@
     ],
     "description": "Playful, sustainable fashion with pressed flowers and whimsy.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Dauphinette+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Dauphinette+west+village+greenwich+village+NYC",
+    "duration_max": 35
   },
   {
     "name": "J. Mueser",
     "category": "fashion",
     "neighborhood": "West Village Greenwich Village",
-    "duration_min": 35,
+    "duration_min": 15,
     "vibe_tags": [
       "fashion",
       "tailoring",
@@ -3944,13 +4014,14 @@
     ],
     "description": "Bespoke tailoring on Christopher Street; Savile Row meets New York ease.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=J.+Mueser+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=J.+Mueser+west+village+greenwich+village+NYC",
+    "duration_max": 35
   },
   {
     "name": "Kallmeyer",
     "category": "boutique",
     "neighborhood": "West Village Greenwich Village",
-    "duration_min": 35,
+    "duration_min": 15,
     "vibe_tags": [
       "fashion",
       "boutique",
@@ -3963,13 +4034,14 @@
     ],
     "description": "Cool, understated womenswear; suits for artists, not bankers.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Kallmeyer+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Kallmeyer+west+village+greenwich+village+NYC",
+    "duration_max": 35
   },
   {
     "name": "Tibi",
     "category": "boutique",
     "neighborhood": "West Village Greenwich Village",
-    "duration_min": 35,
+    "duration_min": 15,
     "vibe_tags": [
       "fashion",
       "boutique",
@@ -3982,7 +4054,8 @@
     ],
     "description": "Effortless, polished pieces that define downtown chic.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Tibi+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Tibi+west+village+greenwich+village+NYC",
+    "duration_max": 35
   },
   {
     "name": "The Seven",
@@ -4001,7 +4074,8 @@
     ],
     "description": "Concept store blending fashion and scent. Where trends meet taste.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=The+Seven+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=The+Seven+west+village+greenwich+village+NYC",
+    "duration_max": 53
   },
   {
     "name": "Vince's Village Cobbler",
@@ -4021,7 +4095,8 @@
     ],
     "description": "Classic cobbler keeping leather alive; shoes, bags, belts — all fixed with care.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Vince%27s+Village+Cobbler+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Vince%27s+Village+Cobbler+west+village+greenwich+village+NYC",
+    "duration_max": 53
   },
   {
     "name": "YANA Skincare",
@@ -4040,7 +4115,8 @@
     ],
     "description": "A minimalist skincare studio that feels like a secret. Facials and products that quietly deliver.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=YANA+Skincare+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=YANA+Skincare+west+village+greenwich+village+NYC",
+    "duration_max": 53
   },
   {
     "name": "Blue Note (Jazz)",
@@ -4059,7 +4135,8 @@
     ],
     "description": "One of the world's great jazz clubs. Intimate tables, tight sets, and legends on stage.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Blue+Note+%28Jazz%29+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Blue+Note+%28Jazz%29+west+village+greenwich+village+NYC",
+    "duration_max": 180
   },
   {
     "name": "Chelsea Market",
@@ -4078,7 +4155,8 @@
     ],
     "description": "Technically west of here, but walkable. A day's worth of snacks, shops, and energy.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Chelsea+Market+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Chelsea+Market+west+village+greenwich+village+NYC",
+    "duration_max": 53
   },
   {
     "name": "Comedy Cellar",
@@ -4097,7 +4175,8 @@
     ],
     "description": "The basement that built a thousand careers. Unmarked door, brick wall, low ceiling, and lineups that might include Chris Rock or Ali Wong dropping in unannounced. Get tickets ahead, but stay after the show — the Olive Tree Café upstairs is where comics hang out.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Comedy+Cellar+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Comedy+Cellar+west+village+greenwich+village+NYC",
+    "duration_max": 90
   },
   {
     "name": "Friends Apartment (90 Bedford St)",
@@ -4116,7 +4195,8 @@
     ],
     "description": "The exterior from the show — a quick photo op for nostalgia's sake.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Friends+Apartment+%2890+Bedford+St%29+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Friends+Apartment+%2890+Bedford+St%29+west+village+greenwich+village+NYC",
+    "duration_max": 45
   },
   {
     "name": "Sex & The City House (64 Perry St)",
@@ -4135,7 +4215,8 @@
     ],
     "description": "The stoop that started a thousand brunches. Fans still make the pilgrimage.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Sex+%26+The+City+House+%2864+Perry+St%29+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps/place/64+Perry+St,+New+York,+NY+10014/@40.7353544,-74.0037775,17z/data=!3m1!4b1!4m6!3m5!1s0x89c25994f9ac652d:0x4dffe5bee560ed72!8m2!3d40.7353544!4d-74.0037775!16s%2Fg%2F11b8ymqrcn?entry=ttu&g_ep=EgoyMDI1MTAxNC4wIKXMDSoASAFQAw%3D%3D",
+    "duration_max": 45
   },
   {
     "name": "Washington Square Park",
@@ -4153,7 +4234,8 @@
     ],
     "description": "The Village's heart: chess players, street performers, and NYU students everywhere. Grab a bench and stay awhile.",
     "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Washington+Square+Park+west+village+greenwich+village+NYC"
+    "url": "https://www.google.com/maps?q=Washington+Square+Park+west+village+greenwich+village+NYC",
+    "duration_max": 45
   },
   {
     "name": "Dim Sum Go Go",
@@ -4172,7 +4254,8 @@
     ],
     "description": "A Chinatown institution that's clean, bright, and beloved by locals. Shrimp dumplings and rice noodle rolls are musts. Go early for the freshest turn of the carts.",
     "location": "Chinatown",
-    "url": "https://www.google.com/maps?q=Dim+Sum+Go+Go+chinatown+NYC"
+    "url": "https://www.google.com/maps?q=Dim+Sum+Go+Go+chinatown+NYC",
+    "duration_max": 90
   },
   {
     "name": "Peking Duck House",
@@ -4192,7 +4275,8 @@
     ],
     "description": "Crisp-skinned duck carved tableside — a celebratory classic. Feels retro in the best way.",
     "location": "Chinatown",
-    "url": "https://www.google.com/maps?q=Peking+Duck+House+chinatown+NYC"
+    "url": "https://www.google.com/maps?q=Peking+Duck+House+chinatown+NYC",
+    "duration_max": 135
   },
   {
     "name": "Pings",
@@ -4211,13 +4295,14 @@
     ],
     "description": "Reliable Cantonese seafood joint with tanks in the window and a loyal local following.",
     "location": "Chinatown",
-    "url": "https://www.google.com/maps?q=Pings+chinatown+NYC"
+    "url": "https://www.google.com/maps?q=Pings+chinatown+NYC",
+    "duration_max": 90
   },
   {
     "name": "Bon Bon Candy Store",
     "category": "candy",
     "neighborhood": "Chinatown",
-    "duration_min": 35,
+    "duration_min": 20,
     "vibe_tags": [
       "candy",
       "snacks",
@@ -4230,7 +4315,8 @@
     ],
     "description": "Rows of imported Asian candies, snacks, and novelty treats. Perfect for souvenirs or late-night sugar rushes.",
     "location": "Chinatown",
-    "url": "https://www.google.com/maps?q=Bon+Bon+Candy+Store+chinatown+NYC"
+    "url": "https://www.google.com/maps?q=Bon+Bon+Candy+Store+chinatown+NYC",
+    "duration_max": 60
   },
   {
     "name": "Chinatown Shopping Stroll",
@@ -4249,7 +4335,8 @@
     ],
     "description": "Knockoff bags, herbal medicine shops, and produce stands spilling onto the sidewalks. A true sensory overload — in the best way.",
     "location": "Chinatown",
-    "url": "https://www.google.com/maps?q=Chinatown+Shopping+Stroll+chinatown+NYC"
+    "url": "https://www.google.com/maps?q=Chinatown+Shopping+Stroll+chinatown+NYC",
+    "duration_max": 53
   },
   {
     "name": "Street Markets",
@@ -4267,7 +4354,8 @@
     ],
     "description": "Fishmongers, fruit vendors, and open-air bustle along Canal and Mott. Bring cash and curiosity.",
     "location": "Chinatown",
-    "url": "https://www.google.com/maps?q=Street+Markets+chinatown+NYC"
+    "url": "https://www.google.com/maps?q=Street+Markets+chinatown+NYC",
+    "duration_max": 53
   },
   {
     "name": "Chinatown Crawl",
@@ -4286,7 +4374,8 @@
     ],
     "description": "A self-guided wander: dumplings at Joe's, bubble tea at Vivi, and paper lanterns above you. Each block a different country.",
     "location": "Chinatown",
-    "url": "https://www.google.com/maps?q=Chinatown+Crawl+chinatown+NYC"
+    "url": "https://www.google.com/maps?q=Chinatown+Crawl+chinatown+NYC",
+    "duration_max": 90
   },
   {
     "name": "Bagels at Russ & Daughters",
@@ -4305,7 +4394,8 @@
     ],
     "description": "Iconic smoked fish and bagels since 1914. Order the Gaspe Nova with scallion cream cheese and tomato; skip the line by ordering ahead.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Bagels+at+Russ+%26+Daughters+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Bagels+at+Russ+%26+Daughters+lower+east+side+NYC",
+    "duration_max": 68
   },
   {
     "name": "Bar Bianchi",
@@ -4324,7 +4414,8 @@
     ],
     "description": "A Milanese aperitivo bar from the team behind Caffè Dante, translating the ritual of la dolce pausa to downtown New York. Zinc counters, vintage mirrors, and spritzes poured with precision. Light antipasti, veal Milanese, and frozen caffè panna for dessert. Come late afternoon for that golden-hour glow when the light hits the Formica just right.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Bar+Bianchi+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Bar+Bianchi+lower+east+side+NYC",
+    "duration_max": 113
   },
   {
     "name": "Bar Goto",
@@ -4343,13 +4434,14 @@
     ],
     "description": "Japanese cocktail bar hidden behind frosted glass. Calm lighting, yuzu negronis, and miso wings.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Bar+Goto+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Bar+Goto+lower+east+side+NYC",
+    "duration_max": 113
   },
   {
     "name": "Clinton Street Baking Co.",
     "category": "brunch",
     "neighborhood": "Lower East Side",
-    "duration_min": 20,
+    "duration_min": 60,
     "vibe_tags": [
       "brunch",
       "bakery",
@@ -4362,7 +4454,8 @@
     ],
     "description": "Legendary brunch line, legendary pancakes. Order blueberry if you know what's good for you.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Clinton+Street+Baking+Co.+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Clinton+Street+Baking+Co.+lower+east+side+NYC",
+    "duration_max": 120
   },
   {
     "name": "Dhamaka",
@@ -4381,7 +4474,8 @@
     ],
     "description": "One of NYC's hardest reservations — bold, unapologetic regional Indian cooking. Goat neck biryani and champaran meat are standouts.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Dhamaka+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Dhamaka+lower+east+side+NYC",
+    "duration_max": 135
   },
   {
     "name": "Fiaschetteria Pistoia",
@@ -4400,7 +4494,8 @@
     ],
     "description": "Tuscan trattoria with handwritten menus, Italian servers, and natural wine. A LES favorite for unpretentious romance.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Fiaschetteria+Pistoia+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Fiaschetteria+Pistoia+lower+east+side+NYC",
+    "duration_max": 135
   },
   {
     "name": "Katz's Deli",
@@ -4419,7 +4514,8 @@
     ],
     "description": "Where Harry met Sally and pastrami met perfection. Loud, chaotic, essential.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Katz%27s+Deli+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Katz%27s+Deli+lower+east+side+NYC",
+    "duration_max": 90
   },
   {
     "name": "Le Dive",
@@ -4438,7 +4534,8 @@
     ],
     "description": "Parisian natural wine bar meets LES cool. Outdoor tables fill fast at golden hour.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Le+Dive+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Le+Dive+lower+east+side+NYC",
+    "duration_max": 113
   },
   {
     "name": "Miznon",
@@ -4457,7 +4554,8 @@
     ],
     "description": "Israeli street food from the team behind HaSalon. The roasted cauliflower is the move.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Miznon+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Miznon+lower+east+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Parcelle",
@@ -4476,7 +4574,8 @@
     ],
     "description": "Intimate natural wine shop and bar with a minimalist vibe; perfect for first dates or solo sipping.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Parcelle+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Parcelle+lower+east+side+NYC",
+    "duration_max": 113
   },
   {
     "name": "Santo Taco",
@@ -4494,7 +4593,8 @@
     ],
     "description": "Tiny counter-serve taqueria with some of the best al pastor in downtown.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Santo+Taco+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Santo+Taco+lower+east+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Spicy Village",
@@ -4512,7 +4612,8 @@
     ],
     "description": "Henan-style noodles and Big Tray Chicken that's legend-status among locals. Cash only, BYOB.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Spicy+Village+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Spicy+Village+lower+east+side+NYC",
+    "duration_max": 135
   },
   {
     "name": "The Snail",
@@ -4531,7 +4632,8 @@
     ],
     "description": "Cozy natural wine bar with creative small plates and great energy.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=The+Snail+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=The+Snail+lower+east+side+NYC",
+    "duration_max": 135
   },
   {
     "name": "Theodora",
@@ -4550,7 +4652,8 @@
     ],
     "description": "From the Contra/Wildair team — modern Greek, minimalist design, and a grown-up feel.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Theodora+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Theodora+lower+east+side+NYC",
+    "duration_max": 135
   },
   {
     "name": "Maman",
@@ -4569,7 +4672,8 @@
     ],
     "description": "That same Provençal magic — cookies, croissants, and soft light. A sweet pit stop between galleries.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Maman+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Maman+lower+east+side+NYC",
+    "duration_max": 30
   },
   {
     "name": "Coming Soon",
@@ -4588,7 +4692,8 @@
     ],
     "description": "Design store blending nostalgia and humor — colorful home goods that feel like a conversation starter.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Coming+Soon+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Coming+Soon+lower+east+side+NYC",
+    "duration_max": 53
   },
   {
     "name": "The Primary Essentials",
@@ -4607,7 +4712,8 @@
     ],
     "description": "Minimalist home goods and tableware, with a focus on material and craft.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=The+Primary+Essentials+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=The+Primary+Essentials+lower+east+side+NYC",
+    "duration_max": 53
   },
   {
     "name": "Galleries (Nicola Vassell, Hannah Traore, Cierra Britton)",
@@ -4626,7 +4732,8 @@
     ],
     "description": "A new vanguard of art spaces led by women and artists of color. The LES remains New York's most exciting gallery scene.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Galleries+%28Nicola+Vassell%2C+Hannah+Traore%2C+Cierra+Britton%29+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Galleries+%28Nicola+Vassell%2C+Hannah+Traore%2C+Cierra+Britton%29+lower+east+side+NYC",
+    "duration_max": 90
   },
   {
     "name": "Tenement Museum",
@@ -4645,7 +4752,8 @@
     ],
     "description": "Immersive history through restored immigrant apartments and walking tours. Essential NYC storytelling.",
     "location": "Lower East Side",
-    "url": "https://www.google.com/maps?q=Tenement+Museum+lower+east+side+NYC"
+    "url": "https://www.google.com/maps?q=Tenement+Museum+lower+east+side+NYC",
+    "duration_max": 180
   },
   {
     "name": "Battery Park Bodegas",
@@ -4664,7 +4772,8 @@
     ],
     "description": "Classic New York grab-and-go: egg sandwiches, coffee, and gossip with a view of the harbor.",
     "location": "Fidi Downtown",
-    "url": "https://www.google.com/maps?q=Battery+Park+Bodegas+fidi+downtown+NYC"
+    "url": "https://www.google.com/maps?q=Battery+Park+Bodegas+fidi+downtown+NYC",
+    "duration_max": 30
   },
   {
     "name": "Dead Rabbit",
@@ -4683,7 +4792,8 @@
     ],
     "description": "Once crowned World's Best Bar, this multi-floor Irish tavern reinvents the genre. Guinness and oysters downstairs; serious cocktails and storytelling upstairs.",
     "location": "Fidi Downtown",
-    "url": "https://www.google.com/maps?q=Dead+Rabbit+fidi+downtown+NYC"
+    "url": "https://www.google.com/maps?q=Dead+Rabbit+fidi+downtown+NYC",
+    "duration_max": 113
   },
   {
     "name": "Delmonico's",
@@ -4702,7 +4812,8 @@
     ],
     "description": "The original power steakhouse, founded in 1837 and recently revived. Birthplace of Lobster Newberg and Baked Alaska — still the place to close a deal over Bordeaux.",
     "location": "Fidi Downtown",
-    "url": "https://www.google.com/maps?q=Delmonico%27s+fidi+downtown+NYC"
+    "url": "https://www.google.com/maps?q=Delmonico%27s+fidi+downtown+NYC",
+    "duration_max": 135
   },
   {
     "name": "Two Hands (Warren St)",
@@ -4721,7 +4832,8 @@
     ],
     "description": "Same Aussie brightness in the otherwise buttoned-up Financial District. Smooth flat whites, banana bread, and sunlight between skyscrapers.",
     "location": "Fidi Downtown",
-    "url": "https://www.google.com/maps?q=Two+Hands+%28Warren+St%29+fidi+downtown+NYC"
+    "url": "https://www.google.com/maps?q=Two+Hands+%28Warren+St%29+fidi+downtown+NYC",
+    "duration_max": 30
   },
   {
     "name": "9/11 Memorial & Museum",
@@ -4740,7 +4852,8 @@
     ],
     "description": "A profoundly moving, minimalist space of reflection and resilience. The twin pools and museum are modern sacred ground.",
     "location": "Fidi Downtown",
-    "url": "https://www.google.com/maps?q=9%2F11+Memorial+%26+Museum+fidi+downtown+NYC"
+    "url": "https://www.google.com/maps?q=9%2F11+Memorial+%26+Museum+fidi+downtown+NYC",
+    "duration_max": 180
   },
   {
     "name": "Charging Bull",
@@ -4759,7 +4872,8 @@
     ],
     "description": "Bronze icon of Wall Street bravado; a quick photo stop and reminder of capitalism's favorite mascot.",
     "location": "Fidi Downtown",
-    "url": "https://www.google.com/maps?q=Charging+Bull+fidi+downtown+NYC"
+    "url": "https://www.google.com/maps?q=Charging+Bull+fidi+downtown+NYC",
+    "duration_max": 45
   },
   {
     "name": "Irish Hunger Memorial (Battery Park City)",
@@ -4778,7 +4892,8 @@
     ],
     "description": "A sloped, stone-lined landscape lifted above the riverfront, planted with Irish grasses and dotted with famine-era stonework. Quiet, poetic, and one of downtown's most contemplative views.",
     "location": "Fidi Downtown",
-    "url": "https://www.google.com/maps?q=Irish+Hunger+Memorial+%28Battery+Park+City%29+fidi+downtown+NYC"
+    "url": "https://www.google.com/maps?q=Irish+Hunger+Memorial+%28Battery+Park+City%29+fidi+downtown+NYC",
+    "duration_max": 90
   },
   {
     "name": "NY Stock Exchange",
@@ -4797,7 +4912,8 @@
     ],
     "description": "Neo-Classical grandeur with daily trading chaos behind closed doors. Stand beneath the flag and feel the hum of global finance.",
     "location": "Fidi Downtown",
-    "url": "https://www.google.com/maps?q=NY+Stock+Exchange+fidi+downtown+NYC"
+    "url": "https://www.google.com/maps?q=NY+Stock+Exchange+fidi+downtown+NYC",
+    "duration_max": 45
   },
   {
     "name": "Oculus",
@@ -4816,7 +4932,8 @@
     ],
     "description": "Santiago Calatrava's white-winged transit hub and shopping center; part cathedral, part mall, all spectacle.",
     "location": "Fidi Downtown",
-    "url": "https://www.google.com/maps?q=Oculus+fidi+downtown+NYC"
+    "url": "https://www.google.com/maps?q=Oculus+fidi+downtown+NYC",
+    "duration_max": 53
   },
   {
     "name": "Staten Island Ferry",
@@ -4835,7 +4952,8 @@
     ],
     "description": "Free harbor ride with Statue of Liberty views and salty wind in your hair. Best at sunset.",
     "location": "Fidi Downtown",
-    "url": "https://www.google.com/maps?q=Staten+Island+Ferry+fidi+downtown+NYC"
+    "url": "https://www.google.com/maps?q=Staten+Island+Ferry+fidi+downtown+NYC",
+    "duration_max": 90
   },
   {
     "name": "Wall Street Bath & Spa",
@@ -4854,7 +4972,8 @@
     ],
     "description": "Old-school Russian-Turkish bathhouse, steam rooms, and cold plunges for Wall Streeters who need to sweat out the week.",
     "location": "Fidi Downtown",
-    "url": "https://www.google.com/maps?q=Wall+Street+Bath+%26+Spa+fidi+downtown+NYC"
+    "url": "https://www.google.com/maps?q=Wall+Street+Bath+%26+Spa+fidi+downtown+NYC",
+    "duration_max": 90
   },
   {
     "name": "Bar Bête",
@@ -4873,7 +4992,8 @@
     ],
     "description": "Elegant French bistro in Carroll Gardens that feels more Parisian than Paris. Tiny marble bar, perfect martinis, and a menu that moves from oysters to steak frites with effortless confidence. The kind of place where every seat is the best seat.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Bar+B%C3%AAte+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Bar+B%C3%AAte+brooklyn+NYC",
+    "duration_max": 135
   },
   {
     "name": "Bernie's",
@@ -4892,7 +5012,8 @@
     ],
     "description": "Greenpoint nostalgia in red vinyl. Think prime rib, shrimp cocktail, and martinis with zero irony. Loud in the right way.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Bernie%27s+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Bernie%27s+brooklyn+NYC",
+    "duration_max": 135
   },
   {
     "name": "Birds of a Feather",
@@ -4911,7 +5032,8 @@
     ],
     "description": "Williamsburg Sichuan spot from the Café China team; bamboo décor, numbing spice, and the best mapo tofu this side of Chengdu.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Birds+of+a+Feather+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Birds+of+a+Feather+brooklyn+NYC",
+    "duration_max": 135
   },
   {
     "name": "Bonnie's",
@@ -4930,7 +5052,8 @@
     ],
     "description": "Cantonese-American reinvention from Calvin Eng. Cacio e pepe noodles meet XO sauce; Chinese sausage mcfry-up brunch. Impossible to get in — and worth the wait.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Bonnie%27s+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Bonnie%27s+brooklyn+NYC",
+    "duration_max": 135
   },
   {
     "name": "Colonia Verde",
@@ -4949,7 +5072,8 @@
     ],
     "description": "Latin-inspired wood-fired dishes in a greenhouse setting. Long communal tables, mezcal, and soft candlelight — dinner that feels like a dinner party.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Colonia+Verde+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Colonia+Verde+brooklyn+NYC",
+    "duration_max": 135
   },
   {
     "name": "Defonte's (Red Hook)",
@@ -4966,7 +5090,8 @@
     ],
     "description": "Italian-American sandwich institution since 1922. Order the roast beef with mozzarella and fried eggplant; bring cash and an appetite.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Defonte%27s+%28Red+Hook%29+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Defonte%27s+%28Red+Hook%29+brooklyn+NYC",
+    "duration_max": 90
   },
   {
     "name": "Di Fara Pizza",
@@ -4985,7 +5110,8 @@
     ],
     "description": "Midwood pilgrimage spot where Dom DeMarco made every pie by hand for decades. Crisp, sweet-sauced, and still NYC's holy pizza grail.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Di+Fara+Pizza+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Di+Fara+Pizza+brooklyn+NYC",
+    "duration_max": 90
   },
   {
     "name": "Four Horsemen",
@@ -5004,7 +5130,8 @@
     ],
     "description": "Natural wine bar from LCD Soundsystem's James Murphy. Minimalist wood interior, serious food, and even more serious playlists.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Four+Horsemen+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Four+Horsemen+brooklyn+NYC",
+    "duration_max": 113
   },
   {
     "name": "Francie",
@@ -5023,7 +5150,8 @@
     ],
     "description": "Williamsburg brasserie that blends Brooklyn charm with Michelin polish. Duck for two, marble bar, and a hushed glow at golden hour.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Francie+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Francie+brooklyn+NYC",
+    "duration_max": 135
   },
   {
     "name": "Greenpoint (general food rec)",
@@ -5041,7 +5169,8 @@
     ],
     "description": "Culinary density at its best: bakeries, bistros, and bars within a few blocks. Pick any corner and find something worthwhile.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Greenpoint+%28general+food+rec%29+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Greenpoint+%28general+food+rec%29+brooklyn+NYC",
+    "duration_max": 90
   },
   {
     "name": "Laser Wolf",
@@ -5060,7 +5189,8 @@
     ],
     "description": "Israeli skewer house on The Hoxton rooftop with skyline views and never-ending mezze. Party energy, perfect pita.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Laser+Wolf+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Laser+Wolf+brooklyn+NYC",
+    "duration_max": 135
   },
   {
     "name": "Lilia",
@@ -5079,7 +5209,8 @@
     ],
     "description": "Pasta perfection in a former Williamsburg garage. Hardest reservation in Brooklyn; cacio e pepe and malfadini worth planning around.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Lilia+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Lilia+brooklyn+NYC",
+    "duration_max": 135
   },
   {
     "name": "Peter Luger",
@@ -5099,7 +5230,8 @@
     ],
     "description": "1887 steakhouse legend where gruff service meets porterhouse glory. Cash-only, no apologies.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Peter+Luger+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Peter+Luger+brooklyn+NYC",
+    "duration_max": 135
   },
   {
     "name": "Red Hook Tavern",
@@ -5118,7 +5250,8 @@
     ],
     "description": "A love letter to the American burger. Candlelight, jukebox, and perfectly balanced martinis.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Red+Hook+Tavern+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Red+Hook+Tavern+brooklyn+NYC",
+    "duration_max": 135
   },
   {
     "name": "Rule of Thirds",
@@ -5138,7 +5271,8 @@
     ],
     "description": "Japanese izakaya with design-mag interiors. Sake, grilled skewers, and community-table conviviality.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Rule+of+Thirds+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Rule+of+Thirds+brooklyn+NYC",
+    "duration_max": 135
   },
   {
     "name": "Santo Taco",
@@ -5157,7 +5291,8 @@
     ],
     "description": "Tiny taqueria with Mexico City flavors; al pastor sizzling, locals queuing.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Santo+Taco+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Santo+Taco+brooklyn+NYC",
+    "duration_max": 30
   },
   {
     "name": "Wizard Hat Pizza",
@@ -5176,7 +5311,8 @@
     ],
     "description": "Playful name, serious pizza — wood-fired pies with inventive toppings and a cult following in Greenpoint.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Wizard+Hat+Pizza+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Wizard+Hat+Pizza+brooklyn+NYC",
+    "duration_max": 135
   },
   {
     "name": "Butler",
@@ -5195,7 +5331,8 @@
     ],
     "description": "Sunlit bakery café with cardamom buns, tartines, and design-forward interiors. Ideal for slow mornings and laptop afternoons.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Butler+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Butler+brooklyn+NYC",
+    "duration_max": 30
   },
   {
     "name": "Café Regular",
@@ -5214,7 +5351,8 @@
     ],
     "description": "Tiny European-style café in Park Slope; French press coffee, pressed tin ceiling, and loyal regulars.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Caf%C3%A9+Regular+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Caf%C3%A9+Regular+brooklyn+NYC",
+    "duration_max": 30
   },
   {
     "name": "Radio Bakery",
@@ -5233,7 +5371,8 @@
     ],
     "description": "Greenpoint's pastry darling — laminated doughs so good they cause morning queues. Seasonal fruit croissants, kouign-amann, and inventive sandwiches.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Radio+Bakery+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Radio+Bakery+brooklyn+NYC",
+    "duration_max": 30
   },
   {
     "name": "A.MANO Brooklyn",
@@ -5252,7 +5391,8 @@
     ],
     "description": "Artisan ceramics, textiles, and design objects in Carroll Gardens. Each piece feels hand-selected and quietly beautiful.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=A.MANO+Brooklyn+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=A.MANO+Brooklyn+brooklyn+NYC",
+    "duration_max": 53
   },
   {
     "name": "Big Night Brooklyn",
@@ -5271,7 +5411,8 @@
     ],
     "description": "Culinary concept store filled with dinner-party inspiration: cookbooks, servingware, and pantry gems.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Big+Night+Brooklyn+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Big+Night+Brooklyn+brooklyn+NYC",
+    "duration_max": 53
   },
   {
     "name": "Brooklyn Charm",
@@ -5290,7 +5431,8 @@
     ],
     "description": "DIY jewelry bar where you design your own custom pieces — equal parts craft and nostalgia.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Brooklyn+Charm+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Brooklyn+Charm+brooklyn+NYC",
+    "duration_max": 53
   },
   {
     "name": "Front General Store",
@@ -5310,7 +5452,8 @@
     ],
     "description": "Vintage menswear and Japanese workwear in a minimalist space. Denim, wool, and timeless taste.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Front+General+Store+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Front+General+Store+brooklyn+NYC",
+    "duration_max": 53
   },
   {
     "name": "Outline Brooklyn",
@@ -5329,7 +5472,8 @@
     ],
     "description": "Emerging local designers and sustainable fashion with a Brooklyn point of view.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Outline+Brooklyn+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Outline+Brooklyn+brooklyn+NYC",
+    "duration_max": 53
   },
   {
     "name": "Williamsburg Vintage Stores",
@@ -5348,7 +5492,8 @@
     ],
     "description": "A cluster of shops mixing 1970s denim, silk slips, and indie nostalgia. Plan an afternoon.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Williamsburg+Vintage+Stores+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Williamsburg+Vintage+Stores+brooklyn+NYC",
+    "duration_max": 53
   },
   {
     "name": "Brooklyn Botanic Garden",
@@ -5367,7 +5512,8 @@
     ],
     "description": "52 acres of landscaped serenity. Cherry blossoms in spring, greenhouses in winter, and a welcome break from city noise.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Brooklyn+Botanic+Garden+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Brooklyn+Botanic+Garden+brooklyn+NYC",
+    "duration_max": 90
   },
   {
     "name": "Brooklyn Bridge Park",
@@ -5386,7 +5532,8 @@
     ],
     "description": "Sweeping views of lower Manhattan. Picnic lawns, ferry docks, and art installations.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Brooklyn+Bridge+Park+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Brooklyn+Bridge+Park+brooklyn+NYC",
+    "duration_max": 90
   },
   {
     "name": "Brooklyn Museum",
@@ -5405,7 +5552,8 @@
     ],
     "description": "One of the city's greats — from Egyptian artifacts to feminist art to Basquiat. Don't miss First Saturdays.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Brooklyn+Museum+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Brooklyn+Museum+brooklyn+NYC",
+    "duration_max": 180
   },
   {
     "name": "Day in Williamsburg",
@@ -5425,7 +5573,8 @@
     ],
     "description": "The full arc: brunch at Sunday in Brooklyn, vintage shopping, rooftop drinks at Westlight, and sunset by the river.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Day+in+Williamsburg+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Day+in+Williamsburg+brooklyn+NYC",
+    "duration_max": 90
   },
   {
     "name": "Putting Green BK",
@@ -5444,7 +5593,8 @@
     ],
     "description": "Mini golf meets climate activism on the waterfront; each hole designed by an artist.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Putting+Green+BK+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Putting+Green+BK+brooklyn+NYC",
+    "duration_max": 90
   },
   {
     "name": "Smorgasburg (Seasonal)",
@@ -5462,7 +5612,8 @@
     ],
     "description": "The open-air food market that defines Brooklyn weekends. 100+ vendors, skyline backdrop, impossible decisions.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Smorgasburg+%28Seasonal%29+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Smorgasburg+%28Seasonal%29+brooklyn+NYC",
+    "duration_max": 90
   },
   {
     "name": "Time Out Market Food Hall (DUMBO)",
@@ -5481,7 +5632,8 @@
     ],
     "description": "Curated mix of Brooklyn favorites under one roof — try Fornino's pizza, then head upstairs for skyline views.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Time+Out+Market+Food+Hall+%28DUMBO%29+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Time+Out+Market+Food+Hall+%28DUMBO%29+brooklyn+NYC",
+    "duration_max": 90
   },
   {
     "name": "Walk Across the Brooklyn Bridge",
@@ -5500,6 +5652,7 @@
     ],
     "description": "The quintessential New York experience. Start in the morning for empty views, end in DUMBO for pastries.",
     "location": "Brooklyn",
-    "url": "https://www.google.com/maps?q=Walk+Across+the+Brooklyn+Bridge+brooklyn+NYC"
+    "url": "https://www.google.com/maps?q=Walk+Across+the+Brooklyn+Bridge+brooklyn+NYC",
+    "duration_max": 90
   }
 ]

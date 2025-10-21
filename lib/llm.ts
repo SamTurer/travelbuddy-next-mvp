@@ -20,7 +20,9 @@ Rewrite each stop's title/location/description to be clear, upbeat, and human, b
 
   const user = JSON.stringify({ city: context.city, pace: context.pace, vibes: context.vibes, stops }, null, 2);
 
-  const completion = await client.chat.completions.create({
+  const timeoutMs = Number(process.env.PLAN_LLM_TIMEOUT_MS ?? 6000);
+
+  const completionPromise = client.chat.completions.create({
     model: MODEL,
     messages: [
       { role: "system", content: sys },
@@ -28,6 +30,22 @@ Rewrite each stop's title/location/description to be clear, upbeat, and human, b
     ],
     temperature: 0.5,
   });
+
+  const timeoutGuard =
+    timeoutMs > 0
+      ? new Promise<null>((_, reject) => {
+          setTimeout(() => reject(new Error('plan_llm_timeout')), timeoutMs);
+        })
+      : null;
+
+  let completion: Awaited<typeof completionPromise>;
+  try {
+    completion = (await (timeoutGuard ? Promise.race([completionPromise, timeoutGuard]) : completionPromise)) as Awaited<
+      typeof completionPromise
+    >;
+  } catch {
+    return stops;
+  }
 
   const text = completion.choices?.[0]?.message?.content ?? "";
   try {

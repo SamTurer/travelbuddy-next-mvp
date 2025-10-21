@@ -12,6 +12,8 @@ export type ProviderPlace = {
   url?: string;
   vibe_tags?: string[];
   energy_tags?: string[];
+  lat?: number;
+  lng?: number;
   // verified
   hours?: {
     openNow?: boolean;
@@ -227,6 +229,10 @@ async function enrichWithHoursAndBranch(p: ProviderPlace, city: string, areaHint
     if (branch) {
       p.location = branch.address || branch.neighborhood || p.location;
       p.neighborhood = branch.neighborhood || p.neighborhood;
+      if (branch.lat != null && branch.lng != null) {
+        p.lat = branch.lat;
+        p.lng = branch.lng;
+      }
     }
   }
 
@@ -238,6 +244,10 @@ async function enrichWithHoursAndBranch(p: ProviderPlace, city: string, areaHint
     // If best branch is different and has a neighborhood, prefer it
     if (bestBranch?.neighborhood && !p.neighborhood) p.neighborhood = bestBranch.neighborhood;
     if (bestBranch?.address && !p.location) p.location = bestBranch.address;
+    if (bestBranch?.lat != null && bestBranch.lng != null) {
+      p.lat = bestBranch.lat;
+      p.lng = bestBranch.lng;
+    }
   } catch {
     // ignore
   }

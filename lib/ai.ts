@@ -73,8 +73,10 @@ ${JSON.stringify(userPayload.locks, null, 2)}
 
 Return ONLY valid JSON: {"locks":[{...}]}`;
 
+  const timeoutMs = Number(process.env.LOCKS_ENRICH_TIMEOUT_MS ?? 6000);
+
   try {
-    const completion = await client.chat.completions.create({
+    const completionPromise = client.chat.completions.create({
       model: "gpt-4o-mini",
       temperature: 0.1,
       messages: [
@@ -82,6 +84,17 @@ Return ONLY valid JSON: {"locks":[{...}]}`;
         { role: "user", content: userMsg }
       ],
     });
+
+    const timeoutGuard =
+      timeoutMs > 0
+        ? new Promise<null>((_, reject) => {
+            setTimeout(() => reject(new Error('locks_enrich_timeout')), timeoutMs);
+          })
+        : null;
+
+    const completion = (await (timeoutGuard ? Promise.race([completionPromise, timeoutGuard]) : completionPromise)) as Awaited<
+      typeof completionPromise
+    >;
 
     const text = completion.choices[0]?.message?.content?.trim() || "";
     const start = text.indexOf('{');

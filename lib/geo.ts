@@ -1,3 +1,5 @@
+import { getTravelDurationsFromMaps } from './providers/distance';
+
 const CENTROIDS: Record<string, { lat: number; lon: number }> = {
   "Lower East Side": { lat: 40.7179, lon: -73.9893 },
   "Upper West Side": { lat: 40.7870, lon: -73.9754 },
@@ -76,7 +78,7 @@ export function haversineKm(a: { lat: number; lon: number }, b: { lat: number; l
 // Approximate walking minutes: ~4.8 km/h (12.5 min/km), cap short hops and long hauls
 export function walkingMinutesKm(km: number) {
   const mins = km * 12.5;
-  return Math.max(6, Math.min(45, Math.round(mins)));
+  return Math.max(8, Math.min(50, Math.round(mins)));
 }
 
 export function travelMinutesBetween(aLoc?: string, bLoc?: string) {
@@ -97,13 +99,13 @@ export function travelMinutesBetween(aLoc?: string, bLoc?: string) {
   }
 
   if (crossBorough) {
-    const base = Math.round(18 + km * 8);
-    return Math.min(Math.max(base, 28), 80);
+    const base = Math.round(14 + km * 4.8);
+    return Math.min(Math.max(base, 24), 55);
   }
 
   const walking = walkingMinutesKm(km);
   const transit = Math.round(8 + km * 5.5);
-  return Math.min(Math.max(transit, walking), 75);
+  return Math.min(Math.max(transit, Math.max(12, walking)), 70);
 }
 
 function inferBorough(loc?: string): 'manhattan' | 'brooklyn' | 'queens' | 'bronx' | 'staten' | null {
@@ -124,12 +126,95 @@ function fallbackTravelEstimate(aLoc?: string, bLoc?: string): number {
   const boroughA = inferBorough(aLoc);
   const boroughB = inferBorough(bLoc);
   if (boroughA && boroughB && boroughA !== boroughB) {
-    return 40;
+    return 28;
   }
-  if (a.includes('village') && b.includes('village')) return 11;
-  if (a.includes('midtown') && b.includes('midtown')) return 12;
-  if (a.includes('harlem') || b.includes('harlem')) return 28;
-  if (a.includes('queens') || b.includes('queens')) return 38;
-  if (a.includes('brooklyn') || b.includes('brooklyn')) return 32;
-  return 22;
+  if (a.includes('village') && b.includes('village')) return 14;
+  if (a.includes('midtown') && b.includes('midtown')) return 14;
+  if (a.includes('harlem') || b.includes('harlem')) return 26;
+  if (a.includes('queens') || b.includes('queens')) return 32;
+  if (a.includes('brooklyn') || b.includes('brooklyn')) return 28;
+  return 20;
+}
+
+const accurateCache = new Map<string, { minutes: number; mode: 'walk' | 'transit' } | null>();
+
+function canonicalLocationText(loc: string): string {
+  const trimmed = loc.trim();
+  if (!trimmed) return 'New York, NY';
+  if (/^-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?$/.test(trimmed)) {
+    return trimmed.replace(/\s+/g, '');
+  }
+  if (/new york/i.test(trimmed)) return trimmed;
+  return `${trimmed}, New York, NY`;
+}
+
+function accurateCacheKey(origin: string, destination: string, date?: string) {
+  return `${origin.toLowerCase()}→${destination.toLowerCase()}@${date || 'any'}`;
+}
+
+function departureEpoch(dateISO?: string): number | undefined {
+  if (!dateISO) return undefined;
+  const dt = new Date(`${dateISO}T13:00:00`);
+  const epochMs = dt.getTime();
+  if (!Number.isFinite(epochMs)) return undefined;
+  return Math.max(0, Math.floor(epochMs / 1000));
+}
+
+export async function accurateTravelMinutesBetween(
+  origin?: string,
+  destination?: string,
+  opts?: { date?: string }
+): Promise<{ minutes: number; mode: 'walk' | 'transit' } | null> {
+  if (!origin || !destination) return null;
+  const originKey = canonicalLocationText(origin);
+  const destinationKey = canonicalLocationText(destination);
+  const cacheKey = accurateCacheKey(originKey, destinationKey, opts?.date);
+  if (accurateCache.has(cacheKey)) return accurateCache.get(cacheKey) ?? null;
+
+  try {
+    const durations = await getTravelDurationsFromMaps(originKey, destinationKey, {
+      departureTime: departureEpoch(opts?.date),
+    });
+    if (!durations) {
+      accurateCache.set(cacheKey, null);
+      return null;
+    }
+
+    const walking = durations.walking ?? null;
+    const transit = durations.transit ?? null;
+
+    let mode: 'walk' | 'transit';
+    let minutes: number;
+
+    if (walking != null && transit != null) {
+      if (walking <= 20 || walking <= transit + 4) {
+        mode = 'walk';
+        minutes = walking;
+      } else {
+        mode = 'transit';
+        minutes = transit;
+      }
+    } else if (walking != null) {
+      mode = 'walk';
+      minutes = walking;
+    } else if (transit != null) {
+      mode = 'transit';
+      minutes = transit;
+    } else {
+      accurateCache.set(cacheKey, null);
+      return null;
+    }
+
+    if (!Number.isFinite(minutes) || minutes <= 0) {
+      accurateCache.set(cacheKey, null);
+      return null;
+    }
+
+    const result = { minutes, mode };
+    accurateCache.set(cacheKey, result);
+    return result;
+  } catch {
+    accurateCache.set(cacheKey, null);
+    return null;
+  }
 }
