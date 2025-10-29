@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { saveDraft } from '@/lib/draft';
 import { TripDraft } from '@/lib/types';
+import { AREA_OPTIONS, randomAreaValue } from '@/lib/areas';
 
 export default function Home() {
   const router = useRouter();
@@ -12,6 +13,7 @@ export default function Home() {
   const [date, setDate] = useState('');
   const [vibes, setVibes] = useState<string[]>([]);
   const [pace, setPace] = useState<'chill' | 'balanced' | 'max'>('balanced');
+  const [focusAreaSelection, setFocusAreaSelection] = useState<string>('surprise');
 
   const toggleVibe = (vibe: string) => {
     setVibes((prev) =>
@@ -40,11 +42,21 @@ export default function Home() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    let resolvedArea: string | null;
+    if (focusAreaSelection === 'surprise') {
+      resolvedArea = randomAreaValue();
+    } else if (focusAreaSelection === 'any') {
+      resolvedArea = null;
+    } else {
+      resolvedArea = focusAreaSelection;
+    }
+
     const draft: TripDraft = {
       city,
       date,
       vibes,
       pace,
+      focusArea: resolvedArea,
       mustDos: [],
     };
 
@@ -108,6 +120,25 @@ export default function Home() {
               );
             })}
           </div>
+        </div>
+
+        {/* Focus area */}
+        <div>
+          <label className="block text-lg font-semibold mb-2">📍 Area of town</label>
+          <select
+            value={focusAreaSelection}
+            onChange={(e) => setFocusAreaSelection(e.target.value)}
+            className="w-full border rounded-lg px-4 py-2 text-lg bg-white"
+          >
+            {AREA_OPTIONS.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <p className="mt-1 text-sm text-slate-500">
+            Choose a neighborhood focus or pick <em>Surprise me</em> for a random adventure.
+          </p>
         </div>
 
         {/* Pace */}

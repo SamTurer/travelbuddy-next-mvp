@@ -16,6 +16,11 @@ export interface TripDraft {
   date: string;                // YYYY-MM-DD
   vibes: string[];
   pace: Pace;
+  /**
+   * Normalized focus area preference (areaKey-style, e.g., "upper west side").
+   * Null/undefined indicates no specific focus area.
+   */
+  focusArea?: string | null;
   mustDos?: MustDo[];          // can be strings or objects
 }
 

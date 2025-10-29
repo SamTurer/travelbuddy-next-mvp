@@ -3,6 +3,7 @@ import { z } from 'zod';
 import places from '@/data/nyc-places.json';
 import { formatTimelineWithLLM } from '@/lib/llm';
 import { travelMinutesBetween } from '@/lib/geo';
+import { getFocusAreaKeys, normalizeAreaValue } from '@/lib/areas';
 
 const BodySchema = z.object({
   city: z.string(),
@@ -12,6 +13,7 @@ const BodySchema = z.object({
   mood: z.string(), // e.g., "I'm Hungry", "Weather Changed", "Less Walking"
   pace: z.enum(['chill', 'balanced', 'max']).optional(),
   vibes: z.array(z.string()).optional(),
+  focusArea: z.string().optional().nullable(),
   replaceIndex: z.number().int().nonnegative().optional(),
   currentStops: z.array(z.object({
     time: z.string(),       // may be "HH:MM" or "HH:MM – HH:MM"
@@ -81,6 +83,7 @@ export async function POST(req: NextRequest) {
     currentStops,
     pace = 'balanced',
     vibes = [],
+    focusArea,
     replaceIndex,
   } = parsed.data;
 
@@ -90,6 +93,11 @@ export async function POST(req: NextRequest) {
 
   const all = places as Place[];
   const vibeSet = new Set(vibes.map(v => v.toLowerCase()));
+  const normalizedFocus = normalizeAreaValue(focusArea);
+  const focusAreaKeys = getFocusAreaKeys(normalizedFocus);
+  const focusAreaSet = new Set(focusAreaKeys);
+  const focusEnabled = focusAreaSet.size > 0;
+  const primaryFocusArea = focusAreaKeys[0] ?? null;
 
   // 1) Enrich current stops with seed matches (to recover categories/durations)
   const enriched = currentStops.map(s => {
@@ -109,9 +117,25 @@ export async function POST(req: NextRequest) {
     Math.max(enriched.length - 1, 0)
   );
 
+  if (focusEnabled) {
+    const targetSeed = (enriched[replaceIdx] as any)?._seedLoc || enriched[replaceIdx]?.location || '';
+    const targetArea = areaKeyFromString(targetSeed);
+    if (targetArea) focusAreaSet.add(targetArea);
+  }
+
   // 3) Build mood-filtered candidate pool
   const m = mood.toLowerCase();
   let pool = all.slice();
+
+  if (focusEnabled) {
+    const focusFiltered = pool.filter(candidate => {
+      const area = areaKeyFromString(candidate.neighborhood || candidate.location || '');
+      return area ? focusAreaSet.has(area) : false;
+    });
+    if (focusFiltered.length) {
+      pool = focusFiltered;
+    }
+  }
 
   if (vibes.length && !m.includes('different vibe')) {
     const aligned = pool.filter(p =>
@@ -189,8 +213,19 @@ export async function POST(req: NextRequest) {
     });
   }
 
+  let selectionPool = travelSafePool;
+  if (focusEnabled) {
+    const focusCandidates = travelSafePool.filter(candidate => {
+      const area = areaKeyFromString(candidate.neighborhood || candidate.location || '');
+      return area ? focusAreaSet.has(area) : false;
+    });
+    if (focusCandidates.length) {
+      selectionPool = focusCandidates;
+    }
+  }
+
   // Pick a replacement
-  const replacement = travelSafePool[Math.floor(Math.random() * travelSafePool.length)];
+  const replacement = selectionPool[Math.floor(Math.random() * selectionPool.length)];
   const replacementLocation = replacement.location || replacement.neighborhood || city;
 
   // 4) Splice replacement into the list

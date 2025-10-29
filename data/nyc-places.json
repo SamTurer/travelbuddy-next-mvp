@@ -1676,7 +1676,6 @@
     "neighborhood": "Midtown Corridor",
     "duration_min": 90,
     "vibe_tags": [
-      "reservation",
       "dinner",
       "french",
       "classic",
@@ -1759,6 +1758,7 @@
     "duration_min": 90,
     "vibe_tags": [
       "reservation",
+      "dinner",
       "fine-dining",
       "new-american",
       "curator"
@@ -3917,26 +3917,6 @@
     "duration_max": 30
   },
   {
-    "name": "Barbara Shaum",
-    "category": "artisan",
-    "neighborhood": "West Village Greenwich Village",
-    "duration_min": 35,
-    "vibe_tags": [
-      "artisan",
-      "footwear",
-      "legacy",
-      "classic"
-    ],
-    "energy_tags": [
-      "authentic",
-      "timeless"
-    ],
-    "description": "Handcrafted leather sandals, unchanged for decades. A relic of Village craft culture.",
-    "location": "West Village Greenwich Village",
-    "url": "https://www.google.com/maps?q=Barbara+Shaum+west+village+greenwich+village+NYC",
-    "duration_max": 53
-  },
-  {
     "name": "Bigelow Chemists",
     "category": "apothecary",
     "neighborhood": "West Village Greenwich Village",
@@ -4756,26 +4736,6 @@
     "duration_max": 180
   },
   {
-    "name": "Battery Park Bodegas",
-    "category": "breakfast",
-    "neighborhood": "Fidi Downtown",
-    "duration_min": 20,
-    "vibe_tags": [
-      "quick-bite",
-      "breakfast",
-      "local",
-      "classic"
-    ],
-    "energy_tags": [
-      "casual",
-      "neighborly"
-    ],
-    "description": "Classic New York grab-and-go: egg sandwiches, coffee, and gossip with a view of the harbor.",
-    "location": "Fidi Downtown",
-    "url": "https://www.google.com/maps?q=Battery+Park+Bodegas+fidi+downtown+NYC",
-    "duration_max": 30
-  },
-  {
     "name": "Dead Rabbit",
     "category": "cocktails",
     "neighborhood": "Fidi Downtown",
@@ -4953,26 +4913,6 @@
     "description": "Free harbor ride with Statue of Liberty views and salty wind in your hair. Best at sunset.",
     "location": "Fidi Downtown",
     "url": "https://www.google.com/maps?q=Staten+Island+Ferry+fidi+downtown+NYC",
-    "duration_max": 90
-  },
-  {
-    "name": "Wall Street Bath & Spa",
-    "category": "spa",
-    "neighborhood": "Fidi Downtown",
-    "duration_min": 60,
-    "vibe_tags": [
-      "wellness",
-      "spa",
-      "local-gem",
-      "classic"
-    ],
-    "energy_tags": [
-      "gritty",
-      "restorative"
-    ],
-    "description": "Old-school Russian-Turkish bathhouse, steam rooms, and cold plunges for Wall Streeters who need to sweat out the week.",
-    "location": "Fidi Downtown",
-    "url": "https://www.google.com/maps?q=Wall+Street+Bath+%26+Spa+fidi+downtown+NYC",
     "duration_max": 90
   },
   {

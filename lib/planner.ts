@@ -24,6 +24,7 @@ import type { Stop as PlanStop } from '@/lib/types';
 import { fetchExtraPlaces } from '@/lib/providers/places';
 import { verifyPlaceHoursByName, resolveBestBranchForChain } from '@/lib/providers/hours';
 import type { PlaceHours } from '@/lib/providers/hours';
+import { getFocusAreaKeys, normalizeAreaValue } from '@/lib/areas';
 
 /* ============================
    Types
@@ -64,6 +65,7 @@ type Inputs = {
   date: string; // ISO date (yyyy-mm-dd)
   vibes: string[];
   pace: Pace;
+  focusArea?: string | null;
   locks?: Array<string | LockObj>;
 };
 
@@ -78,6 +80,7 @@ type Scheduled = {
   url?: string;
   travelMinFromPrev?: number;
   travelModeFromPrev?: 'walk' | 'transit';
+  travelSource?: 'google' | 'lat-fallback' | 'heuristic';
   lat?: number;
   lng?: number;
 };
@@ -1002,11 +1005,47 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
   const paceRange = PACE_ACTIVITY_RANGE[inputs.pace];
   const maxStops = paceRange.max ?? Number.POSITIVE_INFINITY;
 
-  const { city, date, vibes, pace } = inputs;
+  const { city, date, vibes, pace, focusArea } = inputs;
   const locks = normalizeLocks(inputs.locks);
   const skipLunch = shouldSkipLunch(locks);
   const cityAreaKey = areaKeyFromString(city);
   const anchorAreaKeys = new Set<string>();
+  const normalizedFocus = normalizeAreaValue(focusArea ?? null);
+  const focusAreaKeys = getFocusAreaKeys(normalizedFocus);
+  const focusEnabled = focusAreaKeys.length > 0;
+  const primaryFocusArea = focusAreaKeys[0] ?? null;
+  const secondaryFocusAreas = new Set(focusAreaKeys.slice(1));
+  const allowedAreaKeys = new Set<string>();
+  if (focusEnabled) {
+    for (const key of focusAreaKeys) {
+      allowedAreaKeys.add(key);
+    }
+  }
+  const focusAreaKeySet = new Set(focusAreaKeys);
+
+  const placeMatchesFocus = (place: Place): boolean => {
+    if (!focusEnabled) return true;
+    const area = areaKeyFromPlace(place);
+    if (!area) return false;
+    return allowedAreaKeys.has(area);
+  };
+
+  const areaFocusPenalty = (area: string | null): number => {
+    if (!focusEnabled) return 0;
+    if (!area) return 2.4;
+    if (primaryFocusArea && area === primaryFocusArea) return 0;
+    if (secondaryFocusAreas.has(area)) return 1.4;
+    if (focusAreaKeySet.has(area)) return 1.4;
+    if (anchorAreaKeys.has(area)) return 3.0;
+    if (allowedAreaKeys.has(area)) return 2.2;
+    return 6.0;
+  };
+
+  const applyFocusFilter = <T extends Place>(list: T[]): T[] => {
+    if (!focusEnabled) return list;
+    const filtered = list.filter(placeMatchesFocus);
+    return filtered.length ? filtered : list;
+  };
   const dateObj = new Date(`${date}T00:00:00`);
   const isWeekend = !Number.isNaN(dateObj.getTime()) ? (dateObj.getDay() === 0 || dateObj.getDay() === 6) : false;
   let brunchChosen = false;
@@ -1116,6 +1155,16 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
 
   anchors.sort((a, b) => a.startMin - b.startMin);
 
+  if (focusEnabled) {
+    for (const area of anchorAreaKeys) {
+      allowedAreaKeys.add(area);
+    }
+    for (const anchor of anchors) {
+      const anchorArea = areaKeyFromStop(anchor);
+      if (anchorArea) allowedAreaKeys.add(anchorArea);
+    }
+  }
+
   const hasDinnerAnchor = anchors.some(a => (a.category || '').toLowerCase() === 'dinner');
 
   const earliestAnchorStart = anchors.length ? Math.min(...anchors.map(a => a.startMin)) : Number.POSITIVE_INFINITY;
@@ -1129,9 +1178,16 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
     anchorNameKeys.add(normName(cleaned));
   }
 
+  if (focusEnabled) {
+    candidates = applyFocusFilter(candidates);
+  }
+
   // Suggestions stream (no exact anchor duplicates)
   let suggestionStream = candidates.filter((c) => !anchorNameKeys.has(normName(c.name)));
   shuffleInPlace(suggestionStream);
+  if (focusEnabled) {
+    suggestionStream = applyFocusFilter(suggestionStream);
+  }
 
   const areaAvailability = new Map<string, number>();
   for (const place of suggestionStream) {
@@ -1162,9 +1218,13 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
     if (!anchor.url && source.url) anchor.url = source.url;
   }
 
-  const coffeePlaces = dataset.filter(p => (p.category || '').toLowerCase() === 'coffee');
-  const lunchPlaces = dataset.filter(p => (p.category || '').toLowerCase() === 'lunch');
-  const dinnerPlaces = dataset.filter(p => (p.category || '').toLowerCase() === 'dinner');
+  const focusDataset = focusEnabled ? dataset.filter(placeMatchesFocus) : dataset;
+  const coffeeFocus = focusDataset.filter(p => (p.category || '').toLowerCase() === 'coffee');
+  const lunchFocus = focusDataset.filter(p => (p.category || '').toLowerCase() === 'lunch');
+  const dinnerFocus = focusDataset.filter(p => (p.category || '').toLowerCase() === 'dinner');
+  const coffeePlaces = coffeeFocus.length ? coffeeFocus : dataset.filter(p => (p.category || '').toLowerCase() === 'coffee');
+  const lunchPlaces = lunchFocus.length ? lunchFocus : dataset.filter(p => (p.category || '').toLowerCase() === 'lunch');
+  const dinnerPlaces = dinnerFocus.length ? dinnerFocus : dataset.filter(p => (p.category || '').toLowerCase() === 'dinner');
   function pickCoffeeCandidate(baseLoc: string): CandidateStop | null {
     const baseArea = areaKeyFromString(baseLoc);
     const prevDistinct = previousDistinctArea(baseArea);
@@ -1173,6 +1233,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
     for (const place of coffeePlaces) {
       const key = normName(place.name);
       if (usedNameKeys.has(key)) continue;
+      if (!placeMatchesFocus(place)) continue;
       const area = areaKeyFromPlace(place);
       if (area && !anchorAreaKeys.has(area) && (scheduledAreaCounts.get(area) || 0) >= MAX_AREA_VISITS) {
         continue;
@@ -1197,6 +1258,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       if (area && prevDistinct && area === prevDistinct) {
         score += AREA_BOUNCE_PENALTY;
       }
+      score += areaFocusPenalty(area);
       if (score < bestScore) {
         bestScore = score;
         best = place;
@@ -1225,6 +1287,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
     for (const place of lunchPlaces) {
       const key = normName(place.name);
       if (usedNameKeys.has(key)) continue;
+      if (!placeMatchesFocus(place)) continue;
       const area = areaKeyFromPlace(place);
       if (area && !anchorAreaKeys.has(area) && (scheduledAreaCounts.get(area) || 0) >= MAX_AREA_VISITS) {
         continue;
@@ -1249,6 +1312,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       if (area && prevDistinct && area === prevDistinct) {
         score += AREA_BOUNCE_PENALTY;
       }
+      score += areaFocusPenalty(area);
       if (score < bestScore) {
         bestScore = score;
         best = place;
@@ -1272,6 +1336,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
     for (const place of dinnerPlaces) {
       const key = normName(place.name);
       if (usedNameKeys.has(key)) continue;
+      if (!placeMatchesFocus(place)) continue;
       const area = areaKeyFromPlace(place);
       if (area && !anchorAreaKeys.has(area) && (scheduledAreaCounts.get(area) || 0) >= MAX_AREA_VISITS) {
         continue;
@@ -1296,6 +1361,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       if (area && prevDistinct && area === prevDistinct) {
         score += AREA_BOUNCE_PENALTY;
       }
+      score += areaFocusPenalty(area);
       if (score < bestScore) {
         bestScore = score;
         best = place;
@@ -1368,6 +1434,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       const catKey = (place.category || '').toLowerCase();
       if (!catKey) continue;
       if (isFoodCategory(catKey) || catKey === 'coffee' || catKey === 'breakfast') continue;
+      if (!placeMatchesFocus(place)) continue;
 
       const travel = minutesTravel(baseLoc, place.location || place.neighborhood || city);
       if (!travelWithinLimit(travel, false)) continue;
@@ -1375,6 +1442,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       let score = travel;
       const area = areaKeyFromPlace(place);
       if (baseArea && area && baseArea !== area) score += 12;
+      score += areaFocusPenalty(area);
 
       if (!best || score < best.score) {
         best = { place, score };
@@ -1429,8 +1497,15 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
         limit: 8,
       });
       if (Array.isArray(extra) && extra.length) {
-        const converted = extra.map(providerToPlace);
-        suggestionStream = dedupePlaces([...suggestionStream, ...converted]);
+        const converted = extra
+          .map(providerToPlace)
+          .filter(place => !focusEnabled || placeMatchesFocus(place));
+        if (converted.length) {
+          suggestionStream = dedupePlaces([...suggestionStream, ...converted]);
+          if (focusEnabled) {
+            suggestionStream = applyFocusFilter(suggestionStream);
+          }
+        }
       }
     } catch {
       // ignore fetch failures
@@ -1445,6 +1520,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
   ): { scheduled: Scheduled; place: Place; score: number } | null {
     let best: { scheduled: Scheduled; place: Place; score: number } | null = null;
     for (const place of pool) {
+      if (!placeMatchesFocus(place)) continue;
       const placeLoc = place.location || place.neighborhood || city;
       const travelIn = minutesTravel(prev.location || city, placeLoc);
       if (!travelWithinLimit(travelIn, !!prev.isAnchor)) continue;
@@ -1514,7 +1590,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
         travelModeFromPrev: recommendedTravelMode(travelIn),
       };
 
-      const score = travelIn * 1.4 + travelOut * 1.2 + leftover * 0.8;
+      const score = travelIn * 1.4 + travelOut * 1.2 + leftover * 0.8 + areaFocusPenalty(areaKeyFromPlace(place));
       if (!best || score < best.score) {
         best = { scheduled, place, score };
       }
@@ -1746,23 +1822,14 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       const have = new Set(suggestionStream.map(p => normName(p.name)));
       for (const p of extra) {
         const key = normName(p.name);
-        if (!have.has(key)) {
-          suggestionStream.push({
-            name: p.name,
-            category: p.category || 'walk',
-            neighborhood: p.neighborhood || p.location,
-            location: p.location || p.neighborhood,
-            duration_min: p.duration_min ?? undefined,
-            description: p.description,
-            url: p.url,
-            vibe_tags: p.vibe_tags,
-            energy_tags: p.energy_tags,
-            hours: p.hours, // some already enriched
-            lat: p.lat,
-            lng: p.lng,
-          });
-          have.add(key);
-        }
+        if (have.has(key)) continue;
+        const converted = providerToPlace(p);
+        if (focusEnabled && !placeMatchesFocus(converted)) continue;
+        suggestionStream.push(converted);
+        have.add(key);
+      }
+      if (focusEnabled) {
+        suggestionStream = applyFocusFilter(suggestionStream);
       }
     }
   } catch {}
@@ -1980,6 +2047,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       const key = normName(raw.name);
       if (existingKeys.has(key)) continue;
       const converted = providerToPlace(raw);
+      if (focusEnabled && !placeMatchesFocus(converted)) continue;
       suggestionStream.push(converted);
       existingKeys.add(key);
       newPlaces.push(converted);
@@ -1989,6 +2057,9 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
     const enrichHint = areaHintLabel || preferredArea;
     await enrichMissingHoursFor(newPlaces, city, enrichHint);
     suggestionStream = dedupePlaces(suggestionStream);
+    if (focusEnabled) {
+      suggestionStream = applyFocusFilter(suggestionStream);
+    }
 
     for (const place of newPlaces) {
       const areaKey = areaKeyFromPlace(place);
@@ -2176,8 +2247,10 @@ type Gap = {
       if (category !== 'lunch') continue;
       const nameKey = normName(place.name);
       if (usedNameKeys.has(nameKey)) continue;
+      if (!placeMatchesFocus(place)) continue;
 
       const location = place.location || place.neighborhood || city;
+      const placeArea = areaKeyFromPlace(place);
       const travelIn = travelFromTo(departLocation, location);
       if (!travelWithinLimit(travelIn, false)) continue;
       const earliestStart = Math.max(gap.slotStart, departTime + travelIn);
@@ -2198,6 +2271,7 @@ type Gap = {
       }
 
       let score = scorePlace(place, 'lunch');
+      score += areaFocusPenalty(placeArea);
       score += startAreaPenalty(place, preferredArea, departLocation, gap.index, {
         category: 'lunch',
         startAreaAvailability: startAreaCategoryCounts,
@@ -2431,7 +2505,10 @@ type Gap = {
     if (!url) return null;
     try {
       const parsed = new URL(url);
-      const query = parsed.searchParams.get('query') || parsed.searchParams.get('destination');
+      const query =
+        parsed.searchParams.get('query') ||
+        parsed.searchParams.get('destination') ||
+        parsed.searchParams.get('q');
       if (query) return query;
       if (parsed.hostname.endsWith('google.com') && parsed.pathname.includes('/maps/place/')) {
         const segments = parsed.pathname.split('/').filter(Boolean);
@@ -2445,7 +2522,7 @@ type Gap = {
     return null;
   }
 
-  function locationQueryForStop(stop: Scheduled): string {
+  function locationQueryForStop(stop: Scheduled): { query: string; used: 'lat' | 'url' | 'title' } {
     if (typeof stop.lat !== 'number' || typeof stop.lng !== 'number') {
       const datasetPlace = placeByName.get(normName(stop.title));
       if (datasetPlace) {
@@ -2454,10 +2531,10 @@ type Gap = {
       }
     }
     if (typeof stop.lat === 'number' && typeof stop.lng === 'number') {
-      return `${stop.lat},${stop.lng}`;
+      return { query: `${stop.lat},${stop.lng}`, used: 'lat' };
     }
     const urlQuery = extractQueryFromUrl(stop.url);
-    if (urlQuery) return `${urlQuery}, New York, NY`;
+    if (urlQuery) return { query: `${urlQuery}, New York, NY`, used: 'url' };
     const parts: string[] = [];
     if (stop.title) parts.push(stop.title);
     if (stop.location) {
@@ -2468,7 +2545,7 @@ type Gap = {
       }
     }
     parts.push(city);
-    return parts.filter(Boolean).join(', ');
+    return { query: parts.filter(Boolean).join(', '), used: 'title' };
   }
 
   async function applyAccurateTravelTimes(list: Scheduled[]) {
@@ -2476,9 +2553,9 @@ type Gap = {
     for (let i = 1; i < list.length; i++) {
       const prev = list[i - 1];
       const curr = list[i];
-      const origin = locationQueryForStop(prev);
-      const destination = locationQueryForStop(curr);
-      const accurate = await accurateTravelMinutesBetween(origin, destination, { date });
+      const originInfo = locationQueryForStop(prev);
+      const destinationInfo = locationQueryForStop(curr);
+      const accurate = await accurateTravelMinutesBetween(originInfo.query, destinationInfo.query, { date });
       if (!accurate) continue;
       const gap = Math.max(0, curr.startMin - prev.endMin);
       if (accurate.minutes > gap) {
@@ -2488,6 +2565,20 @@ type Gap = {
       }
       curr.travelMinFromPrev = accurate.minutes;
       curr.travelModeFromPrev = accurate.mode;
+      curr.travelSource = accurate.source;
+      if (accurate.source === 'google') {
+        curr.travelModeFromPrev = accurate.mode;
+      } else if (accurate.source === 'lat-fallback') {
+        curr.travelModeFromPrev = recommendedTravelMode(accurate.minutes);
+      }
+      if (accurate.origin && (prev.lat == null || prev.lng == null)) {
+        prev.lat = prev.lat ?? accurate.origin.lat;
+        prev.lng = prev.lng ?? accurate.origin.lng;
+      }
+      if (accurate.destination && (curr.lat == null || curr.lng == null)) {
+        curr.lat = curr.lat ?? accurate.destination.lat;
+        curr.lng = curr.lng ?? accurate.destination.lng;
+      }
     }
     list.sort((a, b) => a.startMin - b.startMin);
   }
@@ -2508,6 +2599,7 @@ type Gap = {
         first.endMin = dayStartMin + duration;
         first.travelMinFromPrev = 0;
         first.travelModeFromPrev = 'walk';
+        first.travelSource = 'heuristic';
       }
       return;
     }
@@ -2515,8 +2607,13 @@ type Gap = {
     if (!first || first.startMin > dayStartMin || !isBreakfastCategory(first?.category)) {
       const baseLoc = first?.location || preferredArea || city;
       const coffee = pickCoffeeCandidate(baseLoc);
-      const duration = coffee?.duration ?? 60;
-      const endMin = first ? Math.min(first.startMin, dayStartMin + duration) : dayStartMin + duration;
+      const duration = Math.max(coffee?.duration ?? 60, MIN_FLEX_BLOCK_MIN);
+      const stopEndMin = dayStartMin + duration;
+      if (first && first.startMin < stopEndMin) {
+        const shift = stopEndMin - first.startMin;
+        first.startMin += shift;
+        first.endMin += shift;
+      }
       const stop: Scheduled = coffee
         ? {
             title: coffee.title,
@@ -2524,10 +2621,11 @@ type Gap = {
             description: coffee.description ?? 'Ease into the day with a light breakfast near your start point.',
             category: coffee.category,
             startMin: dayStartMin,
-            endMin,
+            endMin: stopEndMin,
             url: ensureGoogleMapsUrl(coffee.url, coffee.location ?? baseLoc, coffee.title),
             travelMinFromPrev: 0,
             travelModeFromPrev: 'walk',
+            travelSource: 'heuristic',
             lat: coffee.lat,
             lng: coffee.lng,
           }
@@ -2537,10 +2635,11 @@ type Gap = {
             description: 'Ease into the day with a light breakfast near your start point.',
             category: 'breakfast',
             startMin: dayStartMin,
-            endMin,
+            endMin: stopEndMin,
             url: ensureGoogleMapsUrl(undefined, baseLoc, 'coffee shop'),
             travelMinFromPrev: 0,
             travelModeFromPrev: 'walk',
+            travelSource: 'heuristic',
           };
       scheduled.unshift(stop);
       registerStop(stop);
@@ -2689,6 +2788,7 @@ type Gap = {
           wouldExceedCategoryMinutes,
           (p, cat) => {
             let sc = scorePlace(p, cat);
+            sc += areaFocusPenalty(areaKeyFromPlace(p));
             sc += startAreaPenalty(p, preferredArea, currentLocation, scheduled.length, {
               category: cat,
               startAreaAvailability: startAreaCategoryCounts,
@@ -3044,6 +3144,15 @@ type Gap = {
   rebuildTrackingState();
   recomputeTravelMetadata(scheduled, city);
   await applyAccurateTravelTimes(scheduled);
+  scheduled.sort((a, b) => a.startMin - b.startMin);
+  rebuildTrackingState();
+  await fillGapsWithActivities();
+  scheduled.sort((a, b) => a.startMin - b.startMin);
+  rebuildTrackingState();
+  recomputeTravelMetadata(scheduled, city);
+  await applyAccurateTravelTimes(scheduled);
+  scheduled.sort((a, b) => a.startMin - b.startMin);
+  rebuildTrackingState();
 
   const finalStops: PlanStop[] = [];
   let previous: Scheduled | null = null;
@@ -3059,11 +3168,16 @@ type Gap = {
       if (actualTravel > 0) {
         const travelMode = recommendedTravelMode(actualTravel);
         const travelEmoji = travelMode === 'walk' ? '🚶‍♂️' : '🚇';
+        const sourceTag = (() => {
+          if (p.travelSource === 'google') return ' (Google)';
+          if (p.travelSource === 'lat-fallback') return ' (GPS est.)';
+          return ' (est.)';
+        })();
         finalStops.push({
           time: '',
           title: 'TRANSIT_NOTE',
           location: '',
-          description: `${travelEmoji} ${Math.max(1, Math.round(actualTravel))} min ${travelMode === 'walk' ? 'walk' : 'transit'} to next stop`,
+          description: `${travelEmoji} ${Math.max(1, Math.round(actualTravel))} min ${travelMode === 'walk' ? 'walk' : 'transit'} to next stop${sourceTag}`,
         });
       }
 
@@ -3127,6 +3241,7 @@ function recomputeTravelMetadata(list: Scheduled[], city: string) {
       const initialGap = Math.max(0, stop.startMin - DAY_START_MIN);
       stop.travelMinFromPrev = initialGap;
       stop.travelModeFromPrev = recommendedTravelMode(initialGap);
+      stop.travelSource = 'heuristic';
     } else {
       const gap = Math.max(0, stop.startMin - prev.endMin);
       const estimate = minutesTravel(prev.location || city, stop.location || city);
@@ -3134,7 +3249,7 @@ function recomputeTravelMetadata(list: Scheduled[], city: string) {
       const nextLoc = normalizeLocation(stop.location);
       const sameLocation = prevLoc && nextLoc && prevLoc === nextLoc;
       const sameTitle = prev.title === stop.title;
-      const baseMin = sameTitle ? 0 : (sameLocation ? 10 : 12);
+      const baseMin = sameTitle ? 0 : (sameLocation ? 3 : 12);
 
       let travel = Math.max(gap, estimate);
       if (!isFinite(travel) || travel < baseMin) {
@@ -3160,6 +3275,7 @@ function recomputeTravelMetadata(list: Scheduled[], city: string) {
       const actualGap = Math.max(0, stop.startMin - prev.endMin);
       stop.travelMinFromPrev = actualGap;
       stop.travelModeFromPrev = recommendedTravelMode(actualGap);
+      stop.travelSource = 'heuristic';
     }
     prev = stop;
   }

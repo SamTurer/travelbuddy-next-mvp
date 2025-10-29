@@ -12,6 +12,7 @@ const BodySchema = z.object({
   date: z.string().default(() => new Date().toISOString().slice(0, 10)),
   vibes: z.array(z.string()).default([]),
   pace: z.enum(['chill', 'balanced', 'max']).default('balanced'),
+  focusArea: z.string().optional().nullable(),
   locks: z.array(z.any()).optional().default([]),
 });
 

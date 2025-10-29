@@ -1,5 +1,7 @@
 import { getTravelDurationsFromMaps } from './providers/distance';
 
+const DISTANCE_KEY = process.env.GOOGLE_MAPS_API_KEY;
+
 const CENTROIDS: Record<string, { lat: number; lon: number }> = {
   "Lower East Side": { lat: 40.7179, lon: -73.9893 },
   "Upper West Side": { lat: 40.7870, lon: -73.9754 },
@@ -136,7 +138,15 @@ function fallbackTravelEstimate(aLoc?: string, bLoc?: string): number {
   return 20;
 }
 
-const accurateCache = new Map<string, { minutes: number; mode: 'walk' | 'transit' } | null>();
+type TravelResult = {
+  minutes: number;
+  mode: 'walk' | 'transit';
+  source: 'google' | 'lat-fallback';
+  origin?: { lat: number; lng: number };
+  destination?: { lat: number; lng: number };
+};
+
+const accurateCache = new Map<string, TravelResult | null>();
 
 function canonicalLocationText(loc: string): string {
   const trimmed = loc.trim();
@@ -160,22 +170,89 @@ function departureEpoch(dateISO?: string): number | undefined {
   return Math.max(0, Math.floor(epochMs / 1000));
 }
 
+function parseLatLng(input?: string | null): { lat: number; lng: number } | null {
+  if (!input) return null;
+  const trimmed = input.trim();
+  const match = trimmed.match(/^-?\d+(?:\.\d+)?\s*,\s*-?\d+(?:\.\d+)?$/);
+  if (!match) return null;
+  const [latStr, lngStr] = trimmed.split(',');
+  const lat = parseFloat(latStr);
+  const lng = parseFloat(lngStr);
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+  return { lat, lng };
+}
+
+const geocodeCache = new Map<string, { lat: number; lng: number } | null>();
+
+async function geocodeLocation(query: string): Promise<{ lat: number; lng: number } | null> {
+  if (!DISTANCE_KEY) return null;
+  if (!query || !query.trim()) return null;
+  const key = query.toLowerCase();
+  if (geocodeCache.has(key)) return geocodeCache.get(key) ?? null;
+
+  try {
+    const url = new URL('https://maps.googleapis.com/maps/api/geocode/json');
+    url.searchParams.set('address', query);
+    url.searchParams.set('region', 'us');
+    url.searchParams.set('key', DISTANCE_KEY);
+    const res = await fetch(url.toString(), { headers: { Accept: 'application/json' } });
+    if (!res.ok) {
+      geocodeCache.set(key, null);
+      return null;
+    }
+    const data: any = await res.json();
+    const loc = data?.results?.[0]?.geometry?.location;
+    if (typeof loc?.lat === 'number' && typeof loc?.lng === 'number') {
+      const point = { lat: loc.lat, lng: loc.lng };
+      geocodeCache.set(key, point);
+      return point;
+    }
+  } catch {}
+  geocodeCache.set(key, null);
+  return null;
+}
+
 export async function accurateTravelMinutesBetween(
   origin?: string,
   destination?: string,
   opts?: { date?: string }
-): Promise<{ minutes: number; mode: 'walk' | 'transit' } | null> {
+): Promise<TravelResult | null> {
   if (!origin || !destination) return null;
-  const originKey = canonicalLocationText(origin);
-  const destinationKey = canonicalLocationText(destination);
+  let originKey = canonicalLocationText(origin);
+  let destinationKey = canonicalLocationText(destination);
   const cacheKey = accurateCacheKey(originKey, destinationKey, opts?.date);
   if (accurateCache.has(cacheKey)) return accurateCache.get(cacheKey) ?? null;
+
+  let originPoint = parseLatLng(originKey);
+  let destinationPoint = parseLatLng(destinationKey);
+
+  if (!originPoint) {
+    originPoint = await geocodeLocation(originKey) ?? undefined;
+    if (originPoint) originKey = `${originPoint.lat},${originPoint.lng}`;
+  }
+  if (!destinationPoint) {
+    destinationPoint = await geocodeLocation(destinationKey) ?? undefined;
+    if (destinationPoint) destinationKey = `${destinationPoint.lat},${destinationPoint.lng}`;
+  }
 
   try {
     const durations = await getTravelDurationsFromMaps(originKey, destinationKey, {
       departureTime: departureEpoch(opts?.date),
     });
     if (!durations) {
+      if (originPoint && destinationPoint) {
+        const km = haversineKm(originPoint, destinationPoint);
+        const minutes = walkingMinutesKm(km);
+        const fallbackResult: TravelResult = {
+          minutes,
+          mode: 'walk',
+          source: 'lat-fallback',
+          origin: originPoint,
+          destination: destinationPoint,
+        };
+        accurateCache.set(cacheKey, fallbackResult);
+        return fallbackResult;
+      }
       accurateCache.set(cacheKey, null);
       return null;
     }
@@ -185,6 +262,8 @@ export async function accurateTravelMinutesBetween(
 
     let mode: 'walk' | 'transit';
     let minutes: number;
+
+    let source: 'google' | 'lat-fallback' = 'google';
 
     if (walking != null && transit != null) {
       if (walking <= 20 || walking <= transit + 4) {
@@ -210,10 +289,29 @@ export async function accurateTravelMinutesBetween(
       return null;
     }
 
-    const result = { minutes, mode };
+    const result: TravelResult = {
+      minutes,
+      mode,
+      source,
+      origin: originPoint,
+      destination: destinationPoint,
+    };
     accurateCache.set(cacheKey, result);
     return result;
   } catch {
+    if (originPoint && destinationPoint) {
+      const km = haversineKm(originPoint, destinationPoint);
+      const minutes = walkingMinutesKm(km);
+      const fallbackResult: TravelResult = {
+        minutes,
+        mode: 'walk',
+        source: 'lat-fallback',
+        origin: originPoint,
+        destination: destinationPoint,
+      };
+      accurateCache.set(cacheKey, fallbackResult);
+      return fallbackResult;
+    }
     accurateCache.set(cacheKey, null);
     return null;
   }

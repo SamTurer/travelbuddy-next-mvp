@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { loadDraft } from '@/lib/draft';
 import type { TripDraft } from '@/lib/types';
+import { areaLabelForValue, normalizeAreaValue } from '@/lib/areas';
 
 type PlanStop = {
   time: string;
@@ -21,6 +22,7 @@ type PlanPayload = {
   date: string;
   vibes: string[];
   pace: Pace;
+  focusArea: string | null;
   locks: unknown[];
 };
 
@@ -78,6 +80,14 @@ export default function PlanClient() {
     const normalizedPace: Pace =
       paceRaw === 'chill' || paceRaw === 'max' ? paceRaw : 'balanced';
 
+    let focusArea: string | null = null;
+    const focusParam = searchParams.get('focusArea');
+    if (focusParam) {
+      focusArea = normalizeAreaValue(focusParam);
+    } else if (draft?.focusArea) {
+      focusArea = draft.focusArea || null;
+    }
+
     // Must-dos: if you pass a JSON string in ?mustDos=...
     let locks: unknown[] = [];
     const md = searchParams.get('mustDos');
@@ -88,7 +98,7 @@ export default function PlanClient() {
       locks = draft.mustDos;
     }
 
-    return { city, date, vibes, pace: normalizedPace, locks };
+    return { city, date, vibes, pace: normalizedPace, focusArea, locks };
   }, [searchParams, draft, draftReady]);
 
   const mustDoSummaries = useMemo(() => {
@@ -140,6 +150,7 @@ export default function PlanClient() {
           mood,
           pace: payload.pace,
           vibes: payload.vibes,
+          focusArea: payload.focusArea,
           replaceIndex: activityIndex,
           currentStops: activityStops,
         }),
@@ -264,6 +275,14 @@ export default function PlanClient() {
                   {payload.pace}
                 </div>
               </div>
+              {payload.focusArea && (
+                <div>
+                  <div className="text-[11px] uppercase tracking-wide text-slate-500">Focus Area</div>
+                  <div className="mt-1 text-sm font-medium text-slate-700">
+                    {areaLabelForValue(payload.focusArea)}
+                  </div>
+                </div>
+              )}
               <div>
                 <div className="text-[11px] uppercase tracking-wide text-slate-500">Must-dos</div>
                 {mustDoSummaries.length > 0 ? (

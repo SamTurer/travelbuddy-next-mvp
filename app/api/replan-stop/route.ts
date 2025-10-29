@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import places from '@/data/nyc-places.json';
 import { travelMinutesBetween } from '@/lib/geo';
+import { getFocusAreaKeys, normalizeAreaValue } from '@/lib/areas';
 
 const BodySchema = z.object({
   city: z.string(),
@@ -17,6 +18,7 @@ const BodySchema = z.object({
   next: z.object({ title: z.string(), location: z.string().optional() }).optional(),
   existingTitles: z.array(z.string()),
   mood: z.string().optional(),
+  focusArea: z.string().optional().nullable(),
 });
 
 type Place = {
@@ -80,8 +82,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid body' }, { status: 400 });
   }
 
-  const { city, index, target, prev, next, existingTitles, mood } = parsed.data;
+  const { city, index, target, prev, next, existingTitles, mood, focusArea } = parsed.data;
   const all = places as Place[];
+  const normalizedFocus = normalizeAreaValue(focusArea);
+  const focusAreaKeys = getFocusAreaKeys(normalizedFocus);
+  const focusAreaSet = new Set(focusAreaKeys);
+  const focusEnabled = focusAreaSet.size > 0;
+  const primaryFocusArea = focusAreaKeys[0] ?? null;
+  if (focusEnabled) {
+    const targetAreaKey = areaKeyFromString(target.location);
+    if (targetAreaKey) focusAreaSet.add(targetAreaKey);
+    const prevAreaKey = areaKeyFromString(prev?.location);
+    if (prevAreaKey) focusAreaSet.add(prevAreaKey);
+    const nextAreaKey = areaKeyFromString(next?.location);
+    if (nextAreaKey) focusAreaSet.add(nextAreaKey);
+  }
 
   const existing = new Set(existingTitles.map(t => t.toLowerCase()));
   existing.delete(target.title.toLowerCase());
@@ -90,6 +105,15 @@ export async function POST(req: NextRequest) {
   const targetCategory = targetMatch?.category || inferCategoryFromName(target.title);
 
   let candidates = all.filter(p => p.name.toLowerCase() !== target.title.toLowerCase());
+  if (focusEnabled) {
+    const filtered = candidates.filter(p => {
+      const area = areaKeyFromString(p.neighborhood || p.location || '');
+      return area ? focusAreaSet.has(area) : false;
+    });
+    if (filtered.length) {
+      candidates = filtered;
+    }
+  }
   const moodNorm = mood?.toLowerCase() || '';
 
   if (moodNorm.includes('hungry')) {
@@ -131,6 +155,15 @@ export async function POST(req: NextRequest) {
     const area = areaKeyFromString(place.neighborhood || place.location || '');
     let score = 0;
     if (baseArea && area && baseArea !== area) score += 2.5;
+    if (focusEnabled) {
+      if (!area) {
+        score += 4;
+      } else if (!focusAreaSet.has(area)) {
+        score += 10;
+      } else if (primaryFocusArea && area !== primaryFocusArea) {
+        score += 1.6;
+      }
+    }
     const prevLoc = prev?.location || target.location || city;
     const nextLoc = next?.location || target.location || city;
     score += travelMinutesBetween(prevLoc, place.location || place.neighborhood || city) / 20;
