@@ -101,31 +101,55 @@ type CandidateStop = {
    Day/time constants
 ============================ */
 
+// Weekday timing
 const BREAKFAST_EARLIEST_MIN = 9 * 60;
 const BREAKFAST_LATEST_MIN   = 10 * 60;
+
+// Weekend timing (starts 1 hour later)
+const WEEKEND_BREAKFAST_EARLIEST_MIN = 10 * 60;
+const WEEKEND_BREAKFAST_LATEST_MIN   = 11 * 60;
+
 const BRUNCH_START_MIN       = 11 * 60;
 const BRUNCH_END_MIN         = 13 * 60;
-const LUNCH_START_MIN        = 11 * 60 + 30;
-const LUNCH_WINDOW_END       = 14 * 60;
-const DINNER_START_MIN       = 18 * 60;
+const LUNCH_START_MIN        = 12 * 60;      // Changed: lunch between 12pm-1pm
+const LUNCH_WINDOW_END       = 13 * 60;      // Changed: lunch window ends at 1pm
+const DINNER_START_MIN       = 18 * 60 + 30; // Changed: dinner no earlier than 6:30pm
 const AFTERNOON_START_MIN    = 13 * 60;
 const AFTERNOON_END_MIN      = 17 * 60;
 const GENERAL_ACTIVITY_START_MIN = 9 * 60;
 
-const DAY_START_MIN = BREAKFAST_EARLIEST_MIN;
-const DAY_END_MIN   = 22 * 60;
+const DAY_END_MIN   = 21 * 60; // Changed: plan through 9pm
 const FIVE_PM_MIN   = 17 * 60;
 
-const DAYPART_WINDOWS: Record<string, [number, number]> = {
-  breakfast: [BREAKFAST_EARLIEST_MIN, BREAKFAST_LATEST_MIN],
-  morning:   [BREAKFAST_EARLIEST_MIN, 11 * 60],
-  brunch:    [BRUNCH_START_MIN, BRUNCH_END_MIN],
-  lunch:     [LUNCH_START_MIN, LUNCH_WINDOW_END],
-  afternoon: [AFTERNOON_START_MIN, FIVE_PM_MIN],
-  dinner:    [DINNER_START_MIN, 20 * 60 + 30],
-  evening:   [17 * 60, 21 * 60 + 30],
-  drinks:    [20 * 60, 23 * 60],
-};
+// Helper to determine if date is weekend
+function isWeekend(dateISO: string): boolean {
+  const d = new Date(dateISO + 'T12:00:00');
+  const day = d.getDay();
+  return day === 0 || day === 6; // Sunday = 0, Saturday = 6
+}
+
+// Get day start time based on weekday vs weekend
+function getDayStartMin(dateISO: string): number {
+  return isWeekend(dateISO) ? WEEKEND_BREAKFAST_EARLIEST_MIN : BREAKFAST_EARLIEST_MIN;
+}
+
+// Get daypart windows based on weekday vs weekend
+function getDaypartWindows(dateISO: string): Record<string, [number, number]> {
+  const weekend = isWeekend(dateISO);
+  const breakfastStart = weekend ? WEEKEND_BREAKFAST_EARLIEST_MIN : BREAKFAST_EARLIEST_MIN;
+  const breakfastEnd = weekend ? WEEKEND_BREAKFAST_LATEST_MIN : BREAKFAST_LATEST_MIN;
+
+  return {
+    breakfast: [breakfastStart, breakfastEnd],
+    morning:   [breakfastStart, 11 * 60],
+    brunch:    [BRUNCH_START_MIN, BRUNCH_END_MIN],
+    lunch:     [LUNCH_START_MIN, LUNCH_WINDOW_END],
+    afternoon: [AFTERNOON_START_MIN, FIVE_PM_MIN],
+    dinner:    [DINNER_START_MIN, 20 * 60 + 30],
+    evening:   [17 * 60, 21 * 60 + 30],
+    drinks:    [20 * 60, 23 * 60],
+  };
+}
 
 const CENTRAL_START_AREAS = [
   'West Village', 'Greenwich Village', 'SoHo', 'Lower Manhattan', 'Chelsea',
@@ -180,15 +204,16 @@ const AREA_BOUNCE_PENALTY = 28;
 const TRAVEL_WEIGHT = 0.9;
 const MAX_NON_ANCHOR_TRAVEL_MIN = 60;
 const MAX_ANCHOR_TRAVEL_MIN = 120;
-const MIN_FLEX_BLOCK_MIN = 20;
-const LARGE_GAP_MIN = 75;
+const MIN_FLEX_BLOCK_MIN = 15; // Reduced to allow smaller activities to fill gaps
+const LARGE_GAP_MIN = 60;      // Reduced to be more aggressive about filling gaps
 const NEIGHBORHOOD_LOCK_RUN = 5;
 
 const BAR_CATEGORIES = new Set<string>(['bar','drinks','cocktails','wine bar','speakeasy','tavern','rooftop']);
 const MEAL_CATEGORY_BASE = new Set<string>([
   'breakfast','brunch','lunch','dinner','dining','reservation','seafood','italian','french',
   'mediterranean','steakhouse','bbq','pizza','new-american','new american','american',
-  'tapas','sushi','omakase','dinner-or-brunch','dinner or brunch'
+  'tapas','sushi','omakase','dinner-or-brunch','dinner or brunch',
+  'dessert','sweets','bakery'
 ]);
 const MEAL_CATEGORY_REGEXES = [
   /\b(restaurant|trattoria|osteria|ristorante|brasserie|bistro)\b/i,
@@ -197,7 +222,8 @@ const MEAL_CATEGORY_REGEXES = [
 ];
 const MEAL_VIBE_TAGS = new Set<string>([
   'breakfast','brunch','lunch','dinner','reservation','tasting-menu','omakase','fine-dining',
-  'chef\'s-table','prix-fixe','pre-theater','dinner-or-brunch','dinner or brunch'
+  'chef\'s-table','prix-fixe','pre-theater','dinner-or-brunch','dinner or brunch',
+  'dessert','sweets','bakery'
 ]);
 
 const VIBE_CATEGORY_WEIGHTS: Record<string, Partial<Record<string, number>>> = {
@@ -251,12 +277,15 @@ const CUISINE_KEYS: Array<{key: string; re: RegExp}> = [
   { key: 'dessert',  re: /\b(ice cream|gelato|cookie|dessert|bakery|pastry)\b/i },
 ];
 
-const FOOD_CATEGORIES = new Set(['breakfast','brunch','lunch','dinner','snack','coffee','market']);
-const MORNING_MEAL_CATEGORIES = new Set(['breakfast','brunch','coffee']);
+const FOOD_CATEGORIES = new Set(['breakfast','brunch','lunch','dinner','snack','coffee','market','dessert','sweets','bakery','quick bite','quick-bite']);
+const MORNING_MEAL_CATEGORIES = new Set(['breakfast','brunch','coffee','bakery']);
+const SNACKISH_CATEGORIES = new Set(['snack','dessert','sweets','bakery','quick bite','quick-bite']);
 const CATEGORY_COUNT_CAP: Record<string, number> = {
   breakfast: 1, brunch: 1, lunch: 1, dinner: 1, snack: 1, coffee: 1, market: 1, bar: 1, drinks: 1,
+  dessert: 1, sweets: 1, bakery: 1, 'quick bite': 1, 'quick-bite': 1,
 };
 const DAILY_FOOD_CAP = 3;
+const SNACK_MEAL_BUFFER_MIN = 45;
 
 const CATEGORY_DURATION_OVERRIDE: Record<string, number> = {
   breakfast: 45,
@@ -266,6 +295,9 @@ const CATEGORY_DURATION_OVERRIDE: Record<string, number> = {
   'quick bite': 30,
   'quick-bite': 30,
   shopping: 20,
+  dessert: 30,
+  sweets: 25,
+  bakery: 30,
 };
 
 const PACE_DURATION_MULTIPLIER: Record<Pace, { food: number; nonFood: number; coffee: number }> = {
@@ -277,6 +309,12 @@ const PACE_DURATION_MULTIPLIER: Record<Pace, { food: number; nonFood: number; co
 /* ============================
    Small helpers
 ============================ */
+
+function canonicalCategoryForCounts(cat?: string | null): string {
+  const key = (cat || '').toLowerCase();
+  if (key === 'quick bite' || key === 'quick-bite') return 'snack';
+  return key;
+}
 
 function fmtTime(d: Date) {
   return d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
@@ -337,13 +375,14 @@ function parseClockMaybeWithContext(s?: string, title?: string, description?: st
   return h * 60 + mm;
 }
 
-function parseDaypartWords(s?: string): number | null {
+function parseDaypartWords(s: string | undefined, dateISO: string): number | null {
   if (!s) return null;
   const t = s.toLowerCase();
   if (/\bmidnight\b/.test(t)) return 0;
   if (/\bnoon\b/.test(t)) return 12 * 60;
 
-  const map: Array<{ re: RegExp; key: keyof typeof DAYPART_WINDOWS }> = [
+  const windows = getDaypartWindows(dateISO);
+  const map: Array<{ re: RegExp; key: string }> = [
     { re: /\b(early\s+)?morning\b/, key: 'morning' },
     { re: /\bbrunch\b/, key: 'brunch' },
     { re: /\blunch\b/, key: 'lunch' },
@@ -356,24 +395,28 @@ function parseDaypartWords(s?: string): number | null {
 
   for (const { re, key } of map) {
     if (re.test(t)) {
-      const [lo, hi] = DAYPART_WINDOWS[key];
-      return Math.round((lo + hi) / 2);
+      const window = windows[key];
+      if (window) {
+        const [lo, hi] = window;
+        return Math.round((lo + hi) / 2);
+      }
     }
   }
   return null;
 }
 
-function clampStartToDaypart(startMin: number, title?: string, description?: string): number {
+function clampStartToDaypart(startMin: number, dateISO: string, title?: string, description?: string): number {
   const t = `${title || ''} ${description || ''}`.toLowerCase();
   let window: [number, number] | null = null;
 
-  for (const [key, range] of Object.entries(DAYPART_WINDOWS)) {
+  const windows = getDaypartWindows(dateISO);
+  for (const [key, range] of Object.entries(windows)) {
     if (new RegExp(`\\b${key}\\b`).test(t)) { window = range as [number, number]; break; }
   }
   if (!window) {
-    if (/\bmorning\b/.test(t)) window = DAYPART_WINDOWS.morning;
-    else if (/\bafternoon\b/.test(t)) window = DAYPART_WINDOWS.afternoon;
-    else if (/\bevening\b|\btonight\b/.test(t)) window = DAYPART_WINDOWS.evening;
+    if (/\bmorning\b/.test(t)) window = windows.morning;
+    else if (/\bafternoon\b/.test(t)) window = windows.afternoon;
+    else if (/\bevening\b|\btonight\b/.test(t)) window = windows.evening;
   }
   if (!window) return startMin;
 
@@ -393,7 +436,8 @@ function baseDuration(category?: string): number {
     breakfast: 45, brunch: 90, coffee: 30, food: 60, lunch: 60, dinner: 120,
     bar: 60, drinks: 60, show: 120, museum: 90, gallery: 60,
     park: 75, walk: 60, shopping: 20, market: 60, landmark: 45, view: 45,
-    snack: 25, 'quick bite': 30, 'quick-bite': 30, default: 60,
+    snack: 25, dessert: 30, sweets: 25, bakery: 30,
+    'quick bite': 30, 'quick-bite': 30, default: 60,
   };
   return table[C] ?? table.default;
 }
@@ -431,7 +475,9 @@ function defaultStartByCategory(category?: string, title?: string): number {
     breakfast: 9 * 60, brunch: BRUNCH_START_MIN + 30, coffee: 10 * 60 + 30, museum: 11 * 60, gallery: 15 * 60,
     walk: 14 * 60, park: 14 * 60, view: 16 * 60, lunch: 12 * 60 + 30,
     dinner: 18 * 60 + 30, show: 19 * 60 + 30, bar: 21 * 60, shopping: 16 * 60,
-    market: 15 * 60, landmark: 14 * 60, snack: 16 * 60, default: 10 * 60,
+    market: 15 * 60, landmark: 14 * 60, snack: 16 * 60, dessert: 20 * 60,
+    sweets: 16 * 60 + 30, bakery: 15 * 60, 'quick bite': 16 * 60 + 15, 'quick-bite': 16 * 60 + 15,
+    default: 10 * 60,
   };
   return map[c] ?? map.default;
 }
@@ -502,7 +548,7 @@ function providerToPlace(p: {
     lng: typeof p.lng === 'number' ? p.lng : undefined,
   };
 }
-function areaKeyFromString(raw?: string | null): string | null {
+export function areaKeyFromString(raw?: string | null): string | null {
   if (!raw) return null;
   let s = raw.toLowerCase();
   if (!s.trim()) return null;
@@ -562,7 +608,8 @@ function scorePlace(p: Place, category: string): number {
   if (placeCat && placeCat !== desiredCat) {
     const bothBars = isBarCategory(placeCat) && isBarCategory(desiredCat);
     const bothMeals = isMealCategory(placeCat) && isMealCategory(desiredCat);
-    if (!bothBars && !bothMeals) {
+    const bothSnackish = SNACKISH_CATEGORIES.has(placeCat) && SNACKISH_CATEGORIES.has(desiredCat);
+    if (!bothBars && !bothMeals && !bothSnackish) {
       score += 3.5;
     }
   }
@@ -572,20 +619,37 @@ function scorePlace(p: Place, category: string): number {
 }
 function plannedDurationMinutes(place: Place, category: string, pace: Pace): number {
   const desired = (category || place.category || '').toLowerCase();
-  const dataset = typeof place.duration_min === 'number' ? place.duration_min : undefined;
-  const override = CATEGORY_DURATION_OVERRIDE[desired] ?? CATEGORY_DURATION_OVERRIDE[(place.category || '').toLowerCase()] ?? null;
+  const datasetMin = typeof place.duration_min === 'number' ? place.duration_min : null;
   const datasetMax = typeof place.duration_max === 'number' ? place.duration_max : null;
+  const override = CATEGORY_DURATION_OVERRIDE[desired] ?? CATEGORY_DURATION_OVERRIDE[(place.category || '').toLowerCase()] ?? null;
+
   const baseDur = (() => {
-    if (dataset != null) return dataset;
+    if (datasetMin != null) return datasetMin;
     if (override != null) return override;
     return baseDuration(desired || place.category);
   })();
+
   const multiplier = durationMultiplierFor(pace, desired);
   let target = Math.round(baseDur * multiplier);
-  const minimum = minFor(desired || place.category, pace);
-  if (datasetMax != null) target = Math.min(target, datasetMax);
-  if (override != null) target = Math.min(target, override);
-  target = Math.max(target, minimum, MIN_FLEX_BLOCK_MIN);
+
+  const upperBound = (() => {
+    const caps = [datasetMax, override].filter((v): v is number => typeof v === 'number');
+    return caps.length ? Math.min(...caps) : null;
+  })();
+
+  const defaultFloor = Math.max(minFor(desired || place.category, pace), MIN_FLEX_BLOCK_MIN);
+  const datasetFloor = datasetMin != null ? Math.max(datasetMin, 5) : null;
+  const lowerBound = datasetFloor ?? defaultFloor;
+
+  if (upperBound != null && upperBound < lowerBound) {
+    return Math.max(upperBound, 5);
+  }
+
+  if (upperBound != null) {
+    target = Math.min(target, upperBound);
+  }
+
+  target = Math.max(target, lowerBound);
   return target;
 }
 function wouldExceedCategoryMinutesFactory(scheduled: Scheduled[]) {
@@ -611,10 +675,10 @@ function isLunchy(place: { name: string; category?: string }, cat: string): bool
 }
 function wouldExceedCategoryCountsFactory(scheduled: Scheduled[]) {
   return (cat: string, vibes?: string[]) => {
-    const key = (cat || 'misc').toLowerCase();
+    const key = canonicalCategoryForCounts(cat) || 'misc';
     const catCap = CATEGORY_COUNT_CAP[key];
     if (catCap != null) {
-      const catCount = scheduled.filter(s => (s.category || '').toLowerCase() === key).length;
+      const catCount = scheduled.filter(s => (canonicalCategoryForCounts(s.category) || 'misc') === key).length;
       if (catCount >= catCap) return true;
     }
     const isFoodForward = !!vibes?.some(v => /(local|classic)/i.test(v));
@@ -651,9 +715,9 @@ function makeNonFoodFillerStop(loc: string, vibes: string[] | undefined, pace: P
   }
   if (wantsLocal) {
     return {
-      title: 'Explore the neighborhood',
+      title: 'Walk the neighborhood streets',
       location: loc,
-      description: 'Wander the side streets and soak up the local energy.',
+      description: 'Stroll the local blocks and discover hidden spots.',
       category: 'walk',
       duration: pace === 'max' ? 45 : 60,
     };
@@ -929,7 +993,7 @@ async function enrichMissingHoursFor(
   list: Place[],
   city: string,
   areaHint?: string,
-  maxLookups = 50
+  maxLookups = Infinity  // No limit - enrich all places
 ): Promise<void> {
   const candidates = [...list]
     .sort((a, b) => (a.name.length - b.name.length))
@@ -1077,7 +1141,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       neighborhoodLockCounts.set(areaKey, 1 + (neighborhoodLockCounts.get(areaKey) || 0));
       advanceAreaLock(areaKey);
     }
-    const catKey = (stop.category || 'misc').toLowerCase();
+    const catKey = canonicalCategoryForCounts(stop.category) || 'misc';
     categoryCounts.set(catKey, 1 + (categoryCounts.get(catKey) || 0));
     usedNameKeys.add(normName(stop.title));
     const ck = sourcePlace ? cuisineKeyFromPlace(sourcePlace) : cuisineKeyFromPlace({ name: stop.title });
@@ -1117,11 +1181,11 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
     const explicit =
       parseClockMaybeWithContext(l.time, l.title, l.description) ??
       parseClockMaybeWithContext(l.start, l.title, l.description) ??
-      parseDaypartWords(l.title) ??
-      parseDaypartWords(l.description);
+      parseDaypartWords(l.title, date) ??
+      parseDaypartWords(l.description, date);
 
     let startMin = explicit ?? defaultStartByCategory(category, title);
-    startMin = clampStartToDaypart(startMin, l.title, l.description);
+    startMin = clampStartToDaypart(startMin, date, l.title, l.description);
 
     const hintedDuration = l.duration_min;
     const duration = Math.max(hintedDuration ?? 0, minFor(category, pace), MIN_ANCHOR_DURATION);
@@ -1168,7 +1232,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
   const hasDinnerAnchor = anchors.some(a => (a.category || '').toLowerCase() === 'dinner');
 
   const earliestAnchorStart = anchors.length ? Math.min(...anchors.map(a => a.startMin)) : Number.POSITIVE_INFINITY;
-  const dayStartMin = earliestAnchorStart < DAY_START_MIN ? earliestAnchorStart : DAY_START_MIN;
+  const dayStartMin = earliestAnchorStart < getDayStartMin(date) ? earliestAnchorStart : getDayStartMin(date);
 
   // Fuzzy names to avoid dupes with anchors
   const anchorNameKeys = new Set<string>();
@@ -1203,12 +1267,17 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
     .filter((p): p is Place => !!p);
 
   // 🔧 NEW: enrich base dataset with hours/branch so hard-skip can work
-  await enrichMissingHoursFor(
-    dedupePlaces([...suggestionStream, ...anchorPlacesForEnrichment]),
-    city,
-    preferredArea,
-    Math.max(120, suggestionStream.length + anchorPlacesForEnrichment.length)
-  );
+  // IMPORTANT: Only enable this in development/testing! In production, pre-populate hours using scripts/enrich-hours.ts
+  // to avoid expensive Google Maps API calls on every user request
+  const enableLiveEnrichment = process.env.ENABLE_LIVE_HOURS_ENRICHMENT === 'true';
+  if (enableLiveEnrichment) {
+    await enrichMissingHoursFor(
+      dedupePlaces([...suggestionStream, ...anchorPlacesForEnrichment]),
+      city,
+      preferredArea,
+      Math.max(120, suggestionStream.length + anchorPlacesForEnrichment.length)
+    );
+  }
 
   for (const anchor of anchors) {
     const source = placeByName.get(normName(anchor.title));
@@ -1407,13 +1476,8 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       }
       return makeNonFoodFillerStop(baseLoc, vibes, pace);
     }
-    return {
-      title: 'Explore the neighborhood',
-      location: baseLoc,
-      description: 'Take a relaxed walk between sights.',
-      category: 'walk',
-      duration: pace === 'max' ? 45 : 60,
-    };
+    // Last resort: use the makeNonFoodFillerStop which has specific activities
+    return makeNonFoodFillerStop(baseLoc, vibes, pace);
   }
 
   function removeFromSuggestionStream(place: Place) {
@@ -1527,17 +1591,34 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       const travelOut = next ? minutesTravel(placeLoc, next.location || city) : 0;
       if (!travelWithinLimit(travelOut, !!next?.isAnchor)) continue;
 
-      const available = gapMinutes - travelIn - travelOut;
-      if (available < MIN_FLEX_BLOCK_MIN) continue;
-
       const category = place.category || '';
       const categoryKey = category.toLowerCase();
+      const prevPlace = placeByName.get(normName(prev.title));
+      const nextPlace = next ? placeByName.get(normName(next.title)) : undefined;
+      const prevIsMeal = isMealCategory(prev.category, prevPlace);
+      const nextIsMeal = next ? isMealCategory(next.category, nextPlace) : false;
+      let startMin = prev.endMin + travelIn;
+      const candidateIsSnackish = SNACKISH_CATEGORIES.has(categoryKey);
+      if (candidateIsSnackish && prevIsMeal) {
+        startMin = Math.max(startMin, prev.endMin + SNACK_MEAL_BUFFER_MIN);
+      }
+      const windowAfterStart = gapMinutes - (startMin - prev.endMin) - travelOut;
+      if (windowAfterStart < MIN_FLEX_BLOCK_MIN) continue;
+
       const baseDur = plannedDurationMinutes(place, categoryKey, pace);
-      let duration = Math.min(baseDur, available);
+      let duration = Math.min(baseDur, windowAfterStart);
       if (duration < MIN_FLEX_BLOCK_MIN) continue;
 
-      const startMin = prev.endMin + travelIn;
-      const endMin = startMin + duration;
+      let endMin = startMin + duration;
+      if (candidateIsSnackish && next && nextIsMeal) {
+        const latestEnd = next.startMin - SNACK_MEAL_BUFFER_MIN;
+        if (endMin > latestEnd) {
+          const adjusted = latestEnd - startMin;
+          if (adjusted < MIN_FLEX_BLOCK_MIN) continue;
+          duration = adjusted;
+          endMin = startMin + duration;
+        }
+      }
       if (next && endMin + travelOut > next.startMin) continue;
       if (!next && endMin > DAY_END_MIN) continue;
 
@@ -1558,8 +1639,6 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
         if (startMin < LUNCH_START_MIN || startMin >= LUNCH_WINDOW_END) continue;
       }
 
-      const prevPlace = placeByName.get(normName(prev.title));
-      const nextPlace = next ? placeByName.get(normName(next.title)) : undefined;
       const candidateIsMorning = isMorningMealCategory(categoryKey, place);
       if (isMorningMealCategory(prev.category, prevPlace) && candidateIsMorning) continue;
       if (next && isMorningMealCategory(next.category, nextPlace) && candidateIsMorning) continue;
@@ -1575,7 +1654,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
       const hoursCategory = (isBarCategory(categoryKey) || isFoodCategory(categoryKey)) ? category : (place.category || category);
       if (isLikelyClosedDuring(place.hours, hoursCategory, startMin, endMin, date) > 0) continue;
 
-      const leftover = gapMinutes - (travelIn + duration + travelOut);
+      const leftover = gapMinutes - ((startMin - prev.endMin) + duration + travelOut);
       if (leftover < 0) continue;
 
       const scheduled: Scheduled = {
@@ -1872,7 +1951,7 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
 
   const refreshTravelMetadata = () => {
     if (!scheduled.length) return;
-    recomputeTravelMetadata(scheduled, city);
+    recomputeTravelMetadata(scheduled, city, date);
   };
 
   const usedNameKeys = new Set<string>();
@@ -2055,7 +2134,9 @@ export async function plan(inputs: Inputs, dataset: Place[]): Promise<PlanStop[]
     if (!newPlaces.length) return false;
 
     const enrichHint = areaHintLabel || preferredArea;
-    await enrichMissingHoursFor(newPlaces, city, enrichHint);
+    if (enableLiveEnrichment) {
+      await enrichMissingHoursFor(newPlaces, city, enrichHint);
+    }
     suggestionStream = dedupePlaces(suggestionStream);
     if (focusEnabled) {
       suggestionStream = applyFocusFilter(suggestionStream);
@@ -2736,9 +2817,12 @@ type Gap = {
   }
 
   // Fill up to a limit (hard-skip closed)
-  async function fillUntil(limitMin: number) {
+  async function fillUntil(limitMin: number, nextAnchor?: Scheduled) {
+    const anchorStart = nextAnchor?.startMin ?? null;
+    const anchorIsMeal = nextAnchor ? isMealCategory(nextAnchor.category, undefined) : false;
     while (scheduled.length < target && currentMin + minBlock <= Math.min(limitMin, DAY_END_MIN)) {
-      const timeLeft = Math.min(limitMin, DAY_END_MIN) - currentMin;
+      const absoluteLimit = Math.min(limitMin, DAY_END_MIN);
+      const timeLeft = absoluteLimit - currentMin;
       if (timeLeft < minBlock) break;
 
       const wheel = candidateCategories.filter(c => !wouldExceedCategoryCounts(c, vibes));
@@ -2931,7 +3015,7 @@ type Gap = {
             const s: Scheduled = {
               title: filler.title,
               location: loc,
-              description: filler.description ?? 'Explore the area.',
+              description: filler.description ?? 'A quick stop nearby to round out the day.',
               category: filler.category,
               startMin: currentMin,
               endMin: currentMin + fdur,
@@ -2956,11 +3040,91 @@ type Gap = {
       const cat   = chosen.category;
       const desiredCat = (cat || '').toLowerCase();
       const baseDur = plannedDurationMinutes(place, desiredCat, pace);
-      const dur   = Math.max(MIN_FLEX_BLOCK_MIN, Math.min(baseDur, timeLeft));
+      let duration = Math.max(MIN_FLEX_BLOCK_MIN, Math.min(baseDur, timeLeft));
+      const isSnackish = SNACKISH_CATEGORIES.has(desiredCat);
 
       const travel = travelFromTo(currentLocation || city, place.location || place.neighborhood || city);
-      const start  = currentMin + travel;
-      const end    = start + dur;
+      let start  = currentMin + travel;
+      if (isSnackish && previousIsMeal && prevStop) {
+        start = Math.max(start, prevStop.endMin + SNACK_MEAL_BUFFER_MIN);
+      }
+      if (start >= absoluteLimit) {
+        const avoidFoodNow = dayFoodCount(scheduled) >= DAILY_FOOD_CAP;
+        const filler = buildFillerCandidate(currentLocation || city, avoidFoodNow, scheduled[scheduled.length - 1]);
+        if (filler) {
+          const fillerDuration = Math.round(filler.duration * durationMultiplierFor(pace, filler.category));
+          const fdur = Math.min(fillerDuration, timeLeft);
+          if (fdur >= minBlock) {
+            if (filler.sourcePlaceName) removePlaceByName(filler.sourcePlaceName);
+            const loc = filler.location ?? currentLocation;
+            const sFill: Scheduled = {
+              title: filler.title,
+              location: loc,
+              description: filler.description ?? 'Stretch your legs here.',
+              category: filler.category,
+              startMin: currentMin,
+              endMin: currentMin + fdur,
+              url: ensureGoogleMapsUrl(filler.url, loc || city, filler.title),
+              lat: filler.lat,
+              lng: filler.lng,
+            };
+            sFill.travelMinFromPrev = 0;
+            sFill.travelModeFromPrev = 'walk';
+            scheduled.push(sFill);
+            registerStop(sFill);
+            currentLocation = sFill.location || currentLocation;
+            currentMin += fdur;
+            refreshTravelMetadata();
+            continue;
+          }
+        }
+        break;
+      }
+      duration = Math.min(duration, absoluteLimit - start);
+      if (duration < MIN_FLEX_BLOCK_MIN) {
+        break;
+      }
+      let end    = start + duration;
+      if (isSnackish && anchorIsMeal && anchorStart != null) {
+        const latestEnd = anchorStart - SNACK_MEAL_BUFFER_MIN;
+        if (end > latestEnd) {
+          const adjusted = latestEnd - start;
+          if (adjusted < MIN_FLEX_BLOCK_MIN) {
+            const avoidFoodNow = dayFoodCount(scheduled) >= DAILY_FOOD_CAP;
+            const filler = buildFillerCandidate(currentLocation || city, avoidFoodNow, scheduled[scheduled.length - 1]);
+            if (filler) {
+              const fillerDuration = Math.round(filler.duration * durationMultiplierFor(pace, filler.category));
+              const fdur = Math.min(fillerDuration, timeLeft);
+              if (fdur >= minBlock) {
+                if (filler.sourcePlaceName) removePlaceByName(filler.sourcePlaceName);
+                const loc = filler.location ?? currentLocation;
+                const s: Scheduled = {
+                  title: filler.title,
+                  location: loc,
+                  description: filler.description ?? 'Stretch your legs here.',
+                  category: filler.category,
+                  startMin: currentMin,
+                  endMin: currentMin + fdur,
+                  url: ensureGoogleMapsUrl(filler.url, loc || city, filler.title),
+                  lat: filler.lat,
+                  lng: filler.lng,
+                };
+                s.travelMinFromPrev = 0;
+                s.travelModeFromPrev = 'walk';
+                scheduled.push(s);
+                registerStop(s);
+                currentLocation = s.location || currentLocation;
+                currentMin += fdur;
+                refreshTravelMetadata();
+                continue;
+              }
+            }
+            break;
+          }
+          duration = adjusted;
+          end = start + duration;
+        }
+      }
 
       if (wouldExceedCategoryCounts(cat, vibes)) {
         const avoidFoodNow = dayFoodCount(scheduled) >= DAILY_FOOD_CAP;
@@ -2995,7 +3159,7 @@ type Gap = {
         break;
       }
 
-      if (end > Math.min(limitMin, DAY_END_MIN)) {
+      if (end > absoluteLimit) {
         const avoidFoodNow = dayFoodCount(scheduled) >= DAILY_FOOD_CAP;
         const filler = buildFillerCandidate(currentLocation || city, avoidFoodNow, scheduled[scheduled.length - 1]);
         if (filler) {
@@ -3057,7 +3221,7 @@ type Gap = {
 
   if (anchors.length > 0) {
     const first = anchors[0];
-    await fillUntil(first.startMin);
+    await fillUntil(first.startMin, first);
 
     const travelToFirst = travelFromTo(currentLocation, first.location || city);
     const firstStart = Math.max(first.startMin, currentMin + travelToFirst);
@@ -3082,7 +3246,7 @@ type Gap = {
 
     for (let i = 1; i < anchors.length; i++) {
       const next = anchors[i];
-      await fillUntil(next.startMin);
+      await fillUntil(next.startMin, next);
 
       const travelToNext = travelFromTo(currentLocation, next.location || city);
       const nextStart = Math.max(next.startMin, currentMin + travelToNext);
@@ -3142,14 +3306,14 @@ type Gap = {
   await fillGapsWithActivities();
   scheduled.sort((a, b) => a.startMin - b.startMin);
   rebuildTrackingState();
-  recomputeTravelMetadata(scheduled, city);
+  recomputeTravelMetadata(scheduled, city, date);
   await applyAccurateTravelTimes(scheduled);
   scheduled.sort((a, b) => a.startMin - b.startMin);
   rebuildTrackingState();
   await fillGapsWithActivities();
   scheduled.sort((a, b) => a.startMin - b.startMin);
   rebuildTrackingState();
-  recomputeTravelMetadata(scheduled, city);
+  recomputeTravelMetadata(scheduled, city, date);
   await applyAccurateTravelTimes(scheduled);
   scheduled.sort((a, b) => a.startMin - b.startMin);
   rebuildTrackingState();
@@ -3228,7 +3392,7 @@ function minutesTravel(from: string, to: string): number {
   return 20;
 }
 
-function recomputeTravelMetadata(list: Scheduled[], city: string) {
+function recomputeTravelMetadata(list: Scheduled[], city: string, dateISO: string) {
   const normalizeLocation = (value?: string) =>
     (value || '')
       .toLowerCase()
@@ -3238,7 +3402,7 @@ function recomputeTravelMetadata(list: Scheduled[], city: string) {
   let prev: Scheduled | null = null;
   for (const stop of list) {
     if (!prev) {
-      const initialGap = Math.max(0, stop.startMin - DAY_START_MIN);
+      const initialGap = Math.max(0, stop.startMin - getDayStartMin(dateISO));
       stop.travelMinFromPrev = initialGap;
       stop.travelModeFromPrev = recommendedTravelMode(initialGap);
       stop.travelSource = 'heuristic';
@@ -3251,7 +3415,8 @@ function recomputeTravelMetadata(list: Scheduled[], city: string) {
       const sameTitle = prev.title === stop.title;
       const baseMin = sameTitle ? 0 : (sameLocation ? 3 : 12);
 
-      let travel = Math.max(gap, estimate);
+      // Use the actual travel estimate, not the gap
+      let travel = estimate;
       if (!isFinite(travel) || travel < baseMin) {
         travel = baseMin;
       }
@@ -3262,19 +3427,21 @@ function recomputeTravelMetadata(list: Scheduled[], city: string) {
         if (locationsDiffer || (prevArea && nextArea && prevArea !== nextArea)) {
           travel = Math.max(baseMin, estimate || 12);
         } else {
-          travel = Math.max(baseMin, gap, estimate);
+          travel = baseMin;
         }
       }
 
+      // Only shift if there's not enough time for travel
       const requiredStart = prev.endMin + travel;
       if (stop.startMin < requiredStart) {
         const shift = requiredStart - stop.startMin;
         stop.startMin += shift;
         stop.endMin += shift;
       }
-      const actualGap = Math.max(0, stop.startMin - prev.endMin);
-      stop.travelMinFromPrev = actualGap;
-      stop.travelModeFromPrev = recommendedTravelMode(actualGap);
+
+      // Store the actual travel time, not the gap
+      stop.travelMinFromPrev = travel;
+      stop.travelModeFromPrev = recommendedTravelMode(travel);
       stop.travelSource = 'heuristic';
     }
     prev = stop;
@@ -3330,18 +3497,20 @@ function pickNextSuggestion(
       if (wouldExceedCategoryMinutes(cat, dur)) continue;
 
       const placeCat = (p.category || '').toLowerCase();
+      const bothSnackish = SNACKISH_CATEGORIES.has(desiredCat) && SNACKISH_CATEGORIES.has(placeCat);
       if (!isBarCategory(desiredCat) && isBarCategory(placeCat)) {
         continue;
       }
-      if (isFoodCategory(desiredCat) && placeCat && placeCat !== desiredCat) {
+      if (isFoodCategory(desiredCat) && placeCat && placeCat !== desiredCat && !bothSnackish) {
         continue;
       }
-      if (!isFoodCategory(desiredCat) && isFoodCategory(placeCat)) {
+      if (!isFoodCategory(desiredCat) && isFoodCategory(placeCat) && !bothSnackish) {
         continue;
       }
 
       const candidateIsMeal = isMealCategory(desiredCat, p);
       const candidateIsMorning = isMorningMealCategory(desiredCat, p);
+      const candidateIsSnackish = SNACKISH_CATEGORIES.has(desiredCat);
       if (opts.previousIsMorningMeal && candidateIsMorning) {
         continue;
       }
@@ -3353,7 +3522,10 @@ function pickNextSuggestion(
 
       const travel = opts.travelFromTo(opts.currentLocation || city, p.location || p.neighborhood || city);
       if (!travelWithinLimit(travel, false)) continue;
-      const start  = opts.currentMin + travel;
+      let start  = opts.currentMin + travel;
+      if (candidateIsSnackish && opts.previousIsMeal && lastStop) {
+        start = Math.max(start, lastStop.endMin + SNACK_MEAL_BUFFER_MIN);
+      }
       const end    = start + dur;
 
       if (desiredCat !== 'breakfast' && desiredCat !== 'coffee' && start < GENERAL_ACTIVITY_START_MIN) {
@@ -3482,6 +3654,9 @@ function approximateHoursForCategory(category?: string): Array<[number, number]>
       return [[LUNCH_START_MIN, LUNCH_WINDOW_END]];
     case 'snack':
       return [[12 * 60, 18 * 60]];
+    case 'quick bite':
+    case 'quick-bite':
+      return [[12 * 60 + 30, 18 * 60 + 30]];
     case 'dinner':
       return [[DINNER_START_MIN, 22 * 60 + 30]];
     case 'bar':

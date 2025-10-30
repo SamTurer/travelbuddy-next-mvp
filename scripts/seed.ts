@@ -1,10 +1,11 @@
 import { PrismaClient } from '@prisma/client';
-import data from '../data/nyc-places.json';
+import { getPlacesDataset } from '../lib/places-dataset';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  for (const p of (data as any[])) {
+  const data = getPlacesDataset();
+  for (const p of data) {
     await prisma.place.create({
       data: {
         name: p.name,
@@ -18,7 +19,7 @@ async function main() {
       }
     });
   }
-  console.log('Seeded', (data as any[]).length, 'places');
+  console.log('Seeded', data.length, 'places');
 }
 
 main().catch(e => {

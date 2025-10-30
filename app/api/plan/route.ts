@@ -1,9 +1,9 @@
 // app/api/plan/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import places from '../../../data/nyc-places.json';
 import { buildItinerary } from '@/lib/planner';
 import { enrichLocksWithAI } from '@/lib/ai';
+import { getPlacesDataset } from '@/lib/places-dataset';
 
 export const runtime = 'nodejs';
 
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
 
     const stops = await buildItinerary(
       { ...parsed.data, locks: aiLocks },
-      places as any[]
+      getPlacesDataset()
     );
 
     return NextResponse.json({ stops });

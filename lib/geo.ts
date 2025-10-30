@@ -227,11 +227,11 @@ export async function accurateTravelMinutesBetween(
   let destinationPoint = parseLatLng(destinationKey);
 
   if (!originPoint) {
-    originPoint = await geocodeLocation(originKey) ?? undefined;
+    originPoint = (await geocodeLocation(originKey)) ?? null;
     if (originPoint) originKey = `${originPoint.lat},${originPoint.lng}`;
   }
   if (!destinationPoint) {
-    destinationPoint = await geocodeLocation(destinationKey) ?? undefined;
+    destinationPoint = (await geocodeLocation(destinationKey)) ?? null;
     if (destinationPoint) destinationKey = `${destinationPoint.lat},${destinationPoint.lng}`;
   }
 
@@ -241,7 +241,10 @@ export async function accurateTravelMinutesBetween(
     });
     if (!durations) {
       if (originPoint && destinationPoint) {
-        const km = haversineKm(originPoint, destinationPoint);
+        const km = haversineKm(
+          { lat: originPoint.lat, lon: originPoint.lng },
+          { lat: destinationPoint.lat, lon: destinationPoint.lng }
+        );
         const minutes = walkingMinutesKm(km);
         const fallbackResult: TravelResult = {
           minutes,
@@ -293,14 +296,17 @@ export async function accurateTravelMinutesBetween(
       minutes,
       mode,
       source,
-      origin: originPoint,
-      destination: destinationPoint,
+      origin: originPoint ?? undefined,
+      destination: destinationPoint ?? undefined,
     };
     accurateCache.set(cacheKey, result);
     return result;
   } catch {
     if (originPoint && destinationPoint) {
-      const km = haversineKm(originPoint, destinationPoint);
+      const km = haversineKm(
+        { lat: originPoint.lat, lon: originPoint.lng },
+        { lat: destinationPoint.lat, lon: destinationPoint.lng }
+      );
       const minutes = walkingMinutesKm(km);
       const fallbackResult: TravelResult = {
         minutes,

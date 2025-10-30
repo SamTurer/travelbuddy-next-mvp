@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import places from '@/data/nyc-places.json';
 import { travelMinutesBetween } from '@/lib/geo';
 import { getFocusAreaKeys, normalizeAreaValue } from '@/lib/areas';
+import { getPlacesDataset } from '@/lib/places-dataset';
 
 const BodySchema = z.object({
   city: z.string(),
@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
   }
 
   const { city, index, target, prev, next, existingTitles, mood, focusArea } = parsed.data;
-  const all = places as Place[];
+  const all = getPlacesDataset() as Place[];
   const normalizedFocus = normalizeAreaValue(focusArea);
   const focusAreaKeys = getFocusAreaKeys(normalizedFocus);
   const focusAreaSet = new Set(focusAreaKeys);

@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import places from '@/data/nyc-places.json';
 import { formatTimelineWithLLM } from '@/lib/llm';
 import { travelMinutesBetween } from '@/lib/geo';
 import { getFocusAreaKeys, normalizeAreaValue } from '@/lib/areas';
+import { getPlacesDataset } from '@/lib/places-dataset';
+import { areaKeyFromString } from '@/lib/planner';
 
 const BodySchema = z.object({
   city: z.string(),
@@ -91,7 +92,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'No stops to adjust' }, { status: 400 });
   }
 
-  const all = places as Place[];
+  const all = getPlacesDataset() as Place[];
   const vibeSet = new Set(vibes.map(v => v.toLowerCase()));
   const normalizedFocus = normalizeAreaValue(focusArea);
   const focusAreaKeys = getFocusAreaKeys(normalizedFocus);

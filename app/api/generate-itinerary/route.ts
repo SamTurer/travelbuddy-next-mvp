@@ -1,8 +1,8 @@
 // app/api/generate-itinerary/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import places from '../../../data/nyc-places.json';
 import { buildItinerary } from '@/lib/planner';
+import { getPlacesDataset } from '@/lib/places-dataset';
 
 
 const BodySchema = z.object({
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid body' }, { status: 400 });
     }
 
-    const stops = await buildItinerary(parsed.data, places as any[]);
+    const stops = await buildItinerary(parsed.data, getPlacesDataset());
     return NextResponse.json({ stops });
   } catch (err: any) {
     console.error('[api/generate-itinerary] error:', err);
