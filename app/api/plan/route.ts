@@ -17,6 +17,7 @@ const BodySchema = z.object({
 });
 
 export async function POST(req: NextRequest) {
+  const startTime = Date.now();
   try {
     const json = await req.json();
     const parsed = BodySchema.safeParse(json);
@@ -33,16 +34,32 @@ export async function POST(req: NextRequest) {
       );
 
     // 🔮 AI enrichment (optional, no-ops without OPENAI_API_KEY)
+    const enrichStart = Date.now();
     const aiLocks = await enrichLocksWithAI(rawLocks, {
       city: parsed.data.city,
       date: parsed.data.date,
       vibes: parsed.data.vibes, // pass vibes
     });
+    console.log(`[PERF] AI enrichment: ${Date.now() - enrichStart}ms`);
 
+    const buildStart = Date.now();
     const stops = await buildItinerary(
       { ...parsed.data, locks: aiLocks },
       getPlacesDataset()
     );
+    console.log(`[PERF] buildItinerary: ${Date.now() - buildStart}ms`);
+    console.log(`[PERF] TOTAL: ${Date.now() - startTime}ms`);
+
+    // Log the itinerary for debugging
+    console.log('\n=== GENERATED ITINERARY ===');
+    stops.forEach((stop, i) => {
+      if (stop.title === 'Transit') {
+        console.log(`${i}: [TRANSIT] ${stop.description}`);
+      } else {
+        console.log(`${i}: ${stop.time} | ${stop.title} | ${stop.location}`);
+      }
+    });
+    console.log('=== END ITINERARY ===\n');
 
     return NextResponse.json({ stops });
   } catch (err: any) {

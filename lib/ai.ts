@@ -73,7 +73,7 @@ ${JSON.stringify(userPayload.locks, null, 2)}
 
 Return ONLY valid JSON: {"locks":[{...}]}`;
 
-  const timeoutMs = Number(process.env.LOCKS_ENRICH_TIMEOUT_MS ?? 6000);
+  const timeoutMs = Number(process.env.LOCKS_ENRICH_TIMEOUT_MS ?? 3000);
 
   try {
     const completionPromise = client.chat.completions.create({

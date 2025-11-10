@@ -16766,110 +16766,6 @@
     }
   },
   {
-    "name": "Comedy Cellar",
-    "category": "landmark",
-    "neighborhood": "Greenwich Village",
-    "duration_min": 10,
-    "vibe_tags": [
-      "classic",
-      "sightseeing"
-    ],
-    "energy_tags": [
-      "crowded",
-      "touristy"
-    ],
-    "description": "Basement comedy club where huge comics drop in unannounced. Two-drink minimum, legendary energy.",
-    "location": "Greenwich Village, NYC",
-    "url": "https://www.google.com/maps?q=Comedy+Cellar+Greenwich+Village+NYC",
-    "duration_max": 45,
-    "lat": 40.73020020000001,
-    "lng": -74.0005639,
-    "hours": {
-      "openNow": true,
-      "weekdayText": [
-        "Monday: 11:00 AM – 3:00 AM",
-        "Tuesday: 11:00 AM – 12:00 AM",
-        "Wednesday: Closed",
-        "Thursday: 12:00 – 3:00 AM, 11:00 AM – 3:00 AM",
-        "Friday: 11:00 AM – 3:00 AM",
-        "Saturday: 11:00 AM – 3:00 AM",
-        "Sunday: 11:00 AM – 3:00 AM"
-      ],
-      "periods": [
-        {
-          "close": {
-            "day": 1,
-            "time": "0300"
-          },
-          "open": {
-            "day": 0,
-            "time": "1100"
-          }
-        },
-        {
-          "close": {
-            "day": 2,
-            "time": "0300"
-          },
-          "open": {
-            "day": 1,
-            "time": "1100"
-          }
-        },
-        {
-          "close": {
-            "day": 3,
-            "time": "0300"
-          },
-          "open": {
-            "day": 2,
-            "time": "1100"
-          }
-        },
-        {
-          "close": {
-            "day": 4,
-            "time": "0300"
-          },
-          "open": {
-            "day": 3,
-            "time": "1100"
-          }
-        },
-        {
-          "close": {
-            "day": 5,
-            "time": "0300"
-          },
-          "open": {
-            "day": 4,
-            "time": "1100"
-          }
-        },
-        {
-          "close": {
-            "day": 6,
-            "time": "0300"
-          },
-          "open": {
-            "day": 5,
-            "time": "1100"
-          }
-        },
-        {
-          "close": {
-            "day": 0,
-            "time": "0300"
-          },
-          "open": {
-            "day": 6,
-            "time": "1100"
-          }
-        }
-      ]
-    }
-  },
-  {
     "name": "Washington Square Park",
     "category": "landmark",
     "neighborhood": "Greenwich Village",
@@ -25811,9 +25707,9 @@
   },
   {
     "name": "Tavern on the Green",
-    "category": "landmark",
+    "category": "dinner",
     "neighborhood": "Central Park / Upper West Side",
-    "duration_min": 10,
+    "duration_min": 90,
     "vibe_tags": [
       "classic",
       "sightseeing"
@@ -25825,7 +25721,7 @@
     "description": "Fairy lights, glass pavilion, park-side dining. Touristy, yes, but magical at night.",
     "location": "Central Park / Upper West Side, NYC",
     "url": "https://www.google.com/maps?q=Tavern+on+the+Green+Central+Park+Upper+West+Side+NYC",
-    "duration_max": 45,
+    "duration_max": 150,
     "lat": 40.7724202,
     "lng": -73.9772631,
     "hours": {

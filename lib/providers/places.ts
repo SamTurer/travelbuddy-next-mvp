@@ -175,7 +175,9 @@ JSON schema:
     wantCategories: params.wantCategories || [],
   };
 
-  const completion = await openai.chat.completions.create({
+  // Add timeout to prevent hanging (5 seconds max)
+  const timeoutMs = Number(process.env.EXTERNAL_FETCH_TIMEOUT_MS ?? 5000);
+  const completionPromise = openai.chat.completions.create({
     model: DEFAULT_MODEL,
     temperature: 0.2,
     messages: [
@@ -183,6 +185,12 @@ JSON schema:
       { role: "user", content: JSON.stringify(userPayload) }
     ],
   });
+
+  const timeoutGuard = new Promise<null>((_, reject) => {
+    setTimeout(() => reject(new Error('external_fetch_timeout')), timeoutMs);
+  });
+
+  const completion = (await Promise.race([completionPromise, timeoutGuard])) as Awaited<typeof completionPromise>;
 
   const raw = completion.choices?.[0]?.message?.content ?? "";
   const parsed = findFirstJsonObject(raw);
