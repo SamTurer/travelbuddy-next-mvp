@@ -67,13 +67,15 @@ Add a place by copying an existing object. Required fields:
 - `description`
 - `hours` — seven weekdays, Sunday first. Each day is a list of `[openMinute, closeMinute]` from midnight. `null` means unknown. Do not invent hours.
 - `outdoor`
-- `recommended_by` — list of `{ "recommenderId": "sam" }` and an optional `note` quote. Default new places to both Sam and Kailey.
+- `recommended_by` — list of `{ "recommenderId": "sam" }` and an optional `note` quote. Default new places to both Sam and Kailey. AI-sourced placeholders are credited to `jonathan` until a real person is added.
+- `source_refs` — optional. The publication ids a placeholder used to cite, kept after the card was pointed at Jonathan.
+- `aliases` — optional other names for must-do matching, such as `"met museum"` for The Met.
 - `note` — short comment for the place. Use `""` until there is one.
 - `booking` — `walk_in`, `reservation_recommended`, `reservation_required`, `hard_to_book`, `tickets_required`, `no_reservations`, or `unknown`
 - `booking_note`, `booking_url` — optional
 - `placeholder` — optional. `true` for a coffee shop kept as coverage. Leave it off for a place someone has actually recommended.
 
-To attribute a place to one person, leave only their id in `recommended_by`. To add a friend or a publication, add them to `data/recommenders.json` (`id`, `displayName`, `type` of `person`, `friend`, or `publication`, `bio`, optional `url`) and reference that id. The card says "Recommended by" plus the display name, so a publication shows as "The Infatuation" rather than its slug. Names are still not links.
+To attribute a place to one person, leave only their id in `recommended_by`. To add a friend, a publication, or another placeholder, add them to `data/recommenders.json` (`id`, `displayName` or `name`, `type` of `person`, `friend`, `publication`, or `placeholder`, `bio`, optional `url`) and reference that id. The card says "Recommended by" plus the display name. Names are still not links. A must-do with an explicit time, including "at noon" or "at midnight", stays at that start time. "Met Museum" matches The Met through `aliases`, with no API key.
 
 ```bash
 npm run validate:places
@@ -81,7 +83,7 @@ npm run validate:places
 
 The script fails on missing coordinates, bad booking values, unknown recommender ids, and near-duplicate names at the same pin. Missing hours and shared coordinates are printed. `npm run validate:places -- --strict` also fails on those warnings.
 
-The itinerary shows **Recommended by Sam & Kailey** (or whoever is on the place, including a publication title such as The Infatuation) on every place card. The name is not a link yet. Each name is marked with `data-recommender-id` and `data-recommender-type` so a profile page can wrap it later. The morning slot is coffee when a coffee shop is open nearby, at that shop's nearest branch, and otherwise breakfast. Reservation-required, hard-to-book, and ticketed stops are listed under **Book ahead** when a must-do carries that booking.
+The itinerary shows **Recommended by Sam & Kailey** (or Jonathan, for an AI-sourced placeholder) on every place card. The name is not a link yet. Each name is marked with `data-recommender-id` and `data-recommender-type` so a profile page can wrap it later. The morning slot is coffee when a coffee shop is open nearby, at that shop's nearest branch, and otherwise breakfast. Reservation-required, hard-to-book, and ticketed stops are listed under **Book ahead** when a must-do carries that booking.
 
 ## API
 

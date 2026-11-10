@@ -11,6 +11,7 @@ import type { TripDraft } from '@/lib/types';
 import { areaLabelForValue, normalizeAreaValue } from '@/lib/areas';
 import BookingTag from '@/app/components/BookingTag';
 import RecommendedBy from '@/app/components/RecommendedBy';
+import UnderstoodMatch from '@/app/components/UnderstoodMatch';
 import type { BookingKind } from '@/lib/booking';
 import type { RecommendedByPerson } from '@/lib/recommenders';
 
@@ -30,6 +31,8 @@ type PlanStop = {
   bookingUrl?: string;
   mapsUrl?: string;
   warning?: string;
+  mustDo?: boolean;
+  understood?: { title: string; neighborhood: string };
 };
 
 type BookAheadItem = {
@@ -399,7 +402,21 @@ export default function PlanClient() {
               )}
               <div>
                 <div className="text-[11px] uppercase tracking-wide text-slate-500">Must-dos</div>
-                {mustDoSummaries.length > 0 ? (
+                {stops?.some((stop) => stop.understood) ? (
+                  <ul className="mt-1 space-y-1 text-sm">
+                    {stops
+                      .filter((stop) => stop.understood)
+                      .map((stop, idx) => (
+                        <li key={`${stop.understood?.title}-${idx}`}>
+                          <UnderstoodMatch
+                            title={stop.understood?.title || stop.title}
+                            neighborhood={stop.understood?.neighborhood}
+                            time={stop.time?.split('–')[0]?.trim()}
+                          />
+                        </li>
+                      ))}
+                  </ul>
+                ) : mustDoSummaries.length > 0 ? (
                   <ul className="mt-1 space-y-1 text-sm">
                     {mustDoSummaries.map((item, idx) => (
                       <li key={`${item}-${idx}`} className="flex items-start gap-2 text-slate-600">
@@ -542,7 +559,14 @@ export default function PlanClient() {
                 AI suggestion
               </span>
             )}
-            {s.source === 'must-do' && (
+            {s.mustDo && s.understood ? (
+              <UnderstoodMatch
+                title={s.understood.title}
+                neighborhood={s.understood.neighborhood}
+                time={s.time?.split('–')[0]?.trim()}
+              />
+            ) : null}
+            {(s.source === 'must-do' || s.mustDo) && (
               <span className="mt-1 inline-flex rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">
                 Your must-do
               </span>

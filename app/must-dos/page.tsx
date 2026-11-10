@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { loadDraft, saveDraft } from '@/lib/draft';
 import type { TripDraft } from '@/lib/types';
+import UnderstoodMatch from '@/app/components/UnderstoodMatch';
 
 export default function MustDosPage() {
   const router = useRouter();
@@ -14,7 +15,7 @@ export default function MustDosPage() {
 
   // Preview state
   const [preview, setPreview] = useState<
-    Array<{ title: string; time?: string; location?: string; category?: string; duration_min?: number; url?: string }>
+    Array<{ title: string; time?: string; location?: string; category?: string; duration_min?: number; url?: string; matched?: boolean }>
   >([]);
   const [previewLoading, setPreviewLoading] = useState(false);
   const [previewError, setPreviewError] = useState<string | null>(null);
@@ -99,7 +100,7 @@ export default function MustDosPage() {
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder='e.g., "Celeste UWS 7pm"'
+              placeholder='e.g., "Met Museum at noon"'
               className="field min-w-0 flex-1"
             />
             <button onClick={addMustDo} className="tap shrink-0 rounded-xl border border-slate-800 px-4 text-base font-semibold">
@@ -166,12 +167,12 @@ export default function MustDosPage() {
         {preview.length > 0 ? (
           <ul className="mt-3 flex flex-wrap gap-2">
             {preview.map((p, i) => (
-              <li key={i} className="rounded-full border px-3 py-1 text-sm">
-                <strong>{p.title}</strong>
-                {p.time && <> • {p.time}</>}
-                {p.category && <> • {p.category}</>}
-                {p.location && <> • {p.location}</>}
-                {typeof p.duration_min === 'number' && <> • {p.duration_min}m</>}
+              <li key={i} className="rounded-2xl border px-3 py-2 text-sm">
+                {p.matched ? (
+                  <UnderstoodMatch title={p.title} neighborhood={p.location} time={p.time} />
+                ) : (
+                  <span>Kept as typed: {p.title}</span>
+                )}
               </li>
             ))}
           </ul>

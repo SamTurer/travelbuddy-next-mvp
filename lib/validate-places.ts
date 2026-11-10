@@ -58,7 +58,7 @@ export function validatePlaces(places: Place[], recommenderIds: string[]): Valid
     if (!Array.isArray(place.recommended_by) || place.recommended_by.length === 0) {
       errors.push(`${label} needs at least one recommender`);
     } else {
-      for (const ref of place.recommended_by) {
+      for (const ref of [...place.recommended_by, ...(place.source_refs ?? [])]) {
         if (!ref?.recommenderId || !known.has(ref.recommenderId)) {
           errors.push(`${label} references unknown recommender "${ref?.recommenderId ?? ''}"`);
         }

@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { branchesOf, getPlaces, getPlanningPlaces, isFoodPlace, visitFitsHours, type Place } from '../lib/places';
-import { parseMustDo } from '../lib/must-dos';
+import { describeMatch, parseMustDo } from '../lib/must-dos';
+import UnderstoodMatch from '../app/components/UnderstoodMatch';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { planDay, replanItinerary, type Itinerary, type ItineraryVisit } from '../lib/planner';
 import { hoodForPlace } from '../lib/neighborhoods';
 import { estimateLeg } from '../lib/routing';
@@ -269,6 +272,70 @@ test('the deterministic parser reads bare dinner times as PM and matches MoMA', 
   assert.ok(show);
   assert.equal(show.pinnedStart, 19 * 60);
   assert.ok(show.duration >= 150);
+});
+
+test('Met Museum at noon matches The Met and keeps the clock time', async () => {
+  const parsed = parseMustDo('Met Museum at noon', places);
+  assert.ok(parsed);
+  assert.equal(parsed.place?.id, 'the-met');
+  assert.equal(parsed.title, 'The Met');
+  assert.equal(parsed.neighborhood, 'Upper East Side');
+  assert.equal(parsed.pinnedStart, 12 * 60);
+  assert.equal(describeMatch(parsed), 'The Met in Upper East Side at 12:00 PM');
+
+  for (const phrase of ['the met at 12', 'Met Museum at 12pm', 'Metropolitan Museum at noon']) {
+    const item = parseMustDo(phrase, places);
+    assert.equal(item?.place?.id, 'the-met', phrase);
+    assert.equal(item?.pinnedStart, 12 * 60, phrase);
+  }
+  assert.equal(parseMustDo('Met Museum at 3:30', places)?.pinnedStart, 15 * 60 + 30);
+  assert.equal(parseMustDo('Comedy Cellar at midnight', places)?.pinnedStart, 0);
+  assert.equal(parseMustDo('Guggenheim', places)?.place?.id, 'guggenheim');
+  assert.equal(parseMustDo("Katz's", places)?.place?.id, 'katz-s-deli');
+  assert.equal(parseMustDo('high line', places)?.place?.id, 'the-high-line');
+  assert.equal(parseMustDo('Whitney Museum', places)?.place?.neighborhood, 'Meatpacking / West Village edge');
+  assert.equal(parseMustDo('zzzz not a place', places)?.place, null);
+
+  const html = renderToStaticMarkup(
+    createElement(UnderstoodMatch, { title: 'The Met', neighborhood: 'Upper East Side', time: '12:00 PM' })
+  );
+  assert.match(html, /Understood as/);
+  assert.match(html, />The Met</);
+  assert.match(html, /Upper East Side/);
+  assert.match(html, /12:00 PM/);
+
+  const saturday = await planDay({
+    date: '2026-11-14',
+    pace: 'balanced',
+    vibes: ['classic'],
+    focusArea: null,
+    locks: ['Met Museum at noon'],
+  });
+  const met = realStops(saturday).find((visit) => visit.placeId === 'the-met');
+  assert.ok(met, dump(saturday));
+  assert.equal(met.startMin, 12 * 60);
+  assert.equal(met.understood?.title, 'The Met');
+  assert.equal(met.understood?.neighborhood, 'Upper East Side');
+  assert.equal(met.pinned, true);
+  assert.ok(saturday.cluster.hoods.includes('ues'), saturday.cluster.label);
+  const lunch = realStops(saturday).find((visit) => visit.role === 'lunch');
+  assert.ok(lunch && lunch.startMin >= met.endMin, dump(saturday));
+  const coffee = realStops(saturday).find((visit) => visit.role === 'coffee');
+  assert.ok(coffee, dump(saturday));
+  assert.ok(coffee.startMin < met.startMin);
+  assert.ok(met.leg, 'the leg into the Met is routed from the previous stop');
+  assert.ok((coffee.lat ?? 0) > 40.75, `coffee should be uptown, near the Met\n${dump(saturday)}`);
+
+  const closed = await planDay({
+    date: '2026-11-11',
+    pace: 'balanced',
+    vibes: ['classic'],
+    locks: ['Met Museum at noon'],
+  });
+  const closedMet = realStops(closed).find((visit) => visit.placeId === 'the-met');
+  assert.ok(closedMet, dump(closed));
+  assert.equal(closedMet.startMin, 12 * 60);
+  assert.ok(closed.warnings.some((warning) => /The Met is closed at 12:00 PM/.test(warning)), closed.warnings.join(' | '));
 });
 
 test('a shared location becomes the first leg and does not move the day earlier', async () => {
