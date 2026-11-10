@@ -27,13 +27,20 @@ type Place = {
 };
 
 async function main() {
-  const dataPath = path.join(__dirname, '../data/nyc-places.json');
+  const dataPath = path.join(__dirname, '../data/places-manhattan.json');
 
   console.log('📖 Reading nyc-places.json...');
   const content = await fs.readFile(dataPath, 'utf-8');
   const places: Place[] = JSON.parse(content);
 
   console.log(`✓ Found ${places.length} places`);
+
+  if (places.some((place) => Array.isArray(place.hours))) {
+    console.log('Hours are already weekday minute windows (Sunday = 0).');
+    console.log('This script writes the older Google periods shape, so it will not modify the file.');
+    console.log('Edit missing hours in data/nyc-places.json and run npm run validate:places.');
+    return;
+  }
 
   const needsEnrichment = places.filter(p => !p.hours);
   console.log(`⚠️  ${needsEnrichment.length} places need hours enrichment`);

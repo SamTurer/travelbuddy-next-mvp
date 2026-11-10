@@ -5,9 +5,22 @@
 :root {
   --tb-blue: #0077B6;
   --tb-coral: #FF6B6B;
+  --tb-ink: #0b1f33;
 }
-body { @apply bg-slate-50 text-slate-900; }
+html { background: var(--tb-ink); }
+body {
+  @apply bg-slate-50 text-slate-900;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
 .container { @apply max-w-md mx-auto px-4; }
+.field {
+  @apply w-full rounded-xl border border-slate-300 bg-white px-4 text-base;
+  min-height: 48px;
+}
+.tap {
+  min-height: 48px;
+}
 .btn { @apply rounded-2xl px-4 py-3 text-base font-medium shadow-sm; }
 .btn-primary { @apply bg-[var(--tb-blue)] text-white; }
 .btn-outline { @apply bg-white border border-slate-300 hover:border-slate-400; }

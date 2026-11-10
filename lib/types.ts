@@ -22,6 +22,8 @@ export interface TripDraft {
    */
   focusArea?: string | null;
   mustDos?: MustDo[];          // can be strings or objects
+  /** Optional GPS start. The first leg leaves from here; meal times stay put. */
+  startLocation?: { lat: number; lng: number; label?: string } | null;
 }
 
 /**

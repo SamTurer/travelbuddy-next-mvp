@@ -1,0 +1,2093 @@
+[
+  {
+    "id": "birds-of-a-feather",
+    "name": "Birds of a Feather",
+    "category": "dinner",
+    "categories": [
+      "dinner",
+      "lunch"
+    ],
+    "neighborhood": "Williamsburg",
+    "area": "Brooklyn North",
+    "lat": 40.7143166,
+    "lng": -73.96053429999999,
+    "duration_min": 75,
+    "duration_max": 105,
+    "vibe_tags": [
+      "classic",
+      "dinner",
+      "local"
+    ],
+    "energy_tags": [
+      "dimly-lit",
+      "lively"
+    ],
+    "description": "Chengdu/Sichuan spot doing mouth-numbing classics in a sleek, wood-heavy room.",
+    "hours": [
+      [
+        [
+          660,
+          1320
+        ]
+      ],
+      [
+        [
+          720,
+          1320
+        ]
+      ],
+      [
+        [
+          720,
+          1320
+        ]
+      ],
+      [
+        [
+          720,
+          1320
+        ]
+      ],
+      [
+        [
+          720,
+          1320
+        ]
+      ],
+      [
+        [
+          720,
+          1350
+        ]
+      ],
+      [
+        [
+          660,
+          1350
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "unknown",
+    "hours_wednesday_inferred": true,
+    "review_decision": "edit",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "birds-of-a-feather--main",
+        "label": "Williamsburg",
+        "address": null,
+        "lat": 40.7143166,
+        "lng": -73.96053429999999,
+        "neighborhood": "Williamsburg",
+        "hours": [
+          [
+            [
+              660,
+              1320
+            ]
+          ],
+          [
+            [
+              720,
+              1320
+            ]
+          ],
+          [
+            [
+              720,
+              1320
+            ]
+          ],
+          [
+            [
+              720,
+              1320
+            ]
+          ],
+          [
+            [
+              720,
+              1320
+            ]
+          ],
+          [
+            [
+              720,
+              1350
+            ]
+          ],
+          [
+            [
+              660,
+              1350
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bonnie-s",
+    "name": "Bonnie's",
+    "category": "dinner",
+    "categories": [
+      "dinner"
+    ],
+    "neighborhood": "Williamsburg / Greenpoint edge",
+    "area": "Brooklyn North",
+    "lat": 40.7178044,
+    "lng": -73.9465206,
+    "duration_min": 75,
+    "duration_max": 105,
+    "vibe_tags": [
+      "classic",
+      "dinner",
+      "local"
+    ],
+    "energy_tags": [
+      "dimly-lit",
+      "lively"
+    ],
+    "description": "Cantonese-American hits reimagined: cha siu McRib vibes, MSG martinis, pure fun.",
+    "hours": [
+      [
+        [
+          960,
+          1260
+        ]
+      ],
+      [],
+      [
+        [
+          1050,
+          1320
+        ]
+      ],
+      [],
+      [
+        [
+          1050,
+          1320
+        ]
+      ],
+      [
+        [
+          1020,
+          1320
+        ]
+      ],
+      [
+        [
+          1020,
+          1320
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "unknown",
+    "review_decision": "keep",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "bonnie-s--main",
+        "label": "Williamsburg / Greenpoint edge",
+        "address": null,
+        "lat": 40.7178044,
+        "lng": -73.9465206,
+        "neighborhood": "Williamsburg / Greenpoint edge",
+        "hours": [
+          [
+            [
+              960,
+              1260
+            ]
+          ],
+          [],
+          [
+            [
+              1050,
+              1320
+            ]
+          ],
+          [],
+          [
+            [
+              1050,
+              1320
+            ]
+          ],
+          [
+            [
+              1020,
+              1320
+            ]
+          ],
+          [
+            [
+              1020,
+              1320
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "brooklyn-botanic-garden",
+    "name": "Brooklyn Botanic Garden",
+    "category": "park",
+    "categories": [
+      "park"
+    ],
+    "neighborhood": "Prospect Park / Brooklyn",
+    "area": "Brooklyn South",
+    "lat": 40.6685798,
+    "lng": -73.9644696,
+    "duration_min": 20,
+    "duration_max": 60,
+    "vibe_tags": [
+      "sightseeing",
+      "walk"
+    ],
+    "energy_tags": [
+      "lively",
+      "outdoors"
+    ],
+    "description": "Seasonal blooms, cherry blossoms in spring, quiet walking paths.",
+    "hours": [
+      [
+        [
+          600,
+          1080
+        ]
+      ],
+      [],
+      [
+        [
+          600,
+          1080
+        ]
+      ],
+      [],
+      [
+        [
+          600,
+          1080
+        ]
+      ],
+      [
+        [
+          600,
+          1080
+        ]
+      ],
+      [
+        [
+          600,
+          1080
+        ]
+      ]
+    ],
+    "outdoor": true,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "walk_in",
+    "review_decision": "edit",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "brooklyn-botanic-garden--main",
+        "label": "Prospect Park / Brooklyn",
+        "address": null,
+        "lat": 40.6685798,
+        "lng": -73.9644696,
+        "neighborhood": "Prospect Park / Brooklyn",
+        "hours": [
+          [
+            [
+              600,
+              1080
+            ]
+          ],
+          [],
+          [
+            [
+              600,
+              1080
+            ]
+          ],
+          [],
+          [
+            [
+              600,
+              1080
+            ]
+          ],
+          [
+            [
+              600,
+              1080
+            ]
+          ],
+          [
+            [
+              600,
+              1080
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "brooklyn-bridge-park",
+    "name": "Brooklyn Bridge Park",
+    "category": "park",
+    "categories": [
+      "park"
+    ],
+    "neighborhood": "Brooklyn Heights / DUMBO waterfront",
+    "area": "Brooklyn North",
+    "lat": 40.7022422,
+    "lng": -73.9958601,
+    "duration_min": 20,
+    "duration_max": 60,
+    "vibe_tags": [
+      "sightseeing",
+      "walk"
+    ],
+    "energy_tags": [
+      "lively",
+      "outdoors"
+    ],
+    "description": "Waterfront lawns, piers, skyline views of Lower Manhattan. Sunset magnet.",
+    "hours": [
+      [
+        [
+          360,
+          1439
+        ]
+      ],
+      [
+        [
+          360,
+          1439
+        ]
+      ],
+      [
+        [
+          360,
+          1439
+        ]
+      ],
+      [
+        [
+          360,
+          1439
+        ]
+      ],
+      [
+        [
+          360,
+          1439
+        ]
+      ],
+      [
+        [
+          360,
+          1439
+        ]
+      ],
+      [
+        [
+          360,
+          1439
+        ]
+      ]
+    ],
+    "outdoor": true,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "walk_in",
+    "review_decision": "edit",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "brooklyn-bridge-park--main",
+        "label": "Brooklyn Heights / DUMBO waterfront",
+        "address": null,
+        "lat": 40.7022422,
+        "lng": -73.9958601,
+        "neighborhood": "Brooklyn Heights / DUMBO waterfront",
+        "hours": [
+          [
+            [
+              360,
+              1439
+            ]
+          ],
+          [
+            [
+              360,
+              1439
+            ]
+          ],
+          [
+            [
+              360,
+              1439
+            ]
+          ],
+          [
+            [
+              360,
+              1439
+            ]
+          ],
+          [
+            [
+              360,
+              1439
+            ]
+          ],
+          [
+            [
+              360,
+              1439
+            ]
+          ],
+          [
+            [
+              360,
+              1439
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "brooklyn-charm",
+    "name": "Brooklyn Charm",
+    "category": "shopping",
+    "categories": [
+      "shopping",
+      "gallery"
+    ],
+    "neighborhood": "Williamsburg",
+    "area": "Brooklyn North",
+    "lat": 40.7235197,
+    "lng": -73.9505095,
+    "duration_min": 20,
+    "duration_max": 45,
+    "vibe_tags": [
+      "art",
+      "shop"
+    ],
+    "energy_tags": [
+      "aesthetic",
+      "calm-indoors",
+      "quiet",
+      "relaxed",
+      "touristy"
+    ],
+    "description": "Custom jewelry bar where you build your own charms and chains.",
+    "hours": [
+      [
+        [
+          660,
+          1080
+        ]
+      ],
+      [
+        [
+          660,
+          1140
+        ]
+      ],
+      [
+        [
+          720,
+          1140
+        ]
+      ],
+      [
+        [
+          660,
+          1110
+        ]
+      ],
+      [
+        [
+          660,
+          1110
+        ]
+      ],
+      [
+        [
+          660,
+          1140
+        ]
+      ],
+      [
+        [
+          660,
+          1080
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "walk_in",
+    "hours_wednesday_inferred": true,
+    "review_decision": "edit",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "brooklyn-charm--main",
+        "label": "Williamsburg",
+        "address": null,
+        "lat": 40.7235197,
+        "lng": -73.9505095,
+        "neighborhood": "Williamsburg",
+        "hours": [
+          [
+            [
+              660,
+              1080
+            ]
+          ],
+          [
+            [
+              660,
+              1140
+            ]
+          ],
+          [
+            [
+              720,
+              1140
+            ]
+          ],
+          [
+            [
+              660,
+              1110
+            ]
+          ],
+          [
+            [
+              660,
+              1110
+            ]
+          ],
+          [
+            [
+              660,
+              1140
+            ]
+          ],
+          [
+            [
+              660,
+              1080
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "brooklyn-museum",
+    "name": "Brooklyn Museum",
+    "category": "museum",
+    "categories": [
+      "museum"
+    ],
+    "neighborhood": "Prospect Heights",
+    "area": "Brooklyn South",
+    "lat": 40.6712062,
+    "lng": -73.9636306,
+    "duration_min": 60,
+    "duration_max": 120,
+    "vibe_tags": [
+      "art"
+    ],
+    "energy_tags": [
+      "calm-indoors",
+      "quiet"
+    ],
+    "description": "Broad collection plus fashion / pop culture exhibits. Feels more local and more current.",
+    "hours": [
+      [
+        [
+          660,
+          1080
+        ]
+      ],
+      [],
+      [],
+      [],
+      [
+        [
+          660,
+          1080
+        ]
+      ],
+      [
+        [
+          660,
+          1080
+        ]
+      ],
+      [
+        [
+          660,
+          1080
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "tickets_required",
+    "review_decision": "edit",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "brooklyn-museum--main",
+        "label": "Prospect Heights",
+        "address": null,
+        "lat": 40.6712062,
+        "lng": -73.9636306,
+        "neighborhood": "Prospect Heights",
+        "hours": [
+          [
+            [
+              660,
+              1080
+            ]
+          ],
+          [],
+          [],
+          [],
+          [
+            [
+              660,
+              1080
+            ]
+          ],
+          [
+            [
+              660,
+              1080
+            ]
+          ],
+          [
+            [
+              660,
+              1080
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "frog-wine-bar",
+    "name": "Frog Wine Bar",
+    "category": "drinks",
+    "categories": [
+      "drinks"
+    ],
+    "neighborhood": "Fort Greene",
+    "area": "Brooklyn North",
+    "lat": 40.6848694,
+    "lng": -73.93855909999999,
+    "duration_min": 60,
+    "duration_max": 120,
+    "vibe_tags": [
+      "bar"
+    ],
+    "energy_tags": [
+      "dimly-lit",
+      "social"
+    ],
+    "description": "Brooklyn neighborhood wine bar: low lighting, small plates, vinyl playing quietly.",
+    "hours": [
+      [
+        [
+          900,
+          1439
+        ]
+      ],
+      [
+        [
+          1020,
+          1439
+        ]
+      ],
+      [
+        [
+          1020,
+          1439
+        ]
+      ],
+      [
+        [
+          1020,
+          1439
+        ]
+      ],
+      [
+        [
+          1020,
+          1439
+        ]
+      ],
+      [
+        [
+          1020,
+          1439
+        ]
+      ],
+      [
+        [
+          900,
+          1439
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "unknown",
+    "hours_wednesday_inferred": true,
+    "review_decision": "keep",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "frog-wine-bar--main",
+        "label": "Fort Greene",
+        "address": null,
+        "lat": 40.6848694,
+        "lng": -73.93855909999999,
+        "neighborhood": "Fort Greene",
+        "hours": [
+          [
+            [
+              900,
+              1439
+            ]
+          ],
+          [
+            [
+              1020,
+              1439
+            ]
+          ],
+          [
+            [
+              1020,
+              1439
+            ]
+          ],
+          [
+            [
+              1020,
+              1439
+            ]
+          ],
+          [
+            [
+              1020,
+              1439
+            ]
+          ],
+          [
+            [
+              1020,
+              1439
+            ]
+          ],
+          [
+            [
+              900,
+              1439
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "harriet-s-rooftop-brooklyn-bridge-views",
+    "name": "Harriet's Rooftop (Brooklyn Bridge views)",
+    "category": "drinks",
+    "categories": [
+      "drinks"
+    ],
+    "neighborhood": "DUMBO / Brooklyn Heights",
+    "area": "Brooklyn North",
+    "lat": 40.7023592,
+    "lng": -73.995592,
+    "duration_min": 60,
+    "duration_max": 120,
+    "vibe_tags": [
+      "bar"
+    ],
+    "energy_tags": [
+      "dimly-lit",
+      "social"
+    ],
+    "description": "Rooftop bar overlooking the bridges and Lower Manhattan skyline. Sunset flex.",
+    "hours": [
+      [
+        [
+          720,
+          1380
+        ]
+      ],
+      [
+        [
+          960,
+          1380
+        ]
+      ],
+      [
+        [
+          960,
+          1380
+        ]
+      ],
+      [
+        [
+          960,
+          1380
+        ]
+      ],
+      [
+        [
+          960,
+          1380
+        ]
+      ],
+      [
+        [
+          720,
+          1380
+        ]
+      ],
+      [
+        [
+          720,
+          1380
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "unknown",
+    "hours_wednesday_inferred": true,
+    "review_decision": "keep",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "harriet-s-rooftop-brooklyn-bridge-views--main",
+        "label": "DUMBO / Brooklyn Heights",
+        "address": null,
+        "lat": 40.7023592,
+        "lng": -73.995592,
+        "neighborhood": "DUMBO / Brooklyn Heights",
+        "hours": [
+          [
+            [
+              720,
+              1380
+            ]
+          ],
+          [
+            [
+              960,
+              1380
+            ]
+          ],
+          [
+            [
+              960,
+              1380
+            ]
+          ],
+          [
+            [
+              960,
+              1380
+            ]
+          ],
+          [
+            [
+              960,
+              1380
+            ]
+          ],
+          [
+            [
+              720,
+              1380
+            ]
+          ],
+          [
+            [
+              720,
+              1380
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "liu-liu-sheng-jian-new-world-mall",
+    "name": "Liu Liu Sheng Jian (New World Mall food court)",
+    "category": "quick-bite",
+    "categories": [
+      "quick-bite",
+      "lunch"
+    ],
+    "neighborhood": "Flushing",
+    "area": "Queens",
+    "lat": 40.7590896,
+    "lng": -73.8295006,
+    "duration_min": 20,
+    "duration_max": 40,
+    "vibe_tags": [
+      "local",
+      "quick-bite"
+    ],
+    "energy_tags": [
+      "bustling",
+      "casual"
+    ],
+    "description": "Sheng jian bao (pan-fried soup dumplings) stall in the New World Mall food court. Sam: \"pan fried soup dumplings\".",
+    "hours": [
+      [
+        [
+          600,
+          1230
+        ]
+      ],
+      [
+        [
+          600,
+          1230
+        ]
+      ],
+      [
+        [
+          600,
+          1230
+        ]
+      ],
+      [
+        [
+          600,
+          1230
+        ]
+      ],
+      [
+        [
+          600,
+          1230
+        ]
+      ],
+      [
+        [
+          600,
+          1230
+        ]
+      ],
+      [
+        [
+          600,
+          1230
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "no_reservations",
+    "booking_note": "Food-court stall; Restaurantji listing says no reservations.",
+    "url": "https://maps.google.com/?cid=18225568491195800498",
+    "address": "136-20 Roosevelt Ave, Flushing, NY 11354",
+    "status": "open",
+    "verified_at": "2026-11-09",
+    "hours_source": "Daily 10 AM-8:30 PM (Restaurantji, Roadtrippers, Yelp listings)",
+    "coord_source": "OpenStreetMap Nominatim geocode",
+    "review_decision": "add (Google Maps candidate c0)",
+    "locations": [
+      {
+        "id": "liu-liu-sheng-jian-new-world-mall--main",
+        "label": "New World Mall food court",
+        "address": "136-20 Roosevelt Ave, Flushing, NY 11354",
+        "lat": 40.7590896,
+        "lng": -73.8295006,
+        "neighborhood": "Flushing",
+        "hours": [
+          [
+            [
+              600,
+              1230
+            ]
+          ],
+          [
+            [
+              600,
+              1230
+            ]
+          ],
+          [
+            [
+              600,
+              1230
+            ]
+          ],
+          [
+            [
+              600,
+              1230
+            ]
+          ],
+          [
+            [
+              600,
+              1230
+            ]
+          ],
+          [
+            [
+              600,
+              1230
+            ]
+          ],
+          [
+            [
+              600,
+              1230
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "public-records",
+    "name": "Public Records",
+    "category": "drinks",
+    "categories": [
+      "drinks"
+    ],
+    "neighborhood": "Gowanus",
+    "area": "Brooklyn South",
+    "lat": 40.68226749999999,
+    "lng": -73.98639829999999,
+    "duration_min": 60,
+    "duration_max": 120,
+    "vibe_tags": [
+      "bar"
+    ],
+    "energy_tags": [
+      "dimly-lit",
+      "social"
+    ],
+    "description": "Vegan café-by-day / high-end sound system bar by night / record store mashup.",
+    "hours": [
+      [
+        [
+          600,
+          1260
+        ]
+      ],
+      [],
+      [],
+      [],
+      [
+        [
+          600,
+          960
+        ],
+        [
+          1080,
+          1320
+        ]
+      ],
+      [
+        [
+          600,
+          960
+        ],
+        [
+          1080,
+          1439
+        ]
+      ],
+      [
+        [
+          600,
+          1439
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "unknown",
+    "review_decision": "keep",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "public-records--main",
+        "label": "Gowanus",
+        "address": null,
+        "lat": 40.68226749999999,
+        "lng": -73.98639829999999,
+        "neighborhood": "Gowanus",
+        "hours": [
+          [
+            [
+              600,
+              1260
+            ]
+          ],
+          [],
+          [],
+          [],
+          [
+            [
+              600,
+              960
+            ],
+            [
+              1080,
+              1320
+            ]
+          ],
+          [
+            [
+              600,
+              960
+            ],
+            [
+              1080,
+              1439
+            ]
+          ],
+          [
+            [
+              600,
+              1439
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "red-hook-tavern",
+    "name": "Red Hook Tavern",
+    "category": "dinner",
+    "categories": [
+      "dinner",
+      "lunch"
+    ],
+    "neighborhood": "Red Hook",
+    "area": "Brooklyn South",
+    "lat": 40.6778969,
+    "lng": -74.01209209999999,
+    "duration_min": 75,
+    "duration_max": 105,
+    "vibe_tags": [
+      "classic",
+      "dinner",
+      "local"
+    ],
+    "energy_tags": [
+      "dimly-lit",
+      "lively"
+    ],
+    "description": "Serious burger, serious martini, serious nostalgia. Dark wood, neighborhood regulars.",
+    "hours": [
+      [
+        [
+          720,
+          885
+        ],
+        [
+          1020,
+          1290
+        ]
+      ],
+      [
+        [
+          1020,
+          1290
+        ]
+      ],
+      [
+        [
+          1020,
+          1290
+        ]
+      ],
+      [
+        [
+          720,
+          885
+        ],
+        [
+          1020,
+          1290
+        ]
+      ],
+      [
+        [
+          720,
+          885
+        ],
+        [
+          1020,
+          1290
+        ]
+      ],
+      [
+        [
+          720,
+          885
+        ],
+        [
+          1020,
+          1290
+        ]
+      ],
+      [
+        [
+          720,
+          885
+        ],
+        [
+          1020,
+          1290
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "unknown",
+    "hours_wednesday_inferred": true,
+    "review_decision": "edit",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "red-hook-tavern--main",
+        "label": "Red Hook",
+        "address": null,
+        "lat": 40.6778969,
+        "lng": -74.01209209999999,
+        "neighborhood": "Red Hook",
+        "hours": [
+          [
+            [
+              720,
+              885
+            ],
+            [
+              1020,
+              1290
+            ]
+          ],
+          [
+            [
+              1020,
+              1290
+            ]
+          ],
+          [
+            [
+              1020,
+              1290
+            ]
+          ],
+          [
+            [
+              720,
+              885
+            ],
+            [
+              1020,
+              1290
+            ]
+          ],
+          [
+            [
+              720,
+              885
+            ],
+            [
+              1020,
+              1290
+            ]
+          ],
+          [
+            [
+              720,
+              885
+            ],
+            [
+              1020,
+              1290
+            ]
+          ],
+          [
+            [
+              720,
+              885
+            ],
+            [
+              1020,
+              1290
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ride-the-east-river-ferry-between-williamsburg-dumbo",
+    "name": "Ride the East River Ferry between Williamsburg & DUMBO",
+    "category": "activity",
+    "categories": [
+      "activity"
+    ],
+    "neighborhood": "Williamsburg / DUMBO / East River",
+    "area": "Brooklyn North",
+    "lat": 40.7037038,
+    "lng": -73.9957947,
+    "duration_min": 30,
+    "duration_max": 90,
+    "vibe_tags": [
+      "sightseeing",
+      "specialty",
+      "walk"
+    ],
+    "energy_tags": [
+      "outdoors"
+    ],
+    "description": "Cheap mini–boat tour with skyline views. Great daytime transit hack.",
+    "hours": null,
+    "outdoor": true,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "walk_in",
+    "review_decision": "edit",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "ride-the-east-river-ferry-between-williamsburg-dumbo--main",
+        "label": "Williamsburg / DUMBO / East River",
+        "address": null,
+        "lat": 40.7037038,
+        "lng": -73.9957947,
+        "neighborhood": "Williamsburg / DUMBO / East River",
+        "hours": null
+      }
+    ]
+  },
+  {
+    "id": "smorgasburg-seasonal",
+    "name": "Smorgasburg (Seasonal)",
+    "category": "market",
+    "categories": [
+      "market"
+    ],
+    "neighborhood": "Williamsburg",
+    "area": "Brooklyn North",
+    "lat": 40.7210981,
+    "lng": -73.9625824,
+    "duration_min": 20,
+    "duration_max": 45,
+    "vibe_tags": [
+      "food-hall",
+      "specialty"
+    ],
+    "energy_tags": [
+      "crowded",
+      "lively"
+    ],
+    "description": "Outdoor weekend food market with every kind of viral stand in one place.",
+    "hours": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [
+        [
+          660,
+          1080
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "walk_in",
+    "review_decision": "edit",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "smorgasburg-seasonal--main",
+        "label": "Williamsburg",
+        "address": null,
+        "lat": 40.7210981,
+        "lng": -73.9625824,
+        "neighborhood": "Williamsburg",
+        "hours": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            [
+              660,
+              1080
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "theodora",
+    "name": "Theodora",
+    "category": "dinner",
+    "categories": [
+      "dinner"
+    ],
+    "neighborhood": "Fort Greene",
+    "area": "Downtown",
+    "lat": 40.6860462,
+    "lng": -73.9730464,
+    "duration_min": 75,
+    "duration_max": 105,
+    "vibe_tags": [
+      "classic",
+      "dinner",
+      "local"
+    ],
+    "energy_tags": [
+      "dimly-lit",
+      "lively"
+    ],
+    "description": "Mediterranean-leaning small plates, seafood, wood smoke, and a little bit of scene.",
+    "hours": [
+      [
+        [
+          1020,
+          1320
+        ]
+      ],
+      [
+        [
+          1020,
+          1320
+        ]
+      ],
+      [
+        [
+          1020,
+          1320
+        ]
+      ],
+      [
+        [
+          1020,
+          1320
+        ]
+      ],
+      [
+        [
+          1020,
+          1320
+        ]
+      ],
+      [
+        [
+          1020,
+          1320
+        ]
+      ],
+      [
+        [
+          1020,
+          1320
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "reservation_recommended",
+    "review_decision": "edit",
+    "verified_at": "2026-11-09",
+    "status": "open",
+    "hours_source": "theodoranyc / web search (earlier this session): dinner daily 5-10pm",
+    "coord_source": "OpenStreetMap Nominatim geocode",
+    "address": "7 Greene Ave, Brooklyn, NY 11238",
+    "locations": [
+      {
+        "id": "theodora--main",
+        "label": "Fort Greene",
+        "address": "7 Greene Ave, Brooklyn, NY 11238",
+        "lat": 40.6860462,
+        "lng": -73.9730464,
+        "neighborhood": "Fort Greene",
+        "hours": [
+          [
+            [
+              1020,
+              1320
+            ]
+          ],
+          [
+            [
+              1020,
+              1320
+            ]
+          ],
+          [
+            [
+              1020,
+              1320
+            ]
+          ],
+          [
+            [
+              1020,
+              1320
+            ]
+          ],
+          [
+            [
+              1020,
+              1320
+            ]
+          ],
+          [
+            [
+              1020,
+              1320
+            ]
+          ],
+          [
+            [
+              1020,
+              1320
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "time-out-market-food-hall-dumbo",
+    "name": "Time Out Market Food Hall (DUMBO)",
+    "category": "market",
+    "categories": [
+      "market",
+      "lunch"
+    ],
+    "neighborhood": "DUMBO",
+    "area": "Brooklyn North",
+    "lat": 40.7034205,
+    "lng": -73.9921457,
+    "duration_min": 20,
+    "duration_max": 45,
+    "vibe_tags": [
+      "food-hall",
+      "specialty"
+    ],
+    "energy_tags": [
+      "crowded",
+      "lively"
+    ],
+    "description": "Curated lineup of ‘best of Brooklyn’ vendors under one roof, plus rooftop Manhattan views.",
+    "hours": [
+      [
+        [
+          480,
+          1320
+        ]
+      ],
+      [
+        [
+          480,
+          1320
+        ]
+      ],
+      [
+        [
+          480,
+          1320
+        ]
+      ],
+      [
+        [
+          480,
+          1320
+        ]
+      ],
+      [
+        [
+          480,
+          1320
+        ]
+      ],
+      [
+        [
+          480,
+          1380
+        ]
+      ],
+      [
+        [
+          480,
+          1380
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "walk_in",
+    "hours_wednesday_inferred": true,
+    "review_decision": "edit",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "time-out-market-food-hall-dumbo--main",
+        "label": "DUMBO",
+        "address": null,
+        "lat": 40.7034205,
+        "lng": -73.9921457,
+        "neighborhood": "DUMBO",
+        "hours": [
+          [
+            [
+              480,
+              1320
+            ]
+          ],
+          [
+            [
+              480,
+              1320
+            ]
+          ],
+          [
+            [
+              480,
+              1320
+            ]
+          ],
+          [
+            [
+              480,
+              1320
+            ]
+          ],
+          [
+            [
+              480,
+              1320
+            ]
+          ],
+          [
+            [
+              480,
+              1380
+            ]
+          ],
+          [
+            [
+              480,
+              1380
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "walk-the-brooklyn-heights-promenade",
+    "name": "Walk the Brooklyn Heights Promenade",
+    "category": "activity",
+    "categories": [
+      "activity"
+    ],
+    "neighborhood": "Brooklyn Heights",
+    "area": "Brooklyn North",
+    "lat": 40.715,
+    "lng": -73.955,
+    "duration_min": 30,
+    "duration_max": 90,
+    "vibe_tags": [
+      "sightseeing",
+      "specialty",
+      "walk"
+    ],
+    "energy_tags": [
+      "outdoors"
+    ],
+    "description": "Short, perfect walk with postcard views of Lower Manhattan across the water.",
+    "hours": null,
+    "outdoor": true,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "walk_in",
+    "hours_approximate": true,
+    "review_decision": "edit",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "coord_source": "original list pin",
+    "address": null,
+    "locations": [
+      {
+        "id": "walk-the-brooklyn-heights-promenade--main",
+        "label": "Brooklyn Heights",
+        "address": null,
+        "lat": 40.715,
+        "lng": -73.955,
+        "neighborhood": "Brooklyn Heights",
+        "hours": null
+      }
+    ]
+  },
+  {
+    "id": "win-son-bakery",
+    "name": "Win Son Bakery",
+    "category": "bakery",
+    "categories": [
+      "bakery",
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "neighborhood": "East Williamsburg",
+    "area": "Brooklyn North",
+    "lat": 40.7072233,
+    "lng": -73.9430166,
+    "duration_min": 20,
+    "duration_max": 30,
+    "vibe_tags": [
+      "bakery"
+    ],
+    "energy_tags": [
+      "bustling",
+      "fast-paced"
+    ],
+    "description": "Taiwanese-influenced pastries and sandwiches, plus the peanut butter ‘son’ cookie everyone talks about.",
+    "hours": [
+      [
+        [
+          480,
+          1260
+        ]
+      ],
+      [
+        [
+          480,
+          900
+        ]
+      ],
+      [
+        [
+          480,
+          1260
+        ]
+      ],
+      [
+        [
+          480,
+          1260
+        ]
+      ],
+      [
+        [
+          480,
+          1260
+        ]
+      ],
+      [
+        [
+          480,
+          1320
+        ]
+      ],
+      [
+        [
+          480,
+          1320
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "unknown",
+    "hours_wednesday_inferred": true,
+    "review_decision": "edit",
+    "verified_at": "2026-11-09",
+    "status": "unverified",
+    "hours_source": "stored list data (not re-verified; outer-borough list not yet used by planner)",
+    "verification_note": "Original pin was in Manhattan; bakery is at 164 Graham Ave, East Williamsburg (address not re-verified this session).",
+    "coord_source": "OpenStreetMap Nominatim geocode",
+    "address": "164 Graham Ave, Brooklyn, NY 11206",
+    "locations": [
+      {
+        "id": "win-son-bakery--main",
+        "label": "East Williamsburg",
+        "address": "164 Graham Ave, Brooklyn, NY 11206",
+        "lat": 40.7072233,
+        "lng": -73.9430166,
+        "neighborhood": "East Williamsburg",
+        "hours": [
+          [
+            [
+              480,
+              1260
+            ]
+          ],
+          [
+            [
+              480,
+              900
+            ]
+          ],
+          [
+            [
+              480,
+              1260
+            ]
+          ],
+          [
+            [
+              480,
+              1260
+            ]
+          ],
+          [
+            [
+              480,
+              1260
+            ]
+          ],
+          [
+            [
+              480,
+              1320
+            ]
+          ],
+          [
+            [
+              480,
+              1320
+            ]
+          ]
+        ]
+      }
+    ]
+  }
+]

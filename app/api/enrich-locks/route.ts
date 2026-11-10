@@ -1,4 +1,3 @@
-// app/api/enrich-locks/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { enrichLocksWithAI } from '@/lib/ai';
@@ -18,10 +17,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid body' }, { status: 400 });
     }
 
-    const rawLocks = (parsed.data.locks || []).map((l: any) =>
-      typeof l === 'string'
-        ? { title: l }
-        : { title: l?.title ?? '', location: l?.location, description: l?.description, time: l?.time || l?.start }
+    const rawLocks = (parsed.data.locks || []).map((lock: { title?: string; location?: string; description?: string; time?: string; start?: string } | string) =>
+      typeof lock === 'string'
+        ? { title: lock }
+        : {
+            title: lock?.title ?? '',
+            location: lock?.location,
+            description: lock?.description,
+            time: lock?.time || lock?.start,
+          }
     );
 
     const enriched = await enrichLocksWithAI(rawLocks, {
@@ -31,7 +35,8 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ locks: enriched });
-  } catch (e: any) {
-    return NextResponse.json({ error: e?.message || 'Server error' }, { status: 500 });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Server error';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

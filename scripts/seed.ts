@@ -1,10 +1,10 @@
 import { PrismaClient } from '@prisma/client';
-import { getPlacesDataset } from '../lib/places-dataset';
+import { getPlanningPlaces } from '../lib/places';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const data = getPlacesDataset();
+  const data = getPlanningPlaces();
   for (const p of data) {
     await prisma.place.create({
       data: {

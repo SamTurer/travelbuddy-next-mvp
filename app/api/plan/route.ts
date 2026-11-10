@@ -1,9 +1,6 @@
-// app/api/plan/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { buildItinerary } from '@/lib/planner';
-import { enrichLocksWithAI } from '@/lib/ai';
-import { getPlacesDataset } from '@/lib/places-dataset';
+import { planDay } from '@/lib/planner';
 
 export const runtime = 'nodejs';
 
@@ -14,6 +11,10 @@ const BodySchema = z.object({
   pace: z.enum(['chill', 'balanced', 'max']).default('balanced'),
   focusArea: z.string().optional().nullable(),
   locks: z.array(z.any()).optional().default([]),
+  startLocation: z
+    .object({ lat: z.number(), lng: z.number(), label: z.string().optional() })
+    .optional()
+    .nullable(),
 });
 
 export async function POST(req: NextRequest) {
@@ -25,45 +26,29 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid body' }, { status: 400 });
     }
 
-    // Normalize incoming locks → objects with at least `title`
-    const rawLocks: { title: string; location?: string; description?: string; time?: string }[] =
-      (parsed.data.locks || []).map((l: any) =>
-        typeof l === 'string'
-          ? { title: l }
-          : { title: l?.title ?? '', location: l?.location, description: l?.description, time: l?.time || l?.start }
-      );
-
-    // 🔮 AI enrichment (optional, no-ops without OPENAI_API_KEY)
-    const enrichStart = Date.now();
-    const aiLocks = await enrichLocksWithAI(rawLocks, {
+    const buildStart = Date.now();
+    const itinerary = await planDay({
       city: parsed.data.city,
       date: parsed.data.date,
-      vibes: parsed.data.vibes, // pass vibes
+      vibes: parsed.data.vibes,
+      pace: parsed.data.pace,
+      focusArea: parsed.data.focusArea,
+      locks: parsed.data.locks,
+      startLocation: parsed.data.startLocation,
     });
-    console.log(`[PERF] AI enrichment: ${Date.now() - enrichStart}ms`);
-
-    const buildStart = Date.now();
-    const stops = await buildItinerary(
-      { ...parsed.data, locks: aiLocks },
-      getPlacesDataset()
-    );
-    console.log(`[PERF] buildItinerary: ${Date.now() - buildStart}ms`);
+    console.log(`[PERF] planDay: ${Date.now() - buildStart}ms`);
     console.log(`[PERF] TOTAL: ${Date.now() - startTime}ms`);
 
-    // Log the itinerary for debugging
-    console.log('\n=== GENERATED ITINERARY ===');
-    stops.forEach((stop, i) => {
-      if (stop.title === 'Transit') {
-        console.log(`${i}: [TRANSIT] ${stop.description}`);
-      } else {
-        console.log(`${i}: ${stop.time} | ${stop.title} | ${stop.location}`);
-      }
+    return NextResponse.json({
+      stops: itinerary.stops,
+      warnings: itinerary.warnings,
+      mapsUrl: itinerary.mapsUrl,
+      bookAhead: itinerary.bookAhead,
+      cluster: itinerary.cluster,
     });
-    console.log('=== END ITINERARY ===\n');
-
-    return NextResponse.json({ stops });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('[api/plan] error:', err);
-    return NextResponse.json({ error: err?.message || 'Server error' }, { status: 500 });
+    const message = err instanceof Error ? err.message : 'Server error';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

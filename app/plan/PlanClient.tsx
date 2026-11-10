@@ -3,17 +3,49 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { loadDraft } from '@/lib/draft';
+import { loadDraft, saveDraft } from '@/lib/draft';
+import { loadLastItinerary, saveLastItinerary } from '@/lib/last-itinerary';
+import { requestBrowserLocation } from '@/lib/device-location';
+import MapsLink from '@/app/components/MapsLink';
 import type { TripDraft } from '@/lib/types';
 import { areaLabelForValue, normalizeAreaValue } from '@/lib/areas';
+import BookingTag from '@/app/components/BookingTag';
+import RecommendedBy from '@/app/components/RecommendedBy';
+import type { BookingKind } from '@/lib/booking';
+import type { RecommendedByPerson } from '@/lib/recommenders';
 
 type PlanStop = {
   time: string;
   title: string;
   location: string;
+  address?: string | null;
   description?: string;
   url?: string;
+  kind?: 'place' | 'transit' | 'free';
+  source?: 'curated' | 'must-do' | 'free' | 'ai';
+  recommendedBy?: RecommendedByPerson[];
+  note?: string;
+  booking?: BookingKind;
+  bookingNote?: string;
+  bookingUrl?: string;
+  mapsUrl?: string;
+  warning?: string;
 };
+
+type BookAheadItem = {
+  title: string;
+  time: string;
+  booking: BookingKind;
+  bookingLabel: string;
+  bookingNote?: string;
+  bookingUrl?: string;
+};
+
+function localISODate(date = new Date()): string {
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${date.getFullYear()}-${month}-${day}`;
+}
 
 type Pace = 'chill' | 'balanced' | 'max';
 
@@ -24,6 +56,7 @@ type PlanPayload = {
   pace: Pace;
   focusArea: string | null;
   locks: unknown[];
+  startLocation?: { lat: number; lng: number; label?: string } | null;
 };
 
 const STOP_REPLAN_OPTIONS = [
@@ -38,6 +71,9 @@ type StopReplanMood = (typeof STOP_REPLAN_OPTIONS)[number];
 export default function PlanClient() {
   const searchParams = useSearchParams();
   const [stops, setStops] = useState<PlanStop[] | null>(null);
+  const [warnings, setWarnings] = useState<string[]>([]);
+  const [dayMapsUrl, setDayMapsUrl] = useState<string | null>(null);
+  const [bookAhead, setBookAhead] = useState<BookAheadItem[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [draft, setDraft] = useState<TripDraft | null>(null);
   const [draftReady, setDraftReady] = useState(false);
@@ -46,6 +82,9 @@ export default function PlanClient() {
   const [activityMenuOpen, setActivityMenuOpen] = useState<number | null>(null);
   const [activityReplanLoading, setActivityReplanLoading] = useState<number | null>(null);
   const [infoMessage, setInfoMessage] = useState<string | null>(null);
+  const [offlineNote, setOfflineNote] = useState<string | null>(null);
+  const [locBusy, setLocBusy] = useState(false);
+  const [locError, setLocError] = useState<string | null>(null);
   const lastActionRef = useRef<'full-day' | null>(null);
 
   useEffect(() => {
@@ -63,7 +102,7 @@ export default function PlanClient() {
     // Adjust these keys to match your existing querystring usage
     const city = searchParams.get('city') ?? draft?.city ?? 'New York';
     const date =
-      searchParams.get('date') ?? draft?.date ?? new Date().toISOString().slice(0, 10);
+      searchParams.get('date') ?? draft?.date ?? localISODate();
     // If you encode vibes as ?vibes=["classic","local"], we parse JSON.
     // If you send multiple ?vibe= params, swap to searchParams.getAll('vibe')
     let vibes: string[] = [];
@@ -98,7 +137,15 @@ export default function PlanClient() {
       locks = draft.mustDos;
     }
 
-    return { city, date, vibes, pace: normalizedPace, focusArea, locks };
+    return {
+      city,
+      date,
+      vibes,
+      pace: normalizedPace,
+      focusArea,
+      locks,
+      startLocation: draft?.startLocation ?? null,
+    };
   }, [searchParams, draft, draftReady]);
 
   const mustDoSummaries = useMemo(() => {
@@ -160,10 +207,25 @@ export default function PlanClient() {
         throw new Error(data?.error || `HTTP ${res.status}`);
       }
       const nextStops: PlanStop[] = Array.isArray(data.stops) ? data.stops : [];
+      const nextWarnings: string[] = Array.isArray(data.warnings) ? data.warnings : [];
       if (nextStops.length) {
         setStops(nextStops);
+        setWarnings(nextWarnings);
+        setDayMapsUrl(typeof data.mapsUrl === 'string' ? data.mapsUrl : null);
+        setBookAhead(Array.isArray(data.bookAhead) ? data.bookAhead : []);
       }
-      setInfoMessage(data?.note || `Tweaked that stop for ${mood}.`);
+      setInfoMessage(nextWarnings.length ? null : (data?.note || `Tweaked that stop for ${mood}.`));
+      if (nextStops.length && payload) {
+        saveLastItinerary({
+          savedAt: new Date().toISOString(),
+          date: payload.date,
+          city: payload.city,
+          stops: nextStops,
+          warnings: nextWarnings,
+          mapsUrl: typeof data.mapsUrl === 'string' ? data.mapsUrl : null,
+          bookAhead: Array.isArray(data.bookAhead) ? data.bookAhead : [],
+        });
+      }
     } catch (err: any) {
       setInfoMessage(err?.message || 'Sorry, we could not replan that stop right now.');
     } finally {
@@ -179,8 +241,27 @@ export default function PlanClient() {
     setActivityMenuOpen(null);
     setActivityReplanLoading(null);
     setDayReplanLoading(true);
-    setStops(null);
+    const cached = loadLastItinerary();
+    const offline = typeof navigator !== 'undefined' && navigator.onLine === false;
+    if (!(offline && cached)) setStops(null);
     const requestBody = { ...payload, refreshToken: refreshKey };
+
+    const showCached = (note: string) => {
+      if (!cached) return false;
+      setStops(cached.stops as PlanStop[]);
+      setWarnings(cached.warnings ?? []);
+      setDayMapsUrl(cached.mapsUrl);
+      setBookAhead((cached.bookAhead ?? []) as BookAheadItem[]);
+      setOfflineNote(note);
+      setError(null);
+      setDayReplanLoading(false);
+      return true;
+    };
+
+    if (offline && cached) {
+      showCached(`Offline. Showing the day saved for ${cached.date}.`);
+      return;
+    }
 
     (async () => {
       try {
@@ -195,7 +276,23 @@ export default function PlanClient() {
         }
         const out: PlanStop[] = Array.isArray(data) ? data : (data.stops ?? []);
         if (!cancelled) {
+          const nextWarnings = Array.isArray(data?.warnings) ? data.warnings : [];
+          const nextMaps = typeof data?.mapsUrl === 'string' ? data.mapsUrl : null;
+          const nextBook = Array.isArray(data?.bookAhead) ? data.bookAhead : [];
           setStops(out);
+          setWarnings(nextWarnings);
+          setDayMapsUrl(nextMaps);
+          setBookAhead(nextBook);
+          setOfflineNote(null);
+          saveLastItinerary({
+            savedAt: new Date().toISOString(),
+            date: payload.date,
+            city: payload.city,
+            stops: out,
+            warnings: nextWarnings,
+            mapsUrl: nextMaps,
+            bookAhead: nextBook,
+          });
           setDayReplanLoading(false);
           if (lastActionRef.current === 'full-day') {
             setInfoMessage('Fresh itinerary coming right up — enjoy the new flow!');
@@ -205,7 +302,9 @@ export default function PlanClient() {
       } catch (e: any) {
         if (!cancelled) {
           setDayReplanLoading(false);
-          setError(e?.message || 'Failed to build itinerary.');
+          if (!showCached('No signal. Showing the last day saved on this phone.')) {
+            setError(e?.message || 'Failed to build itinerary.');
+          }
         }
       }
     })();
@@ -237,13 +336,28 @@ export default function PlanClient() {
     );
   }
 
+  const useMyLocation = async () => {
+    setLocError(null);
+    setLocBusy(true);
+    try {
+      const loc = await requestBrowserLocation();
+      const next = { ...(draft || { city: payload?.city || 'New York City', date: payload?.date || localISODate(), vibes: payload?.vibes || [], pace: payload?.pace || 'balanced' }), startLocation: loc };
+      saveDraft(next);
+      setDraft(next);
+    } catch (err: any) {
+      setLocError(err?.message || 'Could not read your location.');
+    } finally {
+      setLocBusy(false);
+    }
+  };
+
   const isDayButtonDisabled = dayReplanLoading || activityReplanLoading !== null || !payload;
   const replanButtonLabel = dayReplanLoading ? 'Replanning…' : 'Replan my day';
 
   let activityCounter = -1;
 
   return (
-    <div className="mx-auto max-w-2xl px-6 pb-12 pt-8 space-y-4">
+    <div className="space-y-4 px-4 pb-8 pt-4">
       {payload && (
         <div className="flex flex-wrap items-start justify-between gap-3 rounded-xl border border-slate-200 bg-white/80 p-4 shadow-sm">
           <details className="w-full max-w-md text-sm text-slate-600">
@@ -315,15 +429,75 @@ export default function PlanClient() {
         </div>
       )}
 
+      {offlineNote && (
+        <div className="rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-base text-amber-950">
+          {offlineNote}
+        </div>
+      )}
+
       {infoMessage && (
         <div className="rounded-lg border border-blue-100 bg-blue-50/80 px-4 py-2 text-sm text-blue-700 shadow-sm">
           {infoMessage}
         </div>
       )}
 
+      {warnings.length > 0 && (
+        <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          <div className="text-xs font-semibold uppercase tracking-wide text-amber-700">Heads up</div>
+          <ul className="mt-1 space-y-1">
+            {warnings.map((warning) => (
+              <li key={warning}>{warning}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {bookAhead.length > 0 && (
+        <section className="rounded-xl border border-orange-200 bg-orange-50/80 px-4 py-3">
+          <h2 className="text-sm font-semibold text-orange-950">Book ahead</h2>
+          <ul className="mt-2 space-y-2 text-sm text-orange-950">
+            {bookAhead.map((item) => (
+              <li key={`${item.title}-${item.time}`}>
+                <span className="font-medium">{item.title}</span>
+                <span className="text-orange-800"> · {item.time} · {item.bookingLabel}</span>
+                {item.bookingNote ? <span className="block text-orange-800">{item.bookingNote}</span> : null}
+                {item.bookingUrl ? (
+                  <a className="block text-orange-700 underline" href={item.bookingUrl} target="_blank" rel="noreferrer">
+                    Reserve
+                  </a>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {dayMapsUrl && (
+        <MapsLink
+          href={dayMapsUrl}
+          className="tap inline-flex w-full items-center justify-center rounded-2xl bg-[#0b1f33] px-4 text-base font-semibold text-white"
+        >
+          Open the whole day in Google Maps
+        </MapsLink>
+      )}
+
+      <button
+        type="button"
+        onClick={useMyLocation}
+        disabled={locBusy}
+        className="tap w-full rounded-2xl border border-slate-300 bg-white px-4 text-base font-medium text-slate-800"
+      >
+        {locBusy ? 'Finding you…' : payload?.startLocation ? 'Update my location' : 'Use my location'}
+      </button>
+      {payload?.startLocation && (
+        <p className="text-sm text-slate-500">First leg starts from where you are. Meal times stay put.</p>
+      )}
+      {locError && <p className="text-sm text-red-700">{locError}</p>}
+
       {stops.map((s, i) => {
-        const isTransit = s.title === 'Transit';
+        const isTransit = s.title === 'Transit' || s.kind === 'transit';
         if (isTransit) {
+          const directions = s.mapsUrl || s.url;
           return (
             <div
               key={`transit-${i}`}
@@ -335,6 +509,11 @@ export default function PlanClient() {
                 <span className="text-xs text-slate-400">Connection</span>
               </div>
               <p className="mt-1 text-sm font-medium text-slate-700">{s.description ?? 'Travel to the next stop'}</p>
+              {directions ? (
+                <MapsLink href={directions} className="tap mt-2 inline-flex w-full items-center justify-center rounded-xl bg-white text-base font-semibold text-blue-700">
+                  Directions
+                </MapsLink>
+              ) : null}
             </div>
           );
         }
@@ -344,32 +523,47 @@ export default function PlanClient() {
         const menuOpen = activityMenuOpen === activityIndex;
         const isActivityLoading = activityReplanLoading === activityIndex;
         const disableActivity = dayReplanLoading || activityReplanLoading !== null;
+        const isFree = s.kind === 'free' || s.source === 'free';
 
         return (
           <div key={`stop-${i}`} className="rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm transition hover:shadow-md">
-            <div className="text-sm opacity-70">{s.time}</div>
-            <div className="font-medium">
+            <div className="text-base font-medium text-slate-500">{s.time}</div>
+            <div className="text-xl font-semibold leading-snug">
               {s.url ? (
-                <a href={s.url} target="_blank" rel="noreferrer">
-                  {s.title}
-                </a>
+                <MapsLink href={s.url}>{s.title}</MapsLink>
               ) : (
                 s.title
               )}
             </div>
-            <div className="text-sm">{s.location}</div>
+            <div className="text-base">{s.address || s.location}</div>
+            {s.address && s.location ? <div className="text-sm text-slate-500">{s.location}</div> : null}
+            {s.source === 'ai' && (
+              <span className="mt-1 inline-flex rounded-full bg-violet-100 px-2 py-0.5 text-xs font-semibold text-violet-800">
+                AI suggestion
+              </span>
+            )}
+            {s.source === 'must-do' && (
+              <span className="mt-1 inline-flex rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">
+                Your must-do
+              </span>
+            )}
+            <RecommendedBy people={s.recommendedBy} />
+            <BookingTag booking={s.booking} note={s.bookingNote} />
+            {s.note ? <p className="mt-2 text-sm text-slate-700">{s.note}</p> : null}
             {s.description && <p className="mt-2 text-sm text-slate-600">{s.description}</p>}
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <a
+            {s.warning ? <p className="mt-2 text-sm text-amber-800">{s.warning}</p> : null}
+            <div className="mt-4 grid gap-2">
+              {!isFree && (
+              <MapsLink
                 href={buildMapsUrl(s)}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-blue-600 px-4 py-1.5 text-sm font-medium text-blue-600 hover:bg-blue-50 transition"
+                className="tap inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-blue-600 px-4 text-base font-semibold text-blue-700"
               >
                 <span role="img" aria-hidden="true">🗺️</span>
                 <span>Open in Maps</span>
-              </a>
-              <div className="relative">
+              </MapsLink>
+              )}
+              {!isFree && (
+              <div className="relative w-full">
                 <button
                   type="button"
                   onClick={() => {
@@ -377,7 +571,7 @@ export default function PlanClient() {
                     setActivityMenuOpen(menuOpen ? null : activityIndex);
                   }}
                   disabled={disableActivity}
-                  className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium transition ${
+                  className={`tap inline-flex w-full items-center justify-center gap-2 rounded-2xl px-4 text-base font-semibold transition ${
                     disableActivity
                       ? 'cursor-not-allowed border border-slate-200 bg-slate-100 text-slate-400'
                       : 'border border-slate-400 text-slate-600 hover:border-slate-600 hover:text-slate-800'
@@ -400,6 +594,7 @@ export default function PlanClient() {
                   </div>
                 )}
               </div>
+              )}
             </div>
           </div>
         );
