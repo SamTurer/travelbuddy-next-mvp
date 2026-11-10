@@ -57,6 +57,8 @@ export type ItineraryVisit = {
   hoodId?: string | null;
   source: 'curated' | 'must-do' | 'free' | 'ai';
   mustDo?: boolean;
+  /** The place and neighborhood a free-text must-do resolved to. */
+  understood?: { title: string; neighborhood: string };
   pinned: boolean;
   recommendedBy: RecommendedByPerson[];
   booking?: BookingKind;
@@ -83,6 +85,7 @@ export type RenderedStop = {
   pinned?: boolean;
   source?: ItineraryVisit['source'];
   mustDo?: boolean;
+  understood?: { title: string; neighborhood: string };
   hoodId?: string | null;
   recommendedBy?: RecommendedByPerson[];
   note?: string;
@@ -639,6 +642,24 @@ function buildRequests(input: PlanInput, musts: ParsedMust[], pace: Pace, warnin
     }
   }
 
+  // A timed must-do stays put. Lunch and dinner move to after it instead of overlapping.
+  const blockers = rest.filter(
+    (must) => must.pinnedStart != null && must.slot !== 'lunch' && must.slot !== 'dinner' && must.slot !== 'breakfast'
+  );
+  for (const block of blockers) {
+    const end = block.pinnedStart! + block.duration;
+    if (lunchMust?.pinnedStart == null && block.pinnedStart! < lunchStart + lunchDuration && end + 15 > lunchStart) {
+      lunchStart = end + 15;
+    }
+    if (
+      dinnerMust?.pinnedStart == null &&
+      block.pinnedStart! < dinnerStart + Math.min(dinnerDuration, 90) &&
+      end + 15 > dinnerStart
+    ) {
+      dinnerStart = end + 15;
+    }
+  }
+
   let breakfastStart = breakfastMust?.pinnedStart ?? (isWeekend(input.date) ? 9 * 60 + 30 : 9 * 60);
   if (breakfastMust?.pinnedStart == null) breakfastStart = clamp(breakfastStart, 8 * 60 + 30, 10 * 60 + 30);
   const breakfastDuration = breakfastMust?.duration ?? dwell(null, 'breakfast', pace);
@@ -670,8 +691,13 @@ function buildRequests(input: PlanInput, musts: ParsedMust[], pace: Pace, warnin
     });
   };
 
+  const morningPins = rest
+    .map((must) => must.pinnedStart)
+    .filter((start): start is number => start != null && start <= lunchStart + 30);
+  const pinCap = morningPins.length ? Math.min(...morningPins.map((start) => start - 15)) : Number.POSITIVE_INFINITY;
+  const morningEnd = Math.min(lunchStart - 15, pinCap);
   pushMust(breakfastMust, 'breakfast', breakfastStart, 8 * 60 + 30, 10 * 60 + 30, breakfastDuration);
-  pushActivityWindow(requests, morningMusts, shape.morning, breakfastStart + breakfastDuration + 10, lunchStart - 15, pace);
+  pushActivityWindow(requests, morningMusts, shape.morning, breakfastStart + breakfastDuration + 10, morningEnd, pace);
   pushMust(lunchMust, 'lunch', lunchStart, 12 * 60, 14 * 60, lunchDuration);
   pushActivityWindow(
     requests,
@@ -825,8 +851,11 @@ function realize(
     const hours = item.hours === undefined ? item.place?.hours ?? null : item.hours;
     if (hours && !visitFitsHours({ hours }, weekday, start, Math.max(duration, 30))) {
       if (item.pinned) {
+        const closedToday = (hours[weekday] ?? []).length === 0;
         warnings.push(
-          `${item.title} isn't open for the full visit at ${formatMinutes(start)}. The time you set was kept.`
+          closedToday
+            ? `${item.title} is closed at ${formatMinutes(start)}. The time was kept and it was not moved.`
+            : `${item.title} isn't open for the full visit at ${formatMinutes(start)}. The time was kept and it was not moved.`
         );
       } else {
         const earliest = isMeal(item.role) ? Math.max(start, item.startHint, item.windowStart) : Math.max(start, item.windowStart);
@@ -879,6 +908,12 @@ function realize(
       hoodId: item.hoodId,
       source: item.source,
       mustDo: Boolean(item.must),
+      understood: item.must
+        ? {
+            title: item.place?.name ?? item.title,
+            neighborhood: item.place?.neighborhood ?? item.neighborhood,
+          }
+        : undefined,
       pinned: item.pinned,
       recommendedBy: item.recommendedBy,
       booking: item.booking,
@@ -974,6 +1009,7 @@ function renderStops(visits: ItineraryVisit[]): RenderedStop[] {
       pinned: visit.pinned,
       source: visit.source,
       mustDo: visit.mustDo,
+      understood: visit.understood,
       hoodId: visit.hoodId,
       recommendedBy: visit.recommendedBy,
       note: visit.note,
@@ -1042,9 +1078,14 @@ function schedule(input: PlanInput, places: Place[]): Itinerary {
   const musts = parseMustDos(input.locks, places, pace);
   const focus = focusHoodId(input.focusArea);
   const cluster = chooseCluster(focus, musts, openPlaces, weekday, pace, vibes, input.date);
+  const firstPinned = musts
+    .filter((must) => must.pinnedStart != null && must.lat != null && must.lng != null)
+    .sort((a, b) => a.pinnedStart! - b.pinnedStart!)[0];
   const anchorPoint = (): { lat: number; lng: number } => {
     if (prevPoint) return prevPoint;
     if (input.startLocation) return input.startLocation;
+    // Coffee and the first leg aim at the timed must-do, then the day walks toward it.
+    if (firstPinned?.lat != null && firstPinned.lng != null) return { lat: firstPinned.lat, lng: firstPinned.lng };
     const hood = hoodById(cluster.primary);
     return hood ? { lat: hood.lat, lng: hood.lng } : { lat: 40.74, lng: -73.99 };
   };

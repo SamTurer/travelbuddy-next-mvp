@@ -38,7 +38,7 @@ export async function enrichLocksWithAI(
       time: item.pinnedStart != null ? formatMinutes(item.pinnedStart) : undefined,
       category: item.category,
       duration_min: item.duration,
-      matched: Boolean(item.place),
+      matched: !item.plainText,
     } satisfies EnrichedLock;
   });
 

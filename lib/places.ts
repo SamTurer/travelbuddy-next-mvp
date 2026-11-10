@@ -45,6 +45,13 @@ export type Place = {
   hours_approximate?: boolean;
   outdoor?: boolean;
   recommended_by: RecommendationRef[];
+  /**
+   * Publication or other ids that originally sourced a placeholder place.
+   * The card credits `recommended_by` (Jonathan, until a real person is added).
+   */
+  source_refs?: RecommendationRef[];
+  /** Other names people type, such as "Met Museum" for The Met. Matching ignores case and "the". */
+  aliases?: string[];
   /** Editor comment from Sam, Kailey, or a friend. Empty until they fill it in. */
   note: string;
   booking: BookingKind;

@@ -15,8 +15,13 @@ test('every curated place has a known recommender and a booking field', () => {
   assert.equal(places.reduce((sum, place) => sum + (place.locations ?? []).length, 0), 266);
   const placeholders = places.filter((place) => place.placeholder === true);
   assert.equal(placeholders.length, 35);
+  const jonathan = placeholders.filter((place) =>
+    place.recommended_by.some((ref) => ref.recommenderId === 'jonathan')
+  );
+  assert.equal(jonathan.length, 34);
   for (const place of placeholders) {
     assert.ok(place.categories.includes('coffee'), place.name);
+    assert.doesNotMatch(`${place.note} ${place.verification_note ?? ''}`, /does not know coffee/i);
   }
   for (const place of places) {
     assert.ok(place.recommended_by.length > 0, place.name);
@@ -29,6 +34,20 @@ test('every curated place has a known recommender and a booking field', () => {
         ['kailey', 'sam'],
         place.name
       );
+    } else if (place.id === 'miss-madeleine') {
+      assert.deepEqual(
+        place.recommended_by.map((ref) => ref.recommenderId),
+        ['emily-wafler']
+      );
+      assert.match(place.note, /Emily Wafler/);
+    } else {
+      assert.deepEqual(
+        place.recommended_by.map((ref) => ref.recommenderId),
+        ['jonathan'],
+        place.name
+      );
+      assert.ok((place.source_refs ?? []).length > 0, `${place.name} kept its source`);
+      assert.match(place.note, /credited to Jonathan/);
     }
     assert.equal(typeof place.note, 'string');
     assert.ok(isBookingKind(place.booking));
@@ -81,6 +100,14 @@ test('recommenders are seeded for a future profile page', () => {
     formatRecommendedBy(resolveRecommendations([{ recommenderId: 'sam' }, { recommenderId: 'kailey' }])),
     'Sam & Kailey'
   );
+
+  const jonathan = people.find((person) => person.id === 'jonathan');
+  assert.ok(jonathan);
+  assert.equal(jonathan.displayName, 'Jonathan');
+  assert.equal(jonathan.name, 'Jonathan');
+  assert.equal(jonathan.type, 'placeholder');
+  assert.match(jonathan.bio, /placeholder for AI-generated picks/i);
+  assert.equal(formatRecommendedBy(resolveRecommendations([{ recommenderId: 'jonathan' }])), 'Jonathan');
 });
 
 test('the nearest branch is the one closest to the anchor', () => {

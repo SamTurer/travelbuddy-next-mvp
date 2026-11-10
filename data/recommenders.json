@@ -83,6 +83,14 @@
     "bio": "The Infatuation's New York restaurant and cafe reviews."
   },
   {
+    "id": "jonathan",
+    "name": "Jonathan",
+    "displayName": "Jonathan",
+    "type": "placeholder",
+    "url": null,
+    "bio": "Placeholder for AI-generated picks. Credited until a real recommender is added."
+  },
+  {
     "id": "time-out-new-york",
     "displayName": "Time Out New York",
     "type": "publication",

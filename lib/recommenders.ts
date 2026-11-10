@@ -1,11 +1,13 @@
 import rawRecommenders from '../data/recommenders.json';
 
-/** A friend is a person. Publications are cited by their title. */
-export type RecommenderKind = 'person' | 'publication' | 'friend';
+/** A friend is a person. A placeholder stands in for AI-sourced picks. Publications are cited by their title. */
+export type RecommenderKind = 'person' | 'publication' | 'friend' | 'placeholder';
 
 export type Recommender = {
   id: string;
+  /** Display name. `name` is accepted as an alias for older or hand-written records. */
   displayName: string;
+  name?: string;
   /** Short bio / why this source is trustworthy for these kinds of places. */
   bio: string;
   type?: RecommenderKind;
@@ -34,7 +36,10 @@ export function isPublication(person: { type?: RecommenderKind }): boolean {
   return person.type === 'publication';
 }
 
-export const recommenders = rawRecommenders as Recommender[];
+export const recommenders = (rawRecommenders as Array<Recommender & { name?: string }>).map((person) => ({
+  ...person,
+  displayName: person.displayName || person.name || person.id,
+}));
 
 const byId = new Map(recommenders.map((person) => [person.id, person]));
 

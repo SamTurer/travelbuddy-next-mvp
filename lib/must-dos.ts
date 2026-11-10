@@ -75,7 +75,7 @@ const GAZETTEER: GazetteerEntry[] = [
     bookingNote: 'Books out. Reserve ahead.',
   },
   {
-    keys: ['the met', 'met', 'metropolitan museum', 'metropolitan museum of art'],
+    keys: ['the met', 'met', 'met museum', 'met fifth avenue', 'metropolitan museum', 'metropolitan museum of art'],
     name: 'The Metropolitan Museum of Art',
     lat: 40.7794,
     lng: -73.9632,
@@ -109,7 +109,8 @@ const MEAL_WORDS: { re: RegExp; slot: MustSlot }[] = [
   { re: /\b(show)\b/i, slot: 'show' },
 ];
 
-function normalizeName(value: string): string {
+/** Lowercase, strip punctuation, and drop "the" / "a" / "an" so "The Met" and "met" compare equal. */
+export function normalizeName(value: string): string {
   return value
     .toLowerCase()
     .replace(/&/g, ' and ')
@@ -135,6 +136,9 @@ function levenshtein(a: string, b: string): number {
   return row[b.length];
 }
 
+/** Accept a match at this score or higher. Exact names and aliases are 100. */
+export const MATCH_THRESHOLD = 80;
+
 export function scorePlaceName(query: string, placeName: string): number {
   const left = normalizeName(query);
   const right = normalizeName(placeName);
@@ -145,25 +149,42 @@ export function scorePlaceName(query: string, placeName: string): number {
   if (leftTokens.length === rightTokens.length && leftTokens.every((token, index) => token === rightTokens[index])) {
     return 100;
   }
-  if (leftTokens.length >= 2 && leftTokens.every((token) => rightTokens.includes(token)) && rightTokens.every((token) => leftTokens.includes(token))) {
+  if (
+    leftTokens.length >= 2 &&
+    leftTokens.every((token) => rightTokens.includes(token)) &&
+    rightTokens.every((token) => leftTokens.includes(token))
+  ) {
     return 92;
+  }
+  // "met museum" covers "metropolitan museum" when every query token is a prefix of a candidate token.
+  if (leftTokens.length >= 2 && leftTokens.every((token) => rightTokens.some((candidate) => candidate.startsWith(token) && token.length >= 3))) {
+    const overlap = leftTokens.filter((token) => rightTokens.some((candidate) => candidate.startsWith(token))).length;
+    if (overlap / Math.max(rightTokens.length, 1) >= 0.5) return 90;
   }
   if (left.length >= 4 && (right.startsWith(left) || left.startsWith(right)) && Math.abs(left.length - right.length) <= 4) {
     return 88;
   }
-  if (left.length >= 4 && right.length >= 4 && levenshtein(left, right) <= 2) return 80;
+  if (left.length >= 5 && right.length >= 5 && levenshtein(left, right) <= 2) return 84;
+  const shared = leftTokens.filter((token) => rightTokens.includes(token)).length;
+  const union = new Set([...leftTokens, ...rightTokens]).size;
+  if (leftTokens.length >= 2 && shared >= 2 && shared / union >= 0.67) return 82;
   return 0;
+}
+
+export function scorePlace(query: string, place: Place): number {
+  const names = [place.name, ...(place.aliases ?? [])];
+  return names.reduce((best, name) => Math.max(best, scorePlaceName(query, name)), 0);
 }
 
 function bestPlace(query: string, places: Place[]): Place | null {
   let best: { place: Place; score: number } | null = null;
   for (const place of places) {
-    const score = scorePlaceName(query, place.name);
+    const score = scorePlace(query, place);
     if (!best || score > best.score || (score === best.score && place.name.length < best.place.name.length)) {
       best = { place, score };
     }
   }
-  if (!best || best.score < 80) return null;
+  if (!best || best.score < MATCH_THRESHOLD) return null;
   return best.place;
 }
 
@@ -190,9 +211,12 @@ function parseClockToken(value: string): RawClock | null {
 }
 
 function findClock(text: string): RawClock | null {
+  if (/\bnoon\b/i.test(text)) return { hour: 12, minute: 0, ampm: 'pm' };
+  if (/\bmidnight\b/i.test(text)) return { hour: 12, minute: 0, ampm: 'am' };
   const patterns = [
     /\b(\d{1,2}:\d{2}\s*(?:a\.?m\.?|p\.?m\.?)?)\b/i,
     /\b(\d{1,2}\s*(?:a\.?m\.?|p\.?m\.?))\b/i,
+    /\bat\s+(\d{1,2}(?::\d{2})?)\b/i,
   ];
   for (const pattern of patterns) {
     const match = text.match(pattern);
@@ -261,7 +285,9 @@ function slotWord(text: string): MustSlot | null {
 
 function cleanTitle(text: string): string {
   return text
+    .replace(/\b(noon|midnight)\b/gi, ' ')
     .replace(/\b\d{1,2}:\d{2}\s*(?:a\.?m\.?|p\.?m\.?)?\b/gi, ' ')
+    .replace(/\bat\s+\d{1,2}(?::\d{2})?\b/gi, ' ')
     .replace(/\b\d{1,2}\s*(?:a\.?m\.?|p\.?m\.?)\b/gi, ' ')
     .replace(/\b(in the|around|about|at|for)\b/gi, ' ')
     .replace(/\b(breakfast|brunch|lunch|dinner|supper|drinks|cocktails|coffee|show|musical|broadway|morning|afternoon|evening|tonight)\b/gi, ' ')
@@ -341,6 +367,22 @@ export function parseMustDo(lock: LockInput, places: Place[], pace: Pace = 'bala
     bookingNote: gaz?.bookingNote ?? place?.booking_note,
     bookingUrl: place?.booking_url,
   };
+}
+
+/** Sentence for the must-do screen: the place we matched, where it is, and the time we kept. */
+export function describeMatch(item: Pick<ParsedMust, 'title' | 'neighborhood' | 'pinnedStart'>): string {
+  const where = item.neighborhood ? ` in ${item.neighborhood}` : '';
+  const when = item.pinnedStart != null ? ` at ${formatClock(item.pinnedStart)}` : '';
+  return `${item.title}${where}${when}`;
+}
+
+function formatClock(minutes: number): string {
+  const normalized = ((minutes % (24 * 60)) + 24 * 60) % (24 * 60);
+  const hour24 = Math.floor(normalized / 60);
+  const minute = normalized % 60;
+  const suffix = hour24 >= 12 ? 'PM' : 'AM';
+  const hour = hour24 % 12 || 12;
+  return `${hour}:${minute.toString().padStart(2, '0')} ${suffix}`;
 }
 
 export function parseMustDos(locks: LockInput[] | undefined, places: Place[], pace: Pace = 'balanced'): ParsedMust[] {

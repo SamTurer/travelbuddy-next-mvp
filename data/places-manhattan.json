@@ -410,6 +410,12 @@
         "hours_source": "911memorial.org (Museum, closed most Tue; Memorial plaza daily 8-20)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "9/11 museum",
+      "9/11 memorial",
+      "911 museum",
+      "september 11 museum"
     ]
   },
   {
@@ -766,10 +772,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "eater-ny"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -778,7 +784,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "37 W 54th St, New York, NY 10019",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "arabica--west-54th-street",
@@ -941,6 +947,11 @@
         ],
         "hours_source": "arabicacoffeeus.com/pages/locations",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "eater-ny"
       }
     ]
   },
@@ -2401,10 +2412,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "the-infatuation"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -2413,7 +2424,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "172 Rivington St, New York, NY 10002",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "black-cat-coffee--rivington-street",
@@ -2468,6 +2479,11 @@
         ],
         "hours_source": "blackcatles.com/contact (Mon–Fri 7 AM–10 PM, Sat–Sun 8 AM–10 PM; official page could not be fetched directly in this session, hours taken from the indexed official contact page and matching Yelp listing)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-infatuation"
       }
     ]
   },
@@ -2539,10 +2555,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "columbus-avenue-bid"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -2551,7 +2567,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "274 Columbus Ave, New York, NY 10023",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "black-press-coffee--columbus-avenue",
@@ -2660,6 +2676,11 @@
         ],
         "hours_source": "blackpresscoffee.com/locations",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "columbus-avenue-bid"
       }
     ]
   },
@@ -3790,10 +3811,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "new-york-dearest"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -3802,7 +3823,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "20 Stone St, New York, NY 10004",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "cafe-grumpy--financial-district",
@@ -4182,6 +4203,11 @@
         "hours_source": "cafegrumpy.com/manhattan-west/",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "new-york-dearest"
+      }
     ]
   },
   {
@@ -4253,10 +4279,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "sprudge"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -4265,7 +4291,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "149 Elizabeth St, New York, NY 10012",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "cafe-integral--nolita",
@@ -4320,6 +4346,11 @@
         ],
         "hours_source": "cafeintegral.com/nyc",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "sprudge"
       }
     ]
   },
@@ -4705,10 +4736,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "the-infatuation"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -4717,7 +4748,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "202B Elizabeth St, New York, NY 10012",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. Address updated to 202B Elizabeth St, matching current listings (unit B). Hours from consistent third-party listings; no official site.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added. Address updated to 202B Elizabeth St, matching current listings (unit B). Hours from consistent third-party listings; no official site.",
     "locations": [
       {
         "id": "caffe-paradiso--nolita",
@@ -4772,6 +4803,11 @@
         ],
         "hours_source": "restaurantji.com and Yelp (no official site; listings consistent on daily 8 AM–5:30 PM; Restaurantji updated Sep 19, 2026)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-infatuation"
       }
     ]
   },
@@ -5214,6 +5250,9 @@
         "hours_source": "centralparknyc.org",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "central park"
     ]
   },
   {
@@ -5359,6 +5398,9 @@
         "hours_source": "chelseamarket.com",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "chelsea market"
     ]
   },
   {
@@ -5650,13 +5692,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "eater-ny"
-      },
-      {
-        "recommenderId": "sprudge"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -5665,7 +5704,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "239 E 5th St, New York, NY 10003",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "coffee-project-ny--east-village",
@@ -5985,6 +6024,14 @@
         ],
         "hours_source": "coffeeprojectny.com/cafe-locations/",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "eater-ny"
+      },
+      {
+        "recommenderId": "sprudge"
       }
     ]
   },
@@ -6445,10 +6492,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "the-infatuation"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -6457,7 +6504,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "6 Hanover St, New York, NY 10005",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. Official address zip is 10005 (was stored as 10004).",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added. Official address zip is 10005 (was stored as 10004).",
     "locations": [
       {
         "id": "conwell-coffee-hall--hanover-street",
@@ -6512,6 +6559,11 @@
         ],
         "hours_source": "conwellhall.com/coffee-hall/ (official Hours of Operation: Mon 7:30 AM–9 PM, Tue–Fri 7:30 AM–10 PM, Sat 9 AM–10 PM, Sun 9 AM–9 PM)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-infatuation"
       }
     ]
   },
@@ -7203,10 +7255,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "sprudge"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -7215,7 +7267,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "72 W 38th St, New York, NY 10018",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "culture-espresso--bryant-park",
@@ -7378,6 +7430,11 @@
         ],
         "hours_source": "cultureespresso.com",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "sprudge"
       }
     ]
   },
@@ -8090,10 +8147,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "the-infatuation"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -8102,7 +8159,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "37 Elizabeth St, New York, NY 10013",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "derby-cup-coffee--elizabeth-street",
@@ -8157,6 +8214,11 @@
         ],
         "hours_source": "derbycupcoffee.com",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-infatuation"
       }
     ]
   },
@@ -8746,10 +8808,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "the-infatuation"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -8758,7 +8820,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "54W Henry St, New York, NY 10002",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. Official site lists the address as 54W Henry St; pin remains the Nominatim geocode of 54 Henry St.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added. Official site lists the address as 54W Henry St; pin remains the Nominatim geocode of 54 Henry St.",
     "locations": [
       {
         "id": "dreamers-coffee-house--two-bridges",
@@ -8813,6 +8875,11 @@
         ],
         "hours_source": "dreamerscoffeehouse.square.site (official Location & Hours: Mon–Fri 8 AM–5 PM, Sat–Sun 9 AM–5 PM)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-infatuation"
       }
     ]
   },
@@ -9174,10 +9241,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "the-infatuation"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -9186,7 +9253,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "2154 3rd Ave, New York, NY 10035",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "el-barrista-cafe--east-harlem",
@@ -9241,6 +9308,11 @@
         ],
         "hours_source": "el-barrista-cafe.square.site (official Location & Hours: Mon 7 AM–6 PM, Tue–Thu 7 AM–8 PM, Fri 7 AM–10 PM, Sat 8:30 AM–10 PM, Sun 8:30 AM–6 PM)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-infatuation"
       }
     ]
   },
@@ -10036,10 +10108,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "the-infatuation"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -10048,7 +10120,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "34 Allen St, New York, NY 10002",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "fasan-coffee--allen-street",
@@ -10093,6 +10165,11 @@
         ],
         "hours_source": "fasancoffee.substack.com/p/thoughts-from-fasan (Jun 24, 2026, owner's new schedule); restaurantji.com agrees",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-infatuation"
       }
     ]
   },
@@ -10154,10 +10231,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "time-out-new-york"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -10166,7 +10243,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "280 Park Ave, New York, NY 10017",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "felix-roasting-co--midtown",
@@ -10373,6 +10450,11 @@
         ],
         "hours_source": "hotelhugony.com/food-and-drink (official Hotel Hugo page for Felix Roasting Co. at 525 Greenwich St: hours 7 AM–10 PM). felixroastingco.com/pages/visit-us lists this shop as open everyday from 7 AM but omits a close time.",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "time-out-new-york"
       }
     ]
   },
@@ -11011,6 +11093,11 @@
         "hours_source": "guggenheim.org",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "guggenheim",
+      "the guggenheim",
+      "guggenheim museum"
     ]
   },
   {
@@ -11082,16 +11169,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "the-infatuation"
-      },
-      {
-        "recommenderId": "eater-ny"
-      },
-      {
-        "recommenderId": "time-out-new-york"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -11100,7 +11181,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "231 E 9th St, New York, NY 10003",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "hi-collar--east-village",
@@ -11155,6 +11236,17 @@
         ],
         "hours_source": "hi-collar.com (daytime kissaten hours; last call 3:30 PM). Evening bar hours are separate and were not recorded.",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-infatuation"
+      },
+      {
+        "recommenderId": "eater-ny"
+      },
+      {
+        "recommenderId": "time-out-new-york"
       }
     ]
   },
@@ -11697,10 +11789,10 @@
     "outdoor": true,
     "recommended_by": [
       {
-        "recommenderId": "the-infatuation"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -11709,7 +11801,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "145 Hudson St, New York, NY 10013",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "interlude-cafe--hudson-street",
@@ -11808,6 +11900,11 @@
         ],
         "hours_source": "interludenyc.com/visit",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-infatuation"
       }
     ]
   },
@@ -12019,10 +12116,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "i-love-the-upper-west-side"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -12031,7 +12128,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "224 W 79th St, New York, NY 10024",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "irving-farm-coffee--upper-west-side",
@@ -12292,6 +12389,11 @@
         ],
         "hours_source": "irvingfarmcoffee.com/pages/gramercy",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "i-love-the-upper-west-side"
       }
     ]
   },
@@ -13344,6 +13446,13 @@
         "hours_source": "katzsdelicatessen.com",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "katz's",
+      "katzs",
+      "katz's deli",
+      "katzs deli",
+      "katz deli"
     ]
   },
   {
@@ -14031,10 +14140,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "eater-ny"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -14043,7 +14152,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "259 E 10th St, New York, NY 10009",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "le-phin--east-village",
@@ -14098,6 +14207,11 @@
         ],
         "hours_source": "ny.eater.com/venue/101581/l-phin (Eater venue hours; no official website, Instagram only); Apple Maps and restaurantji.com (updated Oct 21, 2026) agree: Mon–Fri 8 AM–5:30 PM, Sat–Sun 9 AM–5:30 PM",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "eater-ny"
       }
     ]
   },
@@ -14782,6 +14896,9 @@
         "hours_source": "lincolncenter.org (David Geffen Hall box office; plaza open anytime; performances evenings)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "lincoln center"
     ]
   },
   {
@@ -14855,10 +14972,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "sprudge"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -14867,7 +14984,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "708 3rd Ave, New York, NY 10017",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "little-collins--third-avenue",
@@ -14922,6 +15039,11 @@
         ],
         "hours_source": "littlecollinsnyc.com",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "sprudge"
       }
     ]
   },
@@ -16837,10 +16959,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "the-curious-uptowner"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -16849,7 +16971,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "142 Edgecombe Ave, New York, NY 10030",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "manhattanville-coffee--sugar-hill-edgecombe-avenue",
@@ -16958,6 +17080,11 @@
         ],
         "hours_source": "restaurantji.com (both locations) and joe.coffee listing for 142 Edgecombe Ave: Mon–Fri 7 AM–5 PM, Sat–Sun 8 AM–5 PM. No official hours page was found.",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-curious-uptowner"
       }
     ]
   },
@@ -17514,7 +17641,7 @@
         "recommenderId": "emily-wafler"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "Placeholder pick from Sam's Google Maps saves, credited to Emily Wafler.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -17523,7 +17650,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "400 E 82nd St, New York, NY 10028",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. From Sam's Google Maps save; recommended by Emily Wafler.",
+    "verification_note": "Placeholder pick from Sam's Google Maps saves, credited to Emily Wafler.",
     "locations": [
       {
         "id": "miss-madeleine--upper-east-side",
@@ -17905,6 +18032,11 @@
         "hours_source": "moma.org (closed Thu)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "moma",
+      "museum of modern art",
+      "the museum of modern art"
     ]
   },
   {
@@ -18099,6 +18231,11 @@
         "hours_source": "store.moma.org",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "moma store",
+      "moma design store",
+      "museum of modern art store"
     ]
   },
   {
@@ -18172,10 +18309,10 @@
     "outdoor": true,
     "recommended_by": [
       {
-        "recommenderId": "time-out-new-york"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -18184,7 +18321,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "307 E 9th St, New York, NY 10003",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "mud--east-village",
@@ -18239,6 +18376,11 @@
         ],
         "hours_source": "Time Out New York, Oct 8, 2026",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "time-out-new-york"
       }
     ]
   },
@@ -18314,10 +18456,10 @@
     "outdoor": true,
     "recommended_by": [
       {
-        "recommenderId": "the-infatuation"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -18326,7 +18468,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "2620 Frederick Douglass Blvd, New York, NY 10030",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "nbhd-brulee--central-harlem",
@@ -18381,6 +18523,11 @@
         ],
         "hours_source": "nbhdbrulee.com",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-infatuation"
       }
     ]
   },
@@ -18594,10 +18741,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "time-out-new-york"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -18606,7 +18753,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "241 E 10th St, New York, NY 10003",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "not-as-bitter--east-village",
@@ -18661,6 +18808,11 @@
         ],
         "hours_source": "Time Out New York, Oct 8, 2026",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "time-out-new-york"
       }
     ]
   },
@@ -18926,10 +19078,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "patch-upper-east-side"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -18938,7 +19090,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "422 E 75th St, New York, NY 10021",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "oslo-coffee-roasters--yorkville",
@@ -19047,6 +19199,11 @@
         ],
         "hours_source": "oslocoffee.com/pages/locations",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "patch-upper-east-side"
       }
     ]
   },
@@ -19885,10 +20042,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "sprudge"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -19897,7 +20054,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "2730 Broadway, New York, NY 10025",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "plowshares-coffee-roasters--upper-west-side-bloomingdale",
@@ -20006,6 +20163,11 @@
         ],
         "hours_source": "plowsharescoffee.com/contact/",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "sprudge"
       }
     ]
   },
@@ -20685,10 +20847,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "the-infatuation"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -20697,7 +20859,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "13 Carmine St, New York, NY 10014",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. West Village hours are from listings (official locator omitted them). Morningside hours remain from qahwahhouse.com/locations.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added. West Village hours are from listings (official locator omitted them). Morningside hours remain from qahwahhouse.com/locations.",
     "locations": [
       {
         "id": "qahwah-house--west-village",
@@ -20806,6 +20968,11 @@
         ],
         "hours_source": "qahwahhouse.com/locations",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-infatuation"
       }
     ]
   },
@@ -21311,10 +21478,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "the-infatuation"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -21323,7 +21490,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "810 2nd Ave, New York, NY 10017",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "remi-flower-and-coffee--second-avenue-at-43rd",
@@ -21540,6 +21707,11 @@
         ],
         "hours_source": "Roadtrippers listing of Yelp hours for 425 Park Ave S (Mon–Fri 7 AM–6 PM, Sat–Sun 8 AM–6 PM). Not listed on reminyc.com/about, which only documents 906 2nd Ave. Corner.inc (updated Oct 30, 2026) independently shows Tuesday 7 AM–6 PM.",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-infatuation"
       }
     ]
   },
@@ -21822,6 +21994,11 @@
         "hours_source": "rockefellercenter.com (Top of the Rock, Nov 2026; plazas open around the clock)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "rockefeller",
+      "rockefeller center",
+      "30 rock"
     ]
   },
   {
@@ -23056,10 +23233,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "i-love-the-upper-west-side"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -23068,7 +23245,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "104 W 71st St, New York, NY 10023",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. Recommended by I Love the Upper West Side (Dec 17, 2025 neighborhood coffee picks). Also used for west-side Central Park coverage after Joe Coffee was cut.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added. Recommended by I Love the Upper West Side (Dec 17, 2025 neighborhood coffee picks). Also used for west-side Central Park coverage after Joe Coffee was cut.",
     "locations": [
       {
         "id": "solid-state-coffee--west-71st-street",
@@ -23123,6 +23300,11 @@
         ],
         "hours_source": "solidstatecoffee.com/pages/contact-us",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "i-love-the-upper-west-side"
       }
     ]
   },
@@ -23326,13 +23508,10 @@
     "outdoor": true,
     "recommended_by": [
       {
-        "recommenderId": "eater-ny"
-      },
-      {
-        "recommenderId": "sprudge"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -23341,7 +23520,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "374 W 46th St, New York, NY 10036",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. West 46th Street hours are official. Hours for 328 W 44th St and 213 8th Ave were left null because the official shorthand is ambiguous. Unverified: hours_West 44th Street, hours_Eighth Avenue / Chelsea.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added. West 46th Street hours are official. Hours for 328 W 44th St and 213 8th Ave were left null because the official shorthand is ambiguous. Unverified: hours_West 44th Street, hours_Eighth Avenue / Chelsea.",
     "hours_partially_verified": true,
     "locations": [
       {
@@ -23419,6 +23598,14 @@
         "hours": null,
         "hours_source": null,
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "eater-ny"
+      },
+      {
+        "recommenderId": "sprudge"
       }
     ]
   },
@@ -23560,6 +23747,12 @@
         "hours_source": "saintpatrickscathedral.org",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "st patricks",
+      "st. patrick's cathedral",
+      "saint patrick's cathedral",
+      "st patrick's cathedral"
     ]
   },
   {
@@ -23701,6 +23894,9 @@
         "hours_source": "nyc.gov DOT (24/7, free; every 15-30 min)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "staten island ferry"
     ]
   },
   {
@@ -23773,13 +23969,10 @@
     "outdoor": true,
     "recommended_by": [
       {
-        "recommenderId": "eater-ny"
-      },
-      {
-        "recommenderId": "sprudge"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -23788,7 +23981,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "45 John St, New York, NY 10038",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "suited--john-street",
@@ -23843,6 +24036,14 @@
         ],
         "hours_source": "ny.eater.com/venue/92634/suited (Eater venue hours); joe.coffee listing agrees. Official suitednyc.com/pages/contact has the 45 John St address but no hours. Mon–Fri 7 AM–4 PM, Sat–Sun 8 AM–4 PM",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "eater-ny"
+      },
+      {
+        "recommenderId": "sprudge"
       }
     ]
   },
@@ -24109,10 +24310,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "the-infatuation"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -24121,7 +24322,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "390 Manhattan Ave, New York, NY 10026",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "superhet-coffee--manhattan-avenue",
@@ -24176,6 +24377,11 @@
         ],
         "hours_source": "superhetcoffee.com (official: Mon & Tue 7–1, Wed–Fri 7–3, Sat & Sun 9–3)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "the-infatuation"
       }
     ]
   },
@@ -24792,6 +24998,10 @@
         "hours_source": "tenement.org (visitor center; tours by timed ticket)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "tenement museum",
+      "the tenement museum"
     ]
   },
   {
@@ -25204,6 +25414,11 @@
         "hours_source": "frick.org (closed Tue)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "the frick",
+      "frick",
+      "frick collection"
     ]
   },
   {
@@ -25344,6 +25559,10 @@
         "hours_source": "thehighline.org (Nov 2026)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "high line",
+      "the high line"
     ]
   },
   {
@@ -25613,6 +25832,14 @@
         "hours_source": "metmuseum.org (closed Wed)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "the met",
+      "met",
+      "met museum",
+      "met fifth avenue",
+      "metropolitan museum",
+      "metropolitan museum of art"
     ]
   },
   {
@@ -25685,10 +25912,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "time-out-new-york"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -25697,7 +25924,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "2754 Frederick Douglass Blvd, New York, NY 10039",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "the-oma-shop-ii-coffee-lifestyle--frederick-douglass-boulevard",
@@ -25752,6 +25979,11 @@
         ],
         "hours_source": "Time Out New York, Oct 8, 2026",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "time-out-new-york"
       }
     ]
   },
@@ -25893,6 +26125,10 @@
         "hours_source": "theplazany.com (Palm Court afternoon tea; hotel lobby open longer)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "plaza hotel",
+      "the plaza hotel"
     ]
   },
   {
@@ -26676,6 +26912,10 @@
         "hours_source": "grownyc.org (year-round Mon/Wed/Fri/Sat)",
         "coord_source": "original list pin (address not geocodable)"
       }
+    ],
+    "aliases": [
+      "union square greenmarket",
+      "union square"
     ]
   },
   {
@@ -27164,10 +27404,10 @@
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "new-york-dearest"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -27176,7 +27416,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "110 William St Lower Level, New York, NY 10038",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. Address and hours come from Restaurantji (Lower Level at 110 William St), not the official homepage, which does not list them.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added. Address and hours come from Restaurantji (Lower Level at 110 William St), not the official homepage, which does not list them.",
     "locations": [
       {
         "id": "voyager-espresso--william-street",
@@ -27221,6 +27461,11 @@
         ],
         "hours_source": "restaurantji.com/ny/new-york/voyager-espresso-/ (updated Nov 7, 2026: Mon–Fri 7:30 AM–4 PM, Sat–Sun closed, 110 William St Lower Level). Official voyagerespresso.com confirms a FiDi cafe since 2015 but does not list address or hours on the homepage or /pages/locations.",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "new-york-dearest"
       }
     ]
   },
@@ -27493,6 +27738,10 @@
         "hours_source": "not verified this session (bridge promenade is generally open 24h)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "brooklyn bridge",
+      "the brooklyn bridge"
     ]
   },
   {
@@ -27637,6 +27886,10 @@
         "hours_source": "nycgovparks.org",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "washington square",
+      "washington square park"
     ]
   },
   {
@@ -27707,10 +27960,10 @@
     "outdoor": true,
     "recommended_by": [
       {
-        "recommenderId": "time-out-new-york"
+        "recommenderId": "jonathan"
       }
     ],
-    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "booking": "walk_in",
     "review_decision": "keep",
     "placeholder": true,
@@ -27719,7 +27972,7 @@
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
     "address": "139 E 57th St, New York, NY 10155",
     "status": "open",
-    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "verification_note": "AI-sourced placeholder pick, credited to Jonathan until a real recommender is added.",
     "locations": [
       {
         "id": "watchhouse--midtown-east-57th-street",
@@ -27926,6 +28179,11 @@
         ],
         "hours_source": "watchhouse.com/en-us/pages/locations",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ],
+    "source_refs": [
+      {
+        "recommenderId": "time-out-new-york"
       }
     ]
   },
@@ -28395,6 +28653,11 @@
         "hours_source": "whitney.org (closed Tue)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
+    ],
+    "aliases": [
+      "whitney",
+      "the whitney",
+      "whitney museum"
     ]
   },
   {
