@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { getPlaces, isFoodPlace, visitFitsHours } from '../lib/places';
+import { getPlaces, getPlanningPlaces, isFoodPlace, visitFitsHours } from '../lib/places';
 import { parseMustDo } from '../lib/must-dos';
 import { planDay, replanItinerary, type Itinerary, type ItineraryVisit } from '../lib/planner';
 import { estimateLeg } from '../lib/routing';
@@ -28,9 +28,10 @@ function assertShape(itinerary: Itinerary, label: string) {
   const weekday = weekdayIndex(itinerary.date);
   for (const visit of stops) {
     const place = visit.placeId ? byId.get(visit.placeId) : undefined;
-    if (place?.hours) {
+    const hours = visit.hours ?? place?.hours;
+    if (hours) {
       assert.ok(
-        visitFitsHours(place, weekday, visit.startMin, visit.endMin - visit.startMin),
+        visitFitsHours({ hours }, weekday, visit.startMin, visit.endMin - visit.startMin),
         `${label} ${visit.title} outside hours`
       );
     }
@@ -281,6 +282,20 @@ test('a shared location becomes the first leg and does not move the day earlier'
   const lunch = realStops(itinerary).find((visit) => visit.role === 'lunch');
   assert.ok(lunch && lunch.startMin >= 12 * 60);
   assert.ok(itinerary.mapsUrl.includes('origin='));
+});
+
+test('closed and temporarily closed places are not scheduled', async () => {
+  assert.equal(getPlanningPlaces().some((place) => /bar primi|gallow green/i.test(place.name)), false);
+  const itinerary = await planDay({ date: '2026-11-14', pace: 'max', vibes: ['classic'], focusArea: 'flatiron chelsea' });
+  assert.equal(realStops(itinerary).some((visit) => /bar primi|gallow green/i.test(visit.title)), false);
+  const forced = await planDay({
+    date: '2026-11-14',
+    pace: 'balanced',
+    vibes: ['local'],
+    locks: ['Bar Primi'],
+  });
+  assert.equal(realStops(forced).some((visit) => /bar primi/i.test(visit.title)), false);
+  assert.ok(forced.warnings.some((warning) => /temporarily closed/i.test(warning)));
 });
 
 test('replanning a stop still respects opening hours', async () => {

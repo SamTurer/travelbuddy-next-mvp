@@ -18,6 +18,7 @@ type PlanStop = {
   time: string;
   title: string;
   location: string;
+  address?: string | null;
   description?: string;
   url?: string;
   kind?: 'place' | 'transit' | 'free';
@@ -534,7 +535,8 @@ export default function PlanClient() {
                 s.title
               )}
             </div>
-            <div className="text-sm">{s.location}</div>
+            <div className="text-base">{s.address || s.location}</div>
+            {s.address && s.location ? <div className="text-sm text-slate-500">{s.location}</div> : null}
             {s.source === 'ai' && (
               <span className="mt-1 inline-flex rounded-full bg-violet-100 px-2 py-0.5 text-xs font-semibold text-violet-800">
                 AI suggestion

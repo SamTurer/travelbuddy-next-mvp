@@ -40,7 +40,17 @@ export function validatePlaces(places: Place[], recommenderIds: string[]): Valid
     } else if (place.lat < 40.45 || place.lat > 40.95 || place.lng < -74.35 || place.lng > -73.68) {
       errors.push(`${label} coordinates are outside NYC (${place.lat}, ${place.lng})`);
     }
-    if (!place.hours) missingHours.push(place.name);
+    if (!place.hours && !(place.locations ?? []).some((branch) => branch.hours)) missingHours.push(place.name);
+    if (place.status && !['open', 'closed', 'temporarily_closed', 'unverified'].includes(place.status)) {
+      errors.push(`${label} has unknown status "${place.status}"`);
+    }
+    for (const branch of place.locations ?? []) {
+      const branchLabel = `${place.name} / ${branch.label || branch.id}`;
+      if (!Number.isFinite(branch.lat) || !Number.isFinite(branch.lng)) {
+        errors.push(`${branchLabel} is missing coordinates`);
+      }
+      if (!branch.hours) missingHours.push(branchLabel);
+    }
     if (typeof place.note !== 'string') errors.push(`${label} is missing a note field`);
     if (!place.booking || !isBookingKind(place.booking)) {
       errors.push(`${label} has invalid booking "${place.booking ?? ''}"`);

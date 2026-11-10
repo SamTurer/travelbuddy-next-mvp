@@ -1,6 +1,22 @@
-import rawPlaces from '../data/nyc-places.json';
+import rawPlaces from '../data/places-manhattan.json';
 import type { BookingKind } from './booking';
 import { resolveRecommendations, type RecommendationRef, type RecommendedByPerson } from './recommenders';
+
+export type PlaceStatus = 'open' | 'closed' | 'temporarily_closed' | 'unverified';
+
+/** One branch of a place. A place with no locations array is treated as a single branch. */
+export type PlaceLocation = {
+  id: string;
+  label: string;
+  address?: string | null;
+  lat: number;
+  lng: number;
+  neighborhood?: string;
+  hours: number[][][] | null;
+  hours_source?: string;
+  coord_source?: string;
+  booking_url?: string;
+};
 
 export { BOOKING_KINDS, BOOKING_LABEL, BOOK_AHEAD_KINDS, isBookingKind } from './booking';
 export type { BookingKind } from './booking';
@@ -35,7 +51,24 @@ export type Place = {
   booking_note?: string;
   booking_url?: string;
   url?: string;
+  address?: string | null;
+  /** Branches. Each has its own address, coordinates, and hours. */
+  locations?: PlaceLocation[];
+  status?: PlaceStatus | string;
+  verified_at?: string;
+  hours_source?: string;
+  coord_source?: string;
+  review_decision?: string;
+  verification_note?: string;
+  review_flag?: string;
+  hours_partially_verified?: boolean;
 };
+
+const CLOSED = new Set(['closed', 'temporarily_closed']);
+
+export function isClosedStatus(status?: string | null): boolean {
+  return !!status && CLOSED.has(status);
+}
 
 export const FOOD_CATEGORIES = new Set([
   'breakfast',
@@ -55,12 +88,67 @@ export const BREAKFAST_CATEGORIES = ['breakfast', 'brunch', 'bakery', 'coffee', 
 export const LUNCH_CATEGORIES = ['lunch', 'quick-bite', 'brunch'];
 export const DINNER_CATEGORIES = ['dinner'];
 export const DRINKS_CATEGORIES = ['drinks'];
-export const ACTIVITY_CATEGORIES = ['museum', 'landmark', 'park', 'activity', 'shopping', 'gallery'];
+export const ACTIVITY_CATEGORIES = ['museum', 'landmark', 'park', 'activity', 'shopping', 'gallery', 'show'];
 
 const places = rawPlaces as Place[];
 
 export function getPlaces(): Place[] {
   return places;
+}
+
+/** Manhattan places the planner may schedule. Closed and paused spots stay in the file. */
+export function getPlanningPlaces(): Place[] {
+  return places.filter((place) => !isClosedStatus(place.status));
+}
+
+export function branchesOf(place: Place): PlaceLocation[] {
+  const listed = (place.locations ?? []).filter(
+    (branch) => Number.isFinite(branch.lat) && Number.isFinite(branch.lng)
+  );
+  if (listed.length) {
+    return listed.map((branch) => ({
+      ...branch,
+      hours: branch.hours ?? null,
+      neighborhood: branch.neighborhood || branch.label || place.neighborhood,
+    }));
+  }
+  return [
+    {
+      id: place.id,
+      label: place.neighborhood || place.name,
+      address: place.address,
+      lat: place.lat,
+      lng: place.lng,
+      neighborhood: place.neighborhood,
+      hours: place.hours ?? null,
+      booking_url: place.booking_url,
+    },
+  ];
+}
+
+export function chooseNearestBranch(place: Place, anchor: { lat: number; lng: number }): PlaceLocation {
+  const branches = branchesOf(place);
+  let best = branches[0];
+  let bestKm = Number.POSITIVE_INFINITY;
+  for (const branch of branches) {
+    const km = haversineKm(anchor, branch);
+    if (km < bestKm) {
+      best = branch;
+      bestKm = km;
+    }
+  }
+  return best;
+}
+
+function haversineKm(a: { lat: number; lng: number }, b: { lat: number; lng: number }): number {
+  const R = 6371;
+  const dLat = ((b.lat - a.lat) * Math.PI) / 180;
+  const dLng = ((b.lng - a.lng) * Math.PI) / 180;
+  const lat1 = (a.lat * Math.PI) / 180;
+  const lat2 = (b.lat * Math.PI) / 180;
+  const h =
+    Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.min(1, Math.sqrt(h)));
 }
 
 export function isFoodPlace(place: Place): boolean {
@@ -72,7 +160,12 @@ export function hasCategory(place: Place, categories: string[]): boolean {
 }
 
 /** The whole visit must sit inside one open window. Unknown hours are allowed. */
-export function visitFitsHours(place: Place, weekday: number, startMin: number, durationMin: number): boolean {
+export function visitFitsHours(
+  place: { hours?: number[][][] | null },
+  weekday: number,
+  startMin: number,
+  durationMin: number
+): boolean {
   if (!place.hours) return true;
   const windows = place.hours[weekday] ?? [];
   if (windows.length === 0) return false;

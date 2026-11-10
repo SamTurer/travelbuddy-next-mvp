@@ -3,29 +3,33 @@ import test from 'node:test';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import RecommendedBy from '../app/components/RecommendedBy';
-import { getPlaces } from '../lib/places';
+import { chooseNearestBranch, getPlaces, getPlanningPlaces, isBookingKind } from '../lib/places';
 import { getRecommenders } from '../lib/recommenders';
 import { validatePlaces, validateCuratedList } from '../lib/validate-places';
 import type { Place } from '../lib/places';
 
 test('every curated place is recommended by Sam and Kailey and has a booking field', () => {
   const places = getPlaces();
-  assert.ok(places.length > 280);
+  assert.equal(places.length, 138);
   for (const place of places) {
     assert.deepEqual(
       place.recommended_by.map((ref) => ref.recommenderId).sort(),
       ['kailey', 'sam']
     );
     assert.equal(typeof place.note, 'string');
-    assert.equal(place.booking, 'unknown');
+    assert.ok(isBookingKind(place.booking));
     assert.equal(typeof place.lat, 'number');
     assert.equal(typeof place.lng, 'number');
+    assert.ok((place.locations ?? []).length >= 1);
   }
+  const planning = getPlanningPlaces();
+  assert.equal(planning.some((place) => place.status === 'closed' || place.status === 'temporarily_closed'), false);
+  assert.equal(places.filter((place) => place.status === 'closed' || place.status === 'temporarily_closed').length, 2);
 });
 
 test('near-duplicate venues were merged', () => {
   const names = getPlaces().map((place) => place.name);
-  for (const name of ['Via Carota', 'Buvette', 'Banter', 'Two Hands', 'Santo Taco', "Bloomingdale's"]) {
+  for (const name of ['Via Carota', 'Buvette', 'Two Hands', "Bloomingdale's", 'Maman']) {
     assert.equal(names.filter((item) => item === name).length, 1, name);
   }
   assert.equal(names.some((name) => /Via Carota \(/.test(name)), false);
@@ -43,6 +47,20 @@ test('recommenders are seeded for a future profile page', () => {
   assert.ok(sam.bio.length > 10);
   assert.ok(kailey.bio.length > 10);
   assert.ok(Array.isArray(sam.specialties));
+});
+
+test('the nearest branch is the one closest to the anchor', () => {
+  const maman = getPlaces().find((place) => place.id === 'maman');
+  assert.ok(maman);
+  assert.ok((maman.locations ?? []).length >= 22);
+  const soho = chooseNearestBranch(maman, { lat: 40.7233, lng: -74.002 });
+  assert.match(soho.address || '', /Centre St/);
+  const uptown = chooseNearestBranch(maman, { lat: 40.785, lng: -73.978 });
+  assert.match(uptown.address || '', /Amsterdam Ave/);
+  const single = getPlaces().find((place) => (place.locations ?? []).length === 1);
+  assert.ok(single);
+  const only = chooseNearestBranch(single, { lat: 40.7, lng: -74 });
+  assert.equal(only.lat, single.locations?.[0].lat);
 });
 
 test('the curated file has coordinates and no near-duplicates, and missing hours are reported', () => {

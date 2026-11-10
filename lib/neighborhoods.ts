@@ -93,7 +93,7 @@ export function hoodForPlace(place: Place): string | null {
     const km = haversineKm(place, hood);
     if (!nearest || km < nearest.km) nearest = { id: hood.id, km };
   }
-  if (nearest && nearest.km <= 1.6) return nearest.id;
+  if (nearest && nearest.km <= 2.5) return nearest.id;
   return null;
 }
 

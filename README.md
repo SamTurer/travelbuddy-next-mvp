@@ -52,7 +52,7 @@ Must-dos are parsed without an API key (fuzzy match against the list, plus a sma
 
 ## Editing a place
 
-`data/nyc-places.json` is the list. Every place on it is a trusted pick. `data/recommenders.json` is the people behind those picks.
+`data/places-manhattan.json` is the list the planner uses (Manhattan only). `data/places-outer-boroughs.json` and `data/cut-places.json` are reference files and are not loaded. A place may have `locations[]`; the planner picks the branch nearest the previous stop. `status` of `closed` or `temporarily_closed` is kept in the file and left out of days. `data/recommenders.json` maps recommender ids (`sam`, `kailey`) to display names and placeholder credentials.
 
 Add a place by copying an existing object. Required fields:
 

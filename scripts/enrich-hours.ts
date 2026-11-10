@@ -27,7 +27,7 @@ type Place = {
 };
 
 async function main() {
-  const dataPath = path.join(__dirname, '../data/nyc-places.json');
+  const dataPath = path.join(__dirname, '../data/places-manhattan.json');
 
   console.log('📖 Reading nyc-places.json...');
   const content = await fs.readFile(dataPath, 'utf-8');

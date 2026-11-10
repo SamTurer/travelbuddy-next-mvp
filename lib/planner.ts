@@ -8,13 +8,17 @@ import {
   DINNER_CATEGORIES,
   DRINKS_CATEGORIES,
   LUNCH_CATEGORIES,
+  branchesOf,
+  chooseNearestBranch,
   getPlaces,
   hasCategory,
+  isClosedStatus,
   isFoodPlace,
   peopleForPlace,
   visitFitsHours,
   type BookingKind,
   type Place,
+  type PlaceLocation,
 } from './places';
 import { parseMustDos, type ParsedMust } from './must-dos';
 import { addedByYou, recommendedByAi, type RecommendedByPerson } from './recommenders';
@@ -43,6 +47,8 @@ export type ItineraryVisit = {
   startMin: number;
   endMin: number;
   neighborhood: string;
+  address?: string | null;
+  hours?: number[][][] | null;
   description: string;
   note?: string;
   lat?: number;
@@ -64,6 +70,7 @@ export type RenderedStop = {
   time: string;
   title: string;
   location: string;
+  address?: string | null;
   description: string;
   url?: string;
   kind: 'place' | 'transit' | 'free';
@@ -145,6 +152,8 @@ type Chosen = Request & {
   lat?: number;
   lng?: number;
   neighborhood: string;
+  address?: string | null;
+  hours?: number[][][] | null;
   hoodId: string | null;
   description: string;
   note?: string;
@@ -215,35 +224,61 @@ function hashString(value: string): number {
   return hash;
 }
 
-function openFor(place: Place, weekday: number, start: number, duration: number): boolean {
-  return visitFitsHours(place, weekday, start, duration);
+function branchHood(place: Place, branch: PlaceLocation): string | null {
+  const at = (neighborhood: string) =>
+    hoodForPlace({
+      ...place,
+      lat: branch.lat,
+      lng: branch.lng,
+      neighborhood,
+    });
+  // Prefer Sam's neighborhood. Geocoder labels like "Columbus Circle" or
+  // "Community Board 7" are only a fallback when that pin is far from it.
+  return at(place.neighborhood) || at(branch.label || '') || at(branch.neighborhood || '') || null;
+}
+
+function branchOpenAt(branch: PlaceLocation, weekday: number, start: number, duration: number): boolean {
+  return visitFitsHours({ hours: branch.hours }, weekday, start, duration);
+}
+
+function placeServes(
+  place: Place,
+  hoodIds: string[],
+  weekday: number,
+  start: number,
+  duration: number,
+  categories: string[],
+  foodOk: boolean
+): boolean {
+  if (!hasCategory(place, categories)) return false;
+  if (!foodOk && isFoodPlace(place)) return false;
+  return branchesOf(place).some((branch) => {
+    const hood = branchHood(place, branch);
+    return !!hood && hoodIds.includes(hood) && branchOpenAt(branch, weekday, start, duration);
+  });
 }
 
 function supplyScore(
   ids: string[],
   places: Place[],
-  hoodOf: Map<string, string | null>,
   weekday: number,
   pace: Pace,
   vibes: string[]
 ): number {
-  const pool = places.filter((place) => ids.includes(hoodOf.get(place.id) || ''));
+  const pool = places.filter((place) =>
+    branchesOf(place).some((branch) => ids.includes(branchHood(place, branch) || ''))
+  );
   let score = 0;
   const has = (cats: string[], start: number, duration: number, foodOk: boolean) =>
-    pool.some(
-      (place) =>
-        (foodOk || !isFoodPlace(place)) &&
-        hasCategory(place, cats) &&
-        openFor(place, weekday, start, duration)
-    );
+    pool.some((place) => placeServes(place, ids, weekday, start, duration, cats, foodOk));
   if (has(BREAKFAST_CATEGORIES, 9 * 60, 40, true)) score += 8;
   else score -= 30;
   if (has(LUNCH_CATEGORIES, 12 * 60 + 30, 60, true)) score += 8;
   else score -= 30;
   if (has(DINNER_CATEGORIES, 19 * 60, 75, true)) score += 8;
   else score -= 30;
-  const activities = pool.filter(
-    (place) => !isFoodPlace(place) && hasCategory(place, ACTIVITY_CATEGORIES) && openFor(place, weekday, 15 * 60, 60)
+  const activities = pool.filter((place) =>
+    placeServes(place, ids, weekday, 15 * 60, 60, ACTIVITY_CATEGORIES, false)
   );
   score += Math.min(activities.length, 8);
   const needed = PACE_SHAPE[pace].morning + PACE_SHAPE[pace].afternoon;
@@ -260,23 +295,21 @@ function chooseCluster(
   focus: string | null,
   musts: ParsedMust[],
   places: Place[],
-  hoodOf: Map<string, string | null>,
   weekday: number,
   pace: Pace,
   vibes: string[],
   date: string
 ): Cluster {
-  const scoreOf = (ids: string[]) => supplyScore(ids, places, hoodOf, weekday, pace, vibes);
+  const scoreOf = (ids: string[]) => supplyScore(ids, places, weekday, pace, vibes);
   const canFill = (ids: string[]) => {
-    const pool = places.filter((place) => ids.includes(hoodOf.get(place.id) || ''));
-    const open = (place: Place, start: number, duration: number) => visitFitsHours(place, weekday, start, duration);
-    const hasMeal = (cats: string[], start: number, duration: number) =>
-      pool.some((place) => hasCategory(place, cats) && open(place, start, duration));
-    const activities = pool.filter(
-      (place) => !isFoodPlace(place) && hasCategory(place, ACTIVITY_CATEGORIES) && open(place, 11 * 60, 50)
+    const pool = places.filter((place) =>
+      branchesOf(place).some((branch) => ids.includes(branchHood(place, branch) || ''))
     );
+    const hasMeal = (cats: string[], start: number, duration: number) =>
+      pool.some((place) => placeServes(place, ids, weekday, start, duration, cats, true));
+    const activities = pool.filter((place) => placeServes(place, ids, weekday, 11 * 60, 50, ACTIVITY_CATEGORIES, false));
     const drinksOk =
-      pace === 'chill' || pool.some((place) => hasCategory(place, DRINKS_CATEGORIES) && open(place, 21 * 60, 50));
+      pace === 'chill' || pool.some((place) => placeServes(place, ids, weekday, 21 * 60, 50, DRINKS_CATEGORIES, true));
     const shape = PACE_SHAPE[pace];
     return (
       hasMeal(BREAKFAST_CATEGORIES, 9 * 60, 40) &&
@@ -313,7 +346,9 @@ function chooseCluster(
 
   const mustHoods: string[] = [];
   for (const must of musts) {
-    const hood = must.place ? hoodOf.get(must.place.id) : nearestHood(must.lat, must.lng);
+    const hood = must.place
+      ? branchHood(must.place, chooseNearestBranch(must.place, { lat: must.lat ?? 40.74, lng: must.lng ?? -73.99 }))
+      : nearestHood(must.lat, must.lng);
     if (hood && !mustHoods.includes(hood)) mustHoods.push(hood);
   }
   if (mustHoods.length === 1) {
@@ -365,7 +400,7 @@ function nearestHood(lat?: number, lng?: number): string | null {
 }
 
 function findTimedStart(
-  place: Place,
+  hours: number[][][] | null,
   weekday: number,
   earliest: number,
   latest: number,
@@ -378,7 +413,7 @@ function findTimedStart(
     for (let minute = ideal; minute <= latest; minute += 15) points.push(minute);
     for (let minute = ideal - 15; minute >= earliest; minute -= 15) points.push(minute);
     for (const start of points) {
-      if (visitFitsHours(place, weekday, start, dur)) return start;
+      if (visitFitsHours({ hours }, weekday, start, dur)) return start;
     }
     return null;
   };
@@ -391,75 +426,125 @@ function findTimedStart(
   return start == null ? null : { start, duration: shorter };
 }
 
-function fromMust(must: ParsedMust, request: Request, hoodOf: Map<string, string | null>): Chosen {
+function fromMust(
+  must: ParsedMust,
+  request: Request,
+  branch: PlaceLocation | null,
+  hoodId: string | null
+): Chosen {
   const place = must.place;
   return {
     ...request,
     title: must.title,
     place,
-    lat: place?.lat ?? must.lat,
-    lng: place?.lng ?? must.lng,
-    neighborhood: place?.neighborhood ?? must.neighborhood ?? 'New York',
-    hoodId: place ? hoodOf.get(place.id) ?? null : nearestHood(must.lat, must.lng),
+    lat: branch?.lat ?? place?.lat ?? must.lat,
+    lng: branch?.lng ?? place?.lng ?? must.lng,
+    neighborhood: branch?.label || branch?.neighborhood || place?.neighborhood || must.neighborhood || 'New York',
+    address: branch?.address || place?.address || undefined,
+    hours: branch?.hours ?? place?.hours ?? null,
+    hoodId: hoodId ?? (place ? branchHood(place, branch || branchesOf(place)[0]) : nearestHood(must.lat, must.lng)),
     description: place?.description || `Must-do: ${must.title}.`,
     note: place?.note?.trim() || undefined,
     source: place ? 'curated' : 'must-do',
     recommendedBy: place ? peopleForPlace(place) : addedByYou(),
     booking: must.booking ?? place?.booking,
     bookingNote: must.bookingNote ?? place?.booking_note,
-    bookingUrl: must.bookingUrl ?? place?.booking_url,
-    startHint: request.pinned ? request.ideal : request.ideal,
+    bookingUrl: branch?.booking_url || must.bookingUrl || place?.booking_url,
+    startHint: request.ideal,
     duration: must.duration || request.duration,
   };
 }
 
-function fromPlace(place: Place, request: Request, hoodOf: Map<string, string | null>, start: number, duration: number): Chosen {
+function fromPlace(
+  place: Place,
+  branch: PlaceLocation,
+  hoodId: string | null,
+  request: Request,
+  start: number,
+  duration: number
+): Chosen {
   return {
     ...request,
     ideal: start,
     duration,
     title: place.name,
     place,
-    lat: place.lat,
-    lng: place.lng,
-    neighborhood: place.neighborhood,
-    hoodId: hoodOf.get(place.id) ?? null,
+    lat: branch.lat,
+    lng: branch.lng,
+    neighborhood: branch.label || branch.neighborhood || place.neighborhood,
+    address: branch.address || place.address || undefined,
+    hours: branch.hours,
+    hoodId,
     description: place.description,
     note: place.note?.trim() || undefined,
     source: 'curated',
     recommendedBy: peopleForPlace(place),
     booking: place.booking,
     bookingNote: place.booking_note,
-    bookingUrl: place.booking_url,
+    bookingUrl: branch.booking_url || place.booking_url,
     startHint: start,
   };
+}
+
+function fittingBranch(
+  place: Place,
+  anchor: { lat: number; lng: number },
+  hoodIds: string[] | null,
+  weekday: number,
+  earliest: number,
+  latest: number,
+  ideal: number,
+  duration: number,
+  allowShorter: boolean
+): { branch: PlaceLocation; hoodId: string | null; start: number; duration: number; travel: number } | null {
+  let best: { branch: PlaceLocation; hoodId: string | null; start: number; duration: number; travel: number } | null = null;
+  for (const branch of branchesOf(place)) {
+    const hoodId = branchHood(place, branch);
+    if (hoodIds && (!hoodId || !hoodIds.includes(hoodId))) continue;
+    const opening = findTimedStart(branch.hours, weekday, earliest, latest, ideal, duration, allowShorter);
+    if (!opening) continue;
+    const travel = estimateLeg(anchor, branch).minutes;
+    if (!best || travel < best.travel || (travel === best.travel && branch.label.localeCompare(best.branch.label) < 0)) {
+      best = { branch, hoodId, start: opening.start, duration: opening.duration, travel };
+    }
+  }
+  return best;
 }
 
 function pickPlace(
   request: Request,
   places: Place[],
-  hoodOf: Map<string, string | null>,
   cluster: Cluster,
   used: Set<string>,
   weekday: number,
   pace: Pace,
   vibes: string[],
   focusBias: boolean,
+  anchor: { lat: number; lng: number },
   prev?: { lat: number; lng: number }
-): { place: Place; start: number; duration: number } | null {
+): { place: Place; branch: PlaceLocation; hoodId: string | null; start: number; duration: number } | null {
   const categories = categoriesFor(request.role);
   const pool = places.filter((place) => {
     if (used.has(place.id)) return false;
-    const hood = hoodOf.get(place.id);
-    if (!hood || !cluster.hoods.includes(hood)) return false;
     if (request.role === 'activity') return !isFoodPlace(place) && hasCategory(place, categories);
     return hasCategory(place, categories);
   });
-  const viable: { place: Place; start: number; duration: number; score: number; travel: number; primary: boolean }[] = [];
+  const viable: {
+    place: Place;
+    branch: PlaceLocation;
+    hoodId: string | null;
+    start: number;
+    duration: number;
+    score: number;
+    travel: number;
+    primary: boolean;
+  }[] = [];
   for (const place of pool) {
     const duration = request.must?.duration || dwell(place, request.role, pace);
-    const opening = findTimedStart(
+    const fit = fittingBranch(
       place,
+      anchor,
+      cluster.hoods,
       weekday,
       request.windowStart,
       Math.max(request.windowStart, request.windowEnd),
@@ -467,11 +552,11 @@ function pickPlace(
       duration,
       request.role !== 'show'
     );
-    if (!opening) continue;
-    const travel = prev ? estimateLeg(prev, place).minutes : 0;
-    const primary = focusBias && hoodOf.get(place.id) === cluster.primary;
+    if (!fit) continue;
+    const travel = prev ? fit.travel : 0;
+    const primary = focusBias && fit.hoodId === cluster.primary;
     let score = vibeScore(place, vibes) * 3 - (primary ? Math.min(travel, 20) * 0.4 : travel * 1.1);
-    score -= Math.abs(opening.start - request.ideal) / 20;
+    score -= Math.abs(fit.start - request.ideal) / 20;
     if (primary) score += 80;
     if (
       request.role === 'lunch' &&
@@ -480,7 +565,7 @@ function pickPlace(
     ) {
       score -= 12;
     }
-    viable.push({ place, start: opening.start, duration: opening.duration, score, travel, primary });
+    viable.push({ place, branch: fit.branch, hoodId: fit.hoodId, start: fit.start, duration: fit.duration, score, travel, primary });
   }
   const nearby = viable.filter((item) => item.travel <= 22 || item.primary);
   const ranked = (nearby.length ? nearby : viable).sort(
@@ -714,7 +799,8 @@ function realize(
       );
     }
 
-    if (item.place && !visitFitsHours(item.place, weekday, start, Math.max(duration, 30))) {
+    const hours = item.hours === undefined ? item.place?.hours ?? null : item.hours;
+    if (hours && !visitFitsHours({ hours }, weekday, start, Math.max(duration, 30))) {
       if (item.pinned) {
         warnings.push(
           `${item.title} isn't open for the full visit at ${formatMinutes(start)}. The time you set was kept.`
@@ -722,7 +808,7 @@ function realize(
       } else {
         const earliest = isMeal(item.role) ? Math.max(start, item.startHint, item.windowStart) : Math.max(start, item.windowStart);
         const opening = findTimedStart(
-          item.place,
+          hours,
           weekday,
           earliest,
           Math.max(earliest, item.windowEnd),
@@ -760,6 +846,8 @@ function realize(
       startMin: start,
       endMin: start + duration,
       neighborhood: item.neighborhood,
+      address: item.address,
+      hours: item.hours ?? null,
       description: item.description,
       note: item.note,
       lat: item.lat,
@@ -845,11 +933,14 @@ function renderStops(visits: ItineraryVisit[]): RenderedStop[] {
       time: formatRange(visit.startMin, visit.endMin),
       title: visit.title,
       location: visit.neighborhood,
+      address: visit.address,
       description: visit.description,
       url:
         visit.role === 'free'
           ? undefined
-          : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${visit.title} ${visit.neighborhood} New York`)}`,
+          : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+              visit.address || `${visit.title} ${visit.neighborhood} New York`
+            )}`,
       kind: visit.role === 'free' ? 'free' : 'place',
       role: visit.role,
       placeId: visit.placeId,
@@ -924,10 +1015,16 @@ function schedule(input: PlanInput, places: Place[]): Itinerary {
   const vibes = (input.vibes ?? []).map((vibe) => vibe.toLowerCase());
   const warnings: string[] = [];
   const weekday = weekdayIndex(input.date);
-  const hoodOf = new Map(places.map((place) => [place.id, hoodForPlace(place)]));
+  const openPlaces = places.filter((place) => !isClosedStatus(place.status));
   const musts = parseMustDos(input.locks, places, pace);
   const focus = focusHoodId(input.focusArea);
-  const cluster = chooseCluster(focus, musts, places, hoodOf, weekday, pace, vibes, input.date);
+  const cluster = chooseCluster(focus, musts, openPlaces, weekday, pace, vibes, input.date);
+  const anchorPoint = (): { lat: number; lng: number } => {
+    if (prevPoint) return prevPoint;
+    if (input.startLocation) return input.startLocation;
+    const hood = hoodById(cluster.primary);
+    return hood ? { lat: hood.lat, lng: hood.lng } : { lat: 40.74, lng: -73.99 };
+  };
   const requests = buildRequests(input, musts, pace, warnings);
   const used = new Set<string>();
   for (const request of requests) {
@@ -938,21 +1035,53 @@ function schedule(input: PlanInput, places: Place[]): Itinerary {
 
   for (const request of requests) {
     if (request.must) {
-      const chosenMust = fromMust(request.must, request, hoodOf);
+      if (request.must.place && isClosedStatus(request.must.place.status)) {
+        warnings.push(
+          `${request.must.place.name} is ${request.must.place.status === 'closed' ? 'closed' : 'temporarily closed'}, so it was left off the day.`
+        );
+        continue;
+      }
+      const place = request.must.place;
+      const fit = place
+        ? fittingBranch(
+            place,
+            anchorPoint(),
+            null,
+            weekday,
+            request.windowStart,
+            Math.max(request.windowStart, request.windowEnd),
+            request.ideal,
+            request.duration,
+            true
+          )
+        : null;
+      const branch = fit?.branch ?? (place ? chooseNearestBranch(place, anchorPoint()) : null);
+      const chosenMust = fromMust(request.must, request, branch, fit?.hoodId ?? null);
       if (chosenMust.place) used.add(chosenMust.place.id);
       chosen.push(chosenMust);
       if (chosenMust.lat != null && chosenMust.lng != null) prevPoint = { lat: chosenMust.lat, lng: chosenMust.lng };
       continue;
     }
-    const picked = pickPlace(request, places, hoodOf, cluster, used, weekday, pace, vibes, Boolean(focus), prevPoint);
+    const picked = pickPlace(
+      request,
+      openPlaces,
+      cluster,
+      used,
+      weekday,
+      pace,
+      vibes,
+      Boolean(focus),
+      anchorPoint(),
+      prevPoint
+    );
     if (!picked) {
       if (isMeal(request.role)) warnings.push(`No open ${request.role} spot fit in ${cluster.label}.`);
       continue;
     }
     used.add(picked.place.id);
-    const next = fromPlace(picked.place, request, hoodOf, picked.start, picked.duration);
+    const next = fromPlace(picked.place, picked.branch, picked.hoodId, request, picked.start, picked.duration);
     chosen.push(next);
-    prevPoint = { lat: picked.place.lat, lng: picked.place.lng };
+    prevPoint = { lat: picked.branch.lat, lng: picked.branch.lng };
   }
 
   const visits = realize(chosen, weekday, warnings, input.startLocation);
@@ -1007,7 +1136,8 @@ async function applyGoogle(itinerary: Itinerary): Promise<Itinerary> {
       current.endMin += shift;
       if (current.placeId) {
         const place = getPlaces().find((item) => item.id === current.placeId);
-        if (place && !visitFitsHours(place, weekday, current.startMin, current.endMin - current.startMin)) {
+        const hours = current.hours === undefined ? place?.hours ?? null : current.hours;
+        if (hours && !visitFitsHours({ hours }, weekday, current.startMin, current.endMin - current.startMin)) {
           warnings.push(`${current.title} no longer fits its opening hours after travel was updated.`);
         }
       }
@@ -1141,8 +1271,7 @@ export async function replanItinerary(input: {
 }): Promise<Itinerary> {
   const pace = input.pace ?? 'balanced';
   const vibes = input.vibes ?? [];
-  const places = getPlaces();
-  const hoodOf = new Map(places.map((place) => [place.id, hoodForPlace(place)]));
+  const places = getPlaces().filter((place) => !isClosedStatus(place.status));
   const weekday = weekdayIndex(input.date);
   const visible = input.stops.filter((stop) => stop.kind !== 'transit' && stop.title !== 'Transit');
   const target = visible[input.replaceIndex];
@@ -1166,24 +1295,25 @@ export async function replanItinerary(input: {
   const focus = focusHoodId(input.focusArea);
   const clusterHoods = focus ? [focus, ...(hoodById(focus)?.adjacent ?? [])] : null;
 
-  let best: { place: Place; score: number } | null = null;
+  let best: { place: Place; branch: PlaceLocation; score: number } | null = null;
+  const here = visible[input.replaceIndex - 1];
+  const anchor = here?.lat != null && here.lng != null ? { lat: here.lat, lng: here.lng } : { lat: 40.74, lng: -73.99 };
   for (const place of places) {
     if (used.has(place.id)) continue;
-    const hood = hoodOf.get(place.id);
-    if (clusterHoods && (!hood || !clusterHoods.includes(hood))) continue;
     if (mood.includes('hungry')) {
       if (!hasCategory(place, categories) && !isFoodPlace(place)) continue;
     } else if (role === 'activity' && isFoodPlace(place)) continue;
     else if (!hasCategory(place, categories) && !mood.includes('hungry')) continue;
     if ((mood.includes('weather') || mood.includes('rain')) && (place.outdoor || place.categories.includes('park'))) continue;
-    if (!visitFitsHours(place, weekday, start, Math.min(duration, place.duration_max || duration))) continue;
-    const prev = visible[input.replaceIndex - 1];
-    const travel =
-      prev?.lat != null && prev.lng != null ? estimateLeg({ lat: prev.lat, lng: prev.lng }, place).minutes : 0;
+    const branch = chooseNearestBranch(place, anchor);
+    const hood = branchHood(place, branch);
+    if (clusterHoods && (!hood || !clusterHoods.includes(hood))) continue;
+    if (!visitFitsHours({ hours: branch.hours }, weekday, start, Math.min(duration, place.duration_max || duration))) continue;
+    const travel = estimateLeg(anchor, branch).minutes;
     let score = (mood.includes('different') ? -1 : 1) * vibeScore(place, vibes) * 3 - travel * 0.3;
     if (focus && hood === focus) score += 10;
     if (!best || score > best.score || (score === best.score && place.name.localeCompare(best.place.name) < 0)) {
-      best = { place, score };
+      best = { place, branch, score };
     }
   }
 
@@ -1193,6 +1323,7 @@ export async function replanItinerary(input: {
       : `Kept ${target.title}. Nothing nearby was open for that time.`,
   ];
   const replacement = best?.place;
+  const replacementBranch = best?.branch;
   const chosen: Chosen[] = [];
   for (const stop of visible) {
     if (stop.kind === 'free' || stop.role === 'free') continue;
@@ -1218,10 +1349,15 @@ export async function replanItinerary(input: {
       pinned: Boolean(stop.pinned),
       title: place?.name ?? stop.title,
       place,
-      lat: place?.lat ?? stop.lat,
-      lng: place?.lng ?? stop.lng,
-      neighborhood: place?.neighborhood ?? stop.location,
-      hoodId: place ? hoodOf.get(place.id) ?? null : stop.hoodId ?? null,
+      lat: stop === target && replacementBranch ? replacementBranch.lat : place?.lat ?? stop.lat,
+      lng: stop === target && replacementBranch ? replacementBranch.lng : place?.lng ?? stop.lng,
+      neighborhood:
+        stop === target && replacementBranch
+          ? replacementBranch.label || replacementBranch.neighborhood || place?.neighborhood || stop.location
+          : place?.neighborhood ?? stop.location,
+      address: stop === target && replacementBranch ? replacementBranch.address : stop.address,
+      hours: stop === target && replacementBranch ? replacementBranch.hours : place?.hours ?? null,
+      hoodId: place ? branchHood(place, stop === target && replacementBranch ? replacementBranch : branchesOf(place)[0]) : stop.hoodId ?? null,
       description: place?.description ?? stop.description,
       note: place?.note,
       source: place ? 'curated' : stop.source ?? 'must-do',
