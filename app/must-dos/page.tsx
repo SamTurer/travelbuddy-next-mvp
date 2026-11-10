@@ -89,20 +89,20 @@ export default function MustDosPage() {
   }
 
   return (
-    <main className="container mx-auto max-w-3xl px-4 py-8">
-      <h1 className="text-2xl font-semibold mb-6">Must-dos</h1>
+    <main className="px-4 py-6">
+      <h1 className="mb-4 text-3xl font-semibold">Must-dos</h1>
 
       <section className="rounded-2xl border p-5 space-y-4">
         <div>
-          <label className="block text-sm font-medium">Add a must-do</label>
+          <label className="block text-base font-medium">Add a must-do</label>
           <div className="mt-2 flex gap-2">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder='e.g., "Celeste UWS 7pm"'
-              className="w-full rounded-lg border px-3 py-2"
+              className="field min-w-0 flex-1"
             />
-            <button onClick={addMustDo} className="rounded-lg border px-4 py-2">
+            <button onClick={addMustDo} className="tap shrink-0 rounded-xl border border-slate-800 px-4 text-base font-semibold">
               Add
             </button>
           </div>
@@ -126,7 +126,7 @@ export default function MustDosPage() {
                   </span>
                   <button
                     onClick={() => removeMustDo(i)}
-                    className="text-xs rounded-md border px-2 py-1"
+                    className="tap shrink-0 rounded-xl border px-3 text-base"
                   >
                     Remove
                   </button>
@@ -137,17 +137,17 @@ export default function MustDosPage() {
           )}
         </div>
 
-        <div className="flex gap-2">
+        <div className="grid gap-2">
           <button
             onClick={previewUnderstanding}
-            className="rounded-lg border px-4 py-2"
+            className="tap w-full rounded-2xl border px-4 text-base font-semibold"
             disabled={previewLoading}
           >
             {previewLoading ? 'Parsing…' : 'Preview understanding'}
           </button>
           <button
             onClick={toPlan}
-            className="rounded-lg bg-black text-white px-4 py-2"
+            className="tap w-full rounded-2xl bg-black px-4 text-base font-semibold text-white"
           >
             Generate plan
           </button>

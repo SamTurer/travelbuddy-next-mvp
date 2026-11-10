@@ -266,6 +266,23 @@ test('the deterministic parser reads bare dinner times as PM and matches MoMA', 
   assert.ok(show.duration >= 150);
 });
 
+test('a shared location becomes the first leg and does not move the day earlier', async () => {
+  const itinerary = await planDay({
+    date: '2026-11-11',
+    pace: 'chill',
+    vibes: ['classic'],
+    startLocation: { lat: 40.7128, lng: -74.006, label: 'Your location' },
+  });
+  const first = realStops(itinerary)[0];
+  assert.ok(first.leg, dump(itinerary));
+  assert.match(first.leg.summary, /From your location/);
+  assert.equal(new URL(first.leg.mapsUrl).searchParams.get('travelmode'), first.leg.mode === 'walk' ? 'walking' : 'transit');
+  assert.ok(first.startMin >= 8 * 60 + 30);
+  const lunch = realStops(itinerary).find((visit) => visit.role === 'lunch');
+  assert.ok(lunch && lunch.startMin >= 12 * 60);
+  assert.ok(itinerary.mapsUrl.includes('origin='));
+});
+
 test('replanning a stop still respects opening hours', async () => {
   const itinerary = await planDay({ date: '2026-11-14', pace: 'balanced', vibes: ['local'], focusArea: 'tribeca' });
   const visible = itinerary.stops.filter((stop) => stop.kind !== 'transit');

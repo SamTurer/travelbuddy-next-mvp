@@ -31,6 +31,8 @@ export type PlanInput = {
   pace?: Pace;
   focusArea?: string | null;
   locks?: Parameters<typeof parseMustDos>[0];
+  /** Where the day starts. Used for the first leg only; it does not move meal times. */
+  startLocation?: { lat: number; lng: number; label?: string } | null;
 };
 
 export type VisitRole = 'breakfast' | 'activity' | 'lunch' | 'dinner' | 'drinks' | 'show' | 'free';
@@ -106,6 +108,7 @@ export type Itinerary = {
   warnings: string[];
   mapsUrl: string;
   bookAhead: BookAheadItem[];
+  startLocation?: { lat: number; lng: number; label?: string } | null;
 };
 
 const PACE_SHAPE: Record<Pace, { morning: number; afternoon: number; drinks: boolean }> = {
@@ -656,12 +659,24 @@ function pushActivityWindow(
   }
 }
 
-function realize(chosen: Chosen[], weekday: number, warnings: string[]): ItineraryVisit[] {
+function realize(
+  chosen: Chosen[],
+  weekday: number,
+  warnings: string[],
+  origin?: { lat: number; lng: number; label?: string } | null
+): ItineraryVisit[] {
   const visits: ItineraryVisit[] = [];
   for (let index = 0; index < chosen.length; index += 1) {
     const item = chosen[index];
     const prev = visits[visits.length - 1];
-    const leg = prev ? legBetween(prev, item) : null;
+    let leg = prev ? legBetween(prev, item) : null;
+    if (!prev && origin && item.lat != null && item.lng != null) {
+      const fromYou = estimateLeg(
+        { lat: origin.lat, lng: origin.lng, label: origin.label || 'Your location' },
+        { lat: item.lat, lng: item.lng, label: item.title }
+      );
+      leg = { ...fromYou, summary: `From your location · ${fromYou.summary}` };
+    }
     const travel = leg?.minutes ?? 0;
     const arrival = prev ? prev.endMin + travel : item.startHint;
     let start = item.pinned || isMeal(item.role) ? Math.max(item.pinned ? item.startHint : item.startHint, item.pinned ? item.startHint : arrival) : Math.max(arrival, item.windowStart);
@@ -685,6 +700,12 @@ function realize(chosen: Chosen[], weekday: number, warnings: string[]): Itinera
       }
       if (start + duration > 23 * 60) duration = 23 * 60 - start;
       if (duration < 20) continue;
+    }
+
+    if (!prev && leg && leg.minutes > 45) {
+      warnings.push(
+        `You're about ${leg.minutes} minutes from ${item.title}. The day still starts at ${formatMinutes(item.pinned ? item.startHint : start)}.`
+      );
     }
 
     if (item.pinned && prev && arrival > item.startHint + 10) {
@@ -867,9 +888,21 @@ function bookAheadFor(visits: ItineraryVisit[]): BookAheadItem[] {
     }));
 }
 
-function finalize(input: PlanInput, pace: Pace, vibes: string[], cluster: Cluster, visits: ItineraryVisit[], warnings: string[]): Itinerary {
+function finalize(
+  input: PlanInput,
+  pace: Pace,
+  vibes: string[],
+  cluster: Cluster,
+  visits: ItineraryVisit[],
+  warnings: string[],
+  startLocation?: PlanInput['startLocation']
+): Itinerary {
   const withFree = insertFree(visits);
   const routeStops = withFree.filter((visit) => visit.role !== 'free' && visit.lat != null);
+  const mapPoints = [
+    ...(startLocation ? [{ lat: startLocation.lat, lng: startLocation.lng, label: startLocation.label || 'Your location' }] : []),
+    ...routeStops.map((visit) => ({ lat: visit.lat, lng: visit.lng, label: visit.title })),
+  ];
   const transitLegs = withFree.filter((visit) => visit.leg?.mode === 'transit').length;
   const walkLegs = withFree.filter((visit) => visit.leg?.mode === 'walk').length;
   return {
@@ -880,10 +913,8 @@ function finalize(input: PlanInput, pace: Pace, vibes: string[], cluster: Cluste
     visits: withFree,
     stops: renderStops(withFree),
     warnings,
-    mapsUrl: dayMapsUrl(
-      routeStops.map((visit) => ({ lat: visit.lat, lng: visit.lng, label: visit.title })),
-      transitLegs > walkLegs ? 'transit' : 'walking'
-    ),
+    mapsUrl: dayMapsUrl(mapPoints, transitLegs > walkLegs ? 'transit' : 'walking'),
+    startLocation: startLocation ?? null,
     bookAhead: bookAheadFor(withFree),
   };
 }
@@ -924,7 +955,7 @@ function schedule(input: PlanInput, places: Place[]): Itinerary {
     prevPoint = { lat: picked.place.lat, lng: picked.place.lng };
   }
 
-  const visits = realize(chosen, weekday, warnings);
+  const visits = realize(chosen, weekday, warnings, input.startLocation);
   const pinnedShow = visits.find((visit) => visit.role === 'show' && visit.pinned);
   const dinnerVisit = visits.find((visit) => visit.role === 'dinner' && !visit.pinned);
   if (pinnedShow && dinnerVisit && dinnerVisit.startMin < 18 * 60 + 30) {
@@ -932,7 +963,7 @@ function schedule(input: PlanInput, places: Place[]): Itinerary {
       `Dinner is at ${formatMinutes(dinnerVisit.startMin)} so ${pinnedShow.title} stays at ${formatMinutes(pinnedShow.startMin)}.`
     );
   }
-  return finalize(input, pace, vibes, cluster, visits, warnings);
+  return finalize(input, pace, vibes, cluster, visits, warnings, input.startLocation);
 }
 
 export function summarizeItinerary(itinerary: Itinerary): string {
@@ -983,12 +1014,13 @@ async function applyGoogle(itinerary: Itinerary): Promise<Itinerary> {
     }
   }
   return finalize(
-    { date: itinerary.date, pace: itinerary.pace, vibes: itinerary.vibes },
+    { date: itinerary.date, pace: itinerary.pace, vibes: itinerary.vibes, startLocation: itinerary.startLocation },
     itinerary.pace,
     itinerary.vibes,
     itinerary.cluster,
     visits,
-    warnings
+    warnings,
+    itinerary.startLocation
   );
 }
 

@@ -2,6 +2,10 @@
 
 A one-day NYC itinerary built from Sam and Kailey's curated list. The planner is a slot template (breakfast or coffee, morning, lunch, afternoon, dinner, optional drinks) with clock windows, neighborhood clustering, and per-leg directions.
 
+## On an iPhone
+
+Add it to the home screen from Safari: Share → Add to Home Screen. It opens full screen, with the notch and home indicator padded, and the last generated day stays on the phone if the subway drops the signal. **Use my location** starts the first leg from where you are. Meal times do not move. Directions links open the Google Maps app when it is installed.
+
 ## Run
 
 ```bash

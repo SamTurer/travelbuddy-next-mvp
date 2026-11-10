@@ -1,10 +1,11 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { saveDraft } from '@/lib/draft';
 import { TripDraft } from '@/lib/types';
 import { AREA_OPTIONS, randomAreaValue } from '@/lib/areas';
+import { requestBrowserLocation } from '@/lib/device-location';
 
 export default function Home() {
   const router = useRouter();
@@ -14,6 +15,18 @@ export default function Home() {
   const [vibes, setVibes] = useState<string[]>([]);
   const [pace, setPace] = useState<'chill' | 'balanced' | 'max'>('balanced');
   const [focusAreaSelection, setFocusAreaSelection] = useState<string>('surprise');
+  const [startLocation, setStartLocation] = useState<TripDraft['startLocation']>(null);
+  const [locBusy, setLocBusy] = useState(false);
+  const [locError, setLocError] = useState<string | null>(null);
+  const [showInstallHint, setShowInstallHint] = useState(false);
+
+  useEffect(() => {
+    const ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const standalone =
+      window.matchMedia('(display-mode: standalone)').matches ||
+      (navigator as Navigator & { standalone?: boolean }).standalone === true;
+    if (ios && !standalone && !localStorage.getItem('tb-hide-install-hint')) setShowInstallHint(true);
+  }, []);
 
   const toggleVibe = (vibe: string) => {
     setVibes((prev) =>
@@ -58,6 +71,7 @@ export default function Home() {
       pace,
       focusArea: resolvedArea,
       mustDos: [],
+      startLocation: startLocation ?? null,
     };
 
     saveDraft(draft);
@@ -65,10 +79,25 @@ export default function Home() {
   };
 
   return (
-    <main className="container py-10 max-w-2xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6 text-center">🗽 Plan Your Perfect Day 🧭</h1>
-      <p className="text-lg text-center mb-10 text-slate-600">
-        Tell us a little about your trip and we’ll build the ideal itinerary for you.
+    <main className="px-4 py-6">
+      {showInstallHint && (
+        <div className="mb-4 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-700">
+          <p>On your iPhone, tap Share, then <strong>Add to Home Screen</strong>. It opens full screen, like an app.</p>
+          <button
+            type="button"
+            className="tap mt-2 text-base font-semibold text-slate-900"
+            onClick={() => {
+              localStorage.setItem('tb-hide-install-hint', '1');
+              setShowInstallHint(false);
+            }}
+          >
+            Got it
+          </button>
+        </div>
+      )}
+      <h1 className="mb-2 text-center text-3xl font-bold leading-tight">Plan your day</h1>
+      <p className="mb-6 text-center text-base text-slate-600">
+        A New York day from Sam and Kailey&apos;s list.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-8">
@@ -78,7 +107,7 @@ export default function Home() {
           <input
             type="text"
             placeholder="e.g., New York City"
-            className="w-full border rounded-lg px-4 py-2 text-lg"
+            className="field"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             required
@@ -90,7 +119,7 @@ export default function Home() {
           <label className="block text-lg font-semibold mb-2">📅 Date</label>
           <input
             type="date"
-            className="w-full border rounded-lg px-4 py-2 text-lg"
+            className="field"
             value={date}
             onChange={(e) => setDate(e.target.value)}
             required
@@ -108,7 +137,7 @@ export default function Home() {
                   type="button"
                   key={option.id}
                   onClick={() => toggleVibe(option.id)}
-                  className={`w-full rounded-2xl border px-4 py-4 text-left transition ${
+                  className={`tap w-full rounded-2xl border px-4 py-4 text-left transition ${
                     active
                       ? 'border-blue-600 bg-blue-50 shadow-sm'
                       : 'border-slate-300 hover:border-slate-400 bg-white'
@@ -128,7 +157,7 @@ export default function Home() {
           <select
             value={focusAreaSelection}
             onChange={(e) => setFocusAreaSelection(e.target.value)}
-            className="w-full border rounded-lg px-4 py-2 text-lg bg-white"
+            className="field"
           >
             {AREA_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
@@ -144,7 +173,7 @@ export default function Home() {
         {/* Pace */}
         <div>
           <label className="block text-lg font-semibold mb-4">⚡ Pace</label>
-          <div className="flex gap-4">
+          <div className="grid grid-cols-3 gap-2">
             {[
               { label: '😎 Chill', value: 'chill' },
               { label: '⚖️ Balanced', value: 'balanced' },
@@ -154,7 +183,7 @@ export default function Home() {
                 key={option.value}
                 type="button"
                 onClick={() => setPace(option.value as 'chill' | 'balanced' | 'max')}
-                className={`px-4 py-2 rounded-full border text-lg transition ${
+                className={`tap rounded-2xl border px-2 text-base font-semibold transition ${
                   pace === option.value
                     ? 'bg-green-600 text-white border-green-600'
                     : 'border-slate-400 text-slate-700 bg-white hover:bg-slate-100'
@@ -166,12 +195,33 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="pt-6 text-center">
+        <div>
+          <button
+            type="button"
+            onClick={async () => {
+              setLocError(null);
+              setLocBusy(true);
+              try {
+                setStartLocation(await requestBrowserLocation());
+              } catch (err: any) {
+                setLocError(err?.message || 'Could not read your location.');
+              } finally {
+                setLocBusy(false);
+              }
+            }}
+            className="tap w-full rounded-2xl border border-slate-300 bg-white px-4 text-base font-semibold text-slate-800"
+          >
+            {locBusy ? 'Finding you…' : startLocation ? 'Location saved for the first leg' : 'Use my location'}
+          </button>
+          {locError && <p className="mt-2 text-sm text-red-700">{locError}</p>}
+        </div>
+
+        <div className="pt-2">
           <button
             type="submit"
-            className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white text-xl rounded-lg shadow"
+            className="tap w-full rounded-2xl bg-green-600 text-xl font-semibold text-white shadow"
           >
-            Next →
+            Next
           </button>
         </div>
       </form>

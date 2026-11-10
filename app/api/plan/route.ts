@@ -11,6 +11,10 @@ const BodySchema = z.object({
   pace: z.enum(['chill', 'balanced', 'max']).default('balanced'),
   focusArea: z.string().optional().nullable(),
   locks: z.array(z.any()).optional().default([]),
+  startLocation: z
+    .object({ lat: z.number(), lng: z.number(), label: z.string().optional() })
+    .optional()
+    .nullable(),
 });
 
 export async function POST(req: NextRequest) {
@@ -30,6 +34,7 @@ export async function POST(req: NextRequest) {
       pace: parsed.data.pace,
       focusArea: parsed.data.focusArea,
       locks: parsed.data.locks,
+      startLocation: parsed.data.startLocation,
     });
     console.log(`[PERF] planDay: ${Date.now() - buildStart}ms`);
     console.log(`[PERF] TOTAL: ${Date.now() - startTime}ms`);
