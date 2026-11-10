@@ -35,6 +35,13 @@ async function main() {
 
   console.log(`✓ Found ${places.length} places`);
 
+  if (places.some((place) => Array.isArray(place.hours))) {
+    console.log('Hours are already weekday minute windows (Sunday = 0).');
+    console.log('This script writes the older Google periods shape, so it will not modify the file.');
+    console.log('Edit missing hours in data/nyc-places.json and run npm run validate:places.');
+    return;
+  }
+
   const needsEnrichment = places.filter(p => !p.hours);
   console.log(`⚠️  ${needsEnrichment.length} places need hours enrichment`);
 

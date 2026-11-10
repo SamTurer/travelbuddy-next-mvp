@@ -1,0 +1,18 @@
+[
+  {
+    "id": "sam",
+    "displayName": "Sam",
+    "bio": "Placeholder — Sam will add his credentials for recommending NYC restaurants, shops, and neighborhoods.",
+    "link": "",
+    "avatar": "",
+    "specialties": ["restaurants", "neighborhood spots", "downtown"]
+  },
+  {
+    "id": "kailey",
+    "displayName": "Kailey",
+    "bio": "Placeholder — Kailey will add her credentials for recommending NYC restaurants, shops, and days out.",
+    "link": "",
+    "avatar": "",
+    "specialties": ["restaurants", "shops", "days out"]
+  }
+]

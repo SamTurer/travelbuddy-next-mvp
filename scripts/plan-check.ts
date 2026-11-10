@@ -1,19 +1,15 @@
-import { plan } from '@/lib/planner';
-import { getPlacesDataset } from '@/lib/places-dataset';
+import { planDay, summarizeItinerary } from '@/lib/planner';
 
 async function main() {
-  const stops = await plan(
-    {
-      city: 'New York City',
-      date: '2024-10-10',
-      vibes: [],
-      pace: 'balanced',
-      focusArea: null,
-      locks: []
-    } as any,
-    getPlacesDataset()
-  );
-  console.log(stops.slice(0, 5));
+  const itinerary = await planDay({
+    city: 'New York City',
+    date: '2026-11-14',
+    vibes: ['local'],
+    pace: 'balanced',
+    focusArea: null,
+    locks: [],
+  });
+  console.log(summarizeItinerary(itinerary));
 }
 
 main();

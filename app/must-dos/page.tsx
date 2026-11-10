@@ -158,7 +158,7 @@ export default function MustDosPage() {
       <section className="mt-6 rounded-2xl border p-5">
         <div className="flex items-center justify-between">
           <h3 className="font-medium">What we understood</h3>
-          <span className="text-xs text-neutral-500">AI-enriched</span>
+          <span className="text-xs text-neutral-500">Parsed on the server. An AI key is optional.</span>
         </div>
 
         {previewError && <p className="mt-2 text-sm text-red-600">❌ {previewError}</p>}
