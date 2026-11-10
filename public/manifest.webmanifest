@@ -1,13 +1,13 @@
 {
-  "name": "TravelBuddy NYC",
-  "short_name": "TravelBuddy",
+  "name": "Travel Buddy",
+  "short_name": "Travel Buddy",
   "description": "A day in New York from Sam and Kailey's list.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#f8fafc",
-  "theme_color": "#0b1f33",
+  "background_color": "#F2F2F7",
+  "theme_color": "#F2F2F7",
   "icons": [
     {
       "src": "/icons/icon-192.png",

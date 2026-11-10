@@ -1,14 +1,14 @@
 import React from 'react';
-import { BOOKING_LABEL, BOOK_AHEAD_KINDS, type BookingKind } from '@/lib/booking';
+import { BOOKING_LABEL, type BookingKind } from '@/lib/booking';
 
 const TONE: Record<BookingKind, string> = {
-  walk_in: 'border-emerald-200 bg-emerald-50 text-emerald-800',
-  reservation_recommended: 'border-amber-200 bg-amber-50 text-amber-900',
-  reservation_required: 'border-orange-200 bg-orange-50 text-orange-900',
-  hard_to_book: 'border-rose-200 bg-rose-50 text-rose-900',
-  tickets_required: 'border-violet-200 bg-violet-50 text-violet-900',
-  no_reservations: 'border-slate-200 bg-slate-50 text-slate-700',
-  unknown: 'border-slate-200 bg-white text-slate-500',
+  walk_in: 'bg-[#34C75918] text-[#248A3D]',
+  reservation_recommended: 'bg-[#FF950014] text-[#C93400]',
+  reservation_required: 'bg-[#FF950014] text-[#C93400]',
+  hard_to_book: 'bg-[#FF950014] text-[#C93400]',
+  tickets_required: 'bg-[#FF950014] text-[#C93400]',
+  no_reservations: 'bg-[#78788014] text-[#636366]',
+  unknown: 'bg-[#78788014] text-[#636366]',
 };
 
 export default function BookingTag({
@@ -19,13 +19,11 @@ export default function BookingTag({
   note?: string;
 }) {
   if (!booking) return null;
-  const needsBook = BOOK_AHEAD_KINDS.has(booking);
   return (
     <span
-      className={`mt-2 inline-flex max-w-full items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${TONE[booking]}`}
+      className={`inline-flex max-w-full items-center rounded-md px-1.5 py-0.5 text-[11px] font-medium leading-snug ${TONE[booking]}`}
       title={note || undefined}
     >
-      {needsBook ? 'Book ahead · ' : ''}
       {BOOKING_LABEL[booking]}
       {note ? <span className="ml-1 font-normal opacity-80">· {note}</span> : null}
     </span>

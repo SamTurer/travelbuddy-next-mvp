@@ -90,99 +90,75 @@ export default function MustDosPage() {
   }
 
   return (
-    <main className="px-4 py-6">
-      <h1 className="mb-4 text-3xl font-semibold">Must-dos</h1>
+    <main className="px-5 pb-8 pt-2">
+      <h1 className="font-serif text-[32px] font-semibold leading-none tracking-tight">Must-dos</h1>
+      <p className="mt-1.5 text-[15px] text-mute">A time or a nickname is enough. No API key required.</p>
 
-      <section className="rounded-2xl border p-5 space-y-4">
-        <div>
-          <label className="block text-base font-medium">Add a must-do</label>
-          <div className="mt-2 flex gap-2">
-            <input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder='e.g., "Met Museum at noon"'
-              className="field min-w-0 flex-1"
-            />
-            <button onClick={addMustDo} className="tap shrink-0 rounded-xl border border-slate-800 px-4 text-base font-semibold">
-              Add
-            </button>
-          </div>
-          <p className="mt-1 text-xs text-neutral-500">
-            You can include time and neighborhood, e.g., &ldquo;Lilia Williamsburg 8:30pm&rdquo; or &ldquo;The Met afternoon&rdquo;.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="font-medium mb-2">Your list</h2>
-          {(draft?.mustDos?.length ?? 0) === 0 ? (
-            <p className="text-sm text-neutral-500">No must-dos yet.</p>
-          ) : (
-            <ul className="space-y-2">
-              {draft!.mustDos!.map((m, i) => (
-                <li key={typeof m === 'string' ? `${m}-${i}` : `${m.title}-${i}`} className="flex items-center justify-between rounded-lg border px-3 py-2">
-                  <span className="text-sm">
-                    {typeof m === 'string'
-                      ? m
-                      : [m.title, m.time, m.location].filter(Boolean).join(' • ')}
-                  </span>
-                  <button
-                    onClick={() => removeMustDo(i)}
-                    className="tap shrink-0 rounded-xl border px-3 text-base"
-                  >
-                    Remove
-                  </button>
-                </li>
-
-              ))}
-            </ul>
-          )}
-        </div>
-
-        <div className="grid gap-2">
-          <button
-            onClick={previewUnderstanding}
-            className="tap w-full rounded-2xl border px-4 text-base font-semibold"
-            disabled={previewLoading}
-          >
-            {previewLoading ? 'Parsing…' : 'Preview understanding'}
-          </button>
-          <button
-            onClick={toPlan}
-            className="tap w-full rounded-2xl bg-black px-4 text-base font-semibold text-white"
-          >
-            Generate plan
+      <div className="sec-label">Add one</div>
+      <div className="overflow-hidden rounded-xl bg-white">
+        <div className="flex items-center gap-2 px-3">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Met Museum at noon"
+            className="min-h-11 min-w-0 flex-1 bg-transparent text-base text-ink outline-none"
+          />
+          <button type="button" onClick={addMustDo} className="tap shrink-0 text-base font-semibold text-system">
+            Add
           </button>
         </div>
-      </section>
+        {(draft?.mustDos?.length ?? 0) === 0 ? (
+          <p className="border-t border-[#C6C6C8]/70 px-4 py-3 text-sm text-mute">No must-dos yet.</p>
+        ) : (
+          draft!.mustDos!.map((m, i) => (
+            <div key={typeof m === 'string' ? `${m}-${i}` : `${m.title}-${i}`} className="flex items-center gap-2 border-t border-[#C6C6C8]/70 px-4 py-2.5">
+              <span className="flex-1 text-base font-semibold tracking-tight">
+                {typeof m === 'string' ? m : [m.title, m.time, m.location].filter(Boolean).join(' · ')}
+              </span>
+              <button type="button" onClick={() => removeMustDo(i)} className="tap text-2xl font-light text-[#C7C7CC]" aria-label="Remove">
+                ×
+              </button>
+            </div>
+          ))
+        )}
+      </div>
+      <p className="mt-2 px-1 text-xs leading-snug text-mute">
+        Include a time or neighborhood, e.g. &ldquo;Met Museum at noon.&rdquo;
+      </p>
 
-      {/* Preview Panel */}
-      <section className="mt-6 rounded-2xl border p-5">
-        <div className="flex items-center justify-between">
-          <h3 className="font-medium">What we understood</h3>
-          <span className="text-xs text-neutral-500">Parsed on the server. An AI key is optional.</span>
+      <button
+        type="button"
+        onClick={previewUnderstanding}
+        className="tap mt-4 w-full rounded-xl bg-[#78788014] text-base font-semibold text-system"
+        disabled={previewLoading}
+      >
+        {previewLoading ? 'Parsing…' : 'Preview understanding'}
+      </button>
+      <button type="button" onClick={toPlan} className="tap mt-2 w-full rounded-xl bg-system text-[17px] font-semibold text-white">
+        Build my day
+      </button>
+
+      <section className="mt-5 rounded-[14px] bg-white px-4 py-3">
+        <div className="flex items-baseline justify-between gap-3">
+          <h2 className="text-[13px] font-semibold">What we understood</h2>
+          <span className="text-[11px] text-mute">Optional AI key</span>
         </div>
-
-        {previewError && <p className="mt-2 text-sm text-red-600">❌ {previewError}</p>}
-
+        {previewError && <p className="mt-2 text-sm text-red-600">{previewError}</p>}
         {preview.length > 0 ? (
-          <ul className="mt-3 flex flex-wrap gap-2">
+          <ul className="mt-2 space-y-2">
             {preview.map((p, i) => (
-              <li key={i} className="rounded-2xl border px-3 py-2 text-sm">
+              <li key={i}>
                 {p.matched ? (
                   <UnderstoodMatch title={p.title} neighborhood={p.location} time={p.time} />
                 ) : (
-                  <span>Kept as typed: {p.title}</span>
+                  <span className="text-sm">Kept as typed: {p.title}</span>
                 )}
               </li>
             ))}
           </ul>
         ) : (
           !previewLoading &&
-          !previewError && (
-            <p className="mt-2 text-xs text-neutral-500">
-              Click <em>Preview understanding</em> to see how we’ll interpret your must-dos.
-            </p>
-          )
+          !previewError && <p className="mt-2 text-xs text-mute">Preview to see the place and neighborhood we matched.</p>
         )}
       </section>
     </main>

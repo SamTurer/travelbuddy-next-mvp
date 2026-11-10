@@ -1,16 +1,30 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
+import { Fraunces, Inter } from 'next/font/google';
 import PwaRegister from './components/PwaRegister';
+import Wordmark from './components/Wordmark';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-fraunces',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-  title: 'TravelBuddy NYC',
+  title: 'Travel Buddy',
   description: "A day in New York from Sam and Kailey's list.",
-  applicationName: 'TravelBuddy',
+  applicationName: 'Travel Buddy',
   manifest: '/manifest.webmanifest',
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'black-translucent',
-    title: 'TravelBuddy',
+    statusBarStyle: 'default',
+    title: 'Travel Buddy',
   },
   icons: {
     icon: [
@@ -28,22 +42,23 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
-  themeColor: '#0b1f33',
+  themeColor: '#F2F2F7',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <body>
-        <header className="sticky top-0 z-20 bg-[#0b1f33] text-white" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
-          <div className="mx-auto flex max-w-2xl items-center justify-between px-4 py-3">
-            <span className="text-base font-semibold tracking-tight">TravelBuddy</span>
-            <span className="text-xs font-medium uppercase tracking-wider text-slate-300">NYC</span>
+        <header
+          className="sticky top-0 z-20 bg-grouped/95 backdrop-blur"
+          style={{ paddingTop: 'env(safe-area-inset-top)' }}
+        >
+          <div className="mx-auto flex max-w-2xl items-center justify-between px-5 py-2">
+            <Wordmark />
+            <span className="text-[13px] font-semibold tracking-wide text-mute">NYC</span>
           </div>
         </header>
-        <div className="mx-auto min-h-[100dvh] max-w-2xl pb-[max(1.25rem,env(safe-area-inset-bottom))]">
-          {children}
-        </div>
+        <div className="mx-auto min-h-[100dvh] max-w-2xl pb-[max(1.25rem,env(safe-area-inset-bottom))]">{children}</div>
         <PwaRegister />
       </body>
     </html>

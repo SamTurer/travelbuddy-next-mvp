@@ -38,17 +38,17 @@ export default function Home() {
     {
       id: 'classic',
       title: 'Classic',
-      blurb: 'Iconic spots with a local twist.',
+      blurb: 'Iconic, with a local twist',
     },
     {
       id: 'curator',
       title: 'Curator',
-      blurb: "Art, design, and the city's bold ideas.",
+      blurb: 'Art and design',
     },
     {
       id: 'local',
       title: 'Local',
-      blurb: 'Off the beaten path and full of character.',
+      blurb: 'Character, less obvious',
     },
   ];
 
@@ -79,13 +79,15 @@ export default function Home() {
   };
 
   return (
-    <main className="px-4 py-6">
+    <main className="px-5 pb-8 pt-2">
       {showInstallHint && (
-        <div className="mb-4 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-700">
-          <p>On your iPhone, tap Share, then <strong>Add to Home Screen</strong>. It opens full screen, like an app.</p>
+        <div className="mb-4 rounded-xl bg-white px-4 py-3 text-[15px] text-ink">
+          <p>
+            On your iPhone, tap Share, then <strong>Add to Home Screen</strong>. It opens full screen, like an app.
+          </p>
           <button
             type="button"
-            className="tap mt-2 text-base font-semibold text-slate-900"
+            className="tap mt-1 text-base font-semibold text-system"
             onClick={() => {
               localStorage.setItem('tb-hide-install-hint', '1');
               setShowInstallHint(false);
@@ -95,135 +97,102 @@ export default function Home() {
           </button>
         </div>
       )}
-      <h1 className="mb-2 text-center text-3xl font-bold leading-tight">Plan your day</h1>
-      <p className="mb-6 text-center text-base text-slate-600">
-        A New York day from Sam and Kailey&apos;s list.
-      </p>
+      <h1 className="font-serif text-[32px] font-semibold leading-none tracking-tight">Plan your day</h1>
+      <p className="mt-1.5 text-[15px] text-mute">A New York day from Sam and Kailey&apos;s list.</p>
 
-      <form onSubmit={handleSubmit} className="space-y-8">
-        {/* City */}
-        <div>
-          <label className="block text-lg font-semibold mb-2">🌆 City</label>
-          <input
-            type="text"
-            placeholder="e.g., New York City"
-            className="field"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            required
-          />
+      <form onSubmit={handleSubmit}>
+        <div className="mt-4 overflow-hidden rounded-xl bg-white">
+          <label className="flex min-h-11 items-center justify-between gap-3 px-4">
+            <span className="text-[17px]">City</span>
+            <input
+              type="text"
+              placeholder="New York City"
+              className="field"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              required
+            />
+          </label>
+          <label className="relative flex min-h-11 items-center justify-between gap-3 px-4 before:absolute before:left-4 before:right-0 before:top-0 before:h-px before:bg-[#C6C6C8]">
+            <span className="text-[17px]">Date</span>
+            <input type="date" className="field" value={date} onChange={(e) => setDate(e.target.value)} required />
+          </label>
+          <label className="relative flex min-h-11 items-center justify-between gap-3 px-4 before:absolute before:left-4 before:right-0 before:top-0 before:h-px before:bg-[#C6C6C8]">
+            <span className="text-[17px]">Area</span>
+            <select
+              value={focusAreaSelection}
+              onChange={(e) => setFocusAreaSelection(e.target.value)}
+              className="field max-w-[60%]"
+            >
+              {AREA_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
 
-        {/* Date */}
-        <div>
-          <label className="block text-lg font-semibold mb-2">📅 Date</label>
-          <input
-            type="date"
-            className="field"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            required
-          />
-        </div>
-
-        {/* Vibes */}
-        <div>
-          <label className="block text-lg font-semibold mb-4">✨ Vibes</label>
-          <div className="grid gap-3">
-            {vibeOptions.map((option) => {
-              const active = vibes.includes(option.id);
-              return (
-                <button
-                  type="button"
-                  key={option.id}
-                  onClick={() => toggleVibe(option.id)}
-                  className={`tap w-full rounded-2xl border px-4 py-4 text-left transition ${
-                    active
-                      ? 'border-blue-600 bg-blue-50 shadow-sm'
-                      : 'border-slate-300 hover:border-slate-400 bg-white'
-                  }`}
-                >
-                  <div className="text-xl font-semibold">{option.title}</div>
-                  <p className="mt-1 text-base text-slate-600">{option.blurb}</p>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Focus area */}
-        <div>
-          <label className="block text-lg font-semibold mb-2">📍 Area of town</label>
-          <select
-            value={focusAreaSelection}
-            onChange={(e) => setFocusAreaSelection(e.target.value)}
-            className="field"
-          >
-            {AREA_OPTIONS.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <p className="mt-1 text-sm text-slate-500">
-            Choose a neighborhood focus or pick <em>Surprise me</em> for a random adventure.
-          </p>
-        </div>
-
-        {/* Pace */}
-        <div>
-          <label className="block text-lg font-semibold mb-4">⚡ Pace</label>
-          <div className="grid grid-cols-3 gap-2">
-            {[
-              { label: '😎 Chill', value: 'chill' },
-              { label: '⚖️ Balanced', value: 'balanced' },
-              { label: '🏃‍♂️ Max Exploration', value: 'max' },
-            ].map((option) => (
+        <div className="sec-label">Vibe</div>
+        <div className="flex gap-2">
+          {vibeOptions.map((option) => {
+            const active = vibes.includes(option.id);
+            return (
               <button
-                key={option.value}
                 type="button"
-                onClick={() => setPace(option.value as 'chill' | 'balanced' | 'max')}
-                className={`tap rounded-2xl border px-2 text-base font-semibold transition ${
-                  pace === option.value
-                    ? 'bg-green-600 text-white border-green-600'
-                    : 'border-slate-400 text-slate-700 bg-white hover:bg-slate-100'
-                }`}
+                key={option.id}
+                onClick={() => toggleVibe(option.id)}
+                className={`min-h-0 flex-1 rounded-xl px-2.5 py-3 text-left ${active ? 'bg-system text-white' : 'bg-white'}`}
               >
-                {option.label}
+                <div className="text-[15px] font-semibold tracking-tight">{option.title}</div>
+                <p className={`mt-0.5 text-[11px] leading-snug ${active ? 'text-white/90' : 'text-mute'}`}>{option.blurb}</p>
               </button>
-            ))}
-          </div>
+            );
+          })}
         </div>
 
-        <div>
-          <button
-            type="button"
-            onClick={async () => {
-              setLocError(null);
-              setLocBusy(true);
-              try {
-                setStartLocation(await requestBrowserLocation());
-              } catch (err: any) {
-                setLocError(err?.message || 'Could not read your location.');
-              } finally {
-                setLocBusy(false);
-              }
-            }}
-            className="tap w-full rounded-2xl border border-slate-300 bg-white px-4 text-base font-semibold text-slate-800"
-          >
-            {locBusy ? 'Finding you…' : startLocation ? 'Location saved for the first leg' : 'Use my location'}
-          </button>
-          {locError && <p className="mt-2 text-sm text-red-700">{locError}</p>}
+        <div className="sec-label">Pace</div>
+        <div className="flex rounded-[9px] bg-[#78788022] p-0.5">
+          {[
+            { label: 'Chill', value: 'chill' },
+            { label: 'Balanced', value: 'balanced' },
+            { label: 'Max', value: 'max' },
+          ].map((option) => (
+            <button
+              key={option.value}
+              type="button"
+              onClick={() => setPace(option.value as 'chill' | 'balanced' | 'max')}
+              className={`h-8 flex-1 rounded-md text-[13px] font-semibold ${
+                pace === option.value ? 'bg-white text-ink shadow-sm' : 'text-ink'
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
         </div>
 
-        <div className="pt-2">
-          <button
-            type="submit"
-            className="tap w-full rounded-2xl bg-green-600 text-xl font-semibold text-white shadow"
-          >
-            Next
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={async () => {
+            setLocError(null);
+            setLocBusy(true);
+            try {
+              setStartLocation(await requestBrowserLocation());
+            } catch (err: any) {
+              setLocError(err?.message || 'Could not read your location.');
+            } finally {
+              setLocBusy(false);
+            }
+          }}
+          className="tap mt-4 w-full text-left text-base font-medium text-system"
+        >
+          {locBusy ? 'Finding you…' : startLocation ? 'Location saved for the first leg' : 'Use my location'}
+        </button>
+        {locError && <p className="mt-1 text-sm text-red-700">{locError}</p>}
+
+        <button type="submit" className="tap mt-4 w-full rounded-xl bg-system text-[17px] font-semibold text-white">
+          Continue
+        </button>
       </form>
     </main>
   );
