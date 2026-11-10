@@ -39,7 +39,7 @@ export type PlanInput = {
   startLocation?: { lat: number; lng: number; label?: string } | null;
 };
 
-export type VisitRole = 'breakfast' | 'activity' | 'lunch' | 'dinner' | 'drinks' | 'show' | 'free';
+export type VisitRole = 'breakfast' | 'coffee' | 'activity' | 'lunch' | 'dinner' | 'drinks' | 'show' | 'free';
 
 export type ItineraryVisit = {
   role: VisitRole;
@@ -126,6 +126,7 @@ const PACE_SHAPE: Record<Pace, { morning: number; afternoon: number; drinks: boo
 
 const ROLE_ORDER: Record<VisitRole, number> = {
   breakfast: 0,
+  coffee: 0,
   activity: 1,
   lunch: 2,
   dinner: 3,
@@ -133,6 +134,9 @@ const ROLE_ORDER: Record<VisitRole, number> = {
   drinks: 5,
   free: 6,
 };
+
+/** Within this many minutes, a coffee Sam has actually recommended beats a placeholder. */
+const COFFEE_TIE_MINUTES = 4;
 
 type SlotRole = Exclude<VisitRole, 'free'>;
 
@@ -167,6 +171,9 @@ type Chosen = Request & {
 
 function dwell(place: Place | null, role: SlotRole, pace: Pace): number {
   if (role === 'show') return 165;
+  // A coffee stop is a short visit. Keep it long enough that realize does not drop it,
+  // and short enough that a shop open from the morning still fits.
+  if (role === 'coffee') return 30;
   const fallback = {
     chill: { breakfast: 60, activity: 120, lunch: 90, dinner: 120, drinks: 75, show: 165 },
     balanced: { breakfast: 45, activity: 90, lunch: 75, dinner: 90, drinks: 70, show: 165 },
@@ -185,6 +192,7 @@ function dwell(place: Place | null, role: SlotRole, pace: Pace): number {
 }
 
 function categoriesFor(role: SlotRole): string[] {
+  if (role === 'coffee') return ['coffee'];
   if (role === 'breakfast') return BREAKFAST_CATEGORIES;
   if (role === 'lunch') return LUNCH_CATEGORIES;
   if (role === 'dinner') return DINNER_CATEGORIES;
@@ -193,7 +201,7 @@ function categoriesFor(role: SlotRole): string[] {
 }
 
 function isMeal(role: SlotRole): boolean {
-  return role === 'breakfast' || role === 'lunch' || role === 'dinner';
+  return role === 'breakfast' || role === 'coffee' || role === 'lunch' || role === 'dinner';
 }
 
 function vibeScore(place: Place, vibes: string[]): number {
@@ -553,7 +561,9 @@ function pickPlace(
       request.role !== 'show'
     );
     if (!fit) continue;
-    const travel = prev ? fit.travel : 0;
+    // Coffee uses the real walk from the anchor, including the first stop of the day,
+    // so the nearest open branch wins instead of an arbitrary shop in the neighborhood.
+    const travel = request.role === 'coffee' || prev ? fit.travel : 0;
     const primary = focusBias && fit.hoodId === cluster.primary;
     let score = vibeScore(place, vibes) * 3 - (primary ? Math.min(travel, 20) * 0.4 : travel * 1.1);
     score -= Math.abs(fit.start - request.ideal) / 20;
@@ -568,10 +578,23 @@ function pickPlace(
     viable.push({ place, branch: fit.branch, hoodId: fit.hoodId, start: fit.start, duration: fit.duration, score, travel, primary });
   }
   const nearby = viable.filter((item) => item.travel <= 22 || item.primary);
-  const ranked = (nearby.length ? nearby : viable).sort(
-    (a, b) => b.score - a.score || a.place.name.localeCompare(b.place.name)
-  );
+  const ranked = (nearby.length ? nearby : viable).sort((a, b) => comparePicks(a, b, request.role));
   return ranked[0] ?? null;
+}
+
+function comparePicks(
+  a: { score: number; travel: number; place: Place },
+  b: { score: number; travel: number; place: Place },
+  role: SlotRole
+): number {
+  if (
+    role === 'coffee' &&
+    Math.abs(a.travel - b.travel) <= COFFEE_TIE_MINUTES &&
+    Boolean(a.place.placeholder) !== Boolean(b.place.placeholder)
+  ) {
+    return a.place.placeholder ? 1 : -1;
+  }
+  return b.score - a.score || a.place.name.localeCompare(b.place.name);
 }
 
 function buildRequests(input: PlanInput, musts: ParsedMust[], pace: Pace, warnings: string[]): Request[] {
@@ -1062,24 +1085,46 @@ function schedule(input: PlanInput, places: Place[]): Itinerary {
       if (chosenMust.lat != null && chosenMust.lng != null) prevPoint = { lat: chosenMust.lat, lng: chosenMust.lng };
       continue;
     }
-    const picked = pickPlace(
-      request,
-      openPlaces,
-      cluster,
-      used,
-      weekday,
-      pace,
-      vibes,
-      Boolean(focus),
-      anchorPoint(),
-      prevPoint
-    );
+    // Breakfast or coffee: fill the morning slot from a coffee shop when one is open,
+    // using that shop's nearest branch. Fall back to a sit-down breakfast otherwise.
+    let filled = request;
+    let picked: ReturnType<typeof pickPlace> = null;
+    if (request.role === 'breakfast' && !request.must) {
+      const coffeeRequest: Request = { ...request, role: 'coffee', duration: dwell(null, 'coffee', pace) };
+      picked = pickPlace(
+        coffeeRequest,
+        openPlaces,
+        cluster,
+        used,
+        weekday,
+        pace,
+        vibes,
+        Boolean(focus),
+        anchorPoint(),
+        prevPoint
+      );
+      if (picked) filled = coffeeRequest;
+    }
+    if (!picked) {
+      picked = pickPlace(
+        request,
+        openPlaces,
+        cluster,
+        used,
+        weekday,
+        pace,
+        vibes,
+        Boolean(focus),
+        anchorPoint(),
+        prevPoint
+      );
+    }
     if (!picked) {
       if (isMeal(request.role)) warnings.push(`No open ${request.role} spot fit in ${cluster.label}.`);
       continue;
     }
     used.add(picked.place.id);
-    const next = fromPlace(picked.place, picked.branch, picked.hoodId, request, picked.start, picked.duration);
+    const next = fromPlace(picked.place, picked.branch, picked.hoodId, filled, picked.start, picked.duration);
     chosen.push(next);
     prevPoint = { lat: picked.branch.lat, lng: picked.branch.lng };
   }
@@ -1174,9 +1219,12 @@ export async function buildItinerary(input: PlanInput, dataset?: Place[]): Promi
 export const plan = planDay;
 
 async function fillAiGaps(itinerary: Itinerary, input: PlanInput, places: Place[]): Promise<Itinerary> {
-  const missingMeal = (['breakfast', 'lunch', 'dinner'] as const).find(
-    (role) => !itinerary.visits.some((visit) => visit.role === role)
-  );
+  const missingMeal = (['breakfast', 'lunch', 'dinner'] as const).find((role) => {
+    if (role === 'breakfast') {
+      return !itinerary.visits.some((visit) => visit.role === 'breakfast' || visit.role === 'coffee');
+    }
+    return !itinerary.visits.some((visit) => visit.role === role);
+  });
   if (!missingMeal) return itinerary;
   const text = await grokComplete(
     [
@@ -1309,7 +1357,9 @@ export async function replanItinerary(input: {
     const hood = branchHood(place, branch);
     if (clusterHoods && (!hood || !clusterHoods.includes(hood))) continue;
     if (!visitFitsHours({ hours: branch.hours }, weekday, start, Math.min(duration, place.duration_max || duration))) continue;
-    const travel = estimateLeg(anchor, branch).minutes;
+    const travel =
+      estimateLeg(anchor, branch).minutes +
+      (place.placeholder && place.categories.includes('coffee') ? COFFEE_TIE_MINUTES : 0);
     let score = (mood.includes('different') ? -1 : 1) * vibeScore(place, vibes) * 3 - travel * 0.3;
     if (focus && hood === focus) score += 10;
     if (!best || score > best.score || (score === best.score && place.name.localeCompare(best.place.name) < 0)) {

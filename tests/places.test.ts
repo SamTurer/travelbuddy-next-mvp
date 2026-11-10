@@ -4,18 +4,32 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import RecommendedBy from '../app/components/RecommendedBy';
 import { chooseNearestBranch, getPlaces, getPlanningPlaces, isBookingKind } from '../lib/places';
-import { getRecommenders } from '../lib/recommenders';
+import { formatRecommendedBy, getRecommenders, resolveRecommendations } from '../lib/recommenders';
 import { validatePlaces, validateCuratedList } from '../lib/validate-places';
 import type { Place } from '../lib/places';
 
-test('every curated place is recommended by Sam and Kailey and has a booking field', () => {
+test('every curated place has a known recommender and a booking field', () => {
   const places = getPlaces();
-  assert.equal(places.length, 138);
+  const known = new Set(getRecommenders().map((person) => person.id));
+  assert.equal(places.length, 173);
+  assert.equal(places.reduce((sum, place) => sum + (place.locations ?? []).length, 0), 266);
+  const placeholders = places.filter((place) => place.placeholder === true);
+  assert.equal(placeholders.length, 35);
+  for (const place of placeholders) {
+    assert.ok(place.categories.includes('coffee'), place.name);
+  }
   for (const place of places) {
-    assert.deepEqual(
-      place.recommended_by.map((ref) => ref.recommenderId).sort(),
-      ['kailey', 'sam']
-    );
+    assert.ok(place.recommended_by.length > 0, place.name);
+    for (const ref of place.recommended_by) {
+      assert.ok(known.has(ref.recommenderId), `${place.name} → ${ref.recommenderId}`);
+    }
+    if (!place.placeholder) {
+      assert.deepEqual(
+        place.recommended_by.map((ref) => ref.recommenderId).sort(),
+        ['kailey', 'sam'],
+        place.name
+      );
+    }
     assert.equal(typeof place.note, 'string');
     assert.ok(isBookingKind(place.booking));
     assert.equal(typeof place.lat, 'number');
@@ -44,9 +58,29 @@ test('recommenders are seeded for a future profile page', () => {
   assert.ok(kailey);
   assert.equal(sam.displayName, 'Sam');
   assert.equal(kailey.displayName, 'Kailey');
+  assert.equal(sam.type, 'person');
+  assert.equal(kailey.type, 'person');
   assert.ok(sam.bio.length > 10);
   assert.ok(kailey.bio.length > 10);
   assert.ok(Array.isArray(sam.specialties));
+
+  const infatuation = people.find((person) => person.id === 'the-infatuation');
+  const emily = people.find((person) => person.id === 'emily-wafler');
+  assert.ok(infatuation);
+  assert.equal(infatuation.type, 'publication');
+  assert.equal(infatuation.displayName, 'The Infatuation');
+  assert.equal(infatuation.url, 'https://www.theinfatuation.com/');
+  assert.ok(emily);
+  assert.equal(emily.type, 'friend');
+  assert.equal(emily.displayName, 'Emily Wafler');
+
+  const resolved = resolveRecommendations([{ recommenderId: 'the-infatuation' }, { recommenderId: 'eater-ny' }]);
+  assert.equal(formatRecommendedBy(resolved), 'The Infatuation, Eater NY');
+  assert.equal(formatRecommendedBy(resolveRecommendations([{ recommenderId: 'emily-wafler' }])), 'Emily Wafler');
+  assert.equal(
+    formatRecommendedBy(resolveRecommendations([{ recommenderId: 'sam' }, { recommenderId: 'kailey' }])),
+    'Sam & Kailey'
+  );
 });
 
 test('the nearest branch is the one closest to the anchor', () => {
@@ -120,4 +154,36 @@ test('Recommended by renders each name for a future profile link and is not a li
   assert.match(html, />Sam</);
   assert.match(html, />Kailey</);
   assert.doesNotMatch(html, /<a /);
+
+  const publications = renderToStaticMarkup(
+    createElement(RecommendedBy, {
+      people: [
+        {
+          id: 'the-infatuation',
+          displayName: 'The Infatuation',
+          type: 'publication',
+          url: 'https://www.theinfatuation.com/',
+        },
+        { id: 'eater-ny', displayName: 'Eater NY', type: 'publication', url: 'https://ny.eater.com/' },
+      ],
+    })
+  );
+  assert.match(publications, /Recommended by/);
+  assert.match(publications, />The Infatuation</);
+  assert.match(publications, />Eater NY</);
+  assert.match(publications, /data-recommender-id="the-infatuation"/);
+  assert.match(publications, /data-recommender-type="publication"/);
+  assert.match(publications, /data-recommender-url="https:\/\/www.theinfatuation.com\/"/);
+  assert.doesNotMatch(publications, />the-infatuation</);
+  assert.doesNotMatch(publications, / & /);
+  assert.doesNotMatch(publications, /<a /);
+
+  const friend = renderToStaticMarkup(
+    createElement(RecommendedBy, {
+      people: [{ id: 'emily-wafler', displayName: 'Emily Wafler', type: 'friend' }],
+    })
+  );
+  assert.match(friend, /Recommended by/);
+  assert.match(friend, />Emily Wafler</);
+  assert.match(friend, /data-recommender-type="friend"/);
 });

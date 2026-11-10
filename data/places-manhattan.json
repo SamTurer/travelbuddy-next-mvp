@@ -698,6 +698,253 @@
     ]
   },
   {
+    "id": "arabica",
+    "name": "% Arabica",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Midtown",
+    "area": "Midtown",
+    "lat": 40.7620689,
+    "lng": -73.9773377,
+    "duration_min": 10,
+    "duration_max": 30,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly",
+      "touristy"
+    ],
+    "description": "A Japanese specialty-coffee group with Manhattan shops at West 54th Street, Rockefeller Center, and Prince Street.",
+    "hours": [
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "eater-ny"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "arabicacoffeeus.com/pages/locations",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "37 W 54th St, New York, NY 10019",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "arabica--west-54th-street",
+        "label": "West 54th Street",
+        "address": "37 W 54th St, New York, NY 10019",
+        "lat": 40.7620689,
+        "lng": -73.9773377,
+        "neighborhood": "Midtown",
+        "hours": [
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "arabicacoffeeus.com/pages/locations",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "arabica--30-rockefeller-center",
+        "label": "30 Rockefeller Center",
+        "address": "1254 6th Ave, New York, NY 10112",
+        "lat": 40.7596592,
+        "lng": -73.9804771,
+        "neighborhood": "Midtown",
+        "hours": [
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "arabicacoffeeus.com/pages/locations",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "arabica--nolita",
+        "label": "Nolita",
+        "address": "8 Prince St, New York, NY 10012",
+        "lat": 40.7224916,
+        "lng": -73.9938466,
+        "neighborhood": "Nolita",
+        "hours": [
+          [
+            [
+              450,
+              1170
+            ]
+          ],
+          [
+            [
+              450,
+              1170
+            ]
+          ],
+          [
+            [
+              450,
+              1170
+            ]
+          ],
+          [
+            [
+              450,
+              1170
+            ]
+          ],
+          [
+            [
+              450,
+              1170
+            ]
+          ],
+          [
+            [
+              450,
+              1170
+            ]
+          ],
+          [
+            [
+              450,
+              1170
+            ]
+          ]
+        ],
+        "hours_source": "arabicacoffeeus.com/pages/locations",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "bar-bianchi",
     "name": "Bar Bianchi",
     "category": "drinks",
@@ -2086,6 +2333,337 @@
     ]
   },
   {
+    "id": "black-cat-coffee",
+    "name": "Black Cat Coffee",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Lower East Side",
+    "area": "Downtown",
+    "lat": 40.7191128,
+    "lng": -73.9845243,
+    "duration_min": 20,
+    "duration_max": 60,
+    "vibe_tags": [
+      "cafe",
+      "local"
+    ],
+    "energy_tags": [
+      "casual",
+      "bustling"
+    ],
+    "description": "A downstairs LES coffee shop that still feels like a '90s hang: leather couches, board games, and regular performances.",
+    "hours": [
+      [
+        [
+          480,
+          1320
+        ]
+      ],
+      [
+        [
+          420,
+          1320
+        ]
+      ],
+      [
+        [
+          420,
+          1320
+        ]
+      ],
+      [
+        [
+          420,
+          1320
+        ]
+      ],
+      [
+        [
+          420,
+          1320
+        ]
+      ],
+      [
+        [
+          420,
+          1320
+        ]
+      ],
+      [
+        [
+          480,
+          1320
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "the-infatuation"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "blackcatles.com/contact (Mon–Fri 7 AM–10 PM, Sat–Sun 8 AM–10 PM; official page could not be fetched directly in this session, hours taken from the indexed official contact page and matching Yelp listing)",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "172 Rivington St, New York, NY 10002",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "black-cat-coffee--rivington-street",
+        "label": "Rivington Street",
+        "address": "172 Rivington St, New York, NY 10002",
+        "lat": 40.7191128,
+        "lng": -73.9845243,
+        "neighborhood": "Lower East Side",
+        "hours": [
+          [
+            [
+              480,
+              1320
+            ]
+          ],
+          [
+            [
+              420,
+              1320
+            ]
+          ],
+          [
+            [
+              420,
+              1320
+            ]
+          ],
+          [
+            [
+              420,
+              1320
+            ]
+          ],
+          [
+            [
+              420,
+              1320
+            ]
+          ],
+          [
+            [
+              420,
+              1320
+            ]
+          ],
+          [
+            [
+              480,
+              1320
+            ]
+          ]
+        ],
+        "hours_source": "blackcatles.com/contact (Mon–Fri 7 AM–10 PM, Sat–Sun 8 AM–10 PM; official page could not be fetched directly in this session, hours taken from the indexed official contact page and matching Yelp listing)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "black-press-coffee",
+    "name": "Black Press Coffee",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Upper West Side",
+    "area": "Uptown",
+    "lat": 40.7780161,
+    "lng": -73.978577,
+    "duration_min": 10,
+    "duration_max": 30,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A small local coffee company with an Upper West Side cafe on Columbus and an Upper East Side cafe on Third Avenue.",
+    "hours": [
+      [
+        [
+          420,
+          1140
+        ]
+      ],
+      [
+        [
+          420,
+          1140
+        ]
+      ],
+      [
+        [
+          420,
+          1140
+        ]
+      ],
+      [
+        [
+          420,
+          1140
+        ]
+      ],
+      [
+        [
+          420,
+          1140
+        ]
+      ],
+      [
+        [
+          420,
+          1140
+        ]
+      ],
+      [
+        [
+          420,
+          1140
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "columbus-avenue-bid"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "blackpresscoffee.com/locations",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "274 Columbus Ave, New York, NY 10023",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "black-press-coffee--columbus-avenue",
+        "label": "Columbus Avenue",
+        "address": "274 Columbus Ave, New York, NY 10023",
+        "lat": 40.7780161,
+        "lng": -73.978577,
+        "neighborhood": "Upper West Side",
+        "hours": [
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ]
+        ],
+        "hours_source": "blackpresscoffee.com/locations",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "black-press-coffee--third-avenue",
+        "label": "Third Avenue",
+        "address": "1065 3rd Ave, New York, NY 10065",
+        "lat": 40.763828,
+        "lng": -73.9647992,
+        "neighborhood": "Upper East Side",
+        "hours": [
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "blackpresscoffee.com/locations",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "bloomingdale-s",
     "name": "Bloomingdale's",
     "category": "shopping",
@@ -3145,6 +3723,607 @@
     ]
   },
   {
+    "id": "cafe-grumpy",
+    "name": "Cafe Grumpy",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Multiple Manhattan Neighborhoods",
+    "area": "Multiple",
+    "lat": 40.7039608,
+    "lng": -74.0118856,
+    "duration_min": 10,
+    "duration_max": 25,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A New York roaster with Manhattan cafes from the Financial District up to Rockefeller Center, plus two Whole Foods to-go bars.",
+    "hours": [
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "new-york-dearest"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "cafegrumpy.com/locations/financial-district/",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "20 Stone St, New York, NY 10004",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "cafe-grumpy--financial-district",
+        "label": "Financial District",
+        "address": "20 Stone St, New York, NY 10004",
+        "lat": 40.7039608,
+        "lng": -74.0118856,
+        "neighborhood": "Financial District",
+        "hours": [
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "cafegrumpy.com/locations/financial-district/",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "cafe-grumpy--lower-east-side",
+        "label": "Lower East Side",
+        "address": "13 Essex St, New York, NY 10002",
+        "lat": 40.7151436,
+        "lng": -73.9902565,
+        "neighborhood": "Lower East Side",
+        "hours": [
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ]
+        ],
+        "hours_source": "cafegrumpy.com/locations/lower-east-side/",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "cafe-grumpy--fashion-district",
+        "label": "Fashion District",
+        "address": "200 W 39th St, New York, NY 10018",
+        "lat": 40.7542367,
+        "lng": -73.9889033,
+        "neighborhood": "Midtown",
+        "hours": [
+          [
+            [
+              540,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              540,
+              960
+            ]
+          ]
+        ],
+        "hours_source": "cafegrumpy.com/locations/fashion-district/",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "cafe-grumpy--grand-central-terminal",
+        "label": "Grand Central Terminal",
+        "address": "89 E 42nd St, New York, NY 10017",
+        "lat": 40.7526944,
+        "lng": -73.977253,
+        "neighborhood": "Midtown East",
+        "hours": [
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ]
+        ],
+        "hours_source": "cafegrumpy.com/locations/grand-central-terminal",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "cafe-grumpy--rockefeller-center-rink-level",
+        "label": "Rockefeller Center (rink level)",
+        "address": "30 Rockefeller Plaza, New York, NY 10112",
+        "lat": 40.7591232,
+        "lng": -73.979556,
+        "neighborhood": "Midtown",
+        "hours": [
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "cafegrumpy.com/locations/rockcenter",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "cafe-grumpy--nomad-inside-whole-foods",
+        "label": "NoMad (inside Whole Foods)",
+        "address": "63 Madison Ave, New York, NY 10016",
+        "lat": 40.7436257,
+        "lng": -73.9857495,
+        "neighborhood": "NoMad",
+        "hours": [
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "cafegrumpy.com/nomad/",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "cafe-grumpy--manhattan-west-inside-whole-foods",
+        "label": "Manhattan West (inside Whole Foods)",
+        "address": "450 W 33rd St, New York, NY 10001",
+        "lat": 40.7530239,
+        "lng": -73.9995138,
+        "neighborhood": "Hudson Yards / Chelsea",
+        "hours": [
+          [
+            [
+              450,
+              1080
+            ]
+          ],
+          [
+            [
+              450,
+              1080
+            ]
+          ],
+          [
+            [
+              450,
+              1080
+            ]
+          ],
+          [
+            [
+              450,
+              1080
+            ]
+          ],
+          [
+            [
+              450,
+              1080
+            ]
+          ],
+          [
+            [
+              450,
+              1080
+            ]
+          ],
+          [
+            [
+              450,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "cafegrumpy.com/manhattan-west/",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "cafe-integral",
+    "name": "Café Integral",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Nolita",
+    "area": "Downtown",
+    "lat": 40.7203889,
+    "lng": -73.995174,
+    "duration_min": 10,
+    "duration_max": 30,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "calm-indoors",
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A stylish Nolita shop dedicated to Nicaraguan coffee, with housemade alt-milks and a cozy corner bench.",
+    "hours": [
+      [
+        [
+          480,
+          960
+        ]
+      ],
+      [
+        [
+          480,
+          960
+        ]
+      ],
+      [
+        [
+          480,
+          960
+        ]
+      ],
+      [
+        [
+          480,
+          960
+        ]
+      ],
+      [
+        [
+          480,
+          960
+        ]
+      ],
+      [
+        [
+          480,
+          960
+        ]
+      ],
+      [
+        [
+          480,
+          960
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sprudge"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "cafeintegral.com/nyc",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "149 Elizabeth St, New York, NY 10012",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "cafe-integral--nolita",
+        "label": "Nolita",
+        "address": "149 Elizabeth St, New York, NY 10012",
+        "lat": 40.7203889,
+        "lng": -73.995174,
+        "neighborhood": "Nolita",
+        "hours": [
+          [
+            [
+              480,
+              960
+            ]
+          ],
+          [
+            [
+              480,
+              960
+            ]
+          ],
+          [
+            [
+              480,
+              960
+            ]
+          ],
+          [
+            [
+              480,
+              960
+            ]
+          ],
+          [
+            [
+              480,
+              960
+            ]
+          ],
+          [
+            [
+              480,
+              960
+            ]
+          ],
+          [
+            [
+              480,
+              960
+            ]
+          ]
+        ],
+        "hours_source": "cafeintegral.com/nyc",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "cafe-luxembourg",
     "name": "Café Luxembourg",
     "category": "dinner",
@@ -3454,6 +4633,144 @@
           ]
         ],
         "hours_source": "neuegalerie.org (closed Tue)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "caffe-paradiso",
+    "name": "Caffe Paradiso",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Nolita",
+    "area": "Downtown",
+    "lat": 40.7219522,
+    "lng": -73.9942004,
+    "duration_min": 10,
+    "duration_max": 30,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "From the Dante team, a Nolita espresso bar for a well-made coffee and a look at Elizabeth Street Garden.",
+    "hours": [
+      [
+        [
+          480,
+          1050
+        ]
+      ],
+      [
+        [
+          480,
+          1050
+        ]
+      ],
+      [
+        [
+          480,
+          1050
+        ]
+      ],
+      [
+        [
+          480,
+          1050
+        ]
+      ],
+      [
+        [
+          480,
+          1050
+        ]
+      ],
+      [
+        [
+          480,
+          1050
+        ]
+      ],
+      [
+        [
+          480,
+          1050
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "the-infatuation"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "restaurantji.com and Yelp (no official site; listings consistent on daily 8 AM–5:30 PM; Restaurantji updated Sep 19, 2026)",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "202B Elizabeth St, New York, NY 10012",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. Address updated to 202B Elizabeth St, matching current listings (unit B). Hours from consistent third-party listings; no official site.",
+    "locations": [
+      {
+        "id": "caffe-paradiso--nolita",
+        "label": "Nolita",
+        "address": "202B Elizabeth St, New York, NY 10012",
+        "lat": 40.7219522,
+        "lng": -73.9942004,
+        "neighborhood": "Nolita",
+        "hours": [
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ]
+        ],
+        "hours_source": "restaurantji.com and Yelp (no official site; listings consistent on daily 8 AM–5:30 PM; Restaurantji updated Sep 19, 2026)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -4271,6 +5588,407 @@
     ]
   },
   {
+    "id": "coffee-project-ny",
+    "name": "Coffee Project NY",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Multiple Manhattan Neighborhoods",
+    "area": "Multiple",
+    "lat": 40.7270679,
+    "lng": -73.9893826,
+    "duration_min": 10,
+    "duration_max": 35,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A specialty cafe group known for pour-overs, seasonal drinks (pandan, ube), and cafes across Manhattan, plus a kitchen at some shops.",
+    "hours": [
+      [
+        [
+          480,
+          1050
+        ]
+      ],
+      [],
+      [
+        [
+          450,
+          900
+        ]
+      ],
+      [
+        [
+          450,
+          1020
+        ]
+      ],
+      [
+        [
+          450,
+          1020
+        ]
+      ],
+      [
+        [
+          450,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1050
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "eater-ny"
+      },
+      {
+        "recommenderId": "sprudge"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "coffeeprojectny.com/cafe-locations/",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "239 E 5th St, New York, NY 10003",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "coffee-project-ny--east-village",
+        "label": "East Village",
+        "address": "239 E 5th St, New York, NY 10003",
+        "lat": 40.7270679,
+        "lng": -73.9893826,
+        "neighborhood": "East Village",
+        "hours": [
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [],
+          [
+            [
+              450,
+              900
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ]
+        ],
+        "hours_source": "coffeeprojectny.com/cafe-locations/",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "coffee-project-ny--chelsea",
+        "label": "Chelsea",
+        "address": "155 7th Ave, New York, NY 10011",
+        "lat": 40.7418384,
+        "lng": -73.9970623,
+        "neighborhood": "Chelsea",
+        "hours": [
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              420,
+              1050
+            ]
+          ],
+          [
+            [
+              420,
+              1050
+            ]
+          ],
+          [
+            [
+              420,
+              1050
+            ]
+          ],
+          [
+            [
+              420,
+              1050
+            ]
+          ],
+          [
+            [
+              420,
+              1050
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ]
+        ],
+        "hours_source": "coffeeprojectny.com/cafe-locations/",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "coffee-project-ny--financial-district",
+        "label": "Financial District",
+        "address": "135 John St, New York, NY 10038",
+        "lat": 40.7071433,
+        "lng": -74.0049602,
+        "neighborhood": "Financial District",
+        "hours": [
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              390,
+              1020
+            ]
+          ],
+          [
+            [
+              390,
+              1020
+            ]
+          ],
+          [
+            [
+              390,
+              1020
+            ]
+          ],
+          [
+            [
+              390,
+              1020
+            ]
+          ],
+          [
+            [
+              390,
+              1020
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "coffeeprojectny.com/cafe-locations/ (cafe hours; kitchen closes earlier).",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "coffee-project-ny--hells-kitchen",
+        "label": "Hell's Kitchen",
+        "address": "840 9th Ave, New York, NY 10019",
+        "lat": 40.766416,
+        "lng": -73.986588,
+        "neighborhood": "Hell's Kitchen",
+        "hours": [
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ]
+        ],
+        "hours_source": "coffeeprojectny.com/cafe-locations/",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "coffee-project-ny--tribeca",
+        "label": "Tribeca",
+        "address": "450 Washington St, New York, NY 10013",
+        "lat": 40.7256816,
+        "lng": -74.0100774,
+        "neighborhood": "Tribeca",
+        "hours": [
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ]
+        ],
+        "hours_source": "coffeeprojectny.com/cafe-locations/",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "coffee-project-ny--upper-east-side",
+        "label": "Upper East Side",
+        "address": "1219 1st Ave, New York, NY 10065",
+        "lat": 40.7638606,
+        "lng": -73.9590987,
+        "neighborhood": "Upper East Side",
+        "hours": [
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              450,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "coffeeprojectny.com/cafe-locations/",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "columbus-circle",
     "name": "Columbus Circle",
     "category": "landmark",
@@ -4655,6 +6373,144 @@
           ]
         ],
         "hours_source": "centralparknyc.org (Nov 2026: 8am-5pm)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "conwell-coffee-hall",
+    "name": "Conwell Coffee Hall",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Financial District",
+    "area": "Downtown",
+    "lat": 40.7051753,
+    "lng": -74.0090996,
+    "duration_min": 15,
+    "duration_max": 45,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "bustling",
+      "casual"
+    ],
+    "description": "Coffee (and, later, cocktails) in an Art Deco former-bank hall, one of the few FiDi spots with real room to sit.",
+    "hours": [
+      [
+        [
+          540,
+          1260
+        ]
+      ],
+      [
+        [
+          450,
+          1260
+        ]
+      ],
+      [
+        [
+          450,
+          1320
+        ]
+      ],
+      [
+        [
+          450,
+          1320
+        ]
+      ],
+      [
+        [
+          450,
+          1320
+        ]
+      ],
+      [
+        [
+          450,
+          1320
+        ]
+      ],
+      [
+        [
+          540,
+          1320
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "the-infatuation"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "conwellhall.com/coffee-hall/ (official Hours of Operation: Mon 7:30 AM–9 PM, Tue–Fri 7:30 AM–10 PM, Sat 9 AM–10 PM, Sun 9 AM–9 PM)",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "6 Hanover St, New York, NY 10005",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. Official address zip is 10005 (was stored as 10004).",
+    "locations": [
+      {
+        "id": "conwell-coffee-hall--hanover-street",
+        "label": "Hanover Street",
+        "address": "6 Hanover St, New York, NY 10005",
+        "lat": 40.7051753,
+        "lng": -74.0090996,
+        "neighborhood": "Financial District",
+        "hours": [
+          [
+            [
+              540,
+              1260
+            ]
+          ],
+          [
+            [
+              450,
+              1260
+            ]
+          ],
+          [
+            [
+              450,
+              1320
+            ]
+          ],
+          [
+            [
+              450,
+              1320
+            ]
+          ],
+          [
+            [
+              450,
+              1320
+            ]
+          ],
+          [
+            [
+              450,
+              1320
+            ]
+          ],
+          [
+            [
+              540,
+              1320
+            ]
+          ]
+        ],
+        "hours_source": "conwellhall.com/coffee-hall/ (official Hours of Operation: Mon 7:30 AM–9 PM, Tue–Fri 7:30 AM–10 PM, Sat 9 AM–10 PM, Sun 9 AM–9 PM)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -5275,6 +7131,252 @@
           ]
         ],
         "hours_source": "cornerbistrony.com",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "culture-espresso",
+    "name": "Culture Espresso",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Midtown",
+    "area": "Midtown",
+    "lat": 40.7518497,
+    "lng": -73.9850613,
+    "duration_min": 10,
+    "duration_max": 30,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "Warm, independent Midtown cafes (and a warm chocolate-chip cookie) in a part of town short on non-chain coffee.",
+    "hours": [
+      [
+        [
+          420,
+          1140
+        ]
+      ],
+      [
+        [
+          420,
+          1140
+        ]
+      ],
+      [
+        [
+          420,
+          1140
+        ]
+      ],
+      [
+        [
+          420,
+          1140
+        ]
+      ],
+      [
+        [
+          420,
+          1140
+        ]
+      ],
+      [
+        [
+          420,
+          1140
+        ]
+      ],
+      [
+        [
+          420,
+          1140
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sprudge"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "cultureespresso.com",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "72 W 38th St, New York, NY 10018",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "culture-espresso--bryant-park",
+        "label": "Bryant Park",
+        "address": "72 W 38th St, New York, NY 10018",
+        "lat": 40.7518497,
+        "lng": -73.9850613,
+        "neighborhood": "Midtown",
+        "hours": [
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ]
+        ],
+        "hours_source": "cultureespresso.com",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "culture-espresso--penn-station",
+        "label": "Penn Station",
+        "address": "247 W 36th St, New York, NY 10018",
+        "lat": 40.7532063,
+        "lng": -73.9912608,
+        "neighborhood": "Midtown",
+        "hours": [
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              420,
+              1140
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "cultureespresso.com",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "culture-espresso--hells-kitchen",
+        "label": "Hell's Kitchen",
+        "address": "307 W 38th St, New York, NY 10018",
+        "lat": 40.7551842,
+        "lng": -73.9921496,
+        "neighborhood": "Hell's Kitchen",
+        "hours": [
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "cultureespresso.com",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -5921,6 +8023,144 @@
     ]
   },
   {
+    "id": "derby-cup-coffee",
+    "name": "Derby Cup Coffee",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Chinatown",
+    "area": "Downtown",
+    "lat": 40.7167737,
+    "lng": -73.9969651,
+    "duration_min": 10,
+    "duration_max": 25,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A horse-racing-themed Chinatown cafe for drip, espresso, and a few house specials.",
+    "hours": [
+      [
+        [
+          480,
+          1140
+        ]
+      ],
+      [
+        [
+          480,
+          1140
+        ]
+      ],
+      [
+        [
+          480,
+          1140
+        ]
+      ],
+      [
+        [
+          480,
+          1140
+        ]
+      ],
+      [
+        [
+          480,
+          1140
+        ]
+      ],
+      [
+        [
+          480,
+          1140
+        ]
+      ],
+      [
+        [
+          480,
+          1140
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "the-infatuation"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "derbycupcoffee.com",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "37 Elizabeth St, New York, NY 10013",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "derby-cup-coffee--elizabeth-street",
+        "label": "Elizabeth Street",
+        "address": "37 Elizabeth St, New York, NY 10013",
+        "lat": 40.7167737,
+        "lng": -73.9969651,
+        "neighborhood": "Chinatown",
+        "hours": [
+          [
+            [
+              480,
+              1140
+            ]
+          ],
+          [
+            [
+              480,
+              1140
+            ]
+          ],
+          [
+            [
+              480,
+              1140
+            ]
+          ],
+          [
+            [
+              480,
+              1140
+            ]
+          ],
+          [
+            [
+              480,
+              1140
+            ]
+          ],
+          [
+            [
+              480,
+              1140
+            ]
+          ],
+          [
+            [
+              480,
+              1140
+            ]
+          ]
+        ],
+        "hours_source": "derbycupcoffee.com",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "dhamaka",
     "name": "Dhamaka",
     "category": "dinner",
@@ -6439,6 +8679,144 @@
     ]
   },
   {
+    "id": "dreamers-coffee-house",
+    "name": "Dreamers Coffee House",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Two Bridges",
+    "area": "Downtown",
+    "lat": 40.7127687,
+    "lng": -73.9952652,
+    "duration_min": 10,
+    "duration_max": 35,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "Tiny Two Bridges coffee shop with mix-in lattes, Uno, and a last cup at 5 PM — handy before Golden Diner next door.",
+    "hours": [
+      [
+        [
+          540,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          540,
+          1020
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "the-infatuation"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "dreamerscoffeehouse.square.site (official Location & Hours: Mon–Fri 8 AM–5 PM, Sat–Sun 9 AM–5 PM)",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "54W Henry St, New York, NY 10002",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. Official site lists the address as 54W Henry St; pin remains the Nominatim geocode of 54 Henry St.",
+    "locations": [
+      {
+        "id": "dreamers-coffee-house--two-bridges",
+        "label": "Two Bridges",
+        "address": "54W Henry St, New York, NY 10002",
+        "lat": 40.7127687,
+        "lng": -73.9952652,
+        "neighborhood": "Two Bridges",
+        "hours": [
+          [
+            [
+              540,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              540,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "dreamerscoffeehouse.square.site (official Location & Hours: Mon–Fri 8 AM–5 PM, Sat–Sun 9 AM–5 PM)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "earl-s-beer-cheese",
     "name": "Earl's Beer & Cheese",
     "category": "quick-bite",
@@ -6720,6 +9098,148 @@
           ]
         ],
         "hours_source": "ejsluncheonette.com",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "el-barrista-cafe",
+    "name": "El Barrista Cafe",
+    "category": "coffee",
+    "categories": [
+      "coffee",
+      "breakfast",
+      "brunch"
+    ],
+    "neighborhood": "East Harlem",
+    "area": "Uptown",
+    "lat": 40.7991656,
+    "lng": -73.9395442,
+    "duration_min": 20,
+    "duration_max": 60,
+    "vibe_tags": [
+      "cafe",
+      "comfort",
+      "local"
+    ],
+    "energy_tags": [
+      "casual",
+      "bustling"
+    ],
+    "description": "A neighborhood coffee-and-brunch cafe on Third Avenue in East Harlem.",
+    "hours": [
+      [
+        [
+          510,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1200
+        ]
+      ],
+      [
+        [
+          420,
+          1200
+        ]
+      ],
+      [
+        [
+          420,
+          1200
+        ]
+      ],
+      [
+        [
+          420,
+          1320
+        ]
+      ],
+      [
+        [
+          510,
+          1320
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "the-infatuation"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "el-barrista-cafe.square.site (official Location & Hours: Mon 7 AM–6 PM, Tue–Thu 7 AM–8 PM, Fri 7 AM–10 PM, Sat 8:30 AM–10 PM, Sun 8:30 AM–6 PM)",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "2154 3rd Ave, New York, NY 10035",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "el-barrista-cafe--east-harlem",
+        "label": "East Harlem",
+        "address": "2154 3rd Ave, New York, NY 10035",
+        "lat": 40.7991656,
+        "lng": -73.9395442,
+        "neighborhood": "East Harlem",
+        "hours": [
+          [
+            [
+              510,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1200
+            ]
+          ],
+          [
+            [
+              420,
+              1200
+            ]
+          ],
+          [
+            [
+              420,
+              1200
+            ]
+          ],
+          [
+            [
+              420,
+              1320
+            ]
+          ],
+          [
+            [
+              510,
+              1320
+            ]
+          ]
+        ],
+        "hours_source": "el-barrista-cafe.square.site (official Location & Hours: Mon 7 AM–6 PM, Tue–Thu 7 AM–8 PM, Fri 7 AM–10 PM, Sat 8:30 AM–10 PM, Sun 8:30 AM–6 PM)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -7458,6 +9978,405 @@
     ]
   },
   {
+    "id": "fasan-coffee",
+    "name": "Fasan Coffee",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Lower East Side",
+    "area": "Downtown",
+    "lat": 40.7158295,
+    "lng": -73.9918266,
+    "duration_min": 10,
+    "duration_max": 25,
+    "vibe_tags": [
+      "cafe",
+      "quick-bite"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A butter-yellow sliver of a cafe on Allen Street, known for playful signature drinks as much as classic espresso.",
+    "hours": [
+      [
+        [
+          600,
+          1020
+        ]
+      ],
+      [
+        [
+          600,
+          1020
+        ]
+      ],
+      [
+        [
+          600,
+          1020
+        ]
+      ],
+      [],
+      [],
+      [
+        [
+          600,
+          1020
+        ]
+      ],
+      [
+        [
+          600,
+          1020
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "the-infatuation"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "fasancoffee.substack.com/p/thoughts-from-fasan (Jun 24, 2026, owner's new schedule); restaurantji.com agrees",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "34 Allen St, New York, NY 10002",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "fasan-coffee--allen-street",
+        "label": "Allen Street",
+        "address": "34 Allen St, New York, NY 10002",
+        "lat": 40.7158295,
+        "lng": -73.9918266,
+        "neighborhood": "Lower East Side",
+        "hours": [
+          [
+            [
+              600,
+              1020
+            ]
+          ],
+          [
+            [
+              600,
+              1020
+            ]
+          ],
+          [
+            [
+              600,
+              1020
+            ]
+          ],
+          [],
+          [],
+          [
+            [
+              600,
+              1020
+            ]
+          ],
+          [
+            [
+              600,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "fasancoffee.substack.com/p/thoughts-from-fasan (Jun 24, 2026, owner's new schedule); restaurantji.com agrees",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "felix-roasting-co",
+    "name": "Felix Roasting Co.",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Midtown",
+    "area": "Midtown",
+    "lat": 40.7564853,
+    "lng": -73.975049,
+    "duration_min": 15,
+    "duration_max": 40,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "calm-indoors",
+      "casual"
+    ],
+    "description": "Posh, art-filled cafes (the Midtown shop has a copper dome and mosaic floor) serving house drinks and pastries.",
+    "hours": [
+      [],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      []
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "time-out-new-york"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "felixroastingco.com/pages/visit-us (lists Mon–Fri 7 AM–5 PM; weekends not listed, treated as closed).",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "280 Park Ave, New York, NY 10017",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "felix-roasting-co--midtown",
+        "label": "Midtown",
+        "address": "280 Park Ave, New York, NY 10017",
+        "lat": 40.7564853,
+        "lng": -73.975049,
+        "neighborhood": "Midtown",
+        "hours": [
+          [],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          []
+        ],
+        "hours_source": "felixroastingco.com/pages/visit-us (lists Mon–Fri 7 AM–5 PM; weekends not listed, treated as closed).",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "felix-roasting-co--nomad",
+        "label": "NoMad",
+        "address": "450 Park Ave S, New York, NY 10016",
+        "lat": 40.7449757,
+        "lng": -73.9831065,
+        "neighborhood": "NoMad",
+        "hours": [
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "felixroastingco.com/pages/visit-us",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "felix-roasting-co--soho",
+        "label": "SoHo",
+        "address": "145 Greene St, New York, NY 10012",
+        "lat": 40.7261039,
+        "lng": -73.9987153,
+        "neighborhood": "SoHo",
+        "hours": [
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "felixroastingco.com/pages/visit-us",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "felix-roasting-co--west-soho-hotel-hugo",
+        "label": "West SoHo / Hotel Hugo",
+        "address": "525 Greenwich St, New York, NY 10013",
+        "lat": 40.7263864,
+        "lng": -74.0087253,
+        "neighborhood": "Hudson Square",
+        "hours": [
+          [
+            [
+              420,
+              1320
+            ]
+          ],
+          [
+            [
+              420,
+              1320
+            ]
+          ],
+          [
+            [
+              420,
+              1320
+            ]
+          ],
+          [
+            [
+              420,
+              1320
+            ]
+          ],
+          [
+            [
+              420,
+              1320
+            ]
+          ],
+          [
+            [
+              420,
+              1320
+            ]
+          ],
+          [
+            [
+              420,
+              1320
+            ]
+          ]
+        ],
+        "hours_source": "hotelhugony.com/food-and-drink (official Hotel Hugo page for Felix Roasting Co. at 525 Greenwich St: hours 7 AM–10 PM). felixroastingco.com/pages/visit-us lists this shop as open everyday from 7 AM but omits a close time.",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "fiaschetteria-pistoia",
     "name": "Fiaschetteria Pistoia",
     "category": "dinner",
@@ -8095,6 +11014,151 @@
     ]
   },
   {
+    "id": "hi-collar",
+    "name": "Hi-Collar",
+    "category": "coffee",
+    "categories": [
+      "coffee",
+      "lunch"
+    ],
+    "neighborhood": "East Village",
+    "area": "Downtown",
+    "lat": 40.729598,
+    "lng": -73.9878188,
+    "duration_min": 30,
+    "duration_max": 75,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "calm-indoors",
+      "casual"
+    ],
+    "description": "A Japanese kissaten by day (siphon coffee, omurice, sandos) and a whisky-and-jazz bar after dark. Not an early-morning stop.",
+    "hours": [
+      [
+        [
+          690,
+          960
+        ]
+      ],
+      [
+        [
+          690,
+          960
+        ]
+      ],
+      [
+        [
+          690,
+          960
+        ]
+      ],
+      [
+        [
+          690,
+          960
+        ]
+      ],
+      [
+        [
+          690,
+          960
+        ]
+      ],
+      [
+        [
+          690,
+          960
+        ]
+      ],
+      [
+        [
+          690,
+          960
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "the-infatuation"
+      },
+      {
+        "recommenderId": "eater-ny"
+      },
+      {
+        "recommenderId": "time-out-new-york"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "hi-collar.com (daytime kissaten hours; last call 3:30 PM). Evening bar hours are separate and were not recorded.",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "231 E 9th St, New York, NY 10003",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "hi-collar--east-village",
+        "label": "East Village",
+        "address": "231 E 9th St, New York, NY 10003",
+        "lat": 40.729598,
+        "lng": -73.9878188,
+        "neighborhood": "East Village",
+        "hours": [
+          [
+            [
+              690,
+              960
+            ]
+          ],
+          [
+            [
+              690,
+              960
+            ]
+          ],
+          [
+            [
+              690,
+              960
+            ]
+          ],
+          [
+            [
+              690,
+              960
+            ]
+          ],
+          [
+            [
+              690,
+              960
+            ]
+          ],
+          [
+            [
+              690,
+              960
+            ]
+          ],
+          [
+            [
+              690,
+              960
+            ]
+          ]
+        ],
+        "hours_source": "hi-collar.com (daytime kissaten hours; last call 3:30 PM). Evening bar hours are separate and were not recorded.",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "housing-works-bookstore",
     "name": "Housing Works Bookstore",
     "category": "gallery",
@@ -8565,6 +11629,189 @@
     ]
   },
   {
+    "id": "interlude-cafe",
+    "name": "Interlude Cafe",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Tribeca",
+    "area": "Downtown",
+    "lat": 40.7211682,
+    "lng": -74.0085684,
+    "duration_min": 15,
+    "duration_max": 40,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "calm-indoors",
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A bright, quiet Tribeca loft cafe for espresso, near-perfect matcha, and excellent pastries; most orders are to-go, but seats and sidewalk tables exist.",
+    "hours": [
+      [
+        [
+          480,
+          900
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          480,
+          900
+        ]
+      ]
+    ],
+    "outdoor": true,
+    "recommended_by": [
+      {
+        "recommenderId": "the-infatuation"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "interludenyc.com/visit (location-specific hours; footer on the same page lists longer hours and was not used)",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "145 Hudson St, New York, NY 10013",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "interlude-cafe--hudson-street",
+        "label": "Hudson Street",
+        "address": "145 Hudson St, New York, NY 10013",
+        "lat": 40.7211682,
+        "lng": -74.0085684,
+        "neighborhood": "Tribeca",
+        "hours": [
+          [
+            [
+              480,
+              900
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              480,
+              900
+            ]
+          ]
+        ],
+        "hours_source": "interludenyc.com/visit (location-specific hours; footer on the same page lists longer hours and was not used)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "interlude-cafe--murray-street",
+        "label": "Murray Street",
+        "address": "111 Murray St, New York, NY 10007",
+        "lat": 40.7154405,
+        "lng": -74.0127301,
+        "neighborhood": "Tribeca",
+        "hours": [
+          [],
+          [
+            [
+              480,
+              900
+            ]
+          ],
+          [
+            [
+              480,
+              900
+            ]
+          ],
+          [
+            [
+              480,
+              900
+            ]
+          ],
+          [
+            [
+              480,
+              900
+            ]
+          ],
+          [
+            [
+              480,
+              900
+            ]
+          ],
+          []
+        ],
+        "hours_source": "interludenyc.com/visit",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "irish-hunger-memorial-battery-park-city",
     "name": "Irish Hunger Memorial (Battery Park City)",
     "category": "landmark",
@@ -8700,6 +11947,350 @@
           ]
         ],
         "hours_source": "bpca.ny.gov / cnewyork (Nov 2026)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "irving-farm-coffee",
+    "name": "Irving Farm Coffee",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Upper West Side",
+    "area": "Uptown",
+    "lat": 40.7833743,
+    "lng": -73.979497,
+    "duration_min": 15,
+    "duration_max": 40,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A classic New York roaster-cafe, useful on the Upper West Side, around Washington Square and Gramercy, and on Fifth Avenue south of the park (weekdays only).",
+    "hours": [
+      [
+        [
+          450,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          450,
+          1080
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "i-love-the-upper-west-side"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "irvingfarmcoffee.com/pages/upper-west-side",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "224 W 79th St, New York, NY 10024",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "irving-farm-coffee--upper-west-side",
+        "label": "Upper West Side",
+        "address": "224 W 79th St, New York, NY 10024",
+        "lat": 40.7833743,
+        "lng": -73.979497,
+        "neighborhood": "Upper West Side",
+        "hours": [
+          [
+            [
+              450,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              450,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "irvingfarmcoffee.com/pages/upper-west-side",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "irving-farm-coffee--olympic-tower-fifth-avenue",
+        "label": "Olympic Tower / Fifth Avenue",
+        "address": "645 5th Ave, New York, NY 10022",
+        "lat": 40.7592013,
+        "lng": -73.9760506,
+        "neighborhood": "Midtown",
+        "hours": [
+          [],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          []
+        ],
+        "hours_source": "irvingfarmcoffee.com/pages/olympic-tower",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "irving-farm-coffee--washington-square",
+        "label": "Washington Square",
+        "address": "78 W 3rd St, New York, NY 10012",
+        "lat": 40.7296596,
+        "lng": -73.9987543,
+        "neighborhood": "Greenwich Village",
+        "hours": [
+          [
+            [
+              540,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              540,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "irvingfarmcoffee.com/pages/washington-square",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "irving-farm-coffee--east-10th-street",
+        "label": "East 10th Street",
+        "address": "79 E 10th St, New York, NY 10003",
+        "lat": 40.7312029,
+        "lng": -73.9899196,
+        "neighborhood": "Greenwich Village",
+        "hours": [
+          [
+            [
+              480,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              480,
+              960
+            ]
+          ]
+        ],
+        "hours_source": "irvingfarmcoffee.com/pages/e10th",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "irving-farm-coffee--gramercy",
+        "label": "Gramercy",
+        "address": "71 Irving Pl, New York, NY 10003",
+        "lat": 40.736822,
+        "lng": -73.9869914,
+        "neighborhood": "Gramercy",
+        "hours": [
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "irvingfarmcoffee.com/pages/gramercy",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -10373,6 +13964,144 @@
     ]
   },
   {
+    "id": "le-phin",
+    "name": "Lê Phin",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "East Village",
+    "area": "Downtown",
+    "lat": 40.7285601,
+    "lng": -73.9834491,
+    "duration_min": 10,
+    "duration_max": 25,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A small, sunny East Village cafe named for the Vietnamese phin filter, with iced and hot Vietnamese coffee plus flavored lattes.",
+    "hours": [
+      [
+        [
+          540,
+          1050
+        ]
+      ],
+      [
+        [
+          480,
+          1050
+        ]
+      ],
+      [
+        [
+          480,
+          1050
+        ]
+      ],
+      [
+        [
+          480,
+          1050
+        ]
+      ],
+      [
+        [
+          480,
+          1050
+        ]
+      ],
+      [
+        [
+          480,
+          1050
+        ]
+      ],
+      [
+        [
+          540,
+          1050
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "eater-ny"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "ny.eater.com/venue/101581/l-phin (Eater venue hours; no official website, Instagram only); Apple Maps and restaurantji.com (updated Oct 21, 2026) agree: Mon–Fri 8 AM–5:30 PM, Sat–Sun 9 AM–5:30 PM",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "259 E 10th St, New York, NY 10009",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "le-phin--east-village",
+        "label": "East Village",
+        "address": "259 E 10th St, New York, NY 10009",
+        "lat": 40.7285601,
+        "lng": -73.9834491,
+        "neighborhood": "East Village",
+        "hours": [
+          [
+            [
+              540,
+              1050
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              540,
+              1050
+            ]
+          ]
+        ],
+        "hours_source": "ny.eater.com/venue/101581/l-phin (Eater venue hours; no official website, Instagram only); Apple Maps and restaurantji.com (updated Oct 21, 2026) agree: Mon–Fri 8 AM–5:30 PM, Sat–Sun 9 AM–5:30 PM",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "left-bank-books",
     "name": "Left Bank Books",
     "category": "shopping",
@@ -11051,6 +14780,147 @@
           ]
         ],
         "hours_source": "lincolncenter.org (David Geffen Hall box office; plaza open anytime; performances evenings)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "little-collins",
+    "name": "Little Collins",
+    "category": "coffee",
+    "categories": [
+      "coffee",
+      "breakfast",
+      "lunch"
+    ],
+    "neighborhood": "Midtown East",
+    "area": "Midtown",
+    "lat": 40.7522516,
+    "lng": -73.9736217,
+    "duration_min": 20,
+    "duration_max": 60,
+    "vibe_tags": [
+      "cafe",
+      "comfort"
+    ],
+    "energy_tags": [
+      "casual",
+      "bustling"
+    ],
+    "description": "A Melbourne-style Midtown East cafe for coffee, a full breakfast and lunch menu, and a place to sit.",
+    "hours": [
+      [
+        [
+          450,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          450,
+          1080
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sprudge"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "littlecollinsnyc.com",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "708 3rd Ave, New York, NY 10017",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "little-collins--third-avenue",
+        "label": "Third Avenue",
+        "address": "708 3rd Ave, New York, NY 10017",
+        "lat": 40.7522516,
+        "lng": -73.9736217,
+        "neighborhood": "Midtown East",
+        "hours": [
+          [
+            [
+              450,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              450,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "littlecollinsnyc.com",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -12899,6 +16769,199 @@
     ]
   },
   {
+    "id": "manhattanville-coffee",
+    "name": "Manhattanville Coffee",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Harlem",
+    "area": "Uptown",
+    "lat": 40.8213119,
+    "lng": -73.944561,
+    "duration_min": 15,
+    "duration_max": 45,
+    "vibe_tags": [
+      "cafe",
+      "local"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "An inviting corner cafe in Sugar Hill with a second Hamilton Heights shop, known for space, light, and a neighborhood hang.",
+    "hours": [
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "the-curious-uptowner"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "restaurantji.com (both locations) and joe.coffee listing for 142 Edgecombe Ave: Mon–Fri 7 AM–5 PM, Sat–Sun 8 AM–5 PM. No official hours page was found.",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "142 Edgecombe Ave, New York, NY 10030",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "manhattanville-coffee--sugar-hill-edgecombe-avenue",
+        "label": "Sugar Hill / Edgecombe Avenue",
+        "address": "142 Edgecombe Ave, New York, NY 10030",
+        "lat": 40.8213119,
+        "lng": -73.944561,
+        "neighborhood": "Harlem",
+        "hours": [
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "restaurantji.com (both locations) and joe.coffee listing for 142 Edgecombe Ave: Mon–Fri 7 AM–5 PM, Sat–Sun 8 AM–5 PM. No official hours page was found.",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "manhattanville-coffee--hamilton-heights",
+        "label": "Hamilton Heights",
+        "address": "1850 Amsterdam Ave, New York, NY 10031",
+        "lat": 40.829526,
+        "lng": -73.9448735,
+        "neighborhood": "Hamilton Heights",
+        "hours": [
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "restaurantji.com (both locations) and joe.coffee listing for 142 Edgecombe Ave: Mon–Fri 7 AM–5 PM, Sat–Sun 8 AM–5 PM. No official hours page was found.",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "mei-lai-wah-bakery",
     "name": "Mei Lai Wah Bakery",
     "category": "bakery",
@@ -13374,6 +17437,146 @@
           ]
         ],
         "hours_source": "misslilys.com",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "miss-madeleine",
+    "name": "Miss Madeleine",
+    "category": "coffee",
+    "categories": [
+      "coffee",
+      "bakery",
+      "breakfast"
+    ],
+    "neighborhood": "Upper East Side",
+    "area": "Uptown",
+    "lat": 40.7740746,
+    "lng": -73.9509967,
+    "duration_min": 15,
+    "duration_max": 40,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A French patisserie on East 82nd Street for madeleines, viennoiserie, and coffee.",
+    "hours": [
+      [
+        [
+          540,
+          960
+        ]
+      ],
+      [
+        [
+          480,
+          1080
+        ]
+      ],
+      [
+        [
+          480,
+          1080
+        ]
+      ],
+      [
+        [
+          480,
+          1080
+        ]
+      ],
+      [
+        [
+          480,
+          1080
+        ]
+      ],
+      [
+        [
+          480,
+          1080
+        ]
+      ],
+      [
+        [
+          540,
+          960
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "emily-wafler"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "missmadeleinenyc.com/contact (non-summer hours). The site says summer closes an hour earlier (5 PM weekdays, 3 PM weekends).",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "400 E 82nd St, New York, NY 10028",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. From Sam's Google Maps save; recommended by Emily Wafler.",
+    "locations": [
+      {
+        "id": "miss-madeleine--upper-east-side",
+        "label": "Upper East Side",
+        "address": "400 E 82nd St, New York, NY 10028",
+        "lat": 40.7740746,
+        "lng": -73.9509967,
+        "neighborhood": "Upper East Side",
+        "hours": [
+          [
+            [
+              540,
+              960
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              540,
+              960
+            ]
+          ]
+        ],
+        "hours_source": "missmadeleinenyc.com/contact (non-summer hours). The site says summer closes an hour earlier (5 PM weekdays, 3 PM weekends).",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -13899,6 +18102,289 @@
     ]
   },
   {
+    "id": "mud",
+    "name": "MUD",
+    "category": "coffee",
+    "categories": [
+      "coffee",
+      "breakfast",
+      "brunch"
+    ],
+    "neighborhood": "East Village",
+    "area": "Downtown",
+    "lat": 40.7290929,
+    "lng": -73.9866387,
+    "duration_min": 30,
+    "duration_max": 90,
+    "vibe_tags": [
+      "cafe",
+      "comfort"
+    ],
+    "energy_tags": [
+      "casual",
+      "bustling"
+    ],
+    "description": "A kitschy, all-day East Village hang for coffee, brunch, and lingering on the back patio.",
+    "hours": [
+      [
+        [
+          480,
+          1380
+        ]
+      ],
+      [
+        [
+          450,
+          1380
+        ]
+      ],
+      [
+        [
+          450,
+          1380
+        ]
+      ],
+      [
+        [
+          450,
+          1380
+        ]
+      ],
+      [
+        [
+          450,
+          1380
+        ]
+      ],
+      [
+        [
+          450,
+          1380
+        ]
+      ],
+      [
+        [
+          480,
+          1380
+        ]
+      ]
+    ],
+    "outdoor": true,
+    "recommended_by": [
+      {
+        "recommenderId": "time-out-new-york"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "Time Out New York, Oct 8, 2026",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "307 E 9th St, New York, NY 10003",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "mud--east-village",
+        "label": "East Village",
+        "address": "307 E 9th St, New York, NY 10003",
+        "lat": 40.7290929,
+        "lng": -73.9866387,
+        "neighborhood": "East Village",
+        "hours": [
+          [
+            [
+              480,
+              1380
+            ]
+          ],
+          [
+            [
+              450,
+              1380
+            ]
+          ],
+          [
+            [
+              450,
+              1380
+            ]
+          ],
+          [
+            [
+              450,
+              1380
+            ]
+          ],
+          [
+            [
+              450,
+              1380
+            ]
+          ],
+          [
+            [
+              450,
+              1380
+            ]
+          ],
+          [
+            [
+              480,
+              1380
+            ]
+          ]
+        ],
+        "hours_source": "Time Out New York, Oct 8, 2026",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "nbhd-brulee",
+    "name": "NBHD Brûlée",
+    "category": "coffee",
+    "categories": [
+      "coffee",
+      "breakfast",
+      "lunch"
+    ],
+    "neighborhood": "Harlem",
+    "area": "Uptown",
+    "lat": 40.8194251,
+    "lng": -73.9442027,
+    "duration_min": 20,
+    "duration_max": 75,
+    "vibe_tags": [
+      "cafe",
+      "comfort",
+      "local"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A vintage-feeling Central Harlem coffee shop where you can work or eat (breakfast through lunch), then linger on the porch.",
+    "hours": [
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ]
+    ],
+    "outdoor": true,
+    "recommended_by": [
+      {
+        "recommenderId": "the-infatuation"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "nbhdbrulee.com",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "2620 Frederick Douglass Blvd, New York, NY 10030",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "nbhd-brulee--central-harlem",
+        "label": "Central Harlem",
+        "address": "2620 Frederick Douglass Blvd, New York, NY 10030",
+        "lat": 40.8194251,
+        "lng": -73.9442027,
+        "neighborhood": "Harlem",
+        "hours": [
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "nbhdbrulee.com",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "new-cottage",
     "name": "New Cottage",
     "category": "dinner",
@@ -14036,6 +18522,144 @@
           ]
         ],
         "hours_source": "newcottagebroadway.com",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "not-as-bitter",
+    "name": "Not As Bitter",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "East Village",
+    "area": "Downtown",
+    "lat": 40.729007,
+    "lng": -73.9847265,
+    "duration_min": 10,
+    "duration_max": 25,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A moody black-on-black East Village cafe known for fruit-forward coffee and matcha drinks, not a classic bitter espresso bar.",
+    "hours": [
+      [
+        [
+          480,
+          1080
+        ]
+      ],
+      [
+        [
+          480,
+          1080
+        ]
+      ],
+      [
+        [
+          480,
+          1080
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1080
+        ]
+      ],
+      [
+        [
+          480,
+          1080
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "time-out-new-york"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "Time Out New York, Oct 8, 2026",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "241 E 10th St, New York, NY 10003",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "not-as-bitter--east-village",
+        "label": "East Village",
+        "address": "241 E 10th St, New York, NY 10003",
+        "lat": 40.729007,
+        "lng": -73.9847265,
+        "neighborhood": "East Village",
+        "hours": [
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "Time Out New York, Oct 8, 2026",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -14230,6 +18854,198 @@
           ]
         ],
         "hours_source": "wtc.com (Westfield shops; the hall itself is a transit hub)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "oslo-coffee-roasters",
+    "name": "Oslo Coffee Roasters",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Upper East Side",
+    "area": "Uptown",
+    "lat": 40.7691574,
+    "lng": -73.9536923,
+    "duration_min": 10,
+    "duration_max": 30,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "An independent NYC roaster (since 2002) with a cozy Yorkville cafe and a West Village shop.",
+    "hours": [
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1020
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "patch-upper-east-side"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "oslocoffee.com/pages/locations",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "422 E 75th St, New York, NY 10021",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "oslo-coffee-roasters--yorkville",
+        "label": "Yorkville",
+        "address": "422 E 75th St, New York, NY 10021",
+        "lat": 40.7691574,
+        "lng": -73.9536923,
+        "neighborhood": "Upper East Side",
+        "hours": [
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "oslocoffee.com/pages/locations",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "oslo-coffee-roasters--west-village",
+        "label": "West Village",
+        "address": "236 W 10th St, New York, NY 10014",
+        "lat": 40.7337857,
+        "lng": -74.0054962,
+        "neighborhood": "West Village",
+        "hours": [
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "oslocoffee.com/pages/locations",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -15001,6 +19817,199 @@
     ]
   },
   {
+    "id": "plowshares-coffee-roasters",
+    "name": "Plowshares Coffee Roasters",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Upper West Side",
+    "area": "Uptown",
+    "lat": 40.8001351,
+    "lng": -73.9677641,
+    "duration_min": 10,
+    "duration_max": 40,
+    "vibe_tags": [
+      "cafe",
+      "local"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "House-roasted coffee and pastries at a small Broadway shop and a large Amsterdam Avenue cafe-roastery with room to sit.",
+    "hours": [
+      [
+        [
+          480,
+          1050
+        ]
+      ],
+      [
+        [
+          450,
+          1050
+        ]
+      ],
+      [
+        [
+          450,
+          1050
+        ]
+      ],
+      [
+        [
+          450,
+          1050
+        ]
+      ],
+      [
+        [
+          450,
+          1050
+        ]
+      ],
+      [
+        [
+          450,
+          1050
+        ]
+      ],
+      [
+        [
+          480,
+          1050
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sprudge"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "plowsharescoffee.com/contact/",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "2730 Broadway, New York, NY 10025",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "plowshares-coffee-roasters--upper-west-side-bloomingdale",
+        "label": "Upper West Side / Bloomingdale",
+        "address": "2730 Broadway, New York, NY 10025",
+        "lat": 40.8001351,
+        "lng": -73.9677641,
+        "neighborhood": "Upper West Side",
+        "hours": [
+          [
+            [
+              480,
+              1050
+            ]
+          ],
+          [
+            [
+              450,
+              1050
+            ]
+          ],
+          [
+            [
+              450,
+              1050
+            ]
+          ],
+          [
+            [
+              450,
+              1050
+            ]
+          ],
+          [
+            [
+              450,
+              1050
+            ]
+          ],
+          [
+            [
+              450,
+              1050
+            ]
+          ],
+          [
+            [
+              480,
+              1050
+            ]
+          ]
+        ],
+        "hours_source": "plowsharescoffee.com/contact/",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "plowshares-coffee-roasters--west-harlem-manhattanville",
+        "label": "West Harlem / Manhattanville",
+        "address": "1351 Amsterdam Ave, New York, NY 10027",
+        "lat": 40.8137274,
+        "lng": -73.955637,
+        "neighborhood": "West Harlem",
+        "hours": [
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1320
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "plowsharescoffee.com/contact/",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "pop-up-bagels",
     "name": "Pop-Up Bagels",
     "category": "breakfast",
@@ -15609,6 +20618,198 @@
     ]
   },
   {
+    "id": "qahwah-house",
+    "name": "Qahwah House",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "West Village",
+    "area": "Downtown",
+    "lat": 40.7305884,
+    "lng": -74.0023818,
+    "duration_min": 15,
+    "duration_max": 45,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "bustling"
+    ],
+    "description": "A Yemeni coffee house for spiced coffee, chai, and pastries, with Manhattan shops in the West Village and on Broadway near Columbia.",
+    "hours": [
+      [
+        [
+          480,
+          1380
+        ]
+      ],
+      [
+        [
+          480,
+          1380
+        ]
+      ],
+      [
+        [
+          480,
+          1380
+        ]
+      ],
+      [
+        [
+          480,
+          1380
+        ]
+      ],
+      [
+        [
+          480,
+          1380
+        ]
+      ],
+      [
+        [
+          480,
+          60
+        ]
+      ],
+      [
+        [
+          480,
+          60
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "the-infatuation"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "restaurantji.com/ny/new-york/qahwah-house-w-village-/ (updated Nov 10, 2026 listing; official qahwahhouse.com/locations lists the 13 Carmine St address but omits hours). joe.coffee listing agrees: Sun–Thu 8 AM–11 PM, Fri–Sat 8 AM–1 AM",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "13 Carmine St, New York, NY 10014",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. West Village hours are from listings (official locator omitted them). Morningside hours remain from qahwahhouse.com/locations.",
+    "locations": [
+      {
+        "id": "qahwah-house--west-village",
+        "label": "West Village",
+        "address": "13 Carmine St, New York, NY 10014",
+        "lat": 40.7305884,
+        "lng": -74.0023818,
+        "neighborhood": "West Village",
+        "hours": [
+          [
+            [
+              480,
+              1380
+            ]
+          ],
+          [
+            [
+              480,
+              1380
+            ]
+          ],
+          [
+            [
+              480,
+              1380
+            ]
+          ],
+          [
+            [
+              480,
+              1380
+            ]
+          ],
+          [
+            [
+              480,
+              1380
+            ]
+          ],
+          [
+            [
+              480,
+              60
+            ]
+          ],
+          [
+            [
+              480,
+              60
+            ]
+          ]
+        ],
+        "hours_source": "restaurantji.com/ny/new-york/qahwah-house-w-village-/ (updated Nov 10, 2026 listing; official qahwahhouse.com/locations lists the 13 Carmine St address but omits hours). joe.coffee listing agrees: Sun–Thu 8 AM–11 PM, Fri–Sat 8 AM–1 AM",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "qahwah-house--broadway-morningside-heights",
+        "label": "Broadway / Morningside Heights",
+        "address": "2869 Broadway, New York, NY 10025",
+        "lat": 40.7989422,
+        "lng": -73.9690161,
+        "neighborhood": "Morningside Heights",
+        "hours": [
+          [
+            [
+              420,
+              1380
+            ]
+          ],
+          [
+            [
+              420,
+              1380
+            ]
+          ],
+          [
+            [
+              420,
+              1380
+            ]
+          ],
+          [
+            [
+              420,
+              1380
+            ]
+          ],
+          [
+            [
+              420,
+              1380
+            ]
+          ],
+          [
+            [
+              420,
+              1380
+            ]
+          ],
+          [
+            [
+              420,
+              1380
+            ]
+          ]
+        ],
+        "hours_source": "qahwahhouse.com/locations",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "ralph-lauren-madison-ave",
     "name": "Ralph Lauren (Madison Ave)",
     "category": "shopping",
@@ -16037,6 +21238,307 @@
           ]
         ],
         "hours_source": "redroosterharlem.com (dining room; bar to 11pm/midnight)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "remi-flower-and-coffee",
+    "name": "Remi Flower & Coffee",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Midtown East",
+    "area": "Midtown",
+    "lat": 40.7507173,
+    "lng": -73.9713254,
+    "duration_min": 15,
+    "duration_max": 40,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "calm-indoors",
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A flower shop and cafe in one: espresso and pastries among the plants, with several Midtown and downtown locations.",
+    "hours": [
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "the-infatuation"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "remi43.com",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "810 2nd Ave, New York, NY 10017",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "remi-flower-and-coffee--second-avenue-at-43rd",
+        "label": "Second Avenue at 43rd",
+        "address": "810 2nd Ave, New York, NY 10017",
+        "lat": 40.7507173,
+        "lng": -73.9713254,
+        "neighborhood": "Midtown East",
+        "hours": [
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "remi43.com",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "remi-flower-and-coffee--second-avenue-at-48th",
+        "label": "Second Avenue at 48th",
+        "address": "906 2nd Ave, New York, NY 10017",
+        "lat": 40.7531459,
+        "lng": -73.9696555,
+        "neighborhood": "Midtown East",
+        "hours": [
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "reminyc.com/about",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "remi-flower-and-coffee--financial-district",
+        "label": "Financial District",
+        "address": "130 William St, New York, NY 10038",
+        "lat": 40.7090943,
+        "lng": -74.0062676,
+        "neighborhood": "Financial District",
+        "hours": [
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "remi130.com",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "remi-flower-and-coffee--park-avenue-south-nomad",
+        "label": "Park Avenue South / NoMad",
+        "address": "425 Park Ave S, New York, NY 10016",
+        "lat": 40.7440149,
+        "lng": -73.9833257,
+        "neighborhood": "NoMad",
+        "hours": [
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "Roadtrippers listing of Yelp hours for 425 Park Ave S (Mon–Fri 7 AM–6 PM, Sat–Sun 8 AM–6 PM). Not listed on reminyc.com/about, which only documents 906 2nd Ave. Corner.inc (updated Oct 30, 2026) independently shows Tuesday 7 AM–6 PM.",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -17484,6 +22986,147 @@
     ]
   },
   {
+    "id": "solid-state-coffee",
+    "name": "Solid State Coffee",
+    "category": "coffee",
+    "categories": [
+      "coffee",
+      "breakfast",
+      "lunch"
+    ],
+    "neighborhood": "Lincoln Square",
+    "area": "Uptown",
+    "lat": 40.776681,
+    "lng": -73.979743,
+    "duration_min": 15,
+    "duration_max": 45,
+    "vibe_tags": [
+      "cafe",
+      "local"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A neighborhood coffee shop near the park's west side, with pastries and a short breakfast and lunch menu, open daily 7 AM–4 PM.",
+    "hours": [
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "i-love-the-upper-west-side"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "solidstatecoffee.com/pages/contact-us",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "104 W 71st St, New York, NY 10023",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. Recommended by I Love the Upper West Side (Dec 17, 2025 neighborhood coffee picks). Also used for west-side Central Park coverage after Joe Coffee was cut.",
+    "locations": [
+      {
+        "id": "solid-state-coffee--west-71st-street",
+        "label": "West 71st Street",
+        "address": "104 W 71st St, New York, NY 10023",
+        "lat": 40.776681,
+        "lng": -73.979743,
+        "neighborhood": "Lincoln Square",
+        "hours": [
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ]
+        ],
+        "hours_source": "solidstatecoffee.com/pages/contact-us",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "spicy-village",
     "name": "Spicy Village",
     "category": "dinner",
@@ -17611,6 +23254,170 @@
           ]
         ],
         "hours_source": "Yelp / spicy-village.com (closed Sun)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "st-kilda-coffee",
+    "name": "St Kilda Coffee",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Hell's Kitchen",
+    "area": "Midtown",
+    "lat": 40.7607499,
+    "lng": -73.9905025,
+    "duration_min": 10,
+    "duration_max": 25,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A Brooklyn-roasting, Australia-founded mini group with two tiny Hell's Kitchen cafes and a Chelsea location.",
+    "hours": [
+      [
+        [
+          480,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1200
+        ]
+      ],
+      [
+        [
+          420,
+          1200
+        ]
+      ],
+      [
+        [
+          420,
+          1200
+        ]
+      ],
+      [
+        [
+          420,
+          1200
+        ]
+      ],
+      [
+        [
+          480,
+          1200
+        ]
+      ]
+    ],
+    "outdoor": true,
+    "recommended_by": [
+      {
+        "recommenderId": "eater-ny"
+      },
+      {
+        "recommenderId": "sprudge"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "stkildacoffee.com/location",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "374 W 46th St, New York, NY 10036",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. West 46th Street hours are official. Hours for 328 W 44th St and 213 8th Ave were left null because the official shorthand is ambiguous. Unverified: hours_West 44th Street, hours_Eighth Avenue / Chelsea.",
+    "hours_partially_verified": true,
+    "locations": [
+      {
+        "id": "st-kilda-coffee--west-46th-street",
+        "label": "West 46th Street",
+        "address": "374 W 46th St, New York, NY 10036",
+        "lat": 40.7607499,
+        "lng": -73.9905025,
+        "neighborhood": "Hell's Kitchen",
+        "hours": [
+          [
+            [
+              480,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1200
+            ]
+          ],
+          [
+            [
+              420,
+              1200
+            ]
+          ],
+          [
+            [
+              420,
+              1200
+            ]
+          ],
+          [
+            [
+              420,
+              1200
+            ]
+          ],
+          [
+            [
+              480,
+              1200
+            ]
+          ]
+        ],
+        "hours_source": "stkildacoffee.com/location",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "st-kilda-coffee--west-44th-street",
+        "label": "West 44th Street",
+        "address": "328 W 44th St, New York, NY 10036",
+        "lat": 40.7589006,
+        "lng": -73.9902416,
+        "neighborhood": "Hell's Kitchen",
+        "hours": null,
+        "hours_source": null,
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "st-kilda-coffee--eighth-avenue-chelsea",
+        "label": "Eighth Avenue / Chelsea",
+        "address": "213 8th Ave, New York, NY 10011",
+        "lat": 40.7439001,
+        "lng": -73.9996249,
+        "neighborhood": "Chelsea",
+        "hours": null,
+        "hours_source": null,
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -17897,6 +23704,149 @@
     ]
   },
   {
+    "id": "suited",
+    "name": "Suited",
+    "category": "coffee",
+    "categories": [
+      "coffee",
+      "breakfast",
+      "lunch"
+    ],
+    "neighborhood": "Financial District",
+    "area": "Downtown",
+    "lat": 40.709189,
+    "lng": -74.0078111,
+    "duration_min": 20,
+    "duration_max": 60,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A serious multi-roaster cafe and daytime kitchen on John Street — the best sit-down coffee-and-breakfast option in the Financial District.",
+    "hours": [
+      [
+        [
+          480,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          420,
+          960
+        ]
+      ],
+      [
+        [
+          480,
+          960
+        ]
+      ]
+    ],
+    "outdoor": true,
+    "recommended_by": [
+      {
+        "recommenderId": "eater-ny"
+      },
+      {
+        "recommenderId": "sprudge"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "ny.eater.com/venue/92634/suited (Eater venue hours); joe.coffee listing agrees. Official suitednyc.com/pages/contact has the 45 John St address but no hours. Mon–Fri 7 AM–4 PM, Sat–Sun 8 AM–4 PM",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "45 John St, New York, NY 10038",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "suited--john-street",
+        "label": "John Street",
+        "address": "45 John St, New York, NY 10038",
+        "lat": 40.709189,
+        "lng": -74.0078111,
+        "neighborhood": "Financial District",
+        "hours": [
+          [
+            [
+              480,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              480,
+              960
+            ]
+          ]
+        ],
+        "hours_source": "ny.eater.com/venue/92634/suited (Eater venue hours); joe.coffee listing agrees. Official suitednyc.com/pages/contact has the 45 John St address but no hours. Mon–Fri 7 AM–4 PM, Sat–Sun 8 AM–4 PM",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "sullivan-st-bakery",
     "name": "Sullivan St Bakery",
     "category": "quick-bite",
@@ -18086,6 +24036,145 @@
           ]
         ],
         "hours_source": "sullivanstreetbakery.com",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "superhet-coffee",
+    "name": "Superhet Coffee",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Harlem",
+    "area": "Uptown",
+    "lat": 40.805338,
+    "lng": -73.9563251,
+    "duration_min": 10,
+    "duration_max": 25,
+    "vibe_tags": [
+      "cafe",
+      "local"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A microscopic, metal-loving Harlem coffee counter for meticulous pour-overs and very good regular drip, steps from Morningside Park.",
+    "hours": [
+      [
+        [
+          540,
+          900
+        ]
+      ],
+      [
+        [
+          420,
+          780
+        ]
+      ],
+      [
+        [
+          420,
+          780
+        ]
+      ],
+      [
+        [
+          420,
+          900
+        ]
+      ],
+      [
+        [
+          420,
+          900
+        ]
+      ],
+      [
+        [
+          420,
+          900
+        ]
+      ],
+      [
+        [
+          540,
+          900
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "the-infatuation"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "superhetcoffee.com (official: Mon & Tue 7–1, Wed–Fri 7–3, Sat & Sun 9–3)",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "390 Manhattan Ave, New York, NY 10026",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "superhet-coffee--manhattan-avenue",
+        "label": "Manhattan Avenue",
+        "address": "390 Manhattan Ave, New York, NY 10026",
+        "lat": 40.805338,
+        "lng": -73.9563251,
+        "neighborhood": "Harlem",
+        "hours": [
+          [
+            [
+              540,
+              900
+            ]
+          ],
+          [
+            [
+              420,
+              780
+            ]
+          ],
+          [
+            [
+              420,
+              780
+            ]
+          ],
+          [
+            [
+              420,
+              900
+            ]
+          ],
+          [
+            [
+              420,
+              900
+            ]
+          ],
+          [
+            [
+              420,
+              900
+            ]
+          ],
+          [
+            [
+              540,
+              900
+            ]
+          ]
+        ],
+        "hours_source": "superhetcoffee.com (official: Mon & Tue 7–1, Wed–Fri 7–3, Sat & Sun 9–3)",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -19527,141 +25616,141 @@
     ]
   },
   {
-    "id": "the-plaza-l-avenue-rooftop",
-    "name": "The Plaza (L'Avenue Rooftop)",
-    "category": "drinks",
+    "id": "the-oma-shop-ii-coffee-lifestyle",
+    "name": "The Oma, Shop II Coffee + Lifestyle",
+    "category": "coffee",
     "categories": [
-      "drinks"
+      "coffee"
     ],
-    "neighborhood": "Midtown / Fifth Ave",
-    "area": "Midtown",
-    "lat": 40.7644598,
-    "lng": -73.9744941,
-    "duration_min": 60,
-    "duration_max": 120,
+    "neighborhood": "Harlem",
+    "area": "Uptown",
+    "lat": 40.8236773,
+    "lng": -73.9411778,
+    "duration_min": 20,
+    "duration_max": 60,
     "vibe_tags": [
-      "bar"
+      "cafe",
+      "shop",
+      "local"
     ],
     "energy_tags": [
-      "dimly-lit",
-      "social"
+      "casual",
+      "bustling"
     ],
-    "description": "Champagne with a view of Fifth Ave retail money. Glam, high heels, shopping bags.",
+    "description": "Lizzy Okpo's Harlem shop-cafe: coffee up front, a curated store and a roomy back hang, with wine and bites into the evening.",
     "hours": [
       [
         [
-          660,
-          1380
+          540,
+          960
         ]
       ],
       [
         [
-          660,
-          1380
+          450,
+          960
         ]
       ],
       [
         [
-          660,
-          1380
+          450,
+          960
         ]
       ],
       [
         [
-          660,
-          1380
+          450,
+          960
         ]
       ],
       [
         [
-          660,
-          1380
+          450,
+          1020
         ]
       ],
       [
         [
-          660,
-          1380
+          450,
+          1020
         ]
       ],
       [
         [
-          660,
-          1380
+          480,
+          1020
         ]
       ]
     ],
     "outdoor": false,
     "recommended_by": [
       {
-        "recommenderId": "sam"
-      },
-      {
-        "recommenderId": "kailey"
+        "recommenderId": "time-out-new-york"
       }
     ],
-    "note": "",
-    "booking": "unknown",
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
     "review_decision": "keep",
+    "placeholder": true,
     "verified_at": "2026-11-09",
-    "hours_source": "karpo.ai guide (light fare 11-10, cocktails to 11); unconfirmed on fairmont.com",
+    "hours_source": "Time Out New York, Oct 8, 2026",
     "coord_source": "OpenStreetMap Nominatim geocode of verified address",
-    "address": "768 5th Ave, New York, NY 10019",
+    "address": "2754 Frederick Douglass Blvd, New York, NY 10039",
     "status": "open",
-    "verification_note": "AMBIGUOUS: name mixes 'The Plaza' and 'L'Avenue Rooftop'; The Plaza has no rooftop bar (Champagne Bar is in the lobby), and L'Avenue at Saks is a separate kept entry (p183). Original pin (40.7509,-73.9815, ~5th Ave & 41st) matched neither. Mapped to The Plaza Champagne Bar per the description; Sam should confirm.",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
     "locations": [
       {
-        "id": "the-plaza-l-avenue-rooftop--the-plaza-champagne-bar-lobby",
-        "label": "The Plaza (Champagne Bar, lobby)",
-        "address": "768 5th Ave, New York, NY 10019",
-        "lat": 40.7644598,
-        "lng": -73.9744941,
-        "neighborhood": "Midtown East",
+        "id": "the-oma-shop-ii-coffee-lifestyle--frederick-douglass-boulevard",
+        "label": "Frederick Douglass Boulevard",
+        "address": "2754 Frederick Douglass Blvd, New York, NY 10039",
+        "lat": 40.8236773,
+        "lng": -73.9411778,
+        "neighborhood": "Harlem",
         "hours": [
           [
             [
-              660,
-              1380
+              540,
+              960
             ]
           ],
           [
             [
-              660,
-              1380
+              450,
+              960
             ]
           ],
           [
             [
-              660,
-              1380
+              450,
+              960
             ]
           ],
           [
             [
-              660,
-              1380
+              450,
+              960
             ]
           ],
           [
             [
-              660,
-              1380
+              450,
+              1020
             ]
           ],
           [
             [
-              660,
-              1380
+              450,
+              1020
             ]
           ],
           [
             [
-              660,
-              1380
+              480,
+              1020
             ]
           ]
         ],
-        "hours_source": "karpo.ai guide (light fare 11-10, cocktails to 11); unconfirmed on fairmont.com",
+        "hours_source": "Time Out New York, Oct 8, 2026",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -19802,6 +25891,146 @@
           ]
         ],
         "hours_source": "theplazany.com (Palm Court afternoon tea; hotel lobby open longer)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "the-plaza-l-avenue-rooftop",
+    "name": "The Plaza (L'Avenue Rooftop)",
+    "category": "drinks",
+    "categories": [
+      "drinks"
+    ],
+    "neighborhood": "Midtown / Fifth Ave",
+    "area": "Midtown",
+    "lat": 40.7644598,
+    "lng": -73.9744941,
+    "duration_min": 60,
+    "duration_max": 120,
+    "vibe_tags": [
+      "bar"
+    ],
+    "energy_tags": [
+      "dimly-lit",
+      "social"
+    ],
+    "description": "Champagne with a view of Fifth Ave retail money. Glam, high heels, shopping bags.",
+    "hours": [
+      [
+        [
+          660,
+          1380
+        ]
+      ],
+      [
+        [
+          660,
+          1380
+        ]
+      ],
+      [
+        [
+          660,
+          1380
+        ]
+      ],
+      [
+        [
+          660,
+          1380
+        ]
+      ],
+      [
+        [
+          660,
+          1380
+        ]
+      ],
+      [
+        [
+          660,
+          1380
+        ]
+      ],
+      [
+        [
+          660,
+          1380
+        ]
+      ]
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      },
+      {
+        "recommenderId": "kailey"
+      }
+    ],
+    "note": "",
+    "booking": "unknown",
+    "review_decision": "keep",
+    "verified_at": "2026-11-09",
+    "hours_source": "karpo.ai guide (light fare 11-10, cocktails to 11); unconfirmed on fairmont.com",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "768 5th Ave, New York, NY 10019",
+    "status": "open",
+    "verification_note": "AMBIGUOUS: name mixes 'The Plaza' and 'L'Avenue Rooftop'; The Plaza has no rooftop bar (Champagne Bar is in the lobby), and L'Avenue at Saks is a separate kept entry (p183). Original pin (40.7509,-73.9815, ~5th Ave & 41st) matched neither. Mapped to The Plaza Champagne Bar per the description; Sam should confirm.",
+    "locations": [
+      {
+        "id": "the-plaza-l-avenue-rooftop--the-plaza-champagne-bar-lobby",
+        "label": "The Plaza (Champagne Bar, lobby)",
+        "address": "768 5th Ave, New York, NY 10019",
+        "lat": 40.7644598,
+        "lng": -73.9744941,
+        "neighborhood": "Midtown East",
+        "hours": [
+          [
+            [
+              660,
+              1380
+            ]
+          ],
+          [
+            [
+              660,
+              1380
+            ]
+          ],
+          [
+            [
+              660,
+              1380
+            ]
+          ],
+          [
+            [
+              660,
+              1380
+            ]
+          ],
+          [
+            [
+              660,
+              1380
+            ]
+          ],
+          [
+            [
+              660,
+              1380
+            ]
+          ],
+          [
+            [
+              660,
+              1380
+            ]
+          ]
+        ],
+        "hours_source": "karpo.ai guide (light fare 11-10, cocktails to 11); unconfirmed on fairmont.com",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
@@ -20878,6 +27107,124 @@
     ]
   },
   {
+    "id": "voyager-espresso",
+    "name": "Voyager Espresso",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Financial District",
+    "area": "Downtown",
+    "lat": 40.7087755,
+    "lng": -74.0067691,
+    "duration_min": 10,
+    "duration_max": 25,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A Financial District specialty roaster-cafe that has been on William Street since 2015.",
+    "hours": [
+      [],
+      [
+        [
+          450,
+          960
+        ]
+      ],
+      [
+        [
+          450,
+          960
+        ]
+      ],
+      [
+        [
+          450,
+          960
+        ]
+      ],
+      [
+        [
+          450,
+          960
+        ]
+      ],
+      [
+        [
+          450,
+          960
+        ]
+      ],
+      []
+    ],
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "new-york-dearest"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "restaurantji.com/ny/new-york/voyager-espresso-/ (updated Nov 7, 2026: Mon–Fri 7:30 AM–4 PM, Sat–Sun closed, 110 William St Lower Level). Official voyagerespresso.com confirms a FiDi cafe since 2015 but does not list address or hours on the homepage or /pages/locations.",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "110 William St Lower Level, New York, NY 10038",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends. Address and hours come from Restaurantji (Lower Level at 110 William St), not the official homepage, which does not list them.",
+    "locations": [
+      {
+        "id": "voyager-espresso--william-street",
+        "label": "William Street",
+        "address": "110 William St Lower Level, New York, NY 10038",
+        "lat": 40.7087755,
+        "lng": -74.0067691,
+        "neighborhood": "Financial District",
+        "hours": [
+          [],
+          [
+            [
+              450,
+              960
+            ]
+          ],
+          [
+            [
+              450,
+              960
+            ]
+          ],
+          [
+            [
+              450,
+              960
+            ]
+          ],
+          [
+            [
+              450,
+              960
+            ]
+          ],
+          [
+            [
+              450,
+              960
+            ]
+          ],
+          []
+        ],
+        "hours_source": "restaurantji.com/ny/new-york/voyager-espresso-/ (updated Nov 7, 2026: Mon–Fri 7:30 AM–4 PM, Sat–Sun closed, 110 William St Lower Level). Official voyagerespresso.com confirms a FiDi cafe since 2015 but does not list address or hours on the homepage or /pages/locations.",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
     "id": "wah-fung-no-1-fast-food",
     "name": "Wah Fung No. 1 Fast Food",
     "category": "quick-bite",
@@ -21288,6 +27635,296 @@
           ]
         ],
         "hours_source": "nycgovparks.org",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "watchhouse",
+    "name": "WatchHouse",
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Midtown East",
+    "area": "Midtown",
+    "lat": 40.760941,
+    "lng": -73.968937,
+    "duration_min": 10,
+    "duration_max": 30,
+    "vibe_tags": [
+      "cafe"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "A London specialty-coffee group with Manhattan shops at East 57th Street, Fifth Avenue, the Chrysler Building, and Park Avenue South.",
+    "hours": [
+      [
+        [
+          480,
+          1020
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          420,
+          1080
+        ]
+      ],
+      [
+        [
+          480,
+          1020
+        ]
+      ]
+    ],
+    "outdoor": true,
+    "recommended_by": [
+      {
+        "recommenderId": "time-out-new-york"
+      }
+    ],
+    "note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "booking": "walk_in",
+    "review_decision": "keep",
+    "placeholder": true,
+    "verified_at": "2026-11-09",
+    "hours_source": "watchhouse.com/en-us/pages/locations",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "139 E 57th St, New York, NY 10155",
+    "status": "open",
+    "verification_note": "Kept as a placeholder (Sam, Nov 9, 2026): he does not know coffee shops well, so these are in the list for coverage until he reviews them with friends.",
+    "locations": [
+      {
+        "id": "watchhouse--midtown-east-57th-street",
+        "label": "Midtown East / 57th Street",
+        "address": "139 E 57th St, New York, NY 10155",
+        "lat": 40.760941,
+        "lng": -73.968937,
+        "neighborhood": "Midtown East",
+        "hours": [
+          [
+            [
+              480,
+              1020
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              480,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "watchhouse.com/en-us/pages/locations",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "watchhouse--fifth-avenue",
+        "label": "Fifth Avenue",
+        "address": "660 5th Ave, New York, NY 10103",
+        "lat": 40.7600671,
+        "lng": -73.9766465,
+        "neighborhood": "Midtown",
+        "hours": [
+          [
+            [
+              480,
+              1110
+            ]
+          ],
+          [
+            [
+              390,
+              1110
+            ]
+          ],
+          [
+            [
+              390,
+              1110
+            ]
+          ],
+          [
+            [
+              390,
+              1110
+            ]
+          ],
+          [
+            [
+              390,
+              1110
+            ]
+          ],
+          [
+            [
+              390,
+              1110
+            ]
+          ],
+          [
+            [
+              480,
+              1110
+            ]
+          ]
+        ],
+        "hours_source": "watchhouse.com/en-us/blogs/locations/watchhouse-5th-ave (official: Mon–Fri 6:30 AM–6:30 PM, Sat–Sun 8:00 AM–6:30 PM)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "watchhouse--chrysler-building",
+        "label": "Chrysler Building",
+        "address": "405 Lexington Ave, New York, NY 10174",
+        "lat": 40.7519148,
+        "lng": -73.97553,
+        "neighborhood": "Midtown East",
+        "hours": [
+          [],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          []
+        ],
+        "hours_source": "watchhouse.com/en-us/blogs/locations/chrysler-building (official: Mon–Fri 7 AM–6 PM, Sat–Sun closed)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "watchhouse--park-avenue-south",
+        "label": "Park Avenue South",
+        "address": "287 Park Ave S, New York, NY 10010",
+        "lat": 40.7395884,
+        "lng": -73.9865771,
+        "neighborhood": "Flatiron",
+        "hours": [
+          [
+            [
+              420,
+              1080
+            ]
+          ],
+          [
+            [
+              390,
+              1080
+            ]
+          ],
+          [
+            [
+              390,
+              1080
+            ]
+          ],
+          [
+            [
+              390,
+              1080
+            ]
+          ],
+          [
+            [
+              390,
+              1080
+            ]
+          ],
+          [
+            [
+              390,
+              1080
+            ]
+          ],
+          [
+            [
+              420,
+              1080
+            ]
+          ]
+        ],
+        "hours_source": "watchhouse.com/en-us/pages/locations",
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]

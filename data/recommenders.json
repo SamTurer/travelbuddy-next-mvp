@@ -2,17 +2,91 @@
   {
     "id": "sam",
     "displayName": "Sam",
+    "type": "person",
     "bio": "Placeholder — Sam will add his credentials for recommending NYC restaurants, shops, and neighborhoods.",
     "link": "",
+    "url": null,
     "avatar": "",
     "specialties": ["restaurants", "neighborhood spots", "downtown"]
   },
   {
     "id": "kailey",
     "displayName": "Kailey",
+    "type": "person",
     "bio": "Placeholder — Kailey will add her credentials for recommending NYC restaurants, shops, and days out.",
     "link": "",
+    "url": null,
     "avatar": "",
     "specialties": ["restaurants", "shops", "days out"]
+  },
+  {
+    "id": "columbus-avenue-bid",
+    "displayName": "Columbus Avenue BID",
+    "type": "publication",
+    "url": "https://www.columbusavenuebid.org/",
+    "bio": "Columbus Avenue business improvement district, for Upper West Side shops and cafes."
+  },
+  {
+    "id": "eater-ny",
+    "displayName": "Eater NY",
+    "type": "publication",
+    "url": "https://ny.eater.com/",
+    "bio": "Eater's New York restaurant and cafe coverage."
+  },
+  {
+    "id": "emily-wafler",
+    "displayName": "Emily Wafler",
+    "type": "friend",
+    "url": null,
+    "bio": "Friend of Sam and Kailey."
+  },
+  {
+    "id": "i-love-the-upper-west-side",
+    "displayName": "I Love the Upper West Side",
+    "type": "publication",
+    "url": "https://www.ilovetheupperwestside.com/",
+    "bio": "Neighborhood guide to the Upper West Side."
+  },
+  {
+    "id": "new-york-dearest",
+    "displayName": "New York Dearest",
+    "type": "publication",
+    "url": "https://newyorkdearest.com/",
+    "bio": "New York neighborhood guide."
+  },
+  {
+    "id": "patch-upper-east-side",
+    "displayName": "Patch (Upper East Side)",
+    "type": "publication",
+    "url": "https://patch.com/new-york/upper-east-side-nyc",
+    "bio": "Patch's Upper East Side local news and guides."
+  },
+  {
+    "id": "sprudge",
+    "displayName": "Sprudge",
+    "type": "publication",
+    "url": "https://sprudge.com/",
+    "bio": "Coffee publication. Used for shops Sam has not tried yet."
+  },
+  {
+    "id": "the-curious-uptowner",
+    "displayName": "The Curious Uptowner",
+    "type": "publication",
+    "url": "https://www.thecuriousuptowner.com/",
+    "bio": "Uptown neighborhood guide."
+  },
+  {
+    "id": "the-infatuation",
+    "displayName": "The Infatuation",
+    "type": "publication",
+    "url": "https://www.theinfatuation.com/",
+    "bio": "The Infatuation's New York restaurant and cafe reviews."
+  },
+  {
+    "id": "time-out-new-york",
+    "displayName": "Time Out New York",
+    "type": "publication",
+    "url": "https://www.timeout.com/newyork",
+    "bio": "Time Out New York city guides."
   }
 ]

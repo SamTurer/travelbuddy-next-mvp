@@ -52,7 +52,7 @@ Must-dos are parsed without an API key (fuzzy match against the list, plus a sma
 
 ## Editing a place
 
-`data/places-manhattan.json` is the list the planner uses (Manhattan only). `data/places-outer-boroughs.json` and `data/cut-places.json` are reference files and are not loaded. A place may have `locations[]`; the planner picks the branch nearest the previous stop. `status` of `closed` or `temporarily_closed` is kept in the file and left out of days. `data/recommenders.json` maps recommender ids (`sam`, `kailey`) to display names and placeholder credentials.
+`data/places-manhattan.json` is the list the planner uses (Manhattan only). `data/places-outer-boroughs.json` and `data/cut-places.json` are reference files and are not loaded. A place may have `locations[]`; the planner picks the branch nearest the previous stop. `status` of `closed` or `temporarily_closed` is kept in the file and left out of days. `placeholder: true` marks a coffee shop Sam has not tried; the planner can still schedule it, and prefers a non-placeholder coffee when the two are within a few minutes. `data/recommenders.json` maps recommender ids to a display name, a `type` (`person`, `friend`, or `publication`), an optional `url`, and a short bio.
 
 Add a place by copying an existing object. Required fields:
 
@@ -71,8 +71,9 @@ Add a place by copying an existing object. Required fields:
 - `note` — short comment for the place. Use `""` until there is one.
 - `booking` — `walk_in`, `reservation_recommended`, `reservation_required`, `hard_to_book`, `tickets_required`, `no_reservations`, or `unknown`
 - `booking_note`, `booking_url` — optional
+- `placeholder` — optional. `true` for a coffee shop kept as coverage. Leave it off for a place someone has actually recommended.
 
-To attribute a place to one person, leave only their id in `recommended_by`. To add a friend, add them to `data/recommenders.json` (`id`, `displayName`, `bio`, optional `link`, `avatar`, `specialties`) and reference that id.
+To attribute a place to one person, leave only their id in `recommended_by`. To add a friend or a publication, add them to `data/recommenders.json` (`id`, `displayName`, `type` of `person`, `friend`, or `publication`, `bio`, optional `url`) and reference that id. The card says "Recommended by" plus the display name, so a publication shows as "The Infatuation" rather than its slug. Names are still not links.
 
 ```bash
 npm run validate:places
@@ -80,7 +81,7 @@ npm run validate:places
 
 The script fails on missing coordinates, bad booking values, unknown recommender ids, and near-duplicate names at the same pin. Missing hours and shared coordinates are printed. `npm run validate:places -- --strict` also fails on those warnings.
 
-The itinerary shows **Recommended by Sam & Kailey** (or whoever is on the place) on every place card. The name is not a link yet. Each name is marked with `data-recommender-id` so a profile page can wrap it later. Reservation-required, hard-to-book, and ticketed stops are listed under **Book ahead** when a must-do carries that booking.
+The itinerary shows **Recommended by Sam & Kailey** (or whoever is on the place, including a publication title such as The Infatuation) on every place card. The name is not a link yet. Each name is marked with `data-recommender-id` and `data-recommender-type` so a profile page can wrap it later. The morning slot is coffee when a coffee shop is open nearby, at that shop's nearest branch, and otherwise breakfast. Reservation-required, hard-to-book, and ticketed stops are listed under **Book ahead** when a must-do carries that booking.
 
 ## API
 

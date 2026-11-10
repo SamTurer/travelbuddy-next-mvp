@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { getPlaces, getPlanningPlaces, isFoodPlace, visitFitsHours } from '../lib/places';
+import { branchesOf, getPlaces, getPlanningPlaces, isFoodPlace, visitFitsHours, type Place } from '../lib/places';
 import { parseMustDo } from '../lib/must-dos';
 import { planDay, replanItinerary, type Itinerary, type ItineraryVisit } from '../lib/planner';
+import { hoodForPlace } from '../lib/neighborhoods';
 import { estimateLeg } from '../lib/routing';
 import { weekdayIndex } from '../lib/time';
 
@@ -48,8 +49,11 @@ function assertShape(itinerary: Itinerary, label: string) {
       assert.equal(url.searchParams.get('travelmode'), visit.leg.mode === 'walk' ? 'walking' : 'transit');
     }
     if (visit.source === 'curated') {
-      const names = (visit.recommendedBy || []).map((person) => person.displayName).sort();
-      assert.deepEqual(names, ['Kailey', 'Sam']);
+      const people = visit.recommendedBy || [];
+      assert.ok(people.length > 0, `${label} ${visit.title} has no recommender`);
+      for (const person of people) {
+        assert.ok(person.displayName && person.displayName !== person.id, `${label} ${visit.title} ${person.id}`);
+      }
     }
   }
   if (lunch[0] && !lunch[0].pinned) {
@@ -313,4 +317,212 @@ test('replanning a stop still respects opening hours', async () => {
     stops: visible,
   });
   assertShape(replanned, 'replan');
+});
+
+const DAY_HOURS: Place['hours'] = Array.from({ length: 7 }, () => [[8 * 60, 22 * 60]]);
+
+function westVillageSpot(fields: {
+  id: string;
+  name: string;
+  category: string;
+  categories?: string[];
+  lat: number;
+  lng: number;
+  placeholder?: boolean;
+  vibe_tags?: string[];
+  energy_tags?: string[];
+  locations?: Place['locations'];
+  address?: string;
+}): Place {
+  const categories = fields.categories ?? [fields.category];
+  return {
+    id: fields.id,
+    name: fields.name,
+    category: fields.category,
+    categories,
+    neighborhood: 'West Village',
+    area: 'Downtown',
+    lat: fields.lat,
+    lng: fields.lng,
+    duration_min: 30,
+    duration_max: 60,
+    vibe_tags: fields.vibe_tags ?? [],
+    energy_tags: fields.energy_tags ?? [],
+    description: '',
+    hours: DAY_HOURS,
+    recommended_by: [{ recommenderId: fields.placeholder ? 'the-infatuation' : 'sam' }],
+    note: '',
+    booking: 'walk_in',
+    placeholder: fields.placeholder,
+    address: fields.address,
+    locations: fields.locations ?? [
+      {
+        id: `${fields.id}-main`,
+        label: 'West Village',
+        address: fields.address ?? '1 Grove St',
+        lat: fields.lat,
+        lng: fields.lng,
+        neighborhood: 'West Village',
+        hours: DAY_HOURS,
+      },
+    ],
+    status: 'open',
+  };
+}
+
+test('coffee slots use the nearest branch and prefer a real recommendation when it is as close', async () => {
+  const anchor = { lat: 40.735, lng: -74.003 };
+  const day = [
+    westVillageSpot({ id: 'activity-wv', name: 'Village Museum', category: 'museum', lat: anchor.lat, lng: anchor.lng }),
+    westVillageSpot({ id: 'lunch-wv', name: 'Village Lunch', category: 'lunch', lat: anchor.lat, lng: anchor.lng }),
+    westVillageSpot({ id: 'dinner-wv', name: 'Village Dinner', category: 'dinner', lat: anchor.lat, lng: anchor.lng }),
+  ];
+  const trusted = westVillageSpot({
+    id: 'trusted-coffee',
+    name: 'Trusted Coffee',
+    category: 'coffee',
+    lat: anchor.lat,
+    lng: anchor.lng,
+    address: '10 Grove St',
+  });
+  const placeholder = westVillageSpot({
+    id: 'placeholder-coffee',
+    name: 'A Placeholder Coffee',
+    category: 'coffee',
+    lat: anchor.lat,
+    lng: anchor.lng,
+    placeholder: true,
+    vibe_tags: ['local', 'cafe'],
+    energy_tags: ['local'],
+    address: '12 Grove St',
+  });
+  const tied = await planDay(
+    { date: '2026-11-11', pace: 'chill', vibes: ['local'], focusArea: 'west village greenwich village' },
+    [...day, trusted, placeholder]
+  );
+  const tiedStop = realStops(tied).find((visit) => visit.role === 'coffee');
+  assert.ok(tiedStop, dump(tied));
+  assert.equal(tiedStop.title, 'Trusted Coffee');
+  assert.equal(tiedStop.address, '10 Grove St');
+  assert.equal(tiedStop.recommendedBy?.[0]?.displayName, 'Sam');
+
+  const nearerPlaceholder = westVillageSpot({
+    ...placeholder,
+    lat: anchor.lat,
+    lng: anchor.lng,
+    locations: [
+      {
+        id: 'placeholder-near',
+        label: 'West Village',
+        address: '12 Grove St',
+        lat: anchor.lat,
+        lng: anchor.lng,
+        neighborhood: 'West Village',
+        hours: DAY_HOURS,
+      },
+    ],
+  });
+  const fartherTrusted = westVillageSpot({
+    ...trusted,
+    lat: anchor.lat + 0.012,
+    lng: anchor.lng,
+    locations: [
+      {
+        id: 'trusted-far',
+        label: 'West Village',
+        address: '400 Hudson St',
+        lat: anchor.lat + 0.012,
+        lng: anchor.lng,
+        neighborhood: 'West Village',
+        hours: DAY_HOURS,
+      },
+    ],
+  });
+  const closer = await planDay(
+    { date: '2026-11-11', pace: 'chill', vibes: ['local'], focusArea: 'west village greenwich village' },
+    [...day, fartherTrusted, nearerPlaceholder]
+  );
+  const closerStop = realStops(closer).find((visit) => visit.role === 'coffee');
+  assert.ok(closerStop, dump(closer));
+  assert.equal(closerStop.title, 'A Placeholder Coffee');
+  assert.equal(closerStop.address, '12 Grove St');
+  assert.equal(closerStop.recommendedBy?.[0]?.displayName, 'The Infatuation');
+
+  const chain = westVillageSpot({
+    id: 'chain-coffee',
+    name: 'Chain Coffee',
+    category: 'coffee',
+    lat: anchor.lat,
+    lng: anchor.lng,
+    address: '1 Grove St',
+    locations: [
+      {
+        id: 'chain-village',
+        label: 'West Village',
+        address: '1 Grove St',
+        lat: anchor.lat,
+        lng: anchor.lng,
+        neighborhood: 'West Village',
+        hours: DAY_HOURS,
+      },
+      {
+        id: 'chain-midtown',
+        label: 'Midtown',
+        address: '1 W 42nd St',
+        lat: 40.755,
+        lng: -73.986,
+        neighborhood: 'Midtown',
+        hours: DAY_HOURS,
+      },
+    ],
+  });
+  const branched = await planDay(
+    { date: '2026-11-11', pace: 'chill', vibes: ['classic'], focusArea: 'west village greenwich village' },
+    [...day, chain]
+  );
+  const branchedStop = realStops(branched).find((visit) => visit.role === 'coffee');
+  assert.ok(branchedStop, dump(branched));
+  assert.equal(branchedStop.title, 'Chain Coffee');
+  assert.equal(branchedStop.address, '1 Grove St');
+  assert.ok(Math.abs((branchedStop.lat ?? 0) - anchor.lat) < 1e-6);
+});
+
+test('real coffee shops fill the morning slot from the nearest open branch', async () => {
+  const focuses: { focusArea: string; anchor: { lat: number; lng: number } }[] = [
+    { focusArea: 'upper west side', anchor: { lat: 40.787, lng: -73.9754 } },
+    { focusArea: 'west village greenwich village', anchor: { lat: 40.735, lng: -74.003 } },
+    { focusArea: 'harlem', anchor: { lat: 40.8116, lng: -73.9465 } },
+    { focusArea: 'tribeca', anchor: { lat: 40.7163, lng: -74.0086 } },
+  ];
+  for (const { focusArea, anchor } of focuses) {
+    const itinerary = await planDay({ date: '2026-11-14', pace: 'balanced', vibes: ['local'], focusArea });
+    const coffee = realStops(itinerary).find((visit) => visit.role === 'coffee');
+    assert.ok(coffee, `${focusArea}\n${dump(itinerary)}`);
+    const place = byId.get(coffee.placeId || '');
+    assert.ok(place, coffee.title);
+    assert.ok(place.categories.includes('coffee'), place.name);
+    const branch = branchesOf(place).find(
+      (item) => Math.abs(item.lat - (coffee.lat ?? 0)) < 1e-6 && Math.abs(item.lng - (coffee.lng ?? 0)) < 1e-6
+    );
+    assert.ok(branch, `${place.name} is not on one of its branches`);
+    assert.equal(coffee.address || '', branch.address || '');
+    const weekday = weekdayIndex(itinerary.date);
+    const branchHood = (item: (typeof branch)) =>
+      hoodForPlace({ ...place, lat: item.lat, lng: item.lng, neighborhood: place.neighborhood }) ||
+      hoodForPlace({ ...place, lat: item.lat, lng: item.lng, neighborhood: item.label || '' }) ||
+      hoodForPlace({ ...place, lat: item.lat, lng: item.lng, neighborhood: item.neighborhood || '' });
+    const chosenMinutes = estimateLeg(anchor, branch).minutes;
+    const closer = branchesOf(place).filter((item) => {
+      if (item.lat === branch.lat && item.lng === branch.lng) return false;
+      const hood = branchHood(item);
+      if (!hood || !itinerary.cluster.hoods.includes(hood)) return false;
+      if (!visitFitsHours({ hours: item.hours }, weekday, coffee.startMin, 30)) return false;
+      return estimateLeg(anchor, item).minutes + 1 < chosenMinutes;
+    });
+    assert.deepEqual(
+      closer.map((item) => item.address),
+      [],
+      `${focusArea} ${place.name} skipped a closer branch`
+    );
+  }
 });

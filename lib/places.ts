@@ -62,6 +62,11 @@ export type Place = {
   verification_note?: string;
   review_flag?: string;
   hours_partially_verified?: boolean;
+  /**
+   * Sam kept some coffee shops as coverage until he has tried them.
+   * The planner may schedule them, and prefers a real recommendation when it is just as close.
+   */
+  placeholder?: boolean;
 };
 
 const CLOSED = new Set(['closed', 'temporarily_closed']);
