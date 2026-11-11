@@ -1,4 +1,4 @@
-const CACHE = 'travelbuddy-shell-v1';
+const CACHE = 'travelbuddy-shell-v2';
 const PRECACHE = ['/', '/must-dos', '/plan', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/icon-512.png', '/icons/apple-touch-icon.png'];
 
 self.addEventListener('install', (event) => {

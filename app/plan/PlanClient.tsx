@@ -12,6 +12,8 @@ import { areaLabelForValue, normalizeAreaValue } from '@/lib/areas';
 import BookingTag from '@/app/components/BookingTag';
 import RecommendedBy from '@/app/components/RecommendedBy';
 import UnderstoodMatch from '@/app/components/UnderstoodMatch';
+import DayMap from '@/app/components/DayMap';
+import PlaceSheet from '@/app/components/PlaceSheet';
 import type { BookingKind } from '@/lib/booking';
 import type { RecommendedByPerson } from '@/lib/recommenders';
 
@@ -33,6 +35,9 @@ type PlanStop = {
   warning?: string;
   mustDo?: boolean;
   understood?: { title: string; neighborhood: string };
+  lat?: number;
+  lng?: number;
+  leg?: { mode?: 'walk' | 'transit' | string; summary?: string; mapsUrl?: string; minutes?: number } | null;
 };
 
 type BookAheadItem = {
@@ -74,6 +79,7 @@ type StopReplanMood = (typeof STOP_REPLAN_OPTIONS)[number];
 export default function PlanClient() {
   const searchParams = useSearchParams();
   const [stops, setStops] = useState<PlanStop[] | null>(null);
+  const [openPlace, setOpenPlace] = useState<PlanStop | null>(null);
   const [warnings, setWarnings] = useState<string[]>([]);
   const [dayMapsUrl, setDayMapsUrl] = useState<string | null>(null);
   const [bookAhead, setBookAhead] = useState<BookAheadItem[]>([]);
@@ -327,12 +333,9 @@ export default function PlanClient() {
     return (
       <div className="min-h-[60vh] flex items-center justify-center px-6">
         <div className="rounded-2xl border border-blue-100 bg-blue-50/80 px-6 py-4 text-blue-700 shadow-sm">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">🍳</span>
-            <div>
-              <p className="text-lg font-semibold">Cooking up your perfect day…</p>
-              <p className="text-sm text-blue-600/80 animate-pulse">Simmering in the best spots right now.</p>
-            </div>
+          <div>
+            <p className="font-serif text-2xl font-semibold">Building your day</p>
+            <p className="mt-1 text-sm text-mute">Checking hours, neighborhoods, and the walk between them.</p>
           </div>
         </div>
       </div>
@@ -358,271 +361,228 @@ export default function PlanClient() {
   const replanButtonLabel = dayReplanLoading ? 'Replanning…' : 'Replan my day';
 
   let activityCounter = -1;
+  const mapPoints = stops
+    .filter((stop) => stop.kind !== 'transit' && stop.kind !== 'free' && stop.lat != null && stop.lng != null)
+    .map((stop) => ({ lat: stop.lat as number, lng: stop.lng as number, title: stop.title, mode: stop.leg?.mode }));
+  const dayTitle = payload
+    ? new Date(`${payload.date}T12:00:00`).toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })
+    : 'Your day';
+  const dayMeta = [
+    payload?.focusArea ? areaLabelForValue(payload.focusArea) : null,
+    payload?.vibes?.[0] ? payload.vibes[0][0].toUpperCase() + payload.vibes[0].slice(1) : null,
+    payload?.pace ? payload.pace[0].toUpperCase() + payload.pace.slice(1) : null,
+  ]
+    .filter(Boolean)
+    .join('  ·  ');
 
   return (
-    <div className="space-y-4 px-4 pb-8 pt-4">
-      {payload && (
-        <div className="flex flex-wrap items-start justify-between gap-3 rounded-xl border border-slate-200 bg-white/80 p-4 shadow-sm">
-          <details className="w-full max-w-md text-sm text-slate-600">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg border border-transparent px-2 py-1 text-xs font-semibold uppercase tracking-wide text-slate-500 transition hover:border-slate-200 hover:bg-slate-50">
-              <span>Plan inputs</span>
-              <span className="text-[11px] font-medium text-slate-400">
-                {payload.city} • {payload.date}
-              </span>
-            </summary>
-            <div className="mt-3 space-y-3 rounded-lg border border-slate-100 bg-white px-3 py-3">
-              {payload.vibes.length > 0 && (
-                <div>
-                  <div className="text-[11px] uppercase tracking-wide text-slate-500">Vibes</div>
-                  <div className="mt-1 flex flex-wrap gap-2">
-                    {payload.vibes.map((vibe) => (
-                      <span
-                        key={vibe}
-                        className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700"
-                      >
-                        {vibe.charAt(0).toUpperCase() + vibe.slice(1)}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-              <div>
-                <div className="text-[11px] uppercase tracking-wide text-slate-500">Pace</div>
-                <div className="mt-1 text-sm font-medium capitalize text-slate-700">
-                  {payload.pace}
-                </div>
-              </div>
-              {payload.focusArea && (
-                <div>
-                  <div className="text-[11px] uppercase tracking-wide text-slate-500">Focus Area</div>
-                  <div className="mt-1 text-sm font-medium text-slate-700">
-                    {areaLabelForValue(payload.focusArea)}
-                  </div>
-                </div>
-              )}
-              <div>
-                <div className="text-[11px] uppercase tracking-wide text-slate-500">Must-dos</div>
-                {stops?.some((stop) => stop.understood) ? (
-                  <ul className="mt-1 space-y-1 text-sm">
-                    {stops
-                      .filter((stop) => stop.understood)
-                      .map((stop, idx) => (
-                        <li key={`${stop.understood?.title}-${idx}`}>
-                          <UnderstoodMatch
-                            title={stop.understood?.title || stop.title}
-                            neighborhood={stop.understood?.neighborhood}
-                            time={stop.time?.split('–')[0]?.trim()}
-                          />
-                        </li>
-                      ))}
-                  </ul>
-                ) : mustDoSummaries.length > 0 ? (
-                  <ul className="mt-1 space-y-1 text-sm">
-                    {mustDoSummaries.map((item, idx) => (
-                      <li key={`${item}-${idx}`} className="flex items-start gap-2 text-slate-600">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-slate-300" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="mt-1 text-sm text-slate-500">None added yet.</p>
-                )}
-              </div>
-            </div>
-          </details>
-          <button
-            type="button"
-            onClick={handleReplanDay}
-            disabled={isDayButtonDisabled}
-            className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
-              isDayButtonDisabled
-                ? 'cursor-not-allowed border border-slate-200 bg-slate-100 text-slate-400'
-                : 'border border-slate-800 text-slate-800 hover:bg-slate-900 hover:text-white'
-            }`}
-          >
-            {replanButtonLabel}
-          </button>
-        </div>
-      )}
-
-      {offlineNote && (
-        <div className="rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-base text-amber-950">
-          {offlineNote}
-        </div>
-      )}
-
-      {infoMessage && (
-        <div className="rounded-lg border border-blue-100 bg-blue-50/80 px-4 py-2 text-sm text-blue-700 shadow-sm">
-          {infoMessage}
-        </div>
-      )}
-
-      {warnings.length > 0 && (
-        <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-          <div className="text-xs font-semibold uppercase tracking-wide text-amber-700">Heads up</div>
-          <ul className="mt-1 space-y-1">
-            {warnings.map((warning) => (
-              <li key={warning}>{warning}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {bookAhead.length > 0 && (
-        <section className="rounded-xl border border-orange-200 bg-orange-50/80 px-4 py-3">
-          <h2 className="text-sm font-semibold text-orange-950">Book ahead</h2>
-          <ul className="mt-2 space-y-2 text-sm text-orange-950">
-            {bookAhead.map((item) => (
-              <li key={`${item.title}-${item.time}`}>
-                <span className="font-medium">{item.title}</span>
-                <span className="text-orange-800"> · {item.time} · {item.bookingLabel}</span>
-                {item.bookingNote ? <span className="block text-orange-800">{item.bookingNote}</span> : null}
-                {item.bookingUrl ? (
-                  <a className="block text-orange-700 underline" href={item.bookingUrl} target="_blank" rel="noreferrer">
-                    Reserve
-                  </a>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {dayMapsUrl && (
-        <MapsLink
-          href={dayMapsUrl}
-          className="tap inline-flex w-full items-center justify-center rounded-2xl bg-[#0b1f33] px-4 text-base font-semibold text-white"
-        >
-          Open the whole day in Google Maps
-        </MapsLink>
-      )}
-
-      <button
-        type="button"
-        onClick={useMyLocation}
-        disabled={locBusy}
-        className="tap w-full rounded-2xl border border-slate-300 bg-white px-4 text-base font-medium text-slate-800"
-      >
-        {locBusy ? 'Finding you…' : payload?.startLocation ? 'Update my location' : 'Use my location'}
-      </button>
-      {payload?.startLocation && (
-        <p className="text-sm text-slate-500">First leg starts from where you are. Meal times stay put.</p>
-      )}
-      {locError && <p className="text-sm text-red-700">{locError}</p>}
-
-      {stops.map((s, i) => {
-        const isTransit = s.title === 'Transit' || s.kind === 'transit';
-        if (isTransit) {
-          const directions = s.mapsUrl || s.url;
-          return (
-            <div
-              key={`transit-${i}`}
-              className="rounded-xl border border-dashed border-slate-300 bg-slate-50/80 px-4 py-3 text-sm text-slate-600 shadow-inner"
-            >
-              <div className="flex items-center gap-2 text-slate-500">
-                <span className="text-xs font-semibold uppercase tracking-wide">Transit</span>
-                <span className="h-1 w-1 rounded-full bg-slate-300" />
-                <span className="text-xs text-slate-400">Connection</span>
-              </div>
-              <p className="mt-1 text-sm font-medium text-slate-700">{s.description ?? 'Travel to the next stop'}</p>
-              {directions ? (
-                <MapsLink href={directions} className="tap mt-2 inline-flex w-full items-center justify-center rounded-xl bg-white text-base font-semibold text-blue-700">
-                  Directions
-                </MapsLink>
-              ) : null}
-            </div>
-          );
-        }
-
-        activityCounter += 1;
-        const activityIndex = activityCounter;
-        const menuOpen = activityMenuOpen === activityIndex;
-        const isActivityLoading = activityReplanLoading === activityIndex;
-        const disableActivity = dayReplanLoading || activityReplanLoading !== null;
-        const isFree = s.kind === 'free' || s.source === 'free';
-
-        return (
-          <div key={`stop-${i}`} className="rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm transition hover:shadow-md">
-            <div className="text-base font-medium text-slate-500">{s.time}</div>
-            <div className="text-xl font-semibold leading-snug">
-              {s.url ? (
-                <MapsLink href={s.url}>{s.title}</MapsLink>
-              ) : (
-                s.title
-              )}
-            </div>
-            <div className="text-base">{s.address || s.location}</div>
-            {s.address && s.location ? <div className="text-sm text-slate-500">{s.location}</div> : null}
-            {s.source === 'ai' && (
-              <span className="mt-1 inline-flex rounded-full bg-violet-100 px-2 py-0.5 text-xs font-semibold text-violet-800">
-                AI suggestion
-              </span>
-            )}
-            {s.mustDo && s.understood ? (
-              <UnderstoodMatch
-                title={s.understood.title}
-                neighborhood={s.understood.neighborhood}
-                time={s.time?.split('–')[0]?.trim()}
-              />
-            ) : null}
-            {(s.source === 'must-do' || s.mustDo) && (
-              <span className="mt-1 inline-flex rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">
-                Your must-do
-              </span>
-            )}
-            <RecommendedBy people={s.recommendedBy} />
-            <BookingTag booking={s.booking} note={s.bookingNote} />
-            {s.note ? <p className="mt-2 text-sm text-slate-700">{s.note}</p> : null}
-            {s.description && <p className="mt-2 text-sm text-slate-600">{s.description}</p>}
-            {s.warning ? <p className="mt-2 text-sm text-amber-800">{s.warning}</p> : null}
-            <div className="mt-4 grid gap-2">
-              {!isFree && (
-              <MapsLink
-                href={buildMapsUrl(s)}
-                className="tap inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-blue-600 px-4 text-base font-semibold text-blue-700"
-              >
-                <span role="img" aria-hidden="true">🗺️</span>
-                <span>Open in Maps</span>
-              </MapsLink>
-              )}
-              {!isFree && (
-              <div className="relative w-full">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (disableActivity) return;
-                    setActivityMenuOpen(menuOpen ? null : activityIndex);
-                  }}
-                  disabled={disableActivity}
-                  className={`tap inline-flex w-full items-center justify-center gap-2 rounded-2xl px-4 text-base font-semibold transition ${
-                    disableActivity
-                      ? 'cursor-not-allowed border border-slate-200 bg-slate-100 text-slate-400'
-                      : 'border border-slate-400 text-slate-600 hover:border-slate-600 hover:text-slate-800'
-                  }`}
-                >
-                  {isActivityLoading ? 'Replanning…' : 'Replan'}
-                </button>
-                {menuOpen && (
-                  <div className="absolute right-0 z-10 mt-2 w-48 rounded-xl border border-slate-200 bg-white shadow-lg">
-                    {STOP_REPLAN_OPTIONS.map((option) => (
-                      <button
-                        key={option}
-                        type="button"
-                        onClick={() => handleStopReplan(activityIndex, option)}
-                        className="block w-full px-4 py-2 text-left text-sm text-slate-600 hover:bg-slate-50"
-                      >
-                        {option}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-              )}
-            </div>
+    <div className="pb-8">
+      <div className="relative">
+        <DayMap points={mapPoints} />
+        <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between gap-3 rounded-xl bg-white/90 px-3 py-2 shadow-md backdrop-blur">
+          <div>
+            <div className="font-serif text-[15px] font-semibold tracking-tight">{dayTitle}</div>
+            {dayMeta ? <div className="text-[11px] text-mute">{dayMeta}</div> : null}
           </div>
-        );
-      })}
+          {dayMapsUrl ? (
+            <MapsLink href={dayMapsUrl} className="shrink-0 text-[13px] font-semibold text-system">
+              Open in Maps
+            </MapsLink>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="space-y-2.5 px-4 pt-3">
+        {offlineNote && (
+          <div className="rounded-xl bg-white px-4 py-3 text-sm text-ink">{offlineNote}</div>
+        )}
+        {infoMessage && <div className="rounded-xl bg-white px-4 py-2 text-sm text-system">{infoMessage}</div>}
+        {warnings.length > 0 && (
+          <div className="rounded-xl bg-white px-4 py-3 text-sm text-ink">
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-[#C93400]">Heads up</div>
+            <ul className="mt-1 space-y-1">
+              {warnings.map((warning) => (
+                <li key={warning}>{warning}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {stops.some((stop) => stop.understood) && (
+          <div className="rounded-xl bg-white px-4 py-3">
+            {stops
+              .filter((stop) => stop.understood)
+              .map((stop, idx) => (
+                <UnderstoodMatch
+                  key={`${stop.understood?.title}-${idx}`}
+                  title={stop.understood?.title || stop.title}
+                  neighborhood={stop.understood?.neighborhood}
+                  time={stop.time?.split('–')[0]?.trim()}
+                />
+              ))}
+          </div>
+        )}
+
+        <div className="overflow-hidden rounded-[14px] bg-white">
+          {stops.map((s, i) => {
+            const isTransit = s.title === 'Transit' || s.kind === 'transit';
+            if (isTransit) {
+              const directions = s.mapsUrl || s.url;
+              const walk = s.leg?.mode === 'walk';
+              return (
+                <div key={`transit-${i}`} className="grid grid-cols-[54px_1fr] gap-x-2.5 bg-[#F9F9FB] px-3.5">
+                  <div className="relative min-h-9">
+                    <span className="absolute bottom-0 left-2 top-0 border-l-2 border-dashed border-[#C7C7CC]" />
+                  </div>
+                  <div className="flex items-start justify-between gap-2 py-2 text-xs text-[#6C6C70]">
+                    <span>
+                      <strong className="font-semibold text-ink">{walk ? 'Walk' : 'Subway'}</strong>
+                      {s.description ? <span className="mt-0.5 block">{s.description}</span> : null}
+                    </span>
+                    {directions ? (
+                      <MapsLink href={directions} className="shrink-0 font-medium text-system">
+                        Open in Google Maps
+                      </MapsLink>
+                    ) : null}
+                  </div>
+                </div>
+              );
+            }
+
+            activityCounter += 1;
+            const activityIndex = activityCounter;
+            const menuOpen = activityMenuOpen === activityIndex;
+            const isActivityLoading = activityReplanLoading === activityIndex;
+            const disableActivity = dayReplanLoading || activityReplanLoading !== null;
+            const isFree = s.kind === 'free' || s.source === 'free';
+            const start = s.time?.split('–')[0]?.trim();
+
+            return (
+              <div key={`stop-${i}`} className="grid grid-cols-[54px_1fr] gap-x-2.5 px-3.5 py-3">
+                <div className="pt-0.5 text-[13px] font-semibold tabular-nums tracking-tight">
+                  {start?.replace(/\s*(AM|PM)$/i, '')}
+                </div>
+                <div>
+                  {isFree ? (
+                    <div className="font-serif text-base font-semibold tracking-tight">{s.title}</div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setOpenPlace(s)}
+                      className="text-left font-serif text-base font-semibold tracking-tight"
+                    >
+                      {s.title}
+                    </button>
+                  )}
+                  <div className="mt-0.5 text-xs text-mute">
+                    {[s.location, s.address].filter(Boolean).join('  ·  ')}
+                  </div>
+                  <RecommendedBy people={s.recommendedBy} />
+                  {s.mustDo && s.understood ? (
+                    <UnderstoodMatch
+                      title={s.understood.title}
+                      neighborhood={s.understood.neighborhood}
+                      time={start}
+                    />
+                  ) : null}
+                  <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
+                    <BookingTag booking={s.booking} note={s.bookingNote} />
+                    {s.source === 'ai' && (
+                      <span className="rounded-md bg-violet-100 px-1.5 py-0.5 text-[11px] font-medium text-violet-800">
+                        AI suggestion
+                      </span>
+                    )}
+                    {(s.source === 'must-do' || s.mustDo) && (
+                      <span className="rounded-md bg-[#007AFF14] px-1.5 py-0.5 text-[11px] font-medium text-system">
+                        Must-do
+                      </span>
+                    )}
+                  </div>
+                  {s.note ? <p className="mt-1 text-xs text-ink">{s.note}</p> : null}
+                  {s.warning ? <p className="mt-1 text-xs text-[#C93400]">{s.warning}</p> : null}
+                  {!isFree && (
+                    <div className="relative mt-1">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (disableActivity) return;
+                          setActivityMenuOpen(menuOpen ? null : activityIndex);
+                        }}
+                        disabled={disableActivity}
+                        className="text-xs font-semibold text-system disabled:text-mute"
+                      >
+                        {isActivityLoading ? 'Replanning…' : 'Replan'}
+                      </button>
+                      {menuOpen && (
+                        <div className="absolute left-0 z-10 mt-1 w-48 overflow-hidden rounded-xl bg-white shadow-lg ring-1 ring-black/5">
+                          {STOP_REPLAN_OPTIONS.map((option) => (
+                            <button
+                              key={option}
+                              type="button"
+                              onClick={() => handleStopReplan(activityIndex, option)}
+                              className="block w-full px-3 py-2 text-left text-sm text-ink hover:bg-grouped"
+                            >
+                              {option}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {bookAhead.length > 0 && (
+          <section className="rounded-[14px] bg-white px-3.5 py-3">
+            <h2 className="mb-2 text-[13px] font-semibold">Book ahead</h2>
+            <ul className="space-y-2">
+              {bookAhead.map((item) => (
+                <li key={`${item.title}-${item.time}`} className="flex gap-2.5">
+                  <span className="mt-0.5 h-5 w-5 shrink-0 rounded-[5px] border-[1.5px] border-[#C7C7CC]" />
+                  <div>
+                    <div className="text-[15px] font-semibold tracking-tight">{item.title}</div>
+                    <div className="text-xs text-mute">
+                      {item.bookingLabel} · {item.time}
+                    </div>
+                    {item.bookingNote ? <div className="text-xs text-mute">{item.bookingNote}</div> : null}
+                    {item.bookingUrl ? (
+                      <a className="text-xs font-semibold text-system" href={item.bookingUrl} target="_blank" rel="noreferrer">
+                        Reserve
+                      </a>
+                    ) : null}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <button
+          type="button"
+          onClick={handleReplanDay}
+          disabled={isDayButtonDisabled}
+          className="tap w-full rounded-xl bg-white text-[17px] font-semibold text-system disabled:text-mute"
+        >
+          {replanButtonLabel}
+        </button>
+        <button
+          type="button"
+          onClick={useMyLocation}
+          disabled={locBusy}
+          className="tap w-full text-left text-base font-semibold text-system"
+        >
+          {locBusy ? 'Finding you…' : payload?.startLocation ? 'Update my location' : 'Use my location'}
+        </button>
+        {payload?.startLocation && (
+          <p className="px-1 text-xs text-mute">First leg starts from where you are. Meal times stay put.</p>
+        )}
+        {locError && <p className="text-sm text-red-700">{locError}</p>}
+      </div>
+
+      {openPlace && <PlaceSheet place={openPlace} onClose={() => setOpenPlace(null)} />}
     </div>
   );
 }

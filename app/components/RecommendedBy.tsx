@@ -12,8 +12,8 @@ export default function RecommendedBy({ people }: { people?: RecommendedByPerson
   const label = formatRecommendedBy(people);
   const cite = people.some((person) => isPublication(person));
   return (
-    <p className="mt-1 text-sm text-slate-600">
-      <span className="text-slate-500">Recommended by </span>
+    <p className="mt-1 text-xs text-ink">
+      <span className="text-mute">Recommended by </span>
       {people.map((person, index) => (
         <span key={`${person.id}-${index}`}>
           {index > 0 ? (cite ? ', ' : index === people.length - 1 ? ' & ' : ', ') : null}
@@ -22,7 +22,7 @@ export default function RecommendedBy({ people }: { people?: RecommendedByPerson
             data-recommender-type={person.type || 'person'}
             data-recommender-url={person.url || undefined}
             title={person.note || undefined}
-            className="font-medium text-slate-800"
+            className="font-semibold text-ink"
           >
             {person.displayName}
           </span>
