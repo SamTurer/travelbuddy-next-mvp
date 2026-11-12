@@ -92,7 +92,7 @@ export default function MustDosPage() {
   return (
     <main className="px-5 pb-8 pt-2">
       <h1 className="font-serif text-[32px] font-semibold leading-none tracking-tight">Must-dos</h1>
-      <p className="mt-1.5 text-[15px] text-mute">A time or a nickname is enough. No API key required.</p>
+      <p className="mt-1.5 text-[15px] text-mute">A time or a nickname is enough.</p>
 
       <div className="sec-label">Add one</div>
       <div className="overflow-hidden rounded-xl bg-white">
@@ -139,10 +139,7 @@ export default function MustDosPage() {
       </button>
 
       <section className="mt-5 rounded-[14px] bg-white px-4 py-3">
-        <div className="flex items-baseline justify-between gap-3">
-          <h2 className="text-[13px] font-semibold">What we understood</h2>
-          <span className="text-[11px] text-mute">No AI key needed</span>
-        </div>
+        <h2 className="text-[13px] font-semibold">What we understood</h2>
         {previewError && <p className="mt-2 text-sm text-red-600">{previewError}</p>}
         {preview.length > 0 ? (
           <ul className="mt-2 space-y-2">
