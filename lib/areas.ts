@@ -20,7 +20,6 @@ export const AREA_OPTIONS: AreaOption[] = [
   { label: 'Lower East Side', value: 'lower east side' },
   { label: 'Chinatown', value: 'chinatown' },
   { label: 'FiDi & Downtown', value: 'fidi downtown' },
-  { label: 'Brooklyn', value: 'brooklyn' },
   { label: 'Surprise me', value: 'surprise' },
 ];
 
@@ -42,7 +41,6 @@ const AREA_VALUE_TO_KEYS: Record<string, string[]> = {
   'lower east side': ['lower east side', 'chinatown', 'soho nolita', 'west village greenwich village'],
   chinatown: ['chinatown', 'lower east side', 'soho nolita', 'fidi downtown'],
   'fidi downtown': ['fidi downtown', 'tribeca', 'chinatown'],
-  brooklyn: ['brooklyn'],
 };
 
 const RANDOMABLE_VALUES = AREA_OPTIONS.map((opt) => normalizeAreaValue(opt.value))
@@ -71,7 +69,17 @@ export function getFocusAreaKeys(selection?: string | null): string[] {
   if (Array.isArray(mapped) && mapped.length) {
     return mapped;
   }
-  return [normalized];
+  // An old saved choice outside Manhattan, such as Brooklyn, is no focus.
+  return [];
+}
+
+/** A focus the current picker still offers. Anything else, including outer boroughs, is dropped. */
+export function coerceManhattanFocus(raw?: string | null): string | null {
+  const normalized = normalizeAreaValue(raw);
+  if (!normalized || normalized === 'any') return null;
+  if (normalized === 'surprise') return 'surprise';
+  if (AREA_VALUE_TO_KEYS[normalized]) return normalized;
+  return null;
 }
 
 export function areaLabelForValue(value?: string | null): string | null {
