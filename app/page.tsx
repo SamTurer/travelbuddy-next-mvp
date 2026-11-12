@@ -38,7 +38,7 @@ export default function Home() {
     {
       id: 'classic',
       title: 'Classic',
-      blurb: 'Iconic, with a local twist',
+      blurb: 'NYC essentials: iconic sights and established favorites.',
     },
     {
       id: 'curator',
@@ -48,7 +48,7 @@ export default function Home() {
     {
       id: 'local',
       title: 'Local',
-      blurb: 'Character, less obvious',
+      blurb: 'Neighborhood discoveries: quieter spots and everyday favorites beyond the headline attractions.',
     },
   ];
 
