@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { branchesOf, getPlaces, getPlanningPlaces, isFoodPlace, visitFitsHours, type Place } from '../lib/places';
 import { describeMatch, parseMustDo } from '../lib/must-dos';
+import { enrichLocksWithAI } from '../lib/ai';
 import UnderstoodMatch from '../app/components/UnderstoodMatch';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -295,6 +296,70 @@ test('Met Museum at noon matches The Met and keeps the clock time', async () => 
   assert.equal(parseMustDo('high line', places)?.place?.id, 'the-high-line');
   assert.equal(parseMustDo('Whitney Museum', places)?.place?.neighborhood, 'Meatpacking / West Village edge');
   assert.equal(parseMustDo('zzzz not a place', places)?.place, null);
+  assert.equal(parseMustDo('noon at the met', places)?.pinnedStart, 12 * 60);
+  assert.equal(parseMustDo('the met around 12', places)?.pinnedStart, 12 * 60);
+  assert.equal(parseMustDo('met musuem', places)?.place?.id, 'the-met');
+  assert.equal(parseMustDo('noontime at the met', places)?.pinnedStart, 12 * 60);
+
+  const zabars = parseMustDo('zabars at lunchtime', places);
+  assert.ok(zabars);
+  assert.equal(zabars.place?.id, 'zabars');
+  assert.equal(zabars.neighborhood, 'Upper West Side');
+  assert.equal(zabars.slot, 'lunch');
+  assert.equal(zabars.pinnedStart, null);
+  assert.equal(describeMatch(zabars), 'Zabars in Upper West Side for lunch');
+
+  for (const phrase of ["Zabar's at lunch", 'lunch at zabars', 'around lunchtime at zabars']) {
+    const item = parseMustDo(phrase, places);
+    assert.equal(item?.place?.id, 'zabars', phrase);
+    assert.equal(item?.slot, 'lunch', phrase);
+    assert.equal(item?.pinnedStart, null, phrase);
+  }
+  assert.equal(parseMustDo('zaabars', places)?.place?.id, 'zabars');
+  assert.equal(parseMustDo('zabars', places)?.slot, 'activity');
+
+  const levain = parseMustDo('levain for breakfast', places);
+  assert.equal(levain?.place?.id, 'levain-bakery');
+  assert.equal(levain?.slot, 'breakfast');
+  assert.equal(parseMustDo('in the morning at levain', places)?.slot, 'breakfast');
+  assert.equal(parseMustDo('dinnertime at via carota', places)?.slot, 'dinner');
+  assert.equal(parseMustDo('Carbone for dinner', places)?.slot, 'dinner');
+  assert.equal(parseMustDo('hamilton at 8', places)?.pinnedStart, 20 * 60);
+  assert.equal(parseMustDo('Comedy Cellar tonight', places)?.place, null);
+  assert.equal(parseMustDo('Comedy Cellar tonight', places)?.neighborhood, 'Greenwich Village');
+
+  const unknown = parseMustDo('zzzz not a real place', places);
+  assert.equal(unknown?.plainText, true);
+  assert.equal(unknown?.title, 'zzzz not a real place');
+
+  const preview = await enrichLocksWithAI([{ title: 'zabars at lunchtime' }], {
+    city: 'New York City',
+    date: '2026-11-14',
+  });
+  assert.equal(preview[0]?.matched, true);
+  assert.equal(preview[0]?.title, 'Zabars');
+  assert.equal(preview[0]?.location, 'Upper West Side');
+  assert.equal(preview[0]?.detail, 'for lunch');
+  assert.equal(preview[0]?.time, undefined);
+
+  const day = await planDay({
+    date: '2026-11-14',
+    pace: 'balanced',
+    vibes: ['classic'],
+    locks: ['zabars at lunchtime'],
+  });
+  const zabarsLunch = realStops(day).find((visit) => visit.role === 'lunch');
+  assert.ok(zabarsLunch, dump(day));
+  assert.equal(zabarsLunch.placeId, 'zabars');
+  assert.ok(zabarsLunch.startMin >= 12 * 60 && zabarsLunch.startMin <= 14 * 60, dump(day));
+
+  const maman = await planDay({
+    date: '2026-11-14',
+    pace: 'balanced',
+    vibes: ['classic'],
+    locks: ['coffee at maman'],
+  });
+  assert.ok(realStops(maman).some((visit) => visit.placeId === 'maman'), dump(maman));
 
   const html = renderToStaticMarkup(
     createElement(UnderstoodMatch, { title: 'The Met', neighborhood: 'Upper East Side', time: '12:00 PM' })

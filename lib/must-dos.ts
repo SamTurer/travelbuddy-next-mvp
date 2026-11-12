@@ -99,10 +99,10 @@ const GAZETTEER: GazetteerEntry[] = [
 ];
 
 const MEAL_WORDS: { re: RegExp; slot: MustSlot }[] = [
-  { re: /\b(breakfast)\b/i, slot: 'breakfast' },
+  { re: /\b(breakfast(?:\s*time)?)\b/i, slot: 'breakfast' },
   { re: /\b(brunch)\b/i, slot: 'breakfast' },
-  { re: /\b(lunch)\b/i, slot: 'lunch' },
-  { re: /\b(dinner|supper)\b/i, slot: 'dinner' },
+  { re: /\b(lunch(?:\s*time)?)\b/i, slot: 'lunch' },
+  { re: /\b(dinner(?:\s*time)?|supper(?:\s*time)?)\b/i, slot: 'dinner' },
   { re: /\b(drinks|cocktails)\b/i, slot: 'drinks' },
   { re: /\b(coffee|café|cafe)\b/i, slot: 'breakfast' },
   { re: /\b(musical|broadway|hamilton)\b/i, slot: 'show' },
@@ -115,6 +115,7 @@ export function normalizeName(value: string): string {
     .toLowerCase()
     .replace(/&/g, ' and ')
     .replace(/\([^)]*\)/g, ' ')
+    .replace(/['’]/g, '')
     .replace(/\b(the|a|an)\b/g, ' ')
     .replace(/[^a-z0-9]+/g, ' ')
     .replace(/\s+/g, ' ')
@@ -164,6 +165,10 @@ export function scorePlaceName(query: string, placeName: string): number {
   if (left.length >= 4 && (right.startsWith(left) || left.startsWith(right)) && Math.abs(left.length - right.length) <= 4) {
     return 88;
   }
+  // "levain" is the name people use for "Levain Bakery". Only a single distinctive word.
+  if (leftTokens.length === 1 && left.length >= 5 && (right.startsWith(`${left} `) || left.startsWith(`${right} `))) {
+    return 86;
+  }
   if (left.length >= 5 && right.length >= 5 && levenshtein(left, right) <= 2) return 84;
   const shared = leftTokens.filter((token) => rightTokens.includes(token)).length;
   const union = new Set([...leftTokens, ...rightTokens]).size;
@@ -178,13 +183,19 @@ export function scorePlace(query: string, place: Place): number {
 
 function bestPlace(query: string, places: Place[]): Place | null {
   let best: { place: Place; score: number } | null = null;
+  const scored: { place: Place; score: number }[] = [];
   for (const place of places) {
     const score = scorePlace(query, place);
+    if (score <= 0) continue;
+    scored.push({ place, score });
     if (!best || score > best.score || (score === best.score && place.name.length < best.place.name.length)) {
       best = { place, score };
     }
   }
   if (!best || best.score < MATCH_THRESHOLD) return null;
+  const ties = scored.filter((item) => item.score === best!.score);
+  // A nickname that fits two places is not a match. Exact names still win.
+  if (ties.length > 1 && best.score < 100) return null;
   return best.place;
 }
 
@@ -211,12 +222,12 @@ function parseClockToken(value: string): RawClock | null {
 }
 
 function findClock(text: string): RawClock | null {
-  if (/\bnoon\b/i.test(text)) return { hour: 12, minute: 0, ampm: 'pm' };
+  if (/\b(noon|noontime)\b/i.test(text)) return { hour: 12, minute: 0, ampm: 'pm' };
   if (/\bmidnight\b/i.test(text)) return { hour: 12, minute: 0, ampm: 'am' };
   const patterns = [
     /\b(\d{1,2}:\d{2}\s*(?:a\.?m\.?|p\.?m\.?)?)\b/i,
     /\b(\d{1,2}\s*(?:a\.?m\.?|p\.?m\.?))\b/i,
-    /\bat\s+(\d{1,2}(?::\d{2})?)\b/i,
+    /\b(?:at|around|about|by)\s+(\d{1,2}(?::\d{2})?(?:\s*(?:a\.?m\.?|p\.?m\.?))?)\b/i,
   ];
   for (const pattern of patterns) {
     const match = text.match(pattern);
@@ -285,12 +296,13 @@ function slotWord(text: string): MustSlot | null {
 
 function cleanTitle(text: string): string {
   return text
-    .replace(/\b(noon|midnight)\b/gi, ' ')
+    .replace(/\b(noontime|noon|midnight)\b/gi, ' ')
     .replace(/\b\d{1,2}:\d{2}\s*(?:a\.?m\.?|p\.?m\.?)?\b/gi, ' ')
-    .replace(/\bat\s+\d{1,2}(?::\d{2})?\b/gi, ' ')
+    .replace(/\b(?:at|around|about|by)\s+\d{1,2}(?::\d{2})?(?:\s*(?:a\.?m\.?|p\.?m\.?))?\b/gi, ' ')
     .replace(/\b\d{1,2}\s*(?:a\.?m\.?|p\.?m\.?)\b/gi, ' ')
     .replace(/\b(in the|around|about|at|for)\b/gi, ' ')
-    .replace(/\b(breakfast|brunch|lunch|dinner|supper|drinks|cocktails|coffee|show|musical|broadway|morning|afternoon|evening|tonight)\b/gi, ' ')
+    .replace(/\b(breakfast|brunch|lunch|dinner|supper)(?:\s*time)?\b/gi, ' ')
+    .replace(/\b(drinks|cocktails|coffee|show|musical|broadway|morning|afternoon|evening|tonight)\b/gi, ' ')
     .replace(/[^a-zA-Z0-9'&. -]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
@@ -299,12 +311,15 @@ function cleanTitle(text: string): string {
 function slotFromPlace(categories: string[], daypart: ParsedMust['daypart'], word: MustSlot | null): MustSlot {
   if (word === 'show') return 'show';
   if (word === 'dinner' || word === 'lunch' || word === 'breakfast' || word === 'drinks') return word;
-  if (daypart === 'afternoon' || daypart === 'morning') return 'activity';
   if (categories.includes('show')) return 'show';
+  const morningFood = categories.some((category) => ['breakfast', 'coffee', 'bakery', 'brunch'].includes(category));
+  if (daypart === 'morning' && morningFood) return 'breakfast';
+  if (daypart === 'evening' && categories.includes('dinner')) return 'dinner';
+  if (daypart === 'afternoon' || daypart === 'morning') return 'activity';
   if (categories.includes('dinner')) return 'dinner';
   if (categories.includes('drinks') && categories.length === 1) return 'drinks';
   if (categories.includes('lunch') && !categories.includes('breakfast')) return 'lunch';
-  if (categories.some((category) => ['breakfast', 'coffee', 'bakery', 'brunch'].includes(category))) return 'breakfast';
+  if (morningFood) return 'breakfast';
   return 'activity';
 }
 
@@ -352,7 +367,7 @@ export function parseMustDo(lock: LockInput, places: Place[], pace: Pace = 'bala
 
   return {
     raw,
-    title: place?.name ?? gaz?.name ?? name,
+    title: place?.name ?? gaz?.name ?? raw.trim(),
     place,
     lat: place?.lat ?? gaz?.lat,
     lng: place?.lng ?? gaz?.lng,
@@ -369,11 +384,21 @@ export function parseMustDo(lock: LockInput, places: Place[], pace: Pace = 'bala
   };
 }
 
+/** "for lunch" when the phrase names a meal but not a clock. A clock still wins. */
+export function matchDetail(item: Pick<ParsedMust, 'pinnedStart' | 'slot'>): string | undefined {
+  if (item.pinnedStart != null) return undefined;
+  if (item.slot === 'lunch' || item.slot === 'dinner' || item.slot === 'breakfast' || item.slot === 'drinks') {
+    return `for ${item.slot}`;
+  }
+  return undefined;
+}
+
 /** Sentence for the must-do screen: the place we matched, where it is, and the time we kept. */
-export function describeMatch(item: Pick<ParsedMust, 'title' | 'neighborhood' | 'pinnedStart'>): string {
+export function describeMatch(item: Pick<ParsedMust, 'title' | 'neighborhood' | 'pinnedStart' | 'slot'>): string {
   const where = item.neighborhood ? ` in ${item.neighborhood}` : '';
   const when = item.pinnedStart != null ? ` at ${formatClock(item.pinnedStart)}` : '';
-  return `${item.title}${where}${when}`;
+  const detail = matchDetail(item);
+  return `${item.title}${where}${when}${detail ? ` ${detail}` : ''}`;
 }
 
 function formatClock(minutes: number): string {

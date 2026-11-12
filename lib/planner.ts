@@ -833,7 +833,11 @@ function realize(
         if (start + duration > latestEnd) duration = latestEnd - start;
       }
       if (start + duration > 23 * 60) duration = 23 * 60 - start;
-      if (duration < 20) continue;
+      // A named must-do stays on the day. A 15-minute coffee is still a stop.
+      if (duration < 20) {
+        if (item.must) duration = 20;
+        else continue;
+      }
     }
 
     if (!prev && leg && leg.minutes > 45) {

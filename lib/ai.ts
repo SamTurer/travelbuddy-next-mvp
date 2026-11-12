@@ -1,5 +1,5 @@
 import { getPlaces } from './places';
-import { parseMustDo, type LockInput } from './must-dos';
+import { matchDetail, parseMustDo, type LockInput } from './must-dos';
 import { grokComplete, parseJsonObject, xaiEnabled } from './grok';
 import { formatMinutes } from './time';
 
@@ -8,6 +8,8 @@ export type EnrichedLock = {
   location?: string;
   description?: string;
   time?: string;
+  /** Meal words without a clock, such as "for lunch". */
+  detail?: string;
   category?: string;
   duration_min?: number;
   matched?: boolean;
@@ -36,6 +38,7 @@ export async function enrichLocksWithAI(
       location: item.neighborhood,
       description: item.place?.description || lock.description,
       time: item.pinnedStart != null ? formatMinutes(item.pinnedStart) : undefined,
+      detail: matchDetail(item),
       category: item.category,
       duration_min: item.duration,
       matched: !item.plainText,

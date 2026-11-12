@@ -15,7 +15,7 @@ export default function MustDosPage() {
 
   // Preview state
   const [preview, setPreview] = useState<
-    Array<{ title: string; time?: string; location?: string; category?: string; duration_min?: number; url?: string; matched?: boolean }>
+    Array<{ title: string; time?: string; location?: string; detail?: string; category?: string; duration_min?: number; url?: string; matched?: boolean }>
   >([]);
   const [previewLoading, setPreviewLoading] = useState(false);
   const [previewError, setPreviewError] = useState<string | null>(null);
@@ -141,7 +141,7 @@ export default function MustDosPage() {
       <section className="mt-5 rounded-[14px] bg-white px-4 py-3">
         <div className="flex items-baseline justify-between gap-3">
           <h2 className="text-[13px] font-semibold">What we understood</h2>
-          <span className="text-[11px] text-mute">Optional AI key</span>
+          <span className="text-[11px] text-mute">No AI key needed</span>
         </div>
         {previewError && <p className="mt-2 text-sm text-red-600">{previewError}</p>}
         {preview.length > 0 ? (
@@ -149,7 +149,7 @@ export default function MustDosPage() {
             {preview.map((p, i) => (
               <li key={i}>
                 {p.matched ? (
-                  <UnderstoodMatch title={p.title} neighborhood={p.location} time={p.time} />
+                  <UnderstoodMatch title={p.title} neighborhood={p.location} time={p.time} detail={p.detail} />
                 ) : (
                   <span className="text-sm">Kept as typed: {p.title}</span>
                 )}
