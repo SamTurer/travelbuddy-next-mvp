@@ -7,6 +7,7 @@ import UnderstoodMatch from '../app/components/UnderstoodMatch';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { planDay, replanItinerary, type Itinerary, type ItineraryVisit } from '../lib/planner';
+import { clearLookupCache, lookupPlaces, periodsToHours, type PlacesClient } from '../lib/place-lookup';
 import { AREA_OPTIONS, coerceManhattanFocus } from '../lib/areas';
 import { focusHoodId, hoodForPlace } from '../lib/neighborhoods';
 import { estimateLeg } from '../lib/routing';
@@ -727,4 +728,118 @@ test('the area picker is Manhattan only and an old outer-borough choice is no fo
   const day = await planDay({ date: '2026-11-14', pace: 'balanced', vibes: ['classic'], focusArea: 'brooklyn' });
   assert.ok(realStops(day).length >= 4, dump(day));
   assert.equal(day.cluster.hoods.includes('williamsburg'), false);
+});
+
+test('a confirmed Google lookup becomes a real must-do, and list places skip the lookup', async () => {
+  clearLookupCache();
+  const queries: string[] = [];
+  const hours = Array.from({ length: 7 }, () => [[11 * 60, 22 * 60]]);
+  const joe = {
+    name: "Joe's Shanghai",
+    address: '46 Bowery, New York, NY 10013',
+    lat: 40.7157,
+    lng: -73.997,
+    neighborhood: 'Chinatown',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Joe%27s%20Shanghai',
+    placeId: 'joe-1',
+    hours,
+  };
+  const lookup = async (query: string) => {
+    queries.push(query);
+    if (/zzzz/i.test(query)) return [];
+    return [joe];
+  };
+  const interpret = async (text: string) => (text.includes('shangai') ? "Joe's Shanghai Chinatown" : null);
+
+  const known = await enrichLocksWithAI(
+    [{ title: "Katz's" }, { title: 'Russ & Daughters' }],
+    { city: 'New York City', date: '2026-11-14' },
+    { lookup, interpret }
+  );
+  assert.equal(queries.length, 0);
+  assert.equal(known[0]?.matched, true);
+  assert.equal(known[0]?.lookups, undefined);
+  assert.equal(known[1]?.matched, true);
+  assert.match(known[1]?.title || '', /Russ/);
+
+  const found = await enrichLocksWithAI(
+    [{ title: "Joe's Shanghai at lunch" }],
+    { city: 'New York City', date: '2026-11-14' },
+    { lookup, interpret }
+  );
+  assert.equal(found[0]?.matched, false);
+  assert.equal(found[0]?.detail, 'for lunch');
+  assert.equal(found[0]?.lookups?.[0]?.name, "Joe's Shanghai");
+  assert.match(found[0]?.lookups?.[0]?.address || '', /Bowery/);
+
+  const messy = await enrichLocksWithAI(
+    [{ title: 'that dumpling place joes shangai' }],
+    { city: 'New York City', date: '2026-11-14' },
+    { lookup, interpret }
+  );
+  assert.equal(queries.at(-1), "Joe's Shanghai Chinatown");
+  assert.equal(messy[0]?.lookups?.[0]?.placeId, 'joe-1');
+
+  const junk = await enrichLocksWithAI(
+    [{ title: 'zzzz not a real place' }],
+    { city: 'New York City', date: '2026-11-14' },
+    { lookup, interpret }
+  );
+  assert.equal(junk[0]?.matched, false);
+  assert.equal(junk[0]?.lookups, undefined);
+
+  const noKey = await lookupPlaces("Joe's Shanghai", { apiKey: '' });
+  assert.deepEqual(noKey, []);
+
+  const chicago: PlacesClient = {
+    async search() {
+      return [
+        {
+          name: 'Joe Pizza',
+          formatted_address: '1 Main St, Chicago, IL 60601',
+          place_id: 'chi',
+          geometry: { location: { lat: 41.88, lng: -87.63 } },
+        },
+      ];
+    },
+    async details() {
+      return {
+        name: 'Joe Pizza',
+        formatted_address: '1 Main St, Chicago, IL 60601',
+        geometry: { location: { lat: 41.88, lng: -87.63 } },
+      };
+    },
+  };
+  clearLookupCache();
+  const far = await lookupPlaces('Joe Pizza Chicago', { client: chicago });
+  assert.equal(far.length, 0);
+
+  const converted = periodsToHours({
+    periods: [{ open: { day: 6, time: '1100' }, close: { day: 6, time: '2200' } }],
+  });
+  assert.deepEqual(converted?.[6], [[11 * 60, 22 * 60]]);
+
+  const planned = await planDay({
+    date: '2026-11-14',
+    pace: 'balanced',
+    vibes: ['classic'],
+    locks: [{ title: "Joe's Shanghai at lunch", confirmedLookup: joe }],
+  });
+  const lunch = realStops(planned).find((visit) => visit.role === 'lunch');
+  assert.ok(lunch, dump(planned));
+  assert.equal(lunch.title, "Joe's Shanghai");
+  assert.match(lunch.address || '', /Bowery/);
+  assert.equal(lunch.source, 'must-do');
+  assert.equal(lunch.recommendedBy?.[0]?.id, 'you');
+  assert.ok(lunch.lat && lunch.lng);
+
+  const closed = await planDay({
+    date: '2026-11-14',
+    pace: 'balanced',
+    vibes: ['classic'],
+    locks: [{ title: "Joe's Shanghai at noon", confirmedLookup: { ...joe, hours: [[], [], [], [], [], [], []] } }],
+  });
+  const pinned = realStops(closed).find((visit) => visit.title === "Joe's Shanghai");
+  assert.equal(pinned?.startMin, 12 * 60);
+  assert.ok(closed.warnings.some((warning) => /Joe's Shanghai is closed at 12:00 PM/.test(warning)), closed.warnings.join(' | '));
 });

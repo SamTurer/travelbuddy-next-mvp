@@ -1,4 +1,5 @@
 import type { Place } from './places';
+import type { LookedUpPlace } from './place-lookup';
 import type { Pace } from './types';
 
 export type LockInput =
@@ -11,6 +12,8 @@ export type LockInput =
       start?: string;
       category?: string;
       duration_min?: number;
+      /** Set only after the user taps Use this on a Google result. */
+      confirmedLookup?: LookedUpPlace;
     };
 
 export type MustSlot = 'breakfast' | 'brunch' | 'lunch' | 'dinner' | 'drinks' | 'activity' | 'show';
@@ -28,6 +31,10 @@ export type ParsedMust = {
   pinnedStart: number | null;
   duration: number;
   plainText: boolean;
+  address?: string;
+  hours?: number[][][] | null;
+  mapsUrl?: string;
+  lookedUp?: boolean;
   booking?: Place['booking'];
   bookingNote?: string;
   bookingUrl?: string;
@@ -364,8 +371,15 @@ export function parseMustDo(lock: LockInput, places: Place[], pace: Pace = 'bala
   const name = cleanTitle(titleSource) || cleanTitle(raw);
   if (!name) return null;
 
-  const place = bestPlace(name, places);
-  const gaz = place ? null : gazetteerMatch(name);
+  const confirmed = asObject?.confirmedLookup;
+  const confirmedOk =
+    confirmed &&
+    confirmed.name &&
+    confirmed.address &&
+    Number.isFinite(confirmed.lat) &&
+    Number.isFinite(confirmed.lng);
+  const place = confirmedOk ? null : bestPlace(name, places);
+  const gaz = place || confirmedOk ? null : gazetteerMatch(name);
   const categories = place?.categories ?? (gaz ? [gaz.category] : word ? [word === 'show' ? 'show' : word] : []);
   const slot = slotFromPlace(categories, daypart, word);
   const pinnedStart = clock
@@ -377,19 +391,25 @@ export function parseMustDo(lock: LockInput, places: Place[], pace: Pace = 'bala
 
   return {
     raw,
-    title: place?.name ?? gaz?.name ?? raw.trim(),
+    title: confirmedOk ? confirmed.name : place?.name ?? gaz?.name ?? raw.trim(),
     place,
-    lat: place?.lat ?? gaz?.lat,
-    lng: place?.lng ?? gaz?.lng,
-    neighborhood: place?.neighborhood ?? gaz?.neighborhood ?? asObject?.location,
+    lat: confirmedOk ? confirmed.lat : place?.lat ?? gaz?.lat,
+    lng: confirmedOk ? confirmed.lng : place?.lng ?? gaz?.lng,
+    neighborhood: confirmedOk
+      ? confirmed.neighborhood || asObject?.location
+      : place?.neighborhood ?? gaz?.neighborhood ?? asObject?.location,
+    address: confirmedOk ? confirmed.address : place?.address ?? undefined,
+    hours: confirmedOk ? confirmed.hours ?? null : place?.hours ?? null,
+    mapsUrl: confirmedOk ? confirmed.mapsUrl : undefined,
+    lookedUp: Boolean(confirmedOk),
     slot,
     category: gaz?.category ?? place?.category ?? (slot === 'show' ? 'show' : slot),
     daypart,
     pinnedStart,
     duration,
-    plainText: !place && !gaz,
+    plainText: !place && !gaz && !confirmedOk,
     booking: gaz?.booking ?? place?.booking,
-    bookingNote: gaz?.bookingNote ?? place?.booking_note,
+    bookingNote: gaz?.bookingNote ?? place?.booking_note ?? (confirmedOk ? 'Looked up' : undefined),
     bookingUrl: place?.booking_url,
   };
 }

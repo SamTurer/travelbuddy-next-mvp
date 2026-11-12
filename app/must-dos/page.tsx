@@ -4,7 +4,21 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { loadDraft, saveDraft } from '@/lib/draft';
 import type { TripDraft } from '@/lib/types';
+import type { LookedUpPlace } from '@/lib/place-lookup';
 import UnderstoodMatch from '@/app/components/UnderstoodMatch';
+
+type PreviewLock = {
+  title: string;
+  time?: string;
+  location?: string;
+  detail?: string;
+  category?: string;
+  duration_min?: number;
+  url?: string;
+  matched?: boolean;
+  lookups?: LookedUpPlace[];
+  lookedUp?: boolean;
+};
 
 export default function MustDosPage() {
   const router = useRouter();
@@ -14,9 +28,7 @@ export default function MustDosPage() {
   const [error, setError] = useState<string | null>(null);
 
   // Preview state
-  const [preview, setPreview] = useState<
-    Array<{ title: string; time?: string; location?: string; detail?: string; category?: string; duration_min?: number; url?: string; matched?: boolean }>
-  >([]);
+  const [preview, setPreview] = useState<PreviewLock[]>([]);
   const [previewLoading, setPreviewLoading] = useState(false);
   const [previewError, setPreviewError] = useState<string | null>(null);
 
@@ -74,6 +86,35 @@ export default function MustDosPage() {
     } finally {
       setPreviewLoading(false);
     }
+  }
+
+  function chooseLookup(index: number, place: LookedUpPlace) {
+    if (!draft) return;
+    const current = draft.mustDos?.[index];
+    const title = typeof current === 'string' ? current : current?.title || place.name;
+    const next = { ...draft };
+    next.mustDos = [...(draft.mustDos || [])];
+    next.mustDos[index] = { title, confirmedLookup: place };
+    setDraft(next);
+    saveDraft(next);
+    setPreview((rows) =>
+      rows.map((row, rowIndex) =>
+        rowIndex === index
+          ? {
+              ...row,
+              matched: true,
+              lookedUp: true,
+              title: place.name,
+              location: place.neighborhood,
+              lookups: undefined,
+            }
+          : row
+      )
+    );
+  }
+
+  function keepTyped(index: number) {
+    setPreview((rows) => rows.map((row, rowIndex) => (rowIndex === index ? { ...row, lookups: undefined } : row)));
   }
 
   function toPlan() {
@@ -144,9 +185,35 @@ export default function MustDosPage() {
         {preview.length > 0 ? (
           <ul className="mt-2 space-y-2">
             {preview.map((p, i) => (
-              <li key={i}>
-                {p.matched ? (
-                  <UnderstoodMatch title={p.title} neighborhood={p.location} time={p.time} detail={p.detail} />
+              <li key={i} className="space-y-2">
+                {p.lookups?.length ? (
+                  <div className="space-y-2">
+                    <p className="text-[11px] font-semibold uppercase tracking-wide text-system">Looked up</p>
+                    {p.lookups.map((place) => (
+                      <div key={place.placeId} className="rounded-xl bg-grouped px-3 py-2">
+                        <p className="font-serif text-base font-semibold">{place.name}</p>
+                        <p className="text-xs text-mute">
+                          {place.address}
+                          {place.neighborhood ? ` · ${place.neighborhood}` : ''}
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => chooseLookup(i, place)}
+                          className="tap mt-1 text-sm font-semibold text-system"
+                        >
+                          Use this
+                        </button>
+                      </div>
+                    ))}
+                    <button type="button" onClick={() => keepTyped(i)} className="text-sm font-semibold text-mute">
+                      Keep as typed
+                    </button>
+                  </div>
+                ) : p.matched ? (
+                  <>
+                    <UnderstoodMatch title={p.title} neighborhood={p.location} time={p.time} detail={p.detail} />
+                    {p.lookedUp ? <p className="text-[11px] font-semibold uppercase tracking-wide text-system">Looked up</p> : null}
+                  </>
                 ) : (
                   <span className="text-sm">Kept as typed: {p.title}</span>
                 )}
