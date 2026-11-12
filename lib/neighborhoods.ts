@@ -46,8 +46,23 @@ const FOCUS_TO_HOOD: Record<string, string> = {
   'lower east side': 'les',
   chinatown: 'chinatown',
   'fidi downtown': 'fidi',
-  brooklyn: 'williamsburg',
 };
+
+const MANHATTAN_HOODS = new Set([
+  'harlem',
+  'uws',
+  'ues',
+  'central-park',
+  'midtown',
+  'chelsea',
+  'west-village',
+  'east-village',
+  'les',
+  'soho',
+  'chinatown',
+  'tribeca',
+  'fidi',
+]);
 
 export function hoodById(id: string): Hood | undefined {
   return HOOD_BY_ID.get(id);
@@ -101,9 +116,11 @@ export function focusHoodId(focusArea?: string | null): string | null {
   if (!focusArea) return null;
   const key = focusArea.trim().toLowerCase();
   if (!key || key === 'any' || key === 'surprise') return null;
-  if (FOCUS_TO_HOOD[key]) return FOCUS_TO_HOOD[key];
+  const mapped = FOCUS_TO_HOOD[key];
+  if (mapped) return MANHATTAN_HOODS.has(mapped) ? mapped : null;
   const direct = HOODS.find((hood) => hood.id === key || hood.label.toLowerCase() === key || hood.aliases.includes(key));
-  return direct?.id ?? null;
+  if (!direct || !MANHATTAN_HOODS.has(direct.id)) return null;
+  return direct.id;
 }
 
 export function hoodLabel(ids: string[]): string {

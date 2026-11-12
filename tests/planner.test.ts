@@ -7,7 +7,8 @@ import UnderstoodMatch from '../app/components/UnderstoodMatch';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { planDay, replanItinerary, type Itinerary, type ItineraryVisit } from '../lib/planner';
-import { hoodForPlace } from '../lib/neighborhoods';
+import { AREA_OPTIONS, coerceManhattanFocus } from '../lib/areas';
+import { focusHoodId, hoodForPlace } from '../lib/neighborhoods';
 import { estimateLeg } from '../lib/routing';
 import { weekdayIndex } from '../lib/time';
 
@@ -704,4 +705,26 @@ test('real coffee shops fill the morning slot from the nearest open branch', asy
       `${focusArea} ${place.name} skipped a closer branch`
     );
   }
+});
+
+test('the area picker is Manhattan only and an old outer-borough choice is no focus', async () => {
+  const labels = AREA_OPTIONS.map((option) => option.label);
+  assert.equal(labels.includes('Brooklyn'), false);
+  assert.equal(
+    labels.some((label) => /queens|bronx|staten|williamsburg|dumbo|long island/i.test(label)),
+    false
+  );
+  assert.ok(labels.includes('Harlem'));
+  assert.ok(labels.includes('Upper West Side'));
+  assert.equal(coerceManhattanFocus('brooklyn'), null);
+  assert.equal(coerceManhattanFocus('Williamsburg'), null);
+  assert.equal(coerceManhattanFocus('Long Island City'), null);
+  assert.equal(coerceManhattanFocus('harlem'), 'harlem');
+  assert.equal(focusHoodId('brooklyn'), null);
+  assert.equal(focusHoodId('williamsburg'), null);
+  assert.equal(focusHoodId('queens'), null);
+  assert.equal(focusHoodId('harlem'), 'harlem');
+  const day = await planDay({ date: '2026-11-14', pace: 'balanced', vibes: ['classic'], focusArea: 'brooklyn' });
+  assert.ok(realStops(day).length >= 4, dump(day));
+  assert.equal(day.cluster.hoods.includes('williamsburg'), false);
 });
