@@ -39,7 +39,7 @@ export type PlanInput = {
   startLocation?: { lat: number; lng: number; label?: string } | null;
 };
 
-export type VisitRole = 'breakfast' | 'coffee' | 'activity' | 'lunch' | 'dinner' | 'drinks' | 'show' | 'free';
+export type VisitRole = 'breakfast' | 'brunch' | 'coffee' | 'activity' | 'lunch' | 'dinner' | 'drinks' | 'show' | 'free';
 
 export type ItineraryVisit = {
   role: VisitRole;
@@ -129,6 +129,7 @@ const PACE_SHAPE: Record<Pace, { morning: number; afternoon: number; drinks: boo
 
 const ROLE_ORDER: Record<VisitRole, number> = {
   breakfast: 0,
+  brunch: 0,
   coffee: 0,
   activity: 1,
   lunch: 2,
@@ -178,9 +179,9 @@ function dwell(place: Place | null, role: SlotRole, pace: Pace): number {
   // and short enough that a shop open from the morning still fits.
   if (role === 'coffee') return 30;
   const fallback = {
-    chill: { breakfast: 60, activity: 120, lunch: 90, dinner: 120, drinks: 75, show: 165 },
-    balanced: { breakfast: 45, activity: 90, lunch: 75, dinner: 90, drinks: 70, show: 165 },
-    max: { breakfast: 40, activity: 70, lunch: 60, dinner: 75, drinks: 60, show: 165 },
+    chill: { breakfast: 60, brunch: 90, activity: 120, lunch: 90, dinner: 120, drinks: 75, show: 165 },
+    balanced: { breakfast: 45, brunch: 75, activity: 90, lunch: 75, dinner: 90, drinks: 70, show: 165 },
+    max: { breakfast: 40, brunch: 60, activity: 70, lunch: 60, dinner: 75, drinks: 60, show: 165 },
   } as const;
   if (!place) return fallback[pace][role];
   const listedMin = place.duration_min || fallback[pace][role];
@@ -197,6 +198,7 @@ function dwell(place: Place | null, role: SlotRole, pace: Pace): number {
 function categoriesFor(role: SlotRole): string[] {
   if (role === 'coffee') return ['coffee'];
   if (role === 'breakfast') return BREAKFAST_CATEGORIES;
+  if (role === 'brunch') return ['brunch', 'breakfast', 'bakery'];
   if (role === 'lunch') return LUNCH_CATEGORIES;
   if (role === 'dinner') return DINNER_CATEGORIES;
   if (role === 'drinks') return DRINKS_CATEGORIES;
@@ -204,7 +206,7 @@ function categoriesFor(role: SlotRole): string[] {
 }
 
 function isMeal(role: SlotRole): boolean {
-  return role === 'breakfast' || role === 'coffee' || role === 'lunch' || role === 'dinner';
+  return role === 'breakfast' || role === 'brunch' || role === 'coffee' || role === 'lunch' || role === 'dinner';
 }
 
 function vibeScore(place: Place, vibes: string[]): number {
@@ -605,6 +607,7 @@ function buildRequests(input: PlanInput, musts: ParsedMust[], pace: Pace, warnin
   const lunchMust = take(musts, (must) => must.slot === 'lunch');
   const dinnerMust = take(musts, (must) => must.slot === 'dinner');
   const breakfastMust = take(musts, (must) => must.slot === 'breakfast');
+  const brunchMust = take(musts, (must) => must.slot === 'brunch');
   const drinksMust = take(musts, (must) => must.slot === 'drinks');
   const rest = musts.filter((must) => !must.claimed);
 
@@ -660,6 +663,17 @@ function buildRequests(input: PlanInput, musts: ParsedMust[], pace: Pace, warnin
     }
   }
 
+  let brunchStart = brunchMust?.pinnedStart ?? 11 * 60;
+  if (brunchMust?.pinnedStart == null) brunchStart = clamp(brunchStart, 10 * 60, 13 * 60);
+  else if (brunchStart < 10 * 60 || brunchStart > 13 * 60) {
+    warnings.push(`Brunch at ${formatMinutes(brunchStart)} is outside the usual 10:00 AM–1:00 PM window. The time was kept.`);
+  }
+  const brunchDuration = brunchMust?.duration ?? dwell(null, 'brunch', pace);
+  if (brunchMust && lunchMust?.pinnedStart == null) {
+    const brunchEnd = brunchStart + brunchDuration;
+    if (brunchEnd + 15 > lunchStart) lunchStart = brunchEnd + 15;
+  }
+
   let breakfastStart = breakfastMust?.pinnedStart ?? (isWeekend(input.date) ? 9 * 60 + 30 : 9 * 60);
   if (breakfastMust?.pinnedStart == null) breakfastStart = clamp(breakfastStart, 8 * 60 + 30, 10 * 60 + 30);
   const breakfastDuration = breakfastMust?.duration ?? dwell(null, 'breakfast', pace);
@@ -695,8 +709,10 @@ function buildRequests(input: PlanInput, musts: ParsedMust[], pace: Pace, warnin
     .map((must) => must.pinnedStart)
     .filter((start): start is number => start != null && start <= lunchStart + 30);
   const pinCap = morningPins.length ? Math.min(...morningPins.map((start) => start - 15)) : Number.POSITIVE_INFINITY;
-  const morningEnd = Math.min(lunchStart - 15, pinCap);
+  const brunchCap = brunchMust ? brunchStart - 15 : Number.POSITIVE_INFINITY;
+  const morningEnd = Math.min(lunchStart - 15, pinCap, brunchCap);
   pushMust(breakfastMust, 'breakfast', breakfastStart, 8 * 60 + 30, 10 * 60 + 30, breakfastDuration);
+  if (brunchMust) pushMust(brunchMust, 'brunch', brunchStart, 10 * 60, 13 * 60, brunchDuration);
   pushActivityWindow(requests, morningMusts, shape.morning, breakfastStart + breakfastDuration + 10, morningEnd, pace);
   pushMust(lunchMust, 'lunch', lunchStart, 12 * 60, 14 * 60, lunchDuration);
   pushActivityWindow(
@@ -887,7 +903,9 @@ function realize(
           ? [12 * 60, 14 * 60]
           : item.role === 'dinner'
             ? [18 * 60 + 30, 20 * 60 + 30]
-            : [8 * 60 + 30, 10 * 60 + 30];
+            : item.role === 'brunch'
+              ? [10 * 60, 13 * 60]
+              : [8 * 60 + 30, 10 * 60 + 30];
       const pretheater = item.role === 'dinner' && item.startHint < 18 * 60 + 30;
       if (!pretheater && (start < window[0] || start > window[1])) {
         warnings.push(

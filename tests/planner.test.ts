@@ -403,6 +403,53 @@ test('Met Museum at noon matches The Met and keeps the clock time', async () => 
   assert.ok(closed.warnings.some((warning) => /The Met is closed at 12:00 PM/.test(warning)), closed.warnings.join(' | '));
 });
 
+test('brunch is its own meal and is not planned as breakfast', async () => {
+  const parsed = parseMustDo('brunch at Buvette', places);
+  assert.ok(parsed);
+  assert.equal(parsed.place?.id, 'buvette');
+  assert.equal(parsed.neighborhood, 'West Village');
+  assert.equal(parsed.slot, 'brunch');
+  assert.equal(parsed.pinnedStart, null);
+  assert.equal(describeMatch(parsed), 'Buvette in West Village for brunch');
+
+  for (const phrase of ['Buvette for brunch', 'brunchtime at Buvette', 'Sunday brunch at Buvette']) {
+    const item = parseMustDo(phrase, places);
+    assert.equal(item?.place?.id, 'buvette', phrase);
+    assert.equal(item?.slot, 'brunch', phrase);
+    assert.equal(item?.pinnedStart, null, phrase);
+  }
+
+  const pinned = parseMustDo('brunch at Buvette at 11', places);
+  assert.equal(pinned?.place?.id, 'buvette');
+  assert.equal(pinned?.slot, 'brunch');
+  assert.equal(pinned?.pinnedStart, 11 * 60);
+  assert.equal(describeMatch(pinned!), 'Buvette in West Village at 11:00 AM');
+
+  const preview = await enrichLocksWithAI([{ title: 'brunch at Buvette' }], {
+    city: 'New York City',
+    date: '2026-11-15',
+  });
+  assert.equal(preview[0]?.matched, true);
+  assert.equal(preview[0]?.title, 'Buvette');
+  assert.equal(preview[0]?.location, 'West Village');
+  assert.equal(preview[0]?.detail, 'for brunch');
+  assert.equal(preview[0]?.time, undefined);
+
+  const day = await planDay({
+    date: '2026-11-15',
+    pace: 'balanced',
+    vibes: ['classic'],
+    locks: ['brunch at Buvette'],
+  });
+  const stop = realStops(day).find((visit) => visit.placeId === 'buvette');
+  assert.ok(stop, dump(day));
+  assert.equal(stop.role, 'brunch');
+  assert.ok(stop.startMin >= 10 * 60 && stop.startMin <= 13 * 60, dump(day));
+  assert.ok(stop.startMin !== 9 * 60 + 30, dump(day));
+  const lunch = realStops(day).find((visit) => visit.role === 'lunch');
+  assert.ok(lunch && lunch.startMin >= stop.endMin, dump(day));
+});
+
 test('a shared location becomes the first leg and does not move the day earlier', async () => {
   const itinerary = await planDay({
     date: '2026-11-11',

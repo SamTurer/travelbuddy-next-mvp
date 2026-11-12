@@ -13,7 +13,7 @@ export type LockInput =
       duration_min?: number;
     };
 
-export type MustSlot = 'breakfast' | 'lunch' | 'dinner' | 'drinks' | 'activity' | 'show';
+export type MustSlot = 'breakfast' | 'brunch' | 'lunch' | 'dinner' | 'drinks' | 'activity' | 'show';
 
 export type ParsedMust = {
   raw: string;
@@ -100,7 +100,7 @@ const GAZETTEER: GazetteerEntry[] = [
 
 const MEAL_WORDS: { re: RegExp; slot: MustSlot }[] = [
   { re: /\b(breakfast(?:\s*time)?)\b/i, slot: 'breakfast' },
-  { re: /\b(brunch)\b/i, slot: 'breakfast' },
+  { re: /\b(brunch(?:\s*time)?)\b/i, slot: 'brunch' },
   { re: /\b(lunch(?:\s*time)?)\b/i, slot: 'lunch' },
   { re: /\b(dinner(?:\s*time)?|supper(?:\s*time)?)\b/i, slot: 'dinner' },
   { re: /\b(drinks|cocktails)\b/i, slot: 'drinks' },
@@ -252,6 +252,14 @@ export function resolveClock(
   const categories = new Set(context.categories ?? []);
   const slot = context.slot;
   const daypart = context.daypart;
+  // Brunch runs late morning into early afternoon. A dinner category on the same
+  // place must not turn "at 11" into 11 PM.
+  if (slot === 'brunch') {
+    if (hour === 12) return 12 * 60 + minute;
+    if (hour >= 8 && hour <= 11) return hour * 60 + minute;
+    if (hour >= 1 && hour <= 7) return (hour + 12) * 60 + minute;
+  }
+
   const evening =
     slot === 'dinner' ||
     slot === 'drinks' ||
@@ -262,6 +270,7 @@ export function resolveClock(
     categories.has('show');
   const morningish =
     slot === 'breakfast' ||
+    slot === 'brunch' ||
     daypart === 'morning' ||
     categories.has('breakfast') ||
     categories.has('coffee') ||
@@ -301,6 +310,7 @@ function cleanTitle(text: string): string {
     .replace(/\b(?:at|around|about|by)\s+\d{1,2}(?::\d{2})?(?:\s*(?:a\.?m\.?|p\.?m\.?))?\b/gi, ' ')
     .replace(/\b\d{1,2}\s*(?:a\.?m\.?|p\.?m\.?)\b/gi, ' ')
     .replace(/\b(in the|around|about|at|for)\b/gi, ' ')
+    .replace(/\b(sunday|monday|tuesday|wednesday|thursday|friday|saturday|weekend)\b/gi, ' ')
     .replace(/\b(breakfast|brunch|lunch|dinner|supper)(?:\s*time)?\b/gi, ' ')
     .replace(/\b(drinks|cocktails|coffee|show|musical|broadway|morning|afternoon|evening|tonight)\b/gi, ' ')
     .replace(/[^a-zA-Z0-9'&. -]+/g, ' ')
@@ -310,7 +320,7 @@ function cleanTitle(text: string): string {
 
 function slotFromPlace(categories: string[], daypart: ParsedMust['daypart'], word: MustSlot | null): MustSlot {
   if (word === 'show') return 'show';
-  if (word === 'dinner' || word === 'lunch' || word === 'breakfast' || word === 'drinks') return word;
+  if (word === 'dinner' || word === 'lunch' || word === 'brunch' || word === 'breakfast' || word === 'drinks') return word;
   if (categories.includes('show')) return 'show';
   const morningFood = categories.some((category) => ['breakfast', 'coffee', 'bakery', 'brunch'].includes(category));
   if (daypart === 'morning' && morningFood) return 'breakfast';
@@ -334,7 +344,7 @@ function defaultDuration(slot: MustSlot, pace: Pace, place: Place | null, hint?:
     return Math.round((min + max) / 2);
   }
   if (slot === 'dinner') return pace === 'chill' ? 120 : pace === 'max' ? 75 : 90;
-  if (slot === 'lunch') return pace === 'chill' ? 90 : pace === 'max' ? 60 : 75;
+  if (slot === 'lunch' || slot === 'brunch') return pace === 'chill' ? 90 : pace === 'max' ? 60 : 75;
   if (slot === 'breakfast') return pace === 'chill' ? 60 : 45;
   if (slot === 'drinks') return 70;
   return pace === 'chill' ? 120 : pace === 'max' ? 70 : 90;
@@ -387,7 +397,7 @@ export function parseMustDo(lock: LockInput, places: Place[], pace: Pace = 'bala
 /** "for lunch" when the phrase names a meal but not a clock. A clock still wins. */
 export function matchDetail(item: Pick<ParsedMust, 'pinnedStart' | 'slot'>): string | undefined {
   if (item.pinnedStart != null) return undefined;
-  if (item.slot === 'lunch' || item.slot === 'dinner' || item.slot === 'breakfast' || item.slot === 'drinks') {
+  if (item.slot === 'lunch' || item.slot === 'dinner' || item.slot === 'breakfast' || item.slot === 'brunch' || item.slot === 'drinks') {
     return `for ${item.slot}`;
   }
   return undefined;
