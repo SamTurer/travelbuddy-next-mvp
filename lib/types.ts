@@ -1,5 +1,7 @@
 // lib/types.ts
 
+import type { LookedUpPlace } from './place-lookup';
+
 export type Pace = 'chill' | 'balanced' | 'max';
 
 export type MustDo =
@@ -9,6 +11,7 @@ export type MustDo =
       location?: string;
       description?: string;
       time?: string; // optional user-entered time hint
+      confirmedLookup?: LookedUpPlace;
     };
 
 export interface TripDraft {

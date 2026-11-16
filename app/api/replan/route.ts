@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { coerceManhattanFocus } from '@/lib/areas';
 import { replanItinerary } from '@/lib/planner';
 
 export const runtime = 'nodejs';
@@ -39,7 +40,7 @@ export async function POST(req: NextRequest) {
     mood: parsed.data.mood,
     pace: parsed.data.pace,
     vibes: parsed.data.vibes,
-    focusArea: parsed.data.focusArea,
+    focusArea: coerceManhattanFocus(parsed.data.focusArea),
     replaceIndex: parsed.data.replaceIndex ?? 0,
     stops: parsed.data.currentStops as never,
   });

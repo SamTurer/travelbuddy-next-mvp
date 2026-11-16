@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { coerceManhattanFocus } from '@/lib/areas';
 import { planDay } from '@/lib/planner';
 
 export const runtime = 'nodejs';
@@ -32,7 +33,7 @@ export async function POST(req: NextRequest) {
       date: parsed.data.date,
       vibes: parsed.data.vibes,
       pace: parsed.data.pace,
-      focusArea: parsed.data.focusArea,
+      focusArea: coerceManhattanFocus(parsed.data.focusArea),
       locks: parsed.data.locks,
       startLocation: parsed.data.startLocation,
     });

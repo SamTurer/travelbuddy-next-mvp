@@ -2,11 +2,14 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { branchesOf, getPlaces, getPlanningPlaces, isFoodPlace, visitFitsHours, type Place } from '../lib/places';
 import { describeMatch, parseMustDo } from '../lib/must-dos';
+import { enrichLocksWithAI } from '../lib/ai';
 import UnderstoodMatch from '../app/components/UnderstoodMatch';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { planDay, replanItinerary, type Itinerary, type ItineraryVisit } from '../lib/planner';
-import { hoodForPlace } from '../lib/neighborhoods';
+import { clearLookupCache, lookupPlaces, periodsToHours, type PlacesClient } from '../lib/place-lookup';
+import { AREA_OPTIONS, coerceManhattanFocus } from '../lib/areas';
+import { focusHoodId, hoodForPlace } from '../lib/neighborhoods';
 import { estimateLeg } from '../lib/routing';
 import { weekdayIndex } from '../lib/time';
 
@@ -295,6 +298,70 @@ test('Met Museum at noon matches The Met and keeps the clock time', async () => 
   assert.equal(parseMustDo('high line', places)?.place?.id, 'the-high-line');
   assert.equal(parseMustDo('Whitney Museum', places)?.place?.neighborhood, 'Meatpacking / West Village edge');
   assert.equal(parseMustDo('zzzz not a place', places)?.place, null);
+  assert.equal(parseMustDo('noon at the met', places)?.pinnedStart, 12 * 60);
+  assert.equal(parseMustDo('the met around 12', places)?.pinnedStart, 12 * 60);
+  assert.equal(parseMustDo('met musuem', places)?.place?.id, 'the-met');
+  assert.equal(parseMustDo('noontime at the met', places)?.pinnedStart, 12 * 60);
+
+  const zabars = parseMustDo('zabars at lunchtime', places);
+  assert.ok(zabars);
+  assert.equal(zabars.place?.id, 'zabars');
+  assert.equal(zabars.neighborhood, 'Upper West Side');
+  assert.equal(zabars.slot, 'lunch');
+  assert.equal(zabars.pinnedStart, null);
+  assert.equal(describeMatch(zabars), 'Zabars in Upper West Side for lunch');
+
+  for (const phrase of ["Zabar's at lunch", 'lunch at zabars', 'around lunchtime at zabars']) {
+    const item = parseMustDo(phrase, places);
+    assert.equal(item?.place?.id, 'zabars', phrase);
+    assert.equal(item?.slot, 'lunch', phrase);
+    assert.equal(item?.pinnedStart, null, phrase);
+  }
+  assert.equal(parseMustDo('zaabars', places)?.place?.id, 'zabars');
+  assert.equal(parseMustDo('zabars', places)?.slot, 'activity');
+
+  const levain = parseMustDo('levain for breakfast', places);
+  assert.equal(levain?.place?.id, 'levain-bakery');
+  assert.equal(levain?.slot, 'breakfast');
+  assert.equal(parseMustDo('in the morning at levain', places)?.slot, 'breakfast');
+  assert.equal(parseMustDo('dinnertime at via carota', places)?.slot, 'dinner');
+  assert.equal(parseMustDo('Carbone for dinner', places)?.slot, 'dinner');
+  assert.equal(parseMustDo('hamilton at 8', places)?.pinnedStart, 20 * 60);
+  assert.equal(parseMustDo('Comedy Cellar tonight', places)?.place, null);
+  assert.equal(parseMustDo('Comedy Cellar tonight', places)?.neighborhood, 'Greenwich Village');
+
+  const unknown = parseMustDo('zzzz not a real place', places);
+  assert.equal(unknown?.plainText, true);
+  assert.equal(unknown?.title, 'zzzz not a real place');
+
+  const preview = await enrichLocksWithAI([{ title: 'zabars at lunchtime' }], {
+    city: 'New York City',
+    date: '2026-11-14',
+  });
+  assert.equal(preview[0]?.matched, true);
+  assert.equal(preview[0]?.title, 'Zabars');
+  assert.equal(preview[0]?.location, 'Upper West Side');
+  assert.equal(preview[0]?.detail, 'for lunch');
+  assert.equal(preview[0]?.time, undefined);
+
+  const day = await planDay({
+    date: '2026-11-14',
+    pace: 'balanced',
+    vibes: ['classic'],
+    locks: ['zabars at lunchtime'],
+  });
+  const zabarsLunch = realStops(day).find((visit) => visit.role === 'lunch');
+  assert.ok(zabarsLunch, dump(day));
+  assert.equal(zabarsLunch.placeId, 'zabars');
+  assert.ok(zabarsLunch.startMin >= 12 * 60 && zabarsLunch.startMin <= 14 * 60, dump(day));
+
+  const maman = await planDay({
+    date: '2026-11-14',
+    pace: 'balanced',
+    vibes: ['classic'],
+    locks: ['coffee at maman'],
+  });
+  assert.ok(realStops(maman).some((visit) => visit.placeId === 'maman'), dump(maman));
 
   const html = renderToStaticMarkup(
     createElement(UnderstoodMatch, { title: 'The Met', neighborhood: 'Upper East Side', time: '12:00 PM' })
@@ -336,6 +403,53 @@ test('Met Museum at noon matches The Met and keeps the clock time', async () => 
   assert.ok(closedMet, dump(closed));
   assert.equal(closedMet.startMin, 12 * 60);
   assert.ok(closed.warnings.some((warning) => /The Met is closed at 12:00 PM/.test(warning)), closed.warnings.join(' | '));
+});
+
+test('brunch is its own meal and is not planned as breakfast', async () => {
+  const parsed = parseMustDo('brunch at Buvette', places);
+  assert.ok(parsed);
+  assert.equal(parsed.place?.id, 'buvette');
+  assert.equal(parsed.neighborhood, 'West Village');
+  assert.equal(parsed.slot, 'brunch');
+  assert.equal(parsed.pinnedStart, null);
+  assert.equal(describeMatch(parsed), 'Buvette in West Village for brunch');
+
+  for (const phrase of ['Buvette for brunch', 'brunchtime at Buvette', 'Sunday brunch at Buvette']) {
+    const item = parseMustDo(phrase, places);
+    assert.equal(item?.place?.id, 'buvette', phrase);
+    assert.equal(item?.slot, 'brunch', phrase);
+    assert.equal(item?.pinnedStart, null, phrase);
+  }
+
+  const pinned = parseMustDo('brunch at Buvette at 11', places);
+  assert.equal(pinned?.place?.id, 'buvette');
+  assert.equal(pinned?.slot, 'brunch');
+  assert.equal(pinned?.pinnedStart, 11 * 60);
+  assert.equal(describeMatch(pinned!), 'Buvette in West Village at 11:00 AM');
+
+  const preview = await enrichLocksWithAI([{ title: 'brunch at Buvette' }], {
+    city: 'New York City',
+    date: '2026-11-15',
+  });
+  assert.equal(preview[0]?.matched, true);
+  assert.equal(preview[0]?.title, 'Buvette');
+  assert.equal(preview[0]?.location, 'West Village');
+  assert.equal(preview[0]?.detail, 'for brunch');
+  assert.equal(preview[0]?.time, undefined);
+
+  const day = await planDay({
+    date: '2026-11-15',
+    pace: 'balanced',
+    vibes: ['classic'],
+    locks: ['brunch at Buvette'],
+  });
+  const stop = realStops(day).find((visit) => visit.placeId === 'buvette');
+  assert.ok(stop, dump(day));
+  assert.equal(stop.role, 'brunch');
+  assert.ok(stop.startMin >= 10 * 60 && stop.startMin <= 13 * 60, dump(day));
+  assert.ok(stop.startMin !== 9 * 60 + 30, dump(day));
+  const lunch = realStops(day).find((visit) => visit.role === 'lunch');
+  assert.ok(lunch && lunch.startMin >= stop.endMin, dump(day));
 });
 
 test('a shared location becomes the first leg and does not move the day earlier', async () => {
@@ -592,4 +706,140 @@ test('real coffee shops fill the morning slot from the nearest open branch', asy
       `${focusArea} ${place.name} skipped a closer branch`
     );
   }
+});
+
+test('the area picker is Manhattan only and an old outer-borough choice is no focus', async () => {
+  const labels = AREA_OPTIONS.map((option) => option.label);
+  assert.equal(labels.includes('Brooklyn'), false);
+  assert.equal(
+    labels.some((label) => /queens|bronx|staten|williamsburg|dumbo|long island/i.test(label)),
+    false
+  );
+  assert.ok(labels.includes('Harlem'));
+  assert.ok(labels.includes('Upper West Side'));
+  assert.equal(coerceManhattanFocus('brooklyn'), null);
+  assert.equal(coerceManhattanFocus('Williamsburg'), null);
+  assert.equal(coerceManhattanFocus('Long Island City'), null);
+  assert.equal(coerceManhattanFocus('harlem'), 'harlem');
+  assert.equal(focusHoodId('brooklyn'), null);
+  assert.equal(focusHoodId('williamsburg'), null);
+  assert.equal(focusHoodId('queens'), null);
+  assert.equal(focusHoodId('harlem'), 'harlem');
+  const day = await planDay({ date: '2026-11-14', pace: 'balanced', vibes: ['classic'], focusArea: 'brooklyn' });
+  assert.ok(realStops(day).length >= 4, dump(day));
+  assert.equal(day.cluster.hoods.includes('williamsburg'), false);
+});
+
+test('a confirmed Google lookup becomes a real must-do, and list places skip the lookup', async () => {
+  clearLookupCache();
+  const queries: string[] = [];
+  const hours = Array.from({ length: 7 }, () => [[11 * 60, 22 * 60]]);
+  const joe = {
+    name: "Joe's Shanghai",
+    address: '46 Bowery, New York, NY 10013',
+    lat: 40.7157,
+    lng: -73.997,
+    neighborhood: 'Chinatown',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Joe%27s%20Shanghai',
+    placeId: 'joe-1',
+    hours,
+  };
+  const lookup = async (query: string) => {
+    queries.push(query);
+    if (/zzzz/i.test(query)) return [];
+    return [joe];
+  };
+  const interpret = async (text: string) => (text.includes('shangai') ? "Joe's Shanghai Chinatown" : null);
+
+  const known = await enrichLocksWithAI(
+    [{ title: "Katz's" }, { title: 'Russ & Daughters' }],
+    { city: 'New York City', date: '2026-11-14' },
+    { lookup, interpret }
+  );
+  assert.equal(queries.length, 0);
+  assert.equal(known[0]?.matched, true);
+  assert.equal(known[0]?.lookups, undefined);
+  assert.equal(known[1]?.matched, true);
+  assert.match(known[1]?.title || '', /Russ/);
+
+  const found = await enrichLocksWithAI(
+    [{ title: "Joe's Shanghai at lunch" }],
+    { city: 'New York City', date: '2026-11-14' },
+    { lookup, interpret }
+  );
+  assert.equal(found[0]?.matched, false);
+  assert.equal(found[0]?.detail, 'for lunch');
+  assert.equal(found[0]?.lookups?.[0]?.name, "Joe's Shanghai");
+  assert.match(found[0]?.lookups?.[0]?.address || '', /Bowery/);
+
+  const messy = await enrichLocksWithAI(
+    [{ title: 'that dumpling place joes shangai' }],
+    { city: 'New York City', date: '2026-11-14' },
+    { lookup, interpret }
+  );
+  assert.equal(queries.at(-1), "Joe's Shanghai Chinatown");
+  assert.equal(messy[0]?.lookups?.[0]?.placeId, 'joe-1');
+
+  const junk = await enrichLocksWithAI(
+    [{ title: 'zzzz not a real place' }],
+    { city: 'New York City', date: '2026-11-14' },
+    { lookup, interpret }
+  );
+  assert.equal(junk[0]?.matched, false);
+  assert.equal(junk[0]?.lookups, undefined);
+
+  const noKey = await lookupPlaces("Joe's Shanghai", { apiKey: '' });
+  assert.deepEqual(noKey, []);
+
+  const chicago: PlacesClient = {
+    async search() {
+      return [
+        {
+          name: 'Joe Pizza',
+          formatted_address: '1 Main St, Chicago, IL 60601',
+          place_id: 'chi',
+          geometry: { location: { lat: 41.88, lng: -87.63 } },
+        },
+      ];
+    },
+    async details() {
+      return {
+        name: 'Joe Pizza',
+        formatted_address: '1 Main St, Chicago, IL 60601',
+        geometry: { location: { lat: 41.88, lng: -87.63 } },
+      };
+    },
+  };
+  clearLookupCache();
+  const far = await lookupPlaces('Joe Pizza Chicago', { client: chicago });
+  assert.equal(far.length, 0);
+
+  const converted = periodsToHours({
+    periods: [{ open: { day: 6, time: '1100' }, close: { day: 6, time: '2200' } }],
+  });
+  assert.deepEqual(converted?.[6], [[11 * 60, 22 * 60]]);
+
+  const planned = await planDay({
+    date: '2026-11-14',
+    pace: 'balanced',
+    vibes: ['classic'],
+    locks: [{ title: "Joe's Shanghai at lunch", confirmedLookup: joe }],
+  });
+  const lunch = realStops(planned).find((visit) => visit.role === 'lunch');
+  assert.ok(lunch, dump(planned));
+  assert.equal(lunch.title, "Joe's Shanghai");
+  assert.match(lunch.address || '', /Bowery/);
+  assert.equal(lunch.source, 'must-do');
+  assert.equal(lunch.recommendedBy?.[0]?.id, 'you');
+  assert.ok(lunch.lat && lunch.lng);
+
+  const closed = await planDay({
+    date: '2026-11-14',
+    pace: 'balanced',
+    vibes: ['classic'],
+    locks: [{ title: "Joe's Shanghai at noon", confirmedLookup: { ...joe, hours: [[], [], [], [], [], [], []] } }],
+  });
+  const pinned = realStops(closed).find((visit) => visit.title === "Joe's Shanghai");
+  assert.equal(pinned?.startMin, 12 * 60);
+  assert.ok(closed.warnings.some((warning) => /Joe's Shanghai is closed at 12:00 PM/.test(warning)), closed.warnings.join(' | '));
 });

@@ -8,7 +8,7 @@ import { loadLastItinerary, saveLastItinerary } from '@/lib/last-itinerary';
 import { requestBrowserLocation } from '@/lib/device-location';
 import MapsLink from '@/app/components/MapsLink';
 import type { TripDraft } from '@/lib/types';
-import { areaLabelForValue, normalizeAreaValue } from '@/lib/areas';
+import { areaLabelForValue, coerceManhattanFocus } from '@/lib/areas';
 import BookingTag from '@/app/components/BookingTag';
 import RecommendedBy from '@/app/components/RecommendedBy';
 import UnderstoodMatch from '@/app/components/UnderstoodMatch';
@@ -131,9 +131,9 @@ export default function PlanClient() {
     let focusArea: string | null = null;
     const focusParam = searchParams.get('focusArea');
     if (focusParam) {
-      focusArea = normalizeAreaValue(focusParam);
+      focusArea = coerceManhattanFocus(focusParam);
     } else if (draft?.focusArea) {
-      focusArea = draft.focusArea || null;
+      focusArea = coerceManhattanFocus(draft.focusArea);
     }
 
     // Must-dos: if you pass a JSON string in ?mustDos=...
