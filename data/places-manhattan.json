@@ -28939,5 +28939,230 @@
         "coord_source": "OpenStreetMap Nominatim geocode of verified address"
       }
     ]
+  },
+  {
+    "id": "kossars-bagels-bialys",
+    "name": "Kossar's Bagels & Bialys",
+    "category": "bakery",
+    "categories": [
+      "bakery",
+      "breakfast"
+    ],
+    "neighborhood": "Lower East Side",
+    "area": "Downtown",
+    "lat": 40.7164072,
+    "lng": -73.9887865,
+    "duration_min": 15,
+    "duration_max": 30,
+    "vibe_tags": [
+      "classic",
+      "local"
+    ],
+    "energy_tags": [
+      "bustling",
+      "casual"
+    ],
+    "description": "Hand-rolled bialys and bagels from the original Lower East Side shop on Grand Street, with three more Manhattan counters.",
+    "hours": null,
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      }
+    ],
+    "note": "Sam's Google Maps save (Upper West Side). Added with every current Manhattan shop.",
+    "booking": "walk_in",
+    "url": "https://www.google.com/maps/search/?api=1&query=Kossar%27s%20Bagels%20%26%20Bialys%20New%20York",
+    "status": "open",
+    "verified_at": "2026-11-21",
+    "hours_source": "kossars.com location pages where they agree with the contact page. Lower East Side and Upper West Side pages disagree, so those hours are left blank.",
+    "coord_source": "OpenStreetMap Nominatim geocode of the street address",
+    "address": "367 Grand St, New York, NY 10002",
+    "verification_note": "Four Manhattan shops on kossars.com/contact-us and the locations page (2026-11-21). No outer-borough shop is listed. DoorDash also shows 39 W End Ave; that address is not on Kossar's site and was not added. Lower East Side location page says temporary hours Monday–Sunday 7:00am–2:00pm during renovations; the contact page says Monday–Sunday 6:00am–4:00pm. Upper West Side location page says Monday–Saturday 6:00am–6:30pm and Sunday 6:00am–5:00pm; the contact page says Monday–Sunday 6:00am–5:00pm. Those two shops have no hours until the site agrees. Upper East Side and Hudson Yards hours match on both pages.",
+    "locations": [
+      {
+        "id": "kossars-bagels-bialys--lower-east-side",
+        "label": "Lower East Side",
+        "address": "367 Grand St, New York, NY 10002",
+        "lat": 40.7164072,
+        "lng": -73.9887865,
+        "neighborhood": "Lower East Side",
+        "hours": null,
+        "hours_source": "kossars.com location page and contact page disagree",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "kossars-bagels-bialys--upper-east-side",
+        "label": "Upper East Side",
+        "address": "1409 York Ave, New York, NY 10021",
+        "lat": 40.768995,
+        "lng": -73.9525187,
+        "neighborhood": "Upper East Side",
+        "hours": [
+          [
+            [
+              360,
+              1020
+            ]
+          ],
+          [
+            [
+              360,
+              1020
+            ]
+          ],
+          [
+            [
+              360,
+              1020
+            ]
+          ],
+          [
+            [
+              360,
+              1020
+            ]
+          ],
+          [
+            [
+              360,
+              1020
+            ]
+          ],
+          [
+            [
+              360,
+              1020
+            ]
+          ],
+          [
+            [
+              360,
+              1020
+            ]
+          ]
+        ],
+        "hours_source": "kossars.com Upper East Side location page and contact page (Monday–Sunday 6:00am–5:00pm)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "kossars-bagels-bialys--hudson-yards",
+        "label": "Hudson Yards",
+        "address": "536 W 30th St, New York, NY 10001",
+        "lat": 40.7521789,
+        "lng": -74.0014911,
+        "neighborhood": "Chelsea",
+        "hours": [
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              360,
+              960
+            ]
+          ],
+          [
+            [
+              360,
+              960
+            ]
+          ],
+          [
+            [
+              360,
+              960
+            ]
+          ],
+          [
+            [
+              360,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ],
+          [
+            [
+              420,
+              960
+            ]
+          ]
+        ],
+        "hours_source": "kossars.com Hudson Yards location page and contact page (Monday–Thursday 6:00am–4:00pm, Friday–Sunday 7:00am–4:00pm)",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      },
+      {
+        "id": "kossars-bagels-bialys--upper-west-side",
+        "label": "Upper West Side",
+        "address": "270 West 72nd St, New York, NY 10023",
+        "lat": 40.7795817,
+        "lng": -73.9843671,
+        "neighborhood": "Upper West Side",
+        "hours": null,
+        "hours_source": "kossars.com Upper West Side location page and contact page disagree",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
+  },
+  {
+    "id": "sote-coffee-roasters",
+    "name": "Sote Coffee Roasters",
+    "aliases": ["Sote"],
+    "category": "coffee",
+    "categories": [
+      "coffee"
+    ],
+    "neighborhood": "Upper West Side",
+    "area": "Uptown",
+    "lat": 40.7807562,
+    "lng": -73.9798515,
+    "duration_min": 10,
+    "duration_max": 25,
+    "vibe_tags": [
+      "cafe",
+      "local"
+    ],
+    "energy_tags": [
+      "casual",
+      "solo-friendly"
+    ],
+    "description": "Neighborhood coffee roaster on Amsterdam Avenue, between 75th and 76th, roasting in house.",
+    "hours": null,
+    "outdoor": false,
+    "recommended_by": [
+      {
+        "recommenderId": "sam"
+      }
+    ],
+    "note": "Sam's Google Maps save.",
+    "booking": "walk_in",
+    "url": "https://www.google.com/maps/search/?api=1&query=Sote%20Coffee%20Roasters%20329%20Amsterdam%20Ave%20New%20York",
+    "status": "open",
+    "verified_at": "2026-11-21",
+    "hours_source": "sotecoffeeroasters.com does not publish hours",
+    "coord_source": "OpenStreetMap Nominatim geocode of verified address",
+    "address": "329 Amsterdam Ave, New York, NY 10023",
+    "verification_note": "One shop only, confirmed on sotecoffeeroasters.com (329 Amsterdam Ave, between 75th and 76th). Hours are not on that site. Restaurantji (updated 2026-11-19), joe.coffee, and Wedar (checked 2026-11-14) all say Monday–Thursday and Sunday 7:00am–6:00pm, Friday–Saturday 7:00am–7:00pm. Those hours were not copied because the shop's own site does not list them.",
+    "locations": [
+      {
+        "id": "sote-coffee-roasters--upper-west-side",
+        "label": "Upper West Side",
+        "address": "329 Amsterdam Ave, New York, NY 10023",
+        "lat": 40.7807562,
+        "lng": -73.9798515,
+        "neighborhood": "Upper West Side",
+        "hours": null,
+        "hours_source": "sotecoffeeroasters.com does not publish hours",
+        "coord_source": "OpenStreetMap Nominatim geocode of verified address"
+      }
+    ]
   }
 ]

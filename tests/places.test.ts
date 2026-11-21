@@ -11,8 +11,8 @@ import type { Place } from '../lib/places';
 test('every curated place has a known recommender and a booking field', () => {
   const places = getPlaces();
   const known = new Set(getRecommenders().map((person) => person.id));
-  assert.equal(places.length, 173);
-  assert.equal(places.reduce((sum, place) => sum + (place.locations ?? []).length, 0), 266);
+  assert.equal(places.length, 175);
+  assert.equal(places.reduce((sum, place) => sum + (place.locations ?? []).length, 0), 271);
   const placeholders = places.filter((place) => place.placeholder === true);
   assert.equal(placeholders.length, 35);
   const jonathan = placeholders.filter((place) =>
@@ -28,7 +28,13 @@ test('every curated place has a known recommender and a booking field', () => {
     for (const ref of place.recommended_by) {
       assert.ok(known.has(ref.recommenderId), `${place.name} → ${ref.recommenderId}`);
     }
-    if (!place.placeholder) {
+    if (place.id === 'kossars-bagels-bialys' || place.id === 'sote-coffee-roasters') {
+      assert.deepEqual(
+        place.recommended_by.map((ref) => ref.recommenderId),
+        ['sam'],
+        place.name
+      );
+    } else if (!place.placeholder) {
       assert.deepEqual(
         place.recommended_by.map((ref) => ref.recommenderId).sort(),
         ['kailey', 'sam'],
@@ -58,6 +64,30 @@ test('every curated place has a known recommender and a booking field', () => {
   const planning = getPlanningPlaces();
   assert.equal(planning.some((place) => place.status === 'closed' || place.status === 'temporarily_closed'), false);
   assert.equal(places.filter((place) => place.status === 'closed' || place.status === 'temporarily_closed').length, 2);
+});
+
+test("Sam's Kossar's and Sote saves are on the Manhattan list", () => {
+  const kossars = getPlaces().find((place) => place.id === 'kossars-bagels-bialys');
+  const sote = getPlaces().find((place) => place.id === 'sote-coffee-roasters');
+  assert.ok(kossars);
+  assert.ok(sote);
+  assert.ok(kossars.categories.includes('breakfast') || kossars.categories.includes('bakery'));
+  assert.ok(sote.categories.includes('coffee'));
+  assert.equal(kossars.booking, 'walk_in');
+  assert.equal(sote.booking, 'walk_in');
+  const addresses = (kossars.locations ?? []).map((branch) => branch.address || '');
+  assert.equal(addresses.length, 4);
+  assert.ok(addresses.some((address) => /367 Grand St/.test(address)));
+  assert.ok(addresses.some((address) => /1409 York Ave/.test(address)));
+  assert.ok(addresses.some((address) => /536 W 30th St/.test(address)));
+  assert.ok(addresses.some((address) => /270 West 72nd St/.test(address)));
+  const uws = chooseNearestBranch(kossars, { lat: 40.78, lng: -73.98 });
+  assert.match(uws.address || '', /72nd/);
+  const les = chooseNearestBranch(kossars, { lat: 40.716, lng: -73.989 });
+  assert.match(les.address || '', /Grand St/);
+  assert.match(sote.address || '', /329 Amsterdam Ave/);
+  assert.equal(sote.neighborhood, 'Upper West Side');
+  assert.ok((sote.aliases ?? []).some((alias) => alias.toLowerCase() === 'sote'));
 });
 
 test('near-duplicate venues were merged', () => {
